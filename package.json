@@ -1,0 +1,32 @@
+{
+  "name": "akseskita",
+  "version": "1.0.0",
+  "description": "Toolbar Aksesibilitas Web & Papan Komunikasi Visual (AAC) dalam Satu Skrip Ringan Indonesia",
+  "main": "dist/akseskita.js",
+  "module": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "rollup -c -w",
+    "build": "rollup -c",
+    "serve": "node -e \"const http=require('http'),fs=require('fs'),path=require('path');const mime={'.html':'text/html','.js':'application/javascript','.css':'text/css','.json':'application/json','.png':'image/png','.jpg':'image/jpeg','.svg':'image/svg+xml'};http.createServer((req,res)=>{let reqPath=req.url.split('?')[0];let f=path.join(__dirname,reqPath==='/'?'index.html':reqPath);let ext=path.extname(f);fs.readFile(f,(err,data)=>{if(err){res.writeHead(404,{'Content-Type':'text/plain'});res.end('Not Found');}else{res.writeHead(200,{'Content-Type':mime[ext]||'application/octet-stream'});res.end(data);}})}).listen(3000,()=>console.log('Demo server running at http://localhost:3000'));\""
+  },
+  "keywords": [
+    "accessibility",
+    "a11y",
+    "aac",
+    "assistive-technology",
+    "web-accessibility",
+    "indonesia",
+    "speech-synthesis",
+    "screen-reader",
+    "dyslexia",
+    "web-components"
+  ],
+  "author": "AksesKita Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "rollup": "^4.9.6"
+  }
+}
