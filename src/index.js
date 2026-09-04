@@ -2,6 +2,7 @@
  * AksesKita - All-in-One Assistive Web Suite Indonesia
  * Unified Web Accessibility Toolbar & Visual AAC Communicator
  * Zero Dependency Web Component (<akses-kita>)
+ * Bilingual: Bahasa Indonesia & English
  */
 
 import { hostStyles } from './styles/host-inject.css.js';
@@ -17,6 +18,11 @@ import {
   initDefaultData 
 } from './db/idb.js';
 import { defaultCategories, defaultCards } from './db/default-cards.js';
+import { 
+  getLanguage, 
+  setLanguage, 
+  t 
+} from './modules/i18n.js';
 import { 
   setFontScale, 
   getFontScale, 
@@ -102,6 +108,8 @@ class AksesKitaElement extends HTMLElement {
   }
 
   render() {
+    const lang = getLanguage();
+
     this.shadowRoot.innerHTML = `
       <style>
         ${a11yStyles}
@@ -122,106 +130,116 @@ class AksesKitaElement extends HTMLElement {
             <div>
               <h3>AksesKita</h3>
             </div>
-            <span class="panel-title-badge">A11y</span>
+            <span class="panel-title-badge">${t('a11yBadge')}</span>
           </div>
-          <button id="close-panel-btn" class="btn-icon-close" aria-label="Tutup Panel">&times;</button>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <div class="lang-toggle-bar" aria-label="Pilih Bahasa / Choose Language">
+              <button class="lang-btn ${lang === 'id' ? 'active' : ''}" data-lang="id" title="Bahasa Indonesia">ID</button>
+              <button class="lang-btn ${lang === 'en' ? 'active' : ''}" data-lang="en" title="English">EN</button>
+            </div>
+            <button id="close-panel-btn" class="btn-icon-close" aria-label="${t('close')}">&times;</button>
+          </div>
         </div>
 
         <div class="panel-body">
           <!-- CTA AAC Communicator -->
           <div class="panel-section">
-            <span class="section-label">🗣️ Komunikasi Asistif</span>
-            <button id="open-aac-btn" class="btn-aac-launch" title="Pintasan: Alt + C">
+            <span class="section-label">🗣️ ${lang === 'en' ? 'Assistive Communication' : 'Komunikasi Asistif'}</span>
+            <button id="open-aac-btn" class="btn-aac-launch" title="Shortcut: Alt + C">
               <span style="font-size: 22px;">🗣️</span>
-              <span>Buka Papan Bicara (AAC)</span>
+              <span>${t('openAacBtn')}</span>
             </button>
           </div>
 
           <!-- Text Resizing & Font -->
           <div class="panel-section">
-            <span class="section-label">🔤 Ukuran & Bentuk Teks</span>
+            <span class="section-label">🔤 ${t('textSettings')}</span>
             <div class="button-grid cols-4">
-              <button id="btn-font-dec" class="tool-btn" aria-label="Kecilkan Font">
+              <button id="btn-font-dec" class="tool-btn" aria-label="${t('fontSmall')}">
                 <span class="btn-icon">A-</span>
-                <span>Kecil</span>
+                <span>${t('fontSmall')}</span>
               </button>
-              <button id="btn-font-reset" class="tool-btn" aria-label="Reset Ukuran Font">
+              <button id="btn-font-reset" class="tool-btn" aria-label="${t('fontNormal')}">
                 <span class="btn-icon">A</span>
-                <span>Normal</span>
+                <span>${t('fontNormal')}</span>
               </button>
-              <button id="btn-font-inc" class="tool-btn" aria-label="Besarkan Font">
+              <button id="btn-font-inc" class="tool-btn" aria-label="${t('fontLarge')}">
                 <span class="btn-icon">A+</span>
-                <span>Besar</span>
+                <span>${t('fontLarge')}</span>
               </button>
-              <button id="btn-dyslexia" class="tool-btn" aria-label="Mode Font Disleksia">
+              <button id="btn-dyslexia" class="tool-btn" aria-label="${t('fontDyslexia')}">
                 <span class="btn-icon">📖</span>
-                <span>Disleksia</span>
+                <span>${t('fontDyslexia')}</span>
               </button>
             </div>
           </div>
 
           <!-- Color Schemes & Filters -->
           <div class="panel-section">
-            <span class="section-label">🎨 Kontras & Warna</span>
+            <span class="section-label">🎨 ${t('contrastSettings')}</span>
             <div class="button-grid cols-3">
               <button id="btn-contrast-high" class="tool-btn" data-contrast="high">
                 <span class="btn-icon">🌓</span>
-                <span>Kontras Tinggi</span>
+                <span>${t('contrastHigh')}</span>
               </button>
               <button id="btn-contrast-mono" class="tool-btn" data-contrast="mono">
                 <span class="btn-icon">⬛</span>
-                <span>Monokrom</span>
+                <span>${t('contrastMono')}</span>
               </button>
               <button id="btn-contrast-invert" class="tool-btn" data-contrast="invert">
                 <span class="btn-icon">🔄</span>
-                <span>Balik Warna</span>
+                <span>${t('contrastInvert')}</span>
               </button>
             </div>
           </div>
 
           <!-- Visual Aids -->
           <div class="panel-section">
-            <span class="section-label">🔍 Alat Bantu Visual</span>
+            <span class="section-label">🔍 ${t('visualAids')}</span>
             <div class="button-grid">
               <button id="btn-highlight-links" class="tool-btn">
                 <span class="btn-icon">🔗</span>
-                <span>Sorot Tautan</span>
+                <span>${t('highlightLinks')}</span>
               </button>
               <button id="btn-reading-guide" class="tool-btn">
                 <span class="btn-icon">📏</span>
-                <span>Garis Pandu</span>
+                <span>${t('readingGuide')}</span>
               </button>
             </div>
           </div>
         </div>
 
         <div class="panel-footer">
-          <button id="btn-reset-all" class="reset-link">Atur Ulang Semua</button>
-          <span>Pintasan: <b>Alt + A</b></span>
+          <button id="btn-reset-all" class="reset-link">${t('resetAll')}</button>
+          <span>${t('shortcutHint')}: <b>Alt + A</b></span>
         </div>
       </div>
 
       <!-- Fullscreen AAC Communicator Modal -->
-      <div id="aac-modal" class="aac-backdrop hidden" role="dialog" aria-modal="true" aria-label="Papan Komunikasi Visual AAC">
+      <div id="aac-modal" class="aac-backdrop hidden" role="dialog" aria-modal="true" aria-label="${t('aacTitle')}">
         <div class="aac-window">
           <!-- Header -->
           <div class="aac-header">
             <div class="aac-header-left">
               <div class="aac-header-icon">🗣️</div>
               <div>
-                <h2 class="aac-header-title">AksesKita: Papan Bicara (AAC)</h2>
-                <p class="aac-header-subtitle">Papan Komunikasi Visual Interaktif Bahasa Indonesia</p>
+                <h2 class="aac-header-title">${t('aacTitle')}</h2>
+                <p class="aac-header-subtitle">${t('aacSubtitle')}</p>
               </div>
             </div>
             <div class="aac-header-actions">
-              <button id="btn-export-aac" class="btn-secondary-action" title="Ekspor Kartu ke File JSON">
-                💾 Ekspor
+              <div class="lang-toggle-bar" aria-label="Pilih Bahasa / Choose Language">
+                <button class="lang-btn ${lang === 'id' ? 'active' : ''}" data-lang="id" title="Bahasa Indonesia">ID</button>
+                <button class="lang-btn ${lang === 'en' ? 'active' : ''}" data-lang="en" title="English">EN</button>
+              </div>
+              <button id="btn-export-aac" class="btn-secondary-action" title="${t('exportBtn')} JSON">
+                💾 ${t('exportBtn')}
               </button>
-              <button id="btn-import-aac" class="btn-secondary-action" title="Impor Kartu dari File JSON">
-                📥 Impor
+              <button id="btn-import-aac" class="btn-secondary-action" title="${t('importBtn')} JSON">
+                📥 ${t('importBtn')}
               </button>
               <input type="file" id="import-file-input" accept=".json" style="display: none;" />
-              <button id="close-aac-btn" class="btn-icon-close" aria-label="Tutup Papan AAC" style="font-size: 24px;">&times;</button>
+              <button id="close-aac-btn" class="btn-icon-close" aria-label="${t('close')}" style="font-size: 24px;">&times;</button>
             </div>
           </div>
 
@@ -229,21 +247,21 @@ class AksesKitaElement extends HTMLElement {
           <div class="sentence-strip-wrapper">
             <div id="sentence-container" class="sentence-items-container">
               <div class="sentence-empty-placeholder">
-                <span>Klik kartu simbol di bawah untuk menyusun kalimat...</span>
+                <span>${t('sentencePlaceholder')}</span>
               </div>
             </div>
             <div class="sentence-actions">
               <button id="btn-aac-speak" class="btn-speak-main">
                 <span style="font-size: 20px;">🔊</span>
-                <span>Bicara</span>
+                <span>${t('speakBtn')}</span>
               </button>
-              <button id="btn-aac-backspace" class="btn-strip-action" title="Hapus Kartu Terakhir">
+              <button id="btn-aac-backspace" class="btn-strip-action" title="${t('backspaceBtn')}">
                 <span style="font-size: 16px;">⌫</span>
-                <span>Hapus</span>
+                <span>${t('backspaceBtn')}</span>
               </button>
-              <button id="btn-aac-clear" class="btn-strip-action" title="Bersihkan Pita Kalimat">
+              <button id="btn-aac-clear" class="btn-strip-action" title="${t('clearBtn')}">
                 <span style="font-size: 16px;">🗑️</span>
-                <span>Bersih</span>
+                <span>${t('clearBtn')}</span>
               </button>
             </div>
           </div>
@@ -259,36 +277,36 @@ class AksesKitaElement extends HTMLElement {
           </div>
 
           <!-- Floating Add Card Action -->
-          <button id="btn-open-creator" class="btn-fab-add" title="Tambah Kartu Komunikasi Baru">
+          <button id="btn-open-creator" class="btn-fab-add" title="${t('addCardBtn')}">
             <span style="font-size: 18px;">➕</span>
-            <span>Tambah Kartu</span>
+            <span>${t('addCardBtn')}</span>
           </button>
 
           <!-- Custom Card Creator Dialog -->
           <div id="card-creator-modal" class="custom-card-modal hidden">
             <div class="custom-card-dialog">
               <div style="display: flex; justify-content: space-between; align-items: center;">
-                <h3 style="font-size: 17px; font-weight: 800;">Buat Kartu Bicara Baru</h3>
+                <h3 style="font-size: 17px; font-weight: 800;">${t('newCardTitle')}</h3>
                 <button id="close-creator-btn" class="btn-icon-close">&times;</button>
               </div>
 
               <div class="form-group">
-                <label for="input-card-label">Label Teks Kartu *</label>
-                <input type="text" id="input-card-label" class="form-input" placeholder="Contoh: Mau Es Krim" />
+                <label for="input-card-label">${t('cardLabel')}</label>
+                <input type="text" id="input-card-label" class="form-input" placeholder="${t('cardLabelPlaceholder')}" />
               </div>
 
               <div class="form-group">
-                <label for="input-card-speech">Teks yang Diucapkan *</label>
-                <input type="text" id="input-card-speech" class="form-input" placeholder="Contoh: Saya ingin makan es krim rasa cokelat" />
+                <label for="input-card-speech">${t('cardSpeech')}</label>
+                <input type="text" id="input-card-speech" class="form-input" placeholder="${t('cardSpeechPlaceholder')}" />
               </div>
 
               <div class="form-group">
-                <label for="select-card-cat">Pilih Kategori *</label>
+                <label for="select-card-cat">${t('cardCategory')}</label>
                 <select id="select-card-cat" class="form-select"></select>
               </div>
 
               <div class="form-group">
-                <label>Ikon / Gambar Kartu</label>
+                <label>${t('cardImage')}</label>
                 <div style="display: flex; gap: 10px; align-items: center;">
                   <input type="file" id="input-card-image" accept="image/*" class="form-input" style="flex: 1;" />
                   <div id="preview-image-box" style="width: 44px; height: 44px; border-radius: 8px; border: 1px solid #cbd5e1; display: flex; align-items: center; justify-content: center; font-size: 20px; background: #f8fafc; overflow: hidden;">
@@ -298,19 +316,19 @@ class AksesKitaElement extends HTMLElement {
               </div>
 
               <div class="form-group">
-                <label>Rekam Suara Asli (Opsional)</label>
+                <label>${t('cardVoice')}</label>
                 <div class="recorder-box">
-                  <span id="recorder-status" style="font-size: 13px; color: #475569;">Gunakan suara asli atau native TTS</span>
+                  <span id="recorder-status" style="font-size: 13px; color: #475569;">${t('voiceStatusDefault')}</span>
                   <button type="button" id="btn-record-voice" class="btn-record">
                     <span>🎙️</span>
-                    <span id="btn-record-text">Rekam</span>
+                    <span id="btn-record-text">${t('recordBtn')}</span>
                   </button>
                 </div>
               </div>
 
               <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 10px;">
-                <button type="button" id="btn-cancel-creator" class="btn-secondary-action">Batal</button>
-                <button type="button" id="btn-save-card" class="btn-speak-main" style="padding: 10px 18px; font-size: 14px;">Simpan Kartu</button>
+                <button type="button" id="btn-cancel-creator" class="btn-secondary-action">${t('cancelBtn')}</button>
+                <button type="button" id="btn-save-card" class="btn-speak-main" style="padding: 10px 18px; font-size: 14px;">${t('saveBtn')}</button>
               </div>
             </div>
           </div>
@@ -347,6 +365,14 @@ class AksesKitaElement extends HTMLElement {
     closeAacBtn.addEventListener('click', () => {
       aacModal.classList.add('hidden');
       stopSentencePlayback();
+    });
+
+    // Language Toggle Buttons (Panel and AAC header)
+    root.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const lang = btn.getAttribute('data-lang');
+        this.changeLanguage(lang);
+      });
     });
 
     // Font actions
@@ -464,10 +490,10 @@ class AksesKitaElement extends HTMLElement {
           await startAudioRecording();
           this.isRecording = true;
           recordBtn.classList.add('recording');
-          recordText.textContent = 'Berhenti';
-          recordStatus.textContent = '🔴 Merekam suara...';
+          recordText.textContent = getLanguage() === 'en' ? 'Stop' : 'Berhenti';
+          recordStatus.textContent = t('voiceRecording');
         } catch (err) {
-          alert(err.message || 'Gagal mengakses mikrofon');
+          alert((t('micError')) + (err.message || 'Error'));
         }
       } else {
         try {
@@ -475,8 +501,8 @@ class AksesKitaElement extends HTMLElement {
           this.isRecording = false;
           this.currentRecordedAudioBlob = blob;
           recordBtn.classList.remove('recording');
-          recordText.textContent = 'Rekam Ulang';
-          recordStatus.textContent = '✅ Suara tersimpan!';
+          recordText.textContent = t('recordAgainBtn');
+          recordStatus.textContent = t('voiceRecorded');
         } catch (err) {
           console.error(err);
         }
@@ -495,7 +521,7 @@ class AksesKitaElement extends HTMLElement {
         a.click();
         URL.revokeObjectURL(url);
       } catch (err) {
-        alert('Gagal mengekspor data: ' + err.message);
+        alert(t('importFail') + err.message);
       }
     });
 
@@ -511,12 +537,33 @@ class AksesKitaElement extends HTMLElement {
         try {
           await importBackup(text);
           await this.loadAACData();
-          alert('Berhasil mengimpor data AAC!');
+          alert(t('importSuccess'));
         } catch (err) {
-          alert('Gagal mengimpor file: ' + err.message);
+          alert(t('importFail') + err.message);
         }
       }
     });
+  }
+
+  changeLanguage(newLang) {
+    setLanguage(newLang);
+    const root = this.shadowRoot;
+    const isPanelOpen = !root.getElementById('a11y-panel').classList.contains('hidden');
+    const isAacOpen = !root.getElementById('aac-modal').classList.contains('hidden');
+
+    this.render();
+    this.bindEvents();
+    this.syncA11yUIState();
+    this.renderCategoryTabs();
+    this.renderCardGrid();
+    this.renderSentenceStrip();
+
+    if (isPanelOpen) {
+      this.shadowRoot.getElementById('a11y-panel').classList.remove('hidden');
+    }
+    if (isAacOpen) {
+      this.shadowRoot.getElementById('aac-modal').classList.remove('hidden');
+    }
   }
 
   initShortcuts() {
@@ -583,20 +630,22 @@ class AksesKitaElement extends HTMLElement {
   renderCategoryTabs() {
     const tabsContainer = this.shadowRoot.getElementById('category-tabs');
     if (!tabsContainer) return;
+    const isEn = getLanguage() === 'en';
 
     let html = `
       <button class="cat-tab-btn ${this.activeCategoryId === 'all' ? 'active' : ''}" data-cat-id="all">
         <span>🌟</span>
-        <span>Semua</span>
+        <span>${t('allCategory')}</span>
       </button>
     `;
 
     this.categories.forEach(cat => {
       const isActive = String(this.activeCategoryId) === String(cat.id);
+      const catLabel = (isEn && cat.nameEn) ? cat.nameEn : cat.name;
       html += `
         <button class="cat-tab-btn ${isActive ? 'active' : ''}" data-cat-id="${cat.id}">
           <span>${cat.icon || '📁'}</span>
-          <span>${cat.name}</span>
+          <span>${catLabel}</span>
         </button>
       `;
     });
@@ -651,6 +700,7 @@ class AksesKitaElement extends HTMLElement {
   renderCardGrid() {
     const gridContainer = this.shadowRoot.getElementById('aac-cards-grid');
     if (!gridContainer) return;
+    const isEn = getLanguage() === 'en';
 
     const filteredCards = this.activeCategoryId === 'all' 
       ? this.cards 
@@ -659,8 +709,8 @@ class AksesKitaElement extends HTMLElement {
     if (filteredCards.length === 0) {
       gridContainer.innerHTML = `
         <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #64748b;">
-          <p style="font-size: 16px; font-weight: 600;">Belum ada kartu di kategori ini.</p>
-          <p style="font-size: 13px; margin-top: 6px;">Klik tombol "+ Tambah Kartu" di pojok kanan bawah untuk membuat kartu baru.</p>
+          <p style="font-size: 16px; font-weight: 600;">${t('emptyCategory')}</p>
+          <p style="font-size: 13px; margin-top: 6px;">${t('emptyCategoryHint')}</p>
         </div>
       `;
       return;
@@ -668,9 +718,10 @@ class AksesKitaElement extends HTMLElement {
 
     gridContainer.innerHTML = filteredCards.map(card => {
       const isCustom = !card.isDefault;
+      const displayLabel = (isEn && card.labelEn) ? card.labelEn : card.label;
       let iconHtml = '';
       if (card.image) {
-        iconHtml = `<img src="${card.image}" alt="${card.label}" loading="lazy" />`;
+        iconHtml = `<img src="${card.image}" alt="${displayLabel}" loading="lazy" />`;
       } else if (card.iconEmoji) {
         iconHtml = `<span>${card.iconEmoji}</span>`;
       } else {
@@ -678,13 +729,13 @@ class AksesKitaElement extends HTMLElement {
       }
 
       return `
-        <div class="aac-card" tabindex="0" role="button" data-card-id="${card.id}" aria-label="${card.label}" title="Klik atau tekan Enter untuk masukkan ke pita">
-          ${isCustom ? `<span class="aac-card-badge-custom">Kustom</span>` : ''}
-          ${isCustom ? `<button class="aac-card-delete-btn" data-delete-id="${card.id}" aria-label="Hapus kartu ${card.label}" title="Hapus kartu">&times;</button>` : ''}
+        <div class="aac-card" tabindex="0" role="button" data-card-id="${card.id}" aria-label="${displayLabel}">
+          ${isCustom ? `<span class="aac-card-badge-custom">${t('customBadge')}</span>` : ''}
+          ${isCustom ? `<button class="aac-card-delete-btn" data-delete-id="${card.id}" aria-label="Delete ${displayLabel}" title="${t('backspaceBtn')}">&times;</button>` : ''}
           <div class="aac-card-icon-wrap" style="background: ${card.bgColor || '#f8fafc'}; border-color: ${card.borderColor || '#e2e8f0'};">
             ${iconHtml}
           </div>
-          <span class="aac-card-label">${card.label}</span>
+          <span class="aac-card-label">${displayLabel}</span>
         </div>
       `;
     }).join('');
@@ -719,7 +770,7 @@ class AksesKitaElement extends HTMLElement {
       btn.addEventListener('click', async (e) => {
         e.stopPropagation();
         const deleteId = btn.getAttribute('data-delete-id');
-        if (confirm('Apakah Anda yakin ingin menghapus kartu ini?')) {
+        if (confirm(t('deleteConfirm'))) {
           await deleteCard(deleteId);
           await this.loadAACData();
         }
@@ -730,12 +781,13 @@ class AksesKitaElement extends HTMLElement {
   renderSentenceStrip() {
     const container = this.shadowRoot.getElementById('sentence-container');
     if (!container) return;
+    const isEn = getLanguage() === 'en';
 
     const sentence = getSentenceList();
     if (sentence.length === 0) {
       container.innerHTML = `
         <div class="sentence-empty-placeholder">
-          <span>Klik kartu simbol di bawah untuk menyusun kalimat...</span>
+          <span>${t('sentencePlaceholder')}</span>
         </div>
       `;
       return;
@@ -746,11 +798,13 @@ class AksesKitaElement extends HTMLElement {
       if (item.image) {
         icon = `<img src="${item.image}" style="width:20px;height:20px;border-radius:4px;object-fit:cover;" />`;
       }
+      const displayLabel = (isEn && item.labelEn) ? item.labelEn : item.label;
+
       return `
         <div class="sentence-card" id="sentence-item-${index}" data-index="${index}">
           <span class="sentence-card-icon">${icon}</span>
-          <span class="sentence-card-label">${item.label}</span>
-          <button class="sentence-card-remove" data-remove-index="${index}" title="Hapus kartu ini">&times;</button>
+          <span class="sentence-card-label">${displayLabel}</span>
+          <button class="sentence-card-remove" data-remove-index="${index}" title="${t('backspaceBtn')}">&times;</button>
         </div>
       `;
     }).join('');
@@ -790,17 +844,18 @@ class AksesKitaElement extends HTMLElement {
     const root = this.shadowRoot;
     const modal = root.getElementById('card-creator-modal');
     const catSelect = root.getElementById('select-card-cat');
+    const isEn = getLanguage() === 'en';
 
     // Populate categories
     catSelect.innerHTML = this.categories.map(c => `
-      <option value="${c.id}">${c.name}</option>
+      <option value="${c.id}">${(isEn && c.nameEn) ? c.nameEn : c.name}</option>
     `).join('');
 
     root.getElementById('input-card-label').value = '';
     root.getElementById('input-card-speech').value = '';
     root.getElementById('preview-image-box').innerHTML = '🖼️';
-    root.getElementById('recorder-status').textContent = 'Gunakan suara asli atau native TTS';
-    root.getElementById('btn-record-text').textContent = 'Rekam';
+    root.getElementById('recorder-status').textContent = t('voiceStatusDefault');
+    root.getElementById('btn-record-text').textContent = t('recordBtn');
     
     this.customImageBase64 = null;
     this.currentRecordedAudioBlob = null;
@@ -816,7 +871,7 @@ class AksesKitaElement extends HTMLElement {
     const categoryId = parseInt(root.getElementById('select-card-cat').value, 10);
 
     if (!label) {
-      alert('Mohon isi label teks kartu.');
+      alert(t('fillRequired'));
       return;
     }
 
@@ -824,6 +879,8 @@ class AksesKitaElement extends HTMLElement {
       categoryId,
       label,
       speechText,
+      labelEn: label,
+      speechTextEn: speechText,
       image: this.customImageBase64 || null,
       audioBlob: this.currentRecordedAudioBlob || null,
       iconEmoji: this.customImageBase64 ? null : '✨',

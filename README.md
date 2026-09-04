@@ -16,7 +16,13 @@ Misi kami adalah menghadirkan kesetaraan akses informasi web dan kemandirian kom
 
 ## ✨ Fitur Unggulan
 
-### 1. 🔤 Toolbar Aksesibilitas Web (A11y Tools)
+### 1. 🌐 Dukungan Bilingual Penuh (Bahasa Indonesia & English)
+* **Peralihan Cepat (Toggle ID / EN):** Tombol switcher bahasa langsung di panel aksesibilitas dan modal AAC.
+* **Terjemahan UI & Simbol Otomatis:** Seluruh label antarmuka, tombol, kategori, dan kartu simbol AAC langsung diterjemahkan secara dinamis.
+* **Sintesis Suara Dwibahasa (Bilingual Speech Synthesis):** Suara TTS otomatis menyesuaikan aksen lokal Indonesia (`id-ID`) atau Inggris (`en-US`/`en-GB`) sesuai bahasa aktif.
+* **Penyimpanan Preferensi:** Bahasa pilihan pengguna tersimpan di `localStorage` secara otomatis.
+
+### 2. 🔤 Toolbar Aksesibilitas Web (A11y Tools)
 * **Ukuran Font Dinamis:** 4 tingkat pembesaran (100%, +15%, +30%, +50%) via manipulasi variabel CSS yang responsif.
 * **Mode Ramah Disleksia:** Toggle font khusus (*OpenDyslexic* mode) untuk meningkatkan keterbacaan.
 * **Skema Kontras & Filter Visual:**
@@ -25,18 +31,18 @@ Misi kami adalah menghadirkan kesetaraan akses informasi web dan kemandirian kom
   * **Balik Warna (Invert):** Pembalikan warna cerdas yang melindungi elemen media (gambar, video, canvas).
   * **Sorot Tautan:** Penandaan visual mencolok pada tautan dan navigasi.
   * **Garis Pandu Baca (Reading Guide):** Penggaris baca interaktif horizontal (60 FPS `requestAnimationFrame`).
-* **Quick TTS / Screen Reader Seleksi Teks:** Cukup seleksi teks apa pun di website, tombol mengambang **"🔊 Dengarkan"** akan muncul otomatis dan membaca teks dengan pelafalan Bahasa Indonesia (`id-ID`).
+* **Quick TTS / Screen Reader Seleksi Teks:** Cukup seleksi teks apa pun di website, tombol mengambang **"🔊 Dengarkan" / "🔊 Listen"** akan muncul otomatis dan membaca teks dengan pelafalan yang sesuai.
 
-### 2. 🗣️ Papan Komunikasi Visual (AAC Communicator Modal)
+### 3. 🗣️ Papan Komunikasi Visual (AAC Communicator Modal)
 * **Pita Kalimat (Sentence Strip):**
   * Susun urutan kartu simbol hanya dengan mengklik kartu.
-  * Tombol **"🔊 Bicara"**: Membacakan kalimat satu per satu dengan efek visual highlight yang aktif mengikuti kata yang sedang dibunyikan.
-  * Tombol **"⌫ Hapus"** (hapus kartu terakhir) & **"🗑️ Bersih"** (kosongkan pita).
-* **Kategori & Simbol Bawaan Indonesia:**
-  * **Kebutuhan (🍽️):** Mau Makan, Mau Minum, Ke Toilet, Tolong, Istirahat, Sakit, Tidur, Minum Obat, Cuci Tangan, Ganti Baju.
-  * **Respon (💬):** Ya, Tidak, Mau, Tidak Mau, Terima Kasih, Permisi, Maaf, Tolong Ulangi, Mengerti, Tidak Tahu.
-  * **Perasaan (😊):** Senang, Sedih, Marah, Takut, Bingung, Lelah, Kaget, Cemas, Bangga.
-  * **Aktivitas & Orang (👥):** Saya, Kamu, Belajar, Bermain, Jalan-jalan, Pulang, Ibu, Ayah, Guru, Teman, Dokter.
+  * Tombol **"🔊 Bicara / Speak"**: Membacakan kalimat satu per satu dengan efek visual highlight yang aktif mengikuti kata yang sedang dibunyikan.
+  * Tombol **"⌫ Hapus / Delete"** (hapus kartu terakhir) & **"🗑️ Bersih / Clear"** (kosongkan pita).
+* **Kategori & Simbol Bawaan Bilingual (40+ Kartu):**
+  * **Kebutuhan / Needs (🍽️):** Mau Makan (Want Food), Mau Minum (Want Drink), Ke Toilet (Go to Restroom), Tolong (Help), Istirahat (Rest), Sakit (In Pain), Tidur (Sleep), Minum Obat (Take Medicine), Cuci Tangan (Wash Hands), Ganti Baju (Change Clothes).
+  * **Respon / Responses (💬):** Ya (Yes), Tidak (No), Mau (Want), Tidak Mau (Don't Want), Terima Kasih (Thank You), Permisi (Excuse Me), Maaf (Sorry), Tolong Ulangi (Please Repeat), Mengerti (I Understand), Tidak Tahu (I Don't Know).
+  * **Perasaan / Feelings (😊):** Senang (Happy), Sedih (Sad), Marah (Angry), Takut (Scared), Bingung (Confused), Lelah (Tired), Kaget (Surprised), Cemas (Anxious), Bangga (Proud).
+  * **Aktivitas & Orang / Activities & People (👥):** Saya (I / Me), Kamu (You), Belajar (Study), Bermain (Play), Jalan-jalan (Go for a Walk), Pulang (Go Home), Ibu (Mother), Ayah (Father), Guru (Teacher), Teman (Friend), Dokter (Doctor).
 * **Editor Kartu Kustom (CRUD Lokal Offline):**
   * Tambah kartu baru dengan upload gambar/foto kamera dari perangkat (dilengkapi kompresi gambar otomatis via Canvas).
   * Rekam suara asli via mic menggunakan native `MediaRecorder` API.

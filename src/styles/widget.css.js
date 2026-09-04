@@ -143,6 +143,34 @@ export const a11yStyles = `
   letter-spacing: 0.05em;
 }
 
+/* Language Switcher Pill */
+.lang-toggle-bar {
+  display: inline-flex;
+  align-items: center;
+  background: #e2e8f0;
+  border-radius: 9999px;
+  padding: 2px;
+  gap: 2px;
+}
+
+.lang-btn {
+  background: transparent;
+  border: none;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  color: var(--ak-text-muted);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.lang-btn.active {
+  background: #0284c7;
+  color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
 .btn-icon-close {
   background: transparent;
   border: none;

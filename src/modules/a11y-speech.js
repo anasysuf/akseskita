@@ -1,7 +1,4 @@
-/**
- * AksesKita - Speech Synthesis & Quick Floating Text Reader
- * Indonesian voice priority with intelligent fallback.
- */
+import { getLanguage, t } from './i18n.js';
 
 let cachedVoices = [];
 
@@ -19,28 +16,35 @@ if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
 }
 
 /**
- * Get preferred Indonesian voice, or default
+ * Get preferred voice based on active language (id or en)
  */
-export function getIndonesianVoice() {
+export function getVoiceForLanguage(lang = null) {
+  const targetLang = lang || getLanguage();
   const voices = cachedVoices.length ? cachedVoices : loadVoices();
-  
-  // Try exact id-ID match
-  let voice = voices.find(v => v.lang === 'id-ID' || v.lang === 'id_ID');
-  if (voice) return voice;
 
-  // Try language starting with 'id'
-  voice = voices.find(v => v.lang.toLowerCase().startsWith('id'));
-  if (voice) return voice;
-
-  // Try Indonesian in name
-  voice = voices.find(v => v.name.toLowerCase().includes('indonesia'));
-  if (voice) return voice;
-
-  return null;
+  if (targetLang === 'en') {
+    // English priority
+    let voice = voices.find(v => v.lang === 'en-US' || v.lang === 'en_US');
+    if (voice) return voice;
+    voice = voices.find(v => v.lang === 'en-GB' || v.lang === 'en_GB');
+    if (voice) return voice;
+    voice = voices.find(v => v.lang.toLowerCase().startsWith('en'));
+    if (voice) return voice;
+    return null;
+  } else {
+    // Indonesian priority
+    let voice = voices.find(v => v.lang === 'id-ID' || v.lang === 'id_ID');
+    if (voice) return voice;
+    voice = voices.find(v => v.lang.toLowerCase().startsWith('id'));
+    if (voice) return voice;
+    voice = voices.find(v => v.name.toLowerCase().includes('indonesia'));
+    if (voice) return voice;
+    return null;
+  }
 }
 
 /**
- * Speak text out loud with resume keepalive
+ * Speak text out loud with resume keepalive and bilingual voice selection
  */
 export function speakText(text, options = {}) {
   return new Promise((resolve) => {
@@ -53,13 +57,14 @@ export function speakText(text, options = {}) {
     } catch (e) {}
 
     const utterance = new SpeechSynthesisUtterance(text);
-    const idVoice = getIndonesianVoice();
+    const lang = options.lang || getLanguage();
+    const voice = getVoiceForLanguage(lang);
 
-    if (idVoice) {
-      utterance.voice = idVoice;
-      utterance.lang = idVoice.lang;
+    if (voice) {
+      utterance.voice = voice;
+      utterance.lang = voice.lang;
     } else {
-      utterance.lang = 'id-ID';
+      utterance.lang = lang === 'en' ? 'en-US' : 'id-ID';
     }
 
     utterance.rate = options.rate || 0.95;

@@ -372,6 +372,34 @@ const a11yStyles = `
   letter-spacing: 0.05em;
 }
 
+/* Language Switcher Pill */
+.lang-toggle-bar {
+  display: inline-flex;
+  align-items: center;
+  background: #e2e8f0;
+  border-radius: 9999px;
+  padding: 2px;
+  gap: 2px;
+}
+
+.lang-btn {
+  background: transparent;
+  border: none;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  color: var(--ak-text-muted);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.lang-btn.active {
+  background: #0284c7;
+  color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
 .btn-icon-close {
   background: transparent;
   border: none;
@@ -1278,15 +1306,15 @@ async function initDefaultData(defaultCategories, defaultCards) {
 }
 
 /**
- * AksesKita - Default AAC Symbols (Bahasa Indonesia)
- * Crisp, lightweight inline SVG symbols tailored for Indonesian assistive communication.
+ * AksesKita - Default AAC Symbols (Bilingual: ID & EN)
+ * Crisp, lightweight inline SVG symbols tailored for assistive communication.
  */
 
 const defaultCategories = [
-  { id: 1, name: 'Kebutuhan', icon: '🍽️', color: '#EA580C' },
-  { id: 2, name: 'Respon', icon: '💬', color: '#16A34A' },
-  { id: 3, name: 'Perasaan', icon: '😊', color: '#2563EB' },
-  { id: 4, name: 'Aktivitas & Orang', icon: '👥', color: '#9333EA' }
+  { id: 1, name: 'Kebutuhan', nameEn: 'Needs', icon: '🍽️', color: '#EA580C' },
+  { id: 2, name: 'Respon', nameEn: 'Responses', icon: '💬', color: '#16A34A' },
+  { id: 3, name: 'Perasaan', nameEn: 'Feelings', icon: '😊', color: '#2563EB' },
+  { id: 4, name: 'Aktivitas & Orang', nameEn: 'Activities & People', icon: '👥', color: '#9333EA' }
 ];
 
 const defaultCards = [
@@ -1295,7 +1323,9 @@ const defaultCards = [
     id: 101,
     categoryId: 1,
     label: 'Mau Makan',
+    labelEn: 'Want Food',
     speechText: 'Saya mau makan',
+    speechTextEn: 'I want to eat',
     iconEmoji: '🍚',
     bgColor: '#FFF7ED',
     borderColor: '#EA580C',
@@ -1305,7 +1335,9 @@ const defaultCards = [
     id: 102,
     categoryId: 1,
     label: 'Mau Minum',
+    labelEn: 'Want Water',
     speechText: 'Saya mau minum air',
+    speechTextEn: 'I want to drink water',
     iconEmoji: '🥛',
     bgColor: '#FFF7ED',
     borderColor: '#EA580C',
@@ -1315,7 +1347,9 @@ const defaultCards = [
     id: 103,
     categoryId: 1,
     label: 'Ke Toilet',
+    labelEn: 'Restroom',
     speechText: 'Saya ingin pergi ke toilet',
+    speechTextEn: 'I need to go to the restroom',
     iconEmoji: '🚻',
     bgColor: '#FFF7ED',
     borderColor: '#EA580C',
@@ -1325,7 +1359,9 @@ const defaultCards = [
     id: 104,
     categoryId: 1,
     label: 'Tolong',
+    labelEn: 'Help',
     speechText: 'Tolong bantu saya',
+    speechTextEn: 'Please help me',
     iconEmoji: '🆘',
     bgColor: '#FFF7ED',
     borderColor: '#EA580C',
@@ -1335,7 +1371,9 @@ const defaultCards = [
     id: 105,
     categoryId: 1,
     label: 'Istirahat',
+    labelEn: 'Rest',
     speechText: 'Saya mau istirahat',
+    speechTextEn: 'I want to take a rest',
     iconEmoji: '🛋️',
     bgColor: '#FFF7ED',
     borderColor: '#EA580C',
@@ -1345,7 +1383,9 @@ const defaultCards = [
     id: 106,
     categoryId: 1,
     label: 'Sakit',
+    labelEn: 'Pain / Hurt',
     speechText: 'Badan saya terasa sakit',
+    speechTextEn: 'I am in pain or feeling sick',
     iconEmoji: '🩹',
     bgColor: '#FFF7ED',
     borderColor: '#EA580C',
@@ -1355,7 +1395,9 @@ const defaultCards = [
     id: 107,
     categoryId: 1,
     label: 'Tidur',
+    labelEn: 'Sleep',
     speechText: 'Saya mau tidur',
+    speechTextEn: 'I want to go to sleep',
     iconEmoji: '🛏️',
     bgColor: '#FFF7ED',
     borderColor: '#EA580C',
@@ -1365,7 +1407,9 @@ const defaultCards = [
     id: 108,
     categoryId: 1,
     label: 'Minum Obat',
+    labelEn: 'Medicine',
     speechText: 'Saya butuh minum obat',
+    speechTextEn: 'I need to take my medicine',
     iconEmoji: '💊',
     bgColor: '#FFF7ED',
     borderColor: '#EA580C',
@@ -1375,7 +1419,9 @@ const defaultCards = [
     id: 109,
     categoryId: 1,
     label: 'Cuci Tangan',
+    labelEn: 'Wash Hands',
     speechText: 'Saya mau cuci tangan',
+    speechTextEn: 'I want to wash my hands',
     iconEmoji: '🧼',
     bgColor: '#FFF7ED',
     borderColor: '#EA580C',
@@ -1385,7 +1431,9 @@ const defaultCards = [
     id: 110,
     categoryId: 1,
     label: 'Ganti Baju',
+    labelEn: 'Change Clothes',
     speechText: 'Saya ingin ganti baju',
+    speechTextEn: 'I want to change my clothes',
     iconEmoji: '👕',
     bgColor: '#FFF7ED',
     borderColor: '#EA580C',
@@ -1397,7 +1445,9 @@ const defaultCards = [
     id: 201,
     categoryId: 2,
     label: 'Ya',
+    labelEn: 'Yes',
     speechText: 'Ya',
+    speechTextEn: 'Yes',
     iconEmoji: '👍',
     bgColor: '#F0FDF4',
     borderColor: '#16A34A',
@@ -1407,7 +1457,9 @@ const defaultCards = [
     id: 202,
     categoryId: 2,
     label: 'Tidak',
+    labelEn: 'No',
     speechText: 'Tidak',
+    speechTextEn: 'No',
     iconEmoji: '👎',
     bgColor: '#F0FDF4',
     borderColor: '#16A34A',
@@ -1417,7 +1469,9 @@ const defaultCards = [
     id: 203,
     categoryId: 2,
     label: 'Mau',
+    labelEn: 'I Want',
     speechText: 'Saya mau',
+    speechTextEn: 'I want this',
     iconEmoji: '👌',
     bgColor: '#F0FDF4',
     borderColor: '#16A34A',
@@ -1427,7 +1481,9 @@ const defaultCards = [
     id: 204,
     categoryId: 2,
     label: 'Tidak Mau',
+    labelEn: "Don't Want",
     speechText: 'Saya tidak mau',
+    speechTextEn: 'I do not want this',
     iconEmoji: '🙅',
     bgColor: '#F0FDF4',
     borderColor: '#16A34A',
@@ -1437,7 +1493,9 @@ const defaultCards = [
     id: 205,
     categoryId: 2,
     label: 'Terima Kasih',
+    labelEn: 'Thank You',
     speechText: 'Terima kasih banyak',
+    speechTextEn: 'Thank you very much',
     iconEmoji: '🙏',
     bgColor: '#F0FDF4',
     borderColor: '#16A34A',
@@ -1447,7 +1505,9 @@ const defaultCards = [
     id: 206,
     categoryId: 2,
     label: 'Permisi',
+    labelEn: 'Excuse Me',
     speechText: 'Permisi',
+    speechTextEn: 'Excuse me',
     iconEmoji: '👋',
     bgColor: '#F0FDF4',
     borderColor: '#16A34A',
@@ -1457,7 +1517,9 @@ const defaultCards = [
     id: 207,
     categoryId: 2,
     label: 'Maaf',
+    labelEn: 'Sorry',
     speechText: 'Saya minta maaf',
+    speechTextEn: 'I am sorry',
     iconEmoji: '🙇',
     bgColor: '#F0FDF4',
     borderColor: '#16A34A',
@@ -1467,7 +1529,9 @@ const defaultCards = [
     id: 208,
     categoryId: 2,
     label: 'Tolong Ulangi',
+    labelEn: 'Repeat Please',
     speechText: 'Tolong ulangi lagi',
+    speechTextEn: 'Please repeat that again',
     iconEmoji: '🔄',
     bgColor: '#F0FDF4',
     borderColor: '#16A34A',
@@ -1477,7 +1541,9 @@ const defaultCards = [
     id: 209,
     categoryId: 2,
     label: 'Mengerti',
+    labelEn: 'Understood',
     speechText: 'Saya sudah mengerti',
+    speechTextEn: 'I understand',
     iconEmoji: '💡',
     bgColor: '#F0FDF4',
     borderColor: '#16A34A',
@@ -1487,7 +1553,9 @@ const defaultCards = [
     id: 210,
     categoryId: 2,
     label: 'Tidak Tahu',
+    labelEn: "Don't Know",
     speechText: 'Saya tidak tahu',
+    speechTextEn: 'I do not know',
     iconEmoji: '🤷',
     bgColor: '#F0FDF4',
     borderColor: '#16A34A',
@@ -1499,7 +1567,9 @@ const defaultCards = [
     id: 301,
     categoryId: 3,
     label: 'Senang',
+    labelEn: 'Happy',
     speechText: 'Saya merasa senang',
+    speechTextEn: 'I feel happy',
     iconEmoji: '😄',
     bgColor: '#EFF6FF',
     borderColor: '#2563EB',
@@ -1509,7 +1579,9 @@ const defaultCards = [
     id: 302,
     categoryId: 3,
     label: 'Sedih',
+    labelEn: 'Sad',
     speechText: 'Saya merasa sedih',
+    speechTextEn: 'I feel sad',
     iconEmoji: '😢',
     bgColor: '#EFF6FF',
     borderColor: '#2563EB',
@@ -1519,7 +1591,9 @@ const defaultCards = [
     id: 303,
     categoryId: 3,
     label: 'Marah',
+    labelEn: 'Angry',
     speechText: 'Saya sedang marah',
+    speechTextEn: 'I feel angry',
     iconEmoji: '😠',
     bgColor: '#EFF6FF',
     borderColor: '#2563EB',
@@ -1529,7 +1603,9 @@ const defaultCards = [
     id: 304,
     categoryId: 3,
     label: 'Takut',
+    labelEn: 'Scared',
     speechText: 'Saya merasa takut',
+    speechTextEn: 'I feel scared',
     iconEmoji: '😨',
     bgColor: '#EFF6FF',
     borderColor: '#2563EB',
@@ -1539,7 +1615,9 @@ const defaultCards = [
     id: 305,
     categoryId: 3,
     label: 'Bingung',
+    labelEn: 'Confused',
     speechText: 'Saya merasa bingung',
+    speechTextEn: 'I feel confused',
     iconEmoji: '😕',
     bgColor: '#EFF6FF',
     borderColor: '#2563EB',
@@ -1549,7 +1627,9 @@ const defaultCards = [
     id: 306,
     categoryId: 3,
     label: 'Lelah',
+    labelEn: 'Tired',
     speechText: 'Saya merasa lelah sekali',
+    speechTextEn: 'I feel very tired',
     iconEmoji: '😫',
     bgColor: '#EFF6FF',
     borderColor: '#2563EB',
@@ -1559,7 +1639,9 @@ const defaultCards = [
     id: 307,
     categoryId: 3,
     label: 'Kaget',
+    labelEn: 'Surprised',
     speechText: 'Saya kaget',
+    speechTextEn: 'I am surprised',
     iconEmoji: '😲',
     bgColor: '#EFF6FF',
     borderColor: '#2563EB',
@@ -1569,7 +1651,9 @@ const defaultCards = [
     id: 308,
     categoryId: 3,
     label: 'Cemas',
+    labelEn: 'Anxious',
     speechText: 'Saya merasa cemas dan gelisah',
+    speechTextEn: 'I feel anxious and uneasy',
     iconEmoji: '😰',
     bgColor: '#EFF6FF',
     borderColor: '#2563EB',
@@ -1579,7 +1663,9 @@ const defaultCards = [
     id: 309,
     categoryId: 3,
     label: 'Bangga',
+    labelEn: 'Proud',
     speechText: 'Saya bangga',
+    speechTextEn: 'I feel proud',
     iconEmoji: '🌟',
     bgColor: '#EFF6FF',
     borderColor: '#2563EB',
@@ -1591,7 +1677,9 @@ const defaultCards = [
     id: 401,
     categoryId: 4,
     label: 'Saya',
+    labelEn: 'Me / I',
     speechText: 'Saya',
+    speechTextEn: 'Me',
     iconEmoji: '🙋',
     bgColor: '#FAF5FF',
     borderColor: '#9333EA',
@@ -1601,7 +1689,9 @@ const defaultCards = [
     id: 402,
     categoryId: 4,
     label: 'Kamu',
+    labelEn: 'You',
     speechText: 'Kamu',
+    speechTextEn: 'You',
     iconEmoji: '👉',
     bgColor: '#FAF5FF',
     borderColor: '#9333EA',
@@ -1611,7 +1701,9 @@ const defaultCards = [
     id: 403,
     categoryId: 4,
     label: 'Belajar',
+    labelEn: 'Study',
     speechText: 'Saya mau belajar',
+    speechTextEn: 'I want to study',
     iconEmoji: '📚',
     bgColor: '#FAF5FF',
     borderColor: '#9333EA',
@@ -1621,7 +1713,9 @@ const defaultCards = [
     id: 404,
     categoryId: 4,
     label: 'Bermain',
+    labelEn: 'Play',
     speechText: 'Saya mau bermain',
+    speechTextEn: 'I want to play',
     iconEmoji: '⚽',
     bgColor: '#FAF5FF',
     borderColor: '#9333EA',
@@ -1631,7 +1725,9 @@ const defaultCards = [
     id: 405,
     categoryId: 4,
     label: 'Jalan-jalan',
+    labelEn: 'Go Outside',
     speechText: 'Mau jalan-jalan keluar',
+    speechTextEn: 'I want to go for a walk outside',
     iconEmoji: '🚶',
     bgColor: '#FAF5FF',
     borderColor: '#9333EA',
@@ -1641,7 +1737,9 @@ const defaultCards = [
     id: 406,
     categoryId: 4,
     label: 'Pulang',
+    labelEn: 'Go Home',
     speechText: 'Saya mau pulang ke rumah',
+    speechTextEn: 'I want to go home',
     iconEmoji: '🏠',
     bgColor: '#FAF5FF',
     borderColor: '#9333EA',
@@ -1651,7 +1749,9 @@ const defaultCards = [
     id: 407,
     categoryId: 4,
     label: 'Ibu',
+    labelEn: 'Mom / Mother',
     speechText: 'Ibu',
+    speechTextEn: 'Mother',
     iconEmoji: '👩',
     bgColor: '#FAF5FF',
     borderColor: '#9333EA',
@@ -1661,7 +1761,9 @@ const defaultCards = [
     id: 408,
     categoryId: 4,
     label: 'Ayah',
+    labelEn: 'Dad / Father',
     speechText: 'Ayah',
+    speechTextEn: 'Father',
     iconEmoji: '👨',
     bgColor: '#FAF5FF',
     borderColor: '#9333EA',
@@ -1671,7 +1773,9 @@ const defaultCards = [
     id: 409,
     categoryId: 4,
     label: 'Guru',
+    labelEn: 'Teacher',
     speechText: 'Bapak atau Ibu Guru',
+    speechTextEn: 'Teacher',
     iconEmoji: '🧑‍🏫',
     bgColor: '#FAF5FF',
     borderColor: '#9333EA',
@@ -1681,7 +1785,9 @@ const defaultCards = [
     id: 410,
     categoryId: 4,
     label: 'Teman',
+    labelEn: 'Friend',
     speechText: 'Teman',
+    speechTextEn: 'Friend',
     iconEmoji: '🧑‍🤝‍🧑',
     bgColor: '#FAF5FF',
     borderColor: '#9333EA',
@@ -1691,13 +1797,172 @@ const defaultCards = [
     id: 411,
     categoryId: 4,
     label: 'Dokter',
+    labelEn: 'Doctor',
     speechText: 'Dokter atau Petugas Medis',
+    speechTextEn: 'Doctor or medical staff',
     iconEmoji: '🧑‍⚕️',
     bgColor: '#FAF5FF',
     borderColor: '#9333EA',
     isDefault: true
   }
 ];
+
+/**
+ * AksesKita - Internationalization (i18n) Module
+ * Seamless bilingual support: Bahasa Indonesia (id) & English (en)
+ */
+
+const STORAGE_KEY_LANG = 'akseskita_lang';
+
+const translations = {
+  id: {
+    // Toolbar A11y
+    toolbarTitle: 'AksesKita',
+    a11yBadge: 'A11y',
+    openAacBtn: 'Buka Papan Bicara (AAC)',
+    textSettings: 'Ukuran & Bentuk Teks',
+    fontSmall: 'Kecil',
+    fontNormal: 'Normal',
+    fontLarge: 'Besar',
+    fontDyslexia: 'Disleksia',
+    contrastSettings: 'Kontras & Warna',
+    contrastHigh: 'Kontras Tinggi',
+    contrastMono: 'Monokrom',
+    contrastInvert: 'Balik Warna',
+    visualAids: 'Alat Bantu Visual',
+    highlightLinks: 'Sorot Tautan',
+    readingGuide: 'Garis Pandu',
+    resetAll: 'Atur Ulang Semua',
+    shortcutHint: 'Pintasan',
+    close: 'Tutup',
+
+    // AAC Modal
+    aacTitle: 'AksesKita: Papan Bicara',
+    aacSubtitle: 'Papan Komunikasi Visual Interaktif (AAC)',
+    exportBtn: 'Ekspor',
+    importBtn: 'Impor',
+    sentencePlaceholder: 'Klik kartu simbol di bawah untuk menyusun kalimat...',
+    speakBtn: 'Bicara',
+    backspaceBtn: 'Hapus',
+    clearBtn: 'Bersih',
+    allCategory: 'Semua',
+    addCardBtn: 'Tambah Kartu',
+    newCardTitle: 'Buat Kartu Bicara Baru',
+    cardLabel: 'Label Teks Kartu *',
+    cardLabelPlaceholder: 'Contoh: Mau Es Krim',
+    cardSpeech: 'Teks yang Diucapkan *',
+    cardSpeechPlaceholder: 'Contoh: Saya ingin makan es krim rasa cokelat',
+    cardCategory: 'Pilih Kategori *',
+    cardImage: 'Ikon / Gambar Kartu',
+    cardVoice: 'Rekam Suara Asli (Opsional)',
+    voiceStatusDefault: 'Gunakan suara asli atau native TTS',
+    voiceRecording: '🔴 Merekam suara...',
+    voiceRecorded: '✅ Suara tersimpan!',
+    recordBtn: 'Rekam',
+    recordAgainBtn: 'Rekam Ulang',
+    saveBtn: 'Simpan Kartu',
+    cancelBtn: 'Batal',
+    customBadge: 'Kustom',
+    emptyCategory: 'Belum ada kartu di kategori ini.',
+    emptyCategoryHint: 'Klik tombol "+ Tambah Kartu" di pojok kanan bawah untuk membuat kartu baru.',
+    deleteConfirm: 'Apakah Anda yakin ingin menghapus kartu ini?',
+    importSuccess: 'Berhasil mengimpor data AAC!',
+    importFail: 'Gagal mengimpor file: ',
+    fillRequired: 'Mohon isi label teks kartu.',
+    micError: 'Gagal mengakses mikrofon: ',
+
+    // Quick TTS
+    ttsListen: 'Dengarkan',
+  },
+  en: {
+    // Toolbar A11y
+    toolbarTitle: 'AksesKita',
+    a11yBadge: 'A11y',
+    openAacBtn: 'Open AAC Communicator',
+    textSettings: 'Text Appearance',
+    fontSmall: 'Small',
+    fontNormal: 'Normal',
+    fontLarge: 'Large',
+    fontDyslexia: 'Dyslexia',
+    contrastSettings: 'Contrast & Filters',
+    contrastHigh: 'High Contrast',
+    contrastMono: 'Monochrome',
+    contrastInvert: 'Invert Colors',
+    visualAids: 'Visual Aids',
+    highlightLinks: 'Highlight Links',
+    readingGuide: 'Reading Guide',
+    resetAll: 'Reset All',
+    shortcutHint: 'Shortcuts',
+    close: 'Close',
+
+    // AAC Modal
+    aacTitle: 'AksesKita: AAC Communicator',
+    aacSubtitle: 'Interactive Visual Communication Board (AAC)',
+    exportBtn: 'Export',
+    importBtn: 'Import',
+    sentencePlaceholder: 'Click symbol cards below to build a sentence...',
+    speakBtn: 'Speak',
+    backspaceBtn: 'Delete',
+    clearBtn: 'Clear',
+    allCategory: 'All',
+    addCardBtn: 'Add Card',
+    newCardTitle: 'Create New AAC Card',
+    cardLabel: 'Card Label *',
+    cardLabelPlaceholder: 'e.g. Want Ice Cream',
+    cardSpeech: 'Spoken Text *',
+    cardSpeechPlaceholder: 'e.g. I would like chocolate ice cream',
+    cardCategory: 'Select Category *',
+    cardImage: 'Card Icon / Photo',
+    cardVoice: 'Record Real Voice (Optional)',
+    voiceStatusDefault: 'Use recorded voice or native TTS',
+    voiceRecording: '🔴 Recording voice...',
+    voiceRecorded: '✅ Voice saved!',
+    recordBtn: 'Record',
+    recordAgainBtn: 'Re-record',
+    saveBtn: 'Save Card',
+    cancelBtn: 'Cancel',
+    customBadge: 'Custom',
+    emptyCategory: 'No cards in this category yet.',
+    emptyCategoryHint: 'Click the "+ Add Card" button in the bottom right corner to create one.',
+    deleteConfirm: 'Are you sure you want to delete this card?',
+    importSuccess: 'AAC data successfully imported!',
+    importFail: 'Failed to import file: ',
+    fillRequired: 'Please fill in the card label.',
+    micError: 'Failed to access microphone: ',
+
+    // Quick TTS
+    ttsListen: 'Listen',
+  }
+};
+
+let currentLang = 'id';
+
+function getLanguage() {
+  if (typeof localStorage !== 'undefined') {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY_LANG);
+      if (stored === 'en' || stored === 'id') {
+        currentLang = stored;
+      }
+    } catch (e) {}
+  }
+  return currentLang;
+}
+
+function setLanguage(lang) {
+  currentLang = (lang === 'en') ? 'en' : 'id';
+  if (typeof localStorage !== 'undefined') {
+    try {
+      localStorage.setItem(STORAGE_KEY_LANG, currentLang);
+    } catch (e) {}
+  }
+  return currentLang;
+}
+
+function t(key) {
+  const dict = translations[getLanguage()] || translations.id;
+  return dict[key] || translations.id[key] || key;
+}
 
 /**
  * AksesKita - A11y Font Resizing & Dyslexia Mode Controller
@@ -1924,11 +2189,6 @@ function restoreContrastPreferences() {
   if (isReadingGuideEnabled()) toggleReadingGuide(true);
 }
 
-/**
- * AksesKita - Speech Synthesis & Quick Floating Text Reader
- * Indonesian voice priority with intelligent fallback.
- */
-
 let cachedVoices = [];
 
 function loadVoices() {
@@ -1945,28 +2205,35 @@ if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
 }
 
 /**
- * Get preferred Indonesian voice, or default
+ * Get preferred voice based on active language (id or en)
  */
-function getIndonesianVoice() {
+function getVoiceForLanguage(lang = null) {
+  const targetLang = lang || getLanguage();
   const voices = cachedVoices.length ? cachedVoices : loadVoices();
-  
-  // Try exact id-ID match
-  let voice = voices.find(v => v.lang === 'id-ID' || v.lang === 'id_ID');
-  if (voice) return voice;
 
-  // Try language starting with 'id'
-  voice = voices.find(v => v.lang.toLowerCase().startsWith('id'));
-  if (voice) return voice;
-
-  // Try Indonesian in name
-  voice = voices.find(v => v.name.toLowerCase().includes('indonesia'));
-  if (voice) return voice;
-
-  return null;
+  if (targetLang === 'en') {
+    // English priority
+    let voice = voices.find(v => v.lang === 'en-US' || v.lang === 'en_US');
+    if (voice) return voice;
+    voice = voices.find(v => v.lang === 'en-GB' || v.lang === 'en_GB');
+    if (voice) return voice;
+    voice = voices.find(v => v.lang.toLowerCase().startsWith('en'));
+    if (voice) return voice;
+    return null;
+  } else {
+    // Indonesian priority
+    let voice = voices.find(v => v.lang === 'id-ID' || v.lang === 'id_ID');
+    if (voice) return voice;
+    voice = voices.find(v => v.lang.toLowerCase().startsWith('id'));
+    if (voice) return voice;
+    voice = voices.find(v => v.name.toLowerCase().includes('indonesia'));
+    if (voice) return voice;
+    return null;
+  }
 }
 
 /**
- * Speak text out loud with resume keepalive
+ * Speak text out loud with resume keepalive and bilingual voice selection
  */
 function speakText(text, options = {}) {
   return new Promise((resolve) => {
@@ -1979,13 +2246,14 @@ function speakText(text, options = {}) {
     } catch (e) {}
 
     const utterance = new SpeechSynthesisUtterance(text);
-    const idVoice = getIndonesianVoice();
+    const lang = options.lang || getLanguage();
+    const voice = getVoiceForLanguage(lang);
 
-    if (idVoice) {
-      utterance.voice = idVoice;
-      utterance.lang = idVoice.lang;
+    if (voice) {
+      utterance.voice = voice;
+      utterance.lang = voice.lang;
     } else {
-      utterance.lang = 'id-ID';
+      utterance.lang = lang === 'en' ? 'en-US' : 'id-ID';
     }
 
     utterance.rate = options.rate || 0.95;
@@ -2096,12 +2364,6 @@ function initQuickTTS() {
   });
 }
 
-/**
- * AksesKita - AAC Sentence Builder & Speech Engine
- * Coordinates sentence strip sequence, card playback, and visual highlight callbacks.
- */
-
-
 let sentenceList = [];
 let isPlaying = false;
 let currentAudioElement = null;
@@ -2137,8 +2399,16 @@ function clearSentence() {
   return [];
 }
 
+function getCardSpokenText(card) {
+  const isEn = getLanguage() === 'en';
+  if (isEn && (card.speechTextEn || card.labelEn)) {
+    return card.speechTextEn || card.labelEn;
+  }
+  return card.speechText || card.label;
+}
+
 /**
- * Play single card (either recorded voice or Indonesian TTS)
+ * Play single card (either recorded voice or Indonesian/English TTS)
  */
 async function playSingleCard(card) {
   stopSpeech();
@@ -2146,6 +2416,8 @@ async function playSingleCard(card) {
     currentAudioElement.pause();
     currentAudioElement = null;
   }
+
+  const textToSpeak = getCardSpokenText(card);
 
   if (card.audioBlob) {
     return new Promise((resolve) => {
@@ -2174,12 +2446,12 @@ async function playSingleCard(card) {
             if (isCreatedUrl) URL.revokeObjectURL(url);
             currentAudioElement = null;
             // Fallback to TTS
-            speakText(card.speechText || card.label).then(resolve);
+            speakText(textToSpeak).then(resolve);
           };
           audio.play().catch(() => {
             if (isCreatedUrl) URL.revokeObjectURL(url);
             currentAudioElement = null;
-            speakText(card.speechText || card.label).then(resolve);
+            speakText(textToSpeak).then(resolve);
           });
           return;
         }
@@ -2190,7 +2462,7 @@ async function playSingleCard(card) {
     });
   }
 
-  return speakText(card.speechText || card.label);
+  return speakText(textToSpeak);
 }
 
 /**
@@ -2293,6 +2565,7 @@ function stopAudioRecording() {
  * AksesKita - All-in-One Assistive Web Suite Indonesia
  * Unified Web Accessibility Toolbar & Visual AAC Communicator
  * Zero Dependency Web Component (<akses-kita>)
+ * Bilingual: Bahasa Indonesia & English
  */
 
 
@@ -2342,6 +2615,8 @@ class AksesKitaElement extends HTMLElement {
   }
 
   render() {
+    const lang = getLanguage();
+
     this.shadowRoot.innerHTML = `
       <style>
         ${a11yStyles}
@@ -2362,106 +2637,116 @@ class AksesKitaElement extends HTMLElement {
             <div>
               <h3>AksesKita</h3>
             </div>
-            <span class="panel-title-badge">A11y</span>
+            <span class="panel-title-badge">${t('a11yBadge')}</span>
           </div>
-          <button id="close-panel-btn" class="btn-icon-close" aria-label="Tutup Panel">&times;</button>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <div class="lang-toggle-bar" aria-label="Pilih Bahasa / Choose Language">
+              <button class="lang-btn ${lang === 'id' ? 'active' : ''}" data-lang="id" title="Bahasa Indonesia">ID</button>
+              <button class="lang-btn ${lang === 'en' ? 'active' : ''}" data-lang="en" title="English">EN</button>
+            </div>
+            <button id="close-panel-btn" class="btn-icon-close" aria-label="${t('close')}">&times;</button>
+          </div>
         </div>
 
         <div class="panel-body">
           <!-- CTA AAC Communicator -->
           <div class="panel-section">
-            <span class="section-label">🗣️ Komunikasi Asistif</span>
-            <button id="open-aac-btn" class="btn-aac-launch" title="Pintasan: Alt + C">
+            <span class="section-label">🗣️ ${lang === 'en' ? 'Assistive Communication' : 'Komunikasi Asistif'}</span>
+            <button id="open-aac-btn" class="btn-aac-launch" title="Shortcut: Alt + C">
               <span style="font-size: 22px;">🗣️</span>
-              <span>Buka Papan Bicara (AAC)</span>
+              <span>${t('openAacBtn')}</span>
             </button>
           </div>
 
           <!-- Text Resizing & Font -->
           <div class="panel-section">
-            <span class="section-label">🔤 Ukuran & Bentuk Teks</span>
+            <span class="section-label">🔤 ${t('textSettings')}</span>
             <div class="button-grid cols-4">
-              <button id="btn-font-dec" class="tool-btn" aria-label="Kecilkan Font">
+              <button id="btn-font-dec" class="tool-btn" aria-label="${t('fontSmall')}">
                 <span class="btn-icon">A-</span>
-                <span>Kecil</span>
+                <span>${t('fontSmall')}</span>
               </button>
-              <button id="btn-font-reset" class="tool-btn" aria-label="Reset Ukuran Font">
+              <button id="btn-font-reset" class="tool-btn" aria-label="${t('fontNormal')}">
                 <span class="btn-icon">A</span>
-                <span>Normal</span>
+                <span>${t('fontNormal')}</span>
               </button>
-              <button id="btn-font-inc" class="tool-btn" aria-label="Besarkan Font">
+              <button id="btn-font-inc" class="tool-btn" aria-label="${t('fontLarge')}">
                 <span class="btn-icon">A+</span>
-                <span>Besar</span>
+                <span>${t('fontLarge')}</span>
               </button>
-              <button id="btn-dyslexia" class="tool-btn" aria-label="Mode Font Disleksia">
+              <button id="btn-dyslexia" class="tool-btn" aria-label="${t('fontDyslexia')}">
                 <span class="btn-icon">📖</span>
-                <span>Disleksia</span>
+                <span>${t('fontDyslexia')}</span>
               </button>
             </div>
           </div>
 
           <!-- Color Schemes & Filters -->
           <div class="panel-section">
-            <span class="section-label">🎨 Kontras & Warna</span>
+            <span class="section-label">🎨 ${t('contrastSettings')}</span>
             <div class="button-grid cols-3">
               <button id="btn-contrast-high" class="tool-btn" data-contrast="high">
                 <span class="btn-icon">🌓</span>
-                <span>Kontras Tinggi</span>
+                <span>${t('contrastHigh')}</span>
               </button>
               <button id="btn-contrast-mono" class="tool-btn" data-contrast="mono">
                 <span class="btn-icon">⬛</span>
-                <span>Monokrom</span>
+                <span>${t('contrastMono')}</span>
               </button>
               <button id="btn-contrast-invert" class="tool-btn" data-contrast="invert">
                 <span class="btn-icon">🔄</span>
-                <span>Balik Warna</span>
+                <span>${t('contrastInvert')}</span>
               </button>
             </div>
           </div>
 
           <!-- Visual Aids -->
           <div class="panel-section">
-            <span class="section-label">🔍 Alat Bantu Visual</span>
+            <span class="section-label">🔍 ${t('visualAids')}</span>
             <div class="button-grid">
               <button id="btn-highlight-links" class="tool-btn">
                 <span class="btn-icon">🔗</span>
-                <span>Sorot Tautan</span>
+                <span>${t('highlightLinks')}</span>
               </button>
               <button id="btn-reading-guide" class="tool-btn">
                 <span class="btn-icon">📏</span>
-                <span>Garis Pandu</span>
+                <span>${t('readingGuide')}</span>
               </button>
             </div>
           </div>
         </div>
 
         <div class="panel-footer">
-          <button id="btn-reset-all" class="reset-link">Atur Ulang Semua</button>
-          <span>Pintasan: <b>Alt + A</b></span>
+          <button id="btn-reset-all" class="reset-link">${t('resetAll')}</button>
+          <span>${t('shortcutHint')}: <b>Alt + A</b></span>
         </div>
       </div>
 
       <!-- Fullscreen AAC Communicator Modal -->
-      <div id="aac-modal" class="aac-backdrop hidden" role="dialog" aria-modal="true" aria-label="Papan Komunikasi Visual AAC">
+      <div id="aac-modal" class="aac-backdrop hidden" role="dialog" aria-modal="true" aria-label="${t('aacTitle')}">
         <div class="aac-window">
           <!-- Header -->
           <div class="aac-header">
             <div class="aac-header-left">
               <div class="aac-header-icon">🗣️</div>
               <div>
-                <h2 class="aac-header-title">AksesKita: Papan Bicara (AAC)</h2>
-                <p class="aac-header-subtitle">Papan Komunikasi Visual Interaktif Bahasa Indonesia</p>
+                <h2 class="aac-header-title">${t('aacTitle')}</h2>
+                <p class="aac-header-subtitle">${t('aacSubtitle')}</p>
               </div>
             </div>
             <div class="aac-header-actions">
-              <button id="btn-export-aac" class="btn-secondary-action" title="Ekspor Kartu ke File JSON">
-                💾 Ekspor
+              <div class="lang-toggle-bar" aria-label="Pilih Bahasa / Choose Language">
+                <button class="lang-btn ${lang === 'id' ? 'active' : ''}" data-lang="id" title="Bahasa Indonesia">ID</button>
+                <button class="lang-btn ${lang === 'en' ? 'active' : ''}" data-lang="en" title="English">EN</button>
+              </div>
+              <button id="btn-export-aac" class="btn-secondary-action" title="${t('exportBtn')} JSON">
+                💾 ${t('exportBtn')}
               </button>
-              <button id="btn-import-aac" class="btn-secondary-action" title="Impor Kartu dari File JSON">
-                📥 Impor
+              <button id="btn-import-aac" class="btn-secondary-action" title="${t('importBtn')} JSON">
+                📥 ${t('importBtn')}
               </button>
               <input type="file" id="import-file-input" accept=".json" style="display: none;" />
-              <button id="close-aac-btn" class="btn-icon-close" aria-label="Tutup Papan AAC" style="font-size: 24px;">&times;</button>
+              <button id="close-aac-btn" class="btn-icon-close" aria-label="${t('close')}" style="font-size: 24px;">&times;</button>
             </div>
           </div>
 
@@ -2469,21 +2754,21 @@ class AksesKitaElement extends HTMLElement {
           <div class="sentence-strip-wrapper">
             <div id="sentence-container" class="sentence-items-container">
               <div class="sentence-empty-placeholder">
-                <span>Klik kartu simbol di bawah untuk menyusun kalimat...</span>
+                <span>${t('sentencePlaceholder')}</span>
               </div>
             </div>
             <div class="sentence-actions">
               <button id="btn-aac-speak" class="btn-speak-main">
                 <span style="font-size: 20px;">🔊</span>
-                <span>Bicara</span>
+                <span>${t('speakBtn')}</span>
               </button>
-              <button id="btn-aac-backspace" class="btn-strip-action" title="Hapus Kartu Terakhir">
+              <button id="btn-aac-backspace" class="btn-strip-action" title="${t('backspaceBtn')}">
                 <span style="font-size: 16px;">⌫</span>
-                <span>Hapus</span>
+                <span>${t('backspaceBtn')}</span>
               </button>
-              <button id="btn-aac-clear" class="btn-strip-action" title="Bersihkan Pita Kalimat">
+              <button id="btn-aac-clear" class="btn-strip-action" title="${t('clearBtn')}">
                 <span style="font-size: 16px;">🗑️</span>
-                <span>Bersih</span>
+                <span>${t('clearBtn')}</span>
               </button>
             </div>
           </div>
@@ -2499,36 +2784,36 @@ class AksesKitaElement extends HTMLElement {
           </div>
 
           <!-- Floating Add Card Action -->
-          <button id="btn-open-creator" class="btn-fab-add" title="Tambah Kartu Komunikasi Baru">
+          <button id="btn-open-creator" class="btn-fab-add" title="${t('addCardBtn')}">
             <span style="font-size: 18px;">➕</span>
-            <span>Tambah Kartu</span>
+            <span>${t('addCardBtn')}</span>
           </button>
 
           <!-- Custom Card Creator Dialog -->
           <div id="card-creator-modal" class="custom-card-modal hidden">
             <div class="custom-card-dialog">
               <div style="display: flex; justify-content: space-between; align-items: center;">
-                <h3 style="font-size: 17px; font-weight: 800;">Buat Kartu Bicara Baru</h3>
+                <h3 style="font-size: 17px; font-weight: 800;">${t('newCardTitle')}</h3>
                 <button id="close-creator-btn" class="btn-icon-close">&times;</button>
               </div>
 
               <div class="form-group">
-                <label for="input-card-label">Label Teks Kartu *</label>
-                <input type="text" id="input-card-label" class="form-input" placeholder="Contoh: Mau Es Krim" />
+                <label for="input-card-label">${t('cardLabel')}</label>
+                <input type="text" id="input-card-label" class="form-input" placeholder="${t('cardLabelPlaceholder')}" />
               </div>
 
               <div class="form-group">
-                <label for="input-card-speech">Teks yang Diucapkan *</label>
-                <input type="text" id="input-card-speech" class="form-input" placeholder="Contoh: Saya ingin makan es krim rasa cokelat" />
+                <label for="input-card-speech">${t('cardSpeech')}</label>
+                <input type="text" id="input-card-speech" class="form-input" placeholder="${t('cardSpeechPlaceholder')}" />
               </div>
 
               <div class="form-group">
-                <label for="select-card-cat">Pilih Kategori *</label>
+                <label for="select-card-cat">${t('cardCategory')}</label>
                 <select id="select-card-cat" class="form-select"></select>
               </div>
 
               <div class="form-group">
-                <label>Ikon / Gambar Kartu</label>
+                <label>${t('cardImage')}</label>
                 <div style="display: flex; gap: 10px; align-items: center;">
                   <input type="file" id="input-card-image" accept="image/*" class="form-input" style="flex: 1;" />
                   <div id="preview-image-box" style="width: 44px; height: 44px; border-radius: 8px; border: 1px solid #cbd5e1; display: flex; align-items: center; justify-content: center; font-size: 20px; background: #f8fafc; overflow: hidden;">
@@ -2538,19 +2823,19 @@ class AksesKitaElement extends HTMLElement {
               </div>
 
               <div class="form-group">
-                <label>Rekam Suara Asli (Opsional)</label>
+                <label>${t('cardVoice')}</label>
                 <div class="recorder-box">
-                  <span id="recorder-status" style="font-size: 13px; color: #475569;">Gunakan suara asli atau native TTS</span>
+                  <span id="recorder-status" style="font-size: 13px; color: #475569;">${t('voiceStatusDefault')}</span>
                   <button type="button" id="btn-record-voice" class="btn-record">
                     <span>🎙️</span>
-                    <span id="btn-record-text">Rekam</span>
+                    <span id="btn-record-text">${t('recordBtn')}</span>
                   </button>
                 </div>
               </div>
 
               <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 10px;">
-                <button type="button" id="btn-cancel-creator" class="btn-secondary-action">Batal</button>
-                <button type="button" id="btn-save-card" class="btn-speak-main" style="padding: 10px 18px; font-size: 14px;">Simpan Kartu</button>
+                <button type="button" id="btn-cancel-creator" class="btn-secondary-action">${t('cancelBtn')}</button>
+                <button type="button" id="btn-save-card" class="btn-speak-main" style="padding: 10px 18px; font-size: 14px;">${t('saveBtn')}</button>
               </div>
             </div>
           </div>
@@ -2587,6 +2872,14 @@ class AksesKitaElement extends HTMLElement {
     closeAacBtn.addEventListener('click', () => {
       aacModal.classList.add('hidden');
       stopSentencePlayback();
+    });
+
+    // Language Toggle Buttons (Panel and AAC header)
+    root.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const lang = btn.getAttribute('data-lang');
+        this.changeLanguage(lang);
+      });
     });
 
     // Font actions
@@ -2704,10 +2997,10 @@ class AksesKitaElement extends HTMLElement {
           await startAudioRecording();
           this.isRecording = true;
           recordBtn.classList.add('recording');
-          recordText.textContent = 'Berhenti';
-          recordStatus.textContent = '🔴 Merekam suara...';
+          recordText.textContent = getLanguage() === 'en' ? 'Stop' : 'Berhenti';
+          recordStatus.textContent = t('voiceRecording');
         } catch (err) {
-          alert(err.message || 'Gagal mengakses mikrofon');
+          alert((t('micError')) + (err.message || 'Error'));
         }
       } else {
         try {
@@ -2715,8 +3008,8 @@ class AksesKitaElement extends HTMLElement {
           this.isRecording = false;
           this.currentRecordedAudioBlob = blob;
           recordBtn.classList.remove('recording');
-          recordText.textContent = 'Rekam Ulang';
-          recordStatus.textContent = '✅ Suara tersimpan!';
+          recordText.textContent = t('recordAgainBtn');
+          recordStatus.textContent = t('voiceRecorded');
         } catch (err) {
           console.error(err);
         }
@@ -2735,7 +3028,7 @@ class AksesKitaElement extends HTMLElement {
         a.click();
         URL.revokeObjectURL(url);
       } catch (err) {
-        alert('Gagal mengekspor data: ' + err.message);
+        alert(t('importFail') + err.message);
       }
     });
 
@@ -2751,12 +3044,33 @@ class AksesKitaElement extends HTMLElement {
         try {
           await importBackup(text);
           await this.loadAACData();
-          alert('Berhasil mengimpor data AAC!');
+          alert(t('importSuccess'));
         } catch (err) {
-          alert('Gagal mengimpor file: ' + err.message);
+          alert(t('importFail') + err.message);
         }
       }
     });
+  }
+
+  changeLanguage(newLang) {
+    setLanguage(newLang);
+    const root = this.shadowRoot;
+    const isPanelOpen = !root.getElementById('a11y-panel').classList.contains('hidden');
+    const isAacOpen = !root.getElementById('aac-modal').classList.contains('hidden');
+
+    this.render();
+    this.bindEvents();
+    this.syncA11yUIState();
+    this.renderCategoryTabs();
+    this.renderCardGrid();
+    this.renderSentenceStrip();
+
+    if (isPanelOpen) {
+      this.shadowRoot.getElementById('a11y-panel').classList.remove('hidden');
+    }
+    if (isAacOpen) {
+      this.shadowRoot.getElementById('aac-modal').classList.remove('hidden');
+    }
   }
 
   initShortcuts() {
@@ -2823,20 +3137,22 @@ class AksesKitaElement extends HTMLElement {
   renderCategoryTabs() {
     const tabsContainer = this.shadowRoot.getElementById('category-tabs');
     if (!tabsContainer) return;
+    const isEn = getLanguage() === 'en';
 
     let html = `
       <button class="cat-tab-btn ${this.activeCategoryId === 'all' ? 'active' : ''}" data-cat-id="all">
         <span>🌟</span>
-        <span>Semua</span>
+        <span>${t('allCategory')}</span>
       </button>
     `;
 
     this.categories.forEach(cat => {
       const isActive = String(this.activeCategoryId) === String(cat.id);
+      const catLabel = (isEn && cat.nameEn) ? cat.nameEn : cat.name;
       html += `
         <button class="cat-tab-btn ${isActive ? 'active' : ''}" data-cat-id="${cat.id}">
           <span>${cat.icon || '📁'}</span>
-          <span>${cat.name}</span>
+          <span>${catLabel}</span>
         </button>
       `;
     });
@@ -2891,6 +3207,7 @@ class AksesKitaElement extends HTMLElement {
   renderCardGrid() {
     const gridContainer = this.shadowRoot.getElementById('aac-cards-grid');
     if (!gridContainer) return;
+    const isEn = getLanguage() === 'en';
 
     const filteredCards = this.activeCategoryId === 'all' 
       ? this.cards 
@@ -2899,8 +3216,8 @@ class AksesKitaElement extends HTMLElement {
     if (filteredCards.length === 0) {
       gridContainer.innerHTML = `
         <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #64748b;">
-          <p style="font-size: 16px; font-weight: 600;">Belum ada kartu di kategori ini.</p>
-          <p style="font-size: 13px; margin-top: 6px;">Klik tombol "+ Tambah Kartu" di pojok kanan bawah untuk membuat kartu baru.</p>
+          <p style="font-size: 16px; font-weight: 600;">${t('emptyCategory')}</p>
+          <p style="font-size: 13px; margin-top: 6px;">${t('emptyCategoryHint')}</p>
         </div>
       `;
       return;
@@ -2908,9 +3225,10 @@ class AksesKitaElement extends HTMLElement {
 
     gridContainer.innerHTML = filteredCards.map(card => {
       const isCustom = !card.isDefault;
+      const displayLabel = (isEn && card.labelEn) ? card.labelEn : card.label;
       let iconHtml = '';
       if (card.image) {
-        iconHtml = `<img src="${card.image}" alt="${card.label}" loading="lazy" />`;
+        iconHtml = `<img src="${card.image}" alt="${displayLabel}" loading="lazy" />`;
       } else if (card.iconEmoji) {
         iconHtml = `<span>${card.iconEmoji}</span>`;
       } else {
@@ -2918,13 +3236,13 @@ class AksesKitaElement extends HTMLElement {
       }
 
       return `
-        <div class="aac-card" tabindex="0" role="button" data-card-id="${card.id}" aria-label="${card.label}" title="Klik atau tekan Enter untuk masukkan ke pita">
-          ${isCustom ? `<span class="aac-card-badge-custom">Kustom</span>` : ''}
-          ${isCustom ? `<button class="aac-card-delete-btn" data-delete-id="${card.id}" aria-label="Hapus kartu ${card.label}" title="Hapus kartu">&times;</button>` : ''}
+        <div class="aac-card" tabindex="0" role="button" data-card-id="${card.id}" aria-label="${displayLabel}">
+          ${isCustom ? `<span class="aac-card-badge-custom">${t('customBadge')}</span>` : ''}
+          ${isCustom ? `<button class="aac-card-delete-btn" data-delete-id="${card.id}" aria-label="Delete ${displayLabel}" title="${t('backspaceBtn')}">&times;</button>` : ''}
           <div class="aac-card-icon-wrap" style="background: ${card.bgColor || '#f8fafc'}; border-color: ${card.borderColor || '#e2e8f0'};">
             ${iconHtml}
           </div>
-          <span class="aac-card-label">${card.label}</span>
+          <span class="aac-card-label">${displayLabel}</span>
         </div>
       `;
     }).join('');
@@ -2959,7 +3277,7 @@ class AksesKitaElement extends HTMLElement {
       btn.addEventListener('click', async (e) => {
         e.stopPropagation();
         const deleteId = btn.getAttribute('data-delete-id');
-        if (confirm('Apakah Anda yakin ingin menghapus kartu ini?')) {
+        if (confirm(t('deleteConfirm'))) {
           await deleteCard(deleteId);
           await this.loadAACData();
         }
@@ -2970,12 +3288,13 @@ class AksesKitaElement extends HTMLElement {
   renderSentenceStrip() {
     const container = this.shadowRoot.getElementById('sentence-container');
     if (!container) return;
+    const isEn = getLanguage() === 'en';
 
     const sentence = getSentenceList();
     if (sentence.length === 0) {
       container.innerHTML = `
         <div class="sentence-empty-placeholder">
-          <span>Klik kartu simbol di bawah untuk menyusun kalimat...</span>
+          <span>${t('sentencePlaceholder')}</span>
         </div>
       `;
       return;
@@ -2986,11 +3305,13 @@ class AksesKitaElement extends HTMLElement {
       if (item.image) {
         icon = `<img src="${item.image}" style="width:20px;height:20px;border-radius:4px;object-fit:cover;" />`;
       }
+      const displayLabel = (isEn && item.labelEn) ? item.labelEn : item.label;
+
       return `
         <div class="sentence-card" id="sentence-item-${index}" data-index="${index}">
           <span class="sentence-card-icon">${icon}</span>
-          <span class="sentence-card-label">${item.label}</span>
-          <button class="sentence-card-remove" data-remove-index="${index}" title="Hapus kartu ini">&times;</button>
+          <span class="sentence-card-label">${displayLabel}</span>
+          <button class="sentence-card-remove" data-remove-index="${index}" title="${t('backspaceBtn')}">&times;</button>
         </div>
       `;
     }).join('');
@@ -3030,17 +3351,18 @@ class AksesKitaElement extends HTMLElement {
     const root = this.shadowRoot;
     const modal = root.getElementById('card-creator-modal');
     const catSelect = root.getElementById('select-card-cat');
+    const isEn = getLanguage() === 'en';
 
     // Populate categories
     catSelect.innerHTML = this.categories.map(c => `
-      <option value="${c.id}">${c.name}</option>
+      <option value="${c.id}">${(isEn && c.nameEn) ? c.nameEn : c.name}</option>
     `).join('');
 
     root.getElementById('input-card-label').value = '';
     root.getElementById('input-card-speech').value = '';
     root.getElementById('preview-image-box').innerHTML = '🖼️';
-    root.getElementById('recorder-status').textContent = 'Gunakan suara asli atau native TTS';
-    root.getElementById('btn-record-text').textContent = 'Rekam';
+    root.getElementById('recorder-status').textContent = t('voiceStatusDefault');
+    root.getElementById('btn-record-text').textContent = t('recordBtn');
     
     this.customImageBase64 = null;
     this.currentRecordedAudioBlob = null;
@@ -3056,7 +3378,7 @@ class AksesKitaElement extends HTMLElement {
     const categoryId = parseInt(root.getElementById('select-card-cat').value, 10);
 
     if (!label) {
-      alert('Mohon isi label teks kartu.');
+      alert(t('fillRequired'));
       return;
     }
 
@@ -3064,6 +3386,8 @@ class AksesKitaElement extends HTMLElement {
       categoryId,
       label,
       speechText,
+      labelEn: label,
+      speechTextEn: speechText,
       image: this.customImageBase64 || null,
       audioBlob: this.currentRecordedAudioBlob || null,
       iconEmoji: this.customImageBase64 ? null : '✨',

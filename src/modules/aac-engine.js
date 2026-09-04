@@ -1,9 +1,5 @@
-/**
- * AksesKita - AAC Sentence Builder & Speech Engine
- * Coordinates sentence strip sequence, card playback, and visual highlight callbacks.
- */
-
 import { speakText, stopSpeech } from './a11y-speech.js';
+import { getLanguage } from './i18n.js';
 
 let sentenceList = [];
 let isPlaying = false;
@@ -40,8 +36,16 @@ export function clearSentence() {
   return [];
 }
 
+function getCardSpokenText(card) {
+  const isEn = getLanguage() === 'en';
+  if (isEn && (card.speechTextEn || card.labelEn)) {
+    return card.speechTextEn || card.labelEn;
+  }
+  return card.speechText || card.label;
+}
+
 /**
- * Play single card (either recorded voice or Indonesian TTS)
+ * Play single card (either recorded voice or Indonesian/English TTS)
  */
 export async function playSingleCard(card) {
   stopSpeech();
@@ -49,6 +53,8 @@ export async function playSingleCard(card) {
     currentAudioElement.pause();
     currentAudioElement = null;
   }
+
+  const textToSpeak = getCardSpokenText(card);
 
   if (card.audioBlob) {
     return new Promise((resolve) => {
@@ -77,12 +83,12 @@ export async function playSingleCard(card) {
             if (isCreatedUrl) URL.revokeObjectURL(url);
             currentAudioElement = null;
             // Fallback to TTS
-            speakText(card.speechText || card.label).then(resolve);
+            speakText(textToSpeak).then(resolve);
           };
           audio.play().catch(() => {
             if (isCreatedUrl) URL.revokeObjectURL(url);
             currentAudioElement = null;
-            speakText(card.speechText || card.label).then(resolve);
+            speakText(textToSpeak).then(resolve);
           });
           return;
         }
@@ -93,7 +99,7 @@ export async function playSingleCard(card) {
     });
   }
 
-  return speakText(card.speechText || card.label);
+  return speakText(textToSpeak);
 }
 
 /**
