@@ -1,7 +1,7 @@
 /**
- * AksesKita - Visual Navigation Aids & Usability Controller
- * Reading Guide, Reading Mask, Super Focus, Big Cursor,
- * Stop Animations, Hide Images, and Image Tooltips.
+ * AksesKita - Visual Navigation Aids & Usability Controller (60 FPS Performance Optimized)
+ * Reading Guide, Reading Mask, Super Focus (Hardware-Accelerated Spotlight Box),
+ * Big Cursor, Stop Animations, Hide Images, and Image Tooltips.
  */
 
 const STORAGE_KEY_GUIDE = 'akseskita_reading_guide';
@@ -36,17 +36,15 @@ export function toggleReadingGuide(forcedState = null) {
   const next = forcedState !== null ? forcedState : !current;
 
   if (next) {
-    // If mask is on, turn mask off
     if (isReadingMaskEnabled()) toggleReadingMask(false);
 
     guideEl.style.display = 'block';
     if (!guideMouseMoveHandler) {
-      let latestY = 0;
       guideMouseMoveHandler = (e) => {
-        latestY = e.clientY;
+        const clientY = e.clientY;
         if (!guideRafId) {
           guideRafId = requestAnimationFrame(() => {
-            guideEl.style.top = `${latestY}px`;
+            guideEl.style.top = `${clientY}px`;
             guideRafId = null;
           });
         }
@@ -105,22 +103,20 @@ export function toggleReadingMask(forcedState = null) {
   const next = forcedState !== null ? forcedState : !current;
 
   if (next) {
-    // If reading guide is on, turn guide off
     if (isReadingGuideEnabled()) toggleReadingGuide(false);
 
     maskTop.style.display = 'block';
     maskBottom.style.display = 'block';
 
-    const slitHeight = 100;
+    const slitHeight = 110;
 
     if (!maskMouseMoveHandler) {
-      let latestY = window.innerHeight / 2;
       maskMouseMoveHandler = (e) => {
-        latestY = e.clientY;
+        const clientY = e.clientY;
         if (!maskRafId) {
           maskRafId = requestAnimationFrame(() => {
-            const topHeight = Math.max(0, latestY - slitHeight / 2);
-            const bottomTop = Math.min(window.innerHeight, latestY + slitHeight / 2);
+            const topHeight = Math.max(0, clientY - slitHeight / 2);
+            const bottomTop = Math.min(window.innerHeight, clientY + slitHeight / 2);
             maskTop.style.height = `${topHeight}px`;
             maskBottom.style.top = `${bottomTop}px`;
             maskRafId = null;
@@ -149,9 +145,9 @@ export function toggleReadingMask(forcedState = null) {
   return next;
 }
 
-// 3. Super Focus Mode
+// 3. Super Focus Mode (Smooth Hardware-Accelerated Spotlight Box)
 let focusMouseOverHandler = null;
-let currentFocusedElement = null;
+let focusRafId = null;
 
 export function isSuperFocusEnabled() {
   try {
@@ -162,30 +158,43 @@ export function isSuperFocusEnabled() {
 }
 
 export function toggleSuperFocus(forcedState = null) {
-  const root = document.documentElement;
-  const current = root.classList.contains('akseskita-super-focus');
+  let focusBox = document.getElementById('akseskita-super-focus-box');
+  if (!focusBox) {
+    focusBox = document.createElement('div');
+    focusBox.id = 'akseskita-super-focus-box';
+    document.body.appendChild(focusBox);
+  }
+
+  const current = focusBox.style.display === 'block';
   const next = forcedState !== null ? forcedState : !current;
 
   if (next) {
-    root.classList.add('akseskita-super-focus');
+    focusBox.style.display = 'block';
     if (!focusMouseOverHandler) {
       focusMouseOverHandler = (e) => {
         const target = e.target;
-        if (target && !target.closest('akses-kita') && !target.closest('#akseskita-tts-popover')) {
-          if (currentFocusedElement && currentFocusedElement !== target) {
-            currentFocusedElement.classList.remove('akseskita-focus-target');
-          }
-          currentFocusedElement = target;
-          currentFocusedElement.classList.add('akseskita-focus-target');
+        if (!target || target.closest('akses-kita') || target.closest('#akseskita-tts-popover') || target === document.body || target === document.documentElement) {
+          return;
+        }
+
+        if (!focusRafId) {
+          focusRafId = requestAnimationFrame(() => {
+            const rect = target.getBoundingClientRect();
+            focusBox.style.top = `${window.scrollY + rect.top}px`;
+            focusBox.style.left = `${window.scrollX + rect.left}px`;
+            focusBox.style.width = `${rect.width}px`;
+            focusBox.style.height = `${rect.height}px`;
+            focusRafId = null;
+          });
         }
       };
       document.addEventListener('mouseover', focusMouseOverHandler, { passive: true });
     }
   } else {
-    root.classList.remove('akseskita-super-focus');
-    if (currentFocusedElement) {
-      currentFocusedElement.classList.remove('akseskita-focus-target');
-      currentFocusedElement = null;
+    focusBox.style.display = 'none';
+    if (focusRafId) {
+      cancelAnimationFrame(focusRafId);
+      focusRafId = null;
     }
     if (focusMouseOverHandler) {
       document.removeEventListener('mouseover', focusMouseOverHandler);

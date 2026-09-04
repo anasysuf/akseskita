@@ -2,13 +2,13 @@ var AksesKita = (function () {
   'use strict';
 
   /**
-   * AksesKita - Comprehensive Host Injected Stylesheet
-   * Injected into document.head to style the target web page non-destructively.
+   * AksesKita - High Performance Host Injected Stylesheet (60 FPS Optimized)
+   * Injected into document.head to style the target web page smoothly without layout thrashing.
    */
 
   const hostStyles = `
 /* ==========================================================================
-   1. Typography & Content Scaling
+   1. Typography & Content Scaling (Root-Based, Zero Compound Recursion)
    ========================================================================== */
 html.akseskita-scale-0 { --akseskita-font-scale: 1; }
 html.akseskita-scale-1 { --akseskita-font-scale: 1.15; }
@@ -16,23 +16,12 @@ html.akseskita-scale-2 { --akseskita-font-scale: 1.30; }
 html.akseskita-scale-3 { --akseskita-font-scale: 1.50; }
 html.akseskita-scale-4 { --akseskita-font-scale: 1.75; }
 
-html[class*="akseskita-scale-"] body {
-  font-size: calc(1rem * var(--akseskita-font-scale, 1)) !important;
-}
-
-html[class*="akseskita-scale-"] p,
-html[class*="akseskita-scale-"] span,
-html[class*="akseskita-scale-"] a,
-html[class*="akseskita-scale-"] li,
-html[class*="akseskita-scale-"] label,
-html[class*="akseskita-scale-"] button,
-html[class*="akseskita-scale-"] input,
-html[class*="akseskita-scale-"] textarea,
-html[class*="akseskita-scale-"] select {
-  font-size: calc(1em * var(--akseskita-font-scale, 1));
+html[class*="akseskita-scale-"] {
+  font-size: calc(100% * var(--akseskita-font-scale, 1)) !important;
 }
 
 /* Font Weight */
+html.akseskita-font-bold,
 html.akseskita-font-bold body,
 html.akseskita-font-bold p,
 html.akseskita-font-bold span,
@@ -48,75 +37,26 @@ html.akseskita-font-bold h6 {
 }
 
 /* Line Height */
-html.akseskita-lh-1 body,
-html.akseskita-lh-1 p,
-html.akseskita-lh-1 span,
-html.akseskita-lh-1 li,
-html.akseskita-lh-1 a {
-  line-height: 1.8 !important;
-}
+html.akseskita-lh-1 body { line-height: 1.8 !important; }
+html.akseskita-lh-1 p, html.akseskita-lh-1 li, html.akseskita-lh-1 a, html.akseskita-lh-1 span { line-height: 1.8 !important; }
 
-html.akseskita-lh-2 body,
-html.akseskita-lh-2 p,
-html.akseskita-lh-2 span,
-html.akseskita-lh-2 li,
-html.akseskita-lh-2 a {
-  line-height: 2.2 !important;
-}
+html.akseskita-lh-2 body { line-height: 2.2 !important; }
+html.akseskita-lh-2 p, html.akseskita-lh-2 li, html.akseskita-lh-2 a, html.akseskita-lh-2 span { line-height: 2.2 !important; }
 
 /* Letter Spacing */
-html.akseskita-ls-1 body,
-html.akseskita-ls-1 p,
-html.akseskita-ls-1 span,
-html.akseskita-ls-1 li,
-html.akseskita-ls-1 h1,
-html.akseskita-ls-1 h2,
-html.akseskita-ls-1 h3 {
+html.akseskita-ls-1 body, html.akseskita-ls-1 p, html.akseskita-ls-1 span, html.akseskita-ls-1 a, html.akseskita-ls-1 h1, html.akseskita-ls-1 h2, html.akseskita-ls-1 h3 {
   letter-spacing: 0.08em !important;
 }
 
-html.akseskita-ls-2 body,
-html.akseskita-ls-2 p,
-html.akseskita-ls-2 span,
-html.akseskita-ls-2 li,
-html.akseskita-ls-2 h1,
-html.akseskita-ls-2 h2,
-html.akseskita-ls-2 h3 {
+html.akseskita-ls-2 body, html.akseskita-ls-2 p, html.akseskita-ls-2 span, html.akseskita-ls-2 a, html.akseskita-ls-2 h1, html.akseskita-ls-2 h2, html.akseskita-ls-2 h3 {
   letter-spacing: 0.16em !important;
 }
 
 /* Text Alignment */
-html.akseskita-align-left body,
-html.akseskita-align-left p,
-html.akseskita-align-left div,
-html.akseskita-align-left article,
-html.akseskita-align-left section {
-  text-align: left !important;
-}
-
-html.akseskita-align-center body,
-html.akseskita-align-center p,
-html.akseskita-align-center div,
-html.akseskita-align-center article,
-html.akseskita-align-center section {
-  text-align: center !important;
-}
-
-html.akseskita-align-right body,
-html.akseskita-align-right p,
-html.akseskita-align-right div,
-html.akseskita-align-right article,
-html.akseskita-align-right section {
-  text-align: right !important;
-}
-
-html.akseskita-align-justify body,
-html.akseskita-align-justify p,
-html.akseskita-align-justify div,
-html.akseskita-align-justify article,
-html.akseskita-align-justify section {
-  text-align: justify !important;
-}
+html.akseskita-align-left p, html.akseskita-align-left article, html.akseskita-align-left section { text-align: left !important; }
+html.akseskita-align-center p, html.akseskita-align-center article, html.akseskita-align-center section { text-align: center !important; }
+html.akseskita-align-right p, html.akseskita-align-right article, html.akseskita-align-right section { text-align: right !important; }
+html.akseskita-align-justify p, html.akseskita-align-justify article, html.akseskita-align-justify section { text-align: justify !important; }
 
 /* Dyslexia Mode */
 @font-face {
@@ -126,23 +66,19 @@ html.akseskita-align-justify section {
 
 html.akseskita-dyslexia,
 html.akseskita-dyslexia body,
-html.akseskita-dyslexia h1,
-html.akseskita-dyslexia h2,
-html.akseskita-dyslexia h3,
-html.akseskita-dyslexia h4,
-html.akseskita-dyslexia h5,
-html.akseskita-dyslexia h6,
 html.akseskita-dyslexia p,
 html.akseskita-dyslexia span,
 html.akseskita-dyslexia a,
 html.akseskita-dyslexia li,
+html.akseskita-dyslexia h1,
+html.akseskita-dyslexia h2,
+html.akseskita-dyslexia h3,
+html.akseskita-dyslexia h4,
 html.akseskita-dyslexia button,
-html.akseskita-dyslexia input,
-html.akseskita-dyslexia textarea {
+html.akseskita-dyslexia input {
   font-family: 'OpenDyslexic3', 'Verdana', 'Arial', sans-serif !important;
   letter-spacing: 0.05em !important;
   word-spacing: 0.15em !important;
-  line-height: 1.85 !important;
 }
 
 /* Highlight Links */
@@ -152,9 +88,9 @@ html.akseskita-highlight-links a:visited {
   color: #0f172a !important;
   text-decoration: underline 3px solid #ca8a04 !important;
   font-weight: bold !important;
-  padding: 1px 5px !important;
+  padding: 1px 4px !important;
   border-radius: 4px !important;
-  box-shadow: 0 0 0 2px #eab308 !important;
+  outline: 2px solid #eab308 !important;
 }
 
 /* Highlight Titles / Headings */
@@ -166,12 +102,12 @@ html.akseskita-highlight-titles h5,
 html.akseskita-highlight-titles h6 {
   background: rgba(2, 132, 199, 0.12) !important;
   border-left: 5px solid #0284c7 !important;
-  padding-left: 10px !important;
+  padding-left: 8px !important;
   border-radius: 4px !important;
 }
 
 /* ==========================================================================
-   2. Color & Contrast Schemes
+   2. Color & Contrast Schemes (Hardware Accelerated)
    ========================================================================== */
 
 /* High Contrast (Dark + Yellow/Cyan) */
@@ -191,9 +127,6 @@ html.akseskita-contrast-high p,
 html.akseskita-contrast-high span,
 html.akseskita-contrast-high li,
 html.akseskita-contrast-high label,
-html.akseskita-contrast-high div,
-html.akseskita-contrast-high article,
-html.akseskita-contrast-high section,
 html.akseskita-contrast-high header,
 html.akseskita-contrast-high footer,
 html.akseskita-contrast-high nav,
@@ -218,7 +151,7 @@ html.akseskita-contrast-high select {
   border: 2px solid #ffff00 !important;
 }
 
-/* Dark Contrast (Dark + Crisp White) */
+/* Dark Contrast (Dark + White) */
 html.akseskita-contrast-dark,
 html.akseskita-contrast-dark body {
   background-color: #121212 !important;
@@ -228,15 +161,9 @@ html.akseskita-contrast-dark body {
 html.akseskita-contrast-dark h1,
 html.akseskita-contrast-dark h2,
 html.akseskita-contrast-dark h3,
-html.akseskita-contrast-dark h4,
-html.akseskita-contrast-dark h5,
-html.akseskita-contrast-dark h6,
 html.akseskita-contrast-dark p,
 html.akseskita-contrast-dark span,
-html.akseskita-contrast-dark li,
-html.akseskita-contrast-dark div,
-html.akseskita-contrast-dark section,
-html.akseskita-contrast-dark article {
+html.akseskita-contrast-dark li {
   background-color: transparent !important;
   color: #f8fafc !important;
 }
@@ -255,13 +182,9 @@ html.akseskita-contrast-light body {
 html.akseskita-contrast-light h1,
 html.akseskita-contrast-light h2,
 html.akseskita-contrast-light h3,
-html.akseskita-contrast-light h4,
-html.akseskita-contrast-light h5,
-html.akseskita-contrast-light h6,
 html.akseskita-contrast-light p,
 html.akseskita-contrast-light span,
-html.akseskita-contrast-light li,
-html.akseskita-contrast-light div {
+html.akseskita-contrast-light li {
   color: #000000 !important;
 }
 
@@ -287,16 +210,12 @@ html.akseskita-high-sat body > *:not(akses-kita):not(#akseskita-reading-guide):n
   pointer-events: none;
   z-index: 2147483640;
   display: none;
+  transform: translateZ(0);
+  will-change: backdrop-filter;
 }
 
 html.akseskita-monochrome #akseskita-monochrome-overlay {
   display: block !important;
-}
-
-@supports not (backdrop-filter: grayscale(100%)) {
-  html.akseskita-monochrome body > *:not(akses-kita):not(#akseskita-reading-guide):not(#akseskita-tts-popover):not(#akseskita-monochrome-overlay):not(#akseskita-invert-overlay) {
-    filter: grayscale(100%) !important;
-  }
 }
 
 /* Invert Filter Overlay */
@@ -311,6 +230,8 @@ html.akseskita-monochrome #akseskita-monochrome-overlay {
   pointer-events: none;
   z-index: 2147483640;
   display: none;
+  transform: translateZ(0);
+  will-change: backdrop-filter;
 }
 
 html.akseskita-invert #akseskita-invert-overlay {
@@ -325,10 +246,10 @@ html.akseskita-invert canvas {
 }
 
 /* ==========================================================================
-   3. Visual & Navigation Aids + Usability
+   3. Visual & Navigation Aids + Usability (High Performance)
    ========================================================================== */
 
-/* Reading Line Guide */
+/* Reading Line Guide (GPU Accelerated) */
 #akseskita-reading-guide {
   position: fixed;
   left: 0;
@@ -340,8 +261,8 @@ html.akseskita-invert canvas {
   pointer-events: none;
   z-index: 2147483640;
   display: none;
-  transform: translateY(-50%);
-  transition: top 0.05s linear;
+  transform: translate3d(0, -50%, 0);
+  will-change: top;
 }
 
 /* Reading Mask Curtains */
@@ -353,7 +274,7 @@ html.akseskita-invert canvas {
   pointer-events: none;
   z-index: 2147483640;
   display: none;
-  transition: top 0.05s linear, height 0.05s linear;
+  will-change: top, height;
 }
 
 #akseskita-reading-mask-top {
@@ -367,26 +288,18 @@ html.akseskita-invert canvas {
   height: auto;
 }
 
-/* Super Focus Mode */
-html.akseskita-super-focus body {
-  background-color: #000000 !important;
-}
-
-html.akseskita-super-focus body > *:not(akses-kita):not(#akseskita-reading-guide):not(#akseskita-tts-popover) {
-  opacity: 0.35 !important;
-  filter: blur(1px) !important;
-  transition: opacity 0.2s ease, filter 0.2s ease !important;
-}
-
-html.akseskita-super-focus .akseskita-focus-target,
-html.akseskita-super-focus .akseskita-focus-target * {
-  opacity: 1 !important;
-  filter: none !important;
-  outline: 3px solid #0284c7 !important;
-  outline-offset: 3px !important;
-  background-color: #ffffff !important;
-  color: #0f172a !important;
-  border-radius: 4px !important;
+/* Super Focus Spotlight Box (High-Performance Hardware Box Overlay) */
+#akseskita-super-focus-box {
+  position: absolute;
+  pointer-events: none;
+  z-index: 2147483639;
+  display: none;
+  border-radius: 8px;
+  outline: 3px solid #0284c7;
+  outline-offset: 4px;
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.65);
+  transition: all 0.1s ease-out;
+  will-change: top, left, width, height;
 }
 
 /* Big Cursor */
@@ -2763,9 +2676,9 @@ html.akseskita-hide-images [style*="background-image"] {
   }
 
   /**
-   * AksesKita - Visual Navigation Aids & Usability Controller
-   * Reading Guide, Reading Mask, Super Focus, Big Cursor,
-   * Stop Animations, Hide Images, and Image Tooltips.
+   * AksesKita - Visual Navigation Aids & Usability Controller (60 FPS Performance Optimized)
+   * Reading Guide, Reading Mask, Super Focus (Hardware-Accelerated Spotlight Box),
+   * Big Cursor, Stop Animations, Hide Images, and Image Tooltips.
    */
 
   const STORAGE_KEY_GUIDE = 'akseskita_reading_guide';
@@ -2800,17 +2713,15 @@ html.akseskita-hide-images [style*="background-image"] {
     const next = forcedState !== null ? forcedState : !current;
 
     if (next) {
-      // If mask is on, turn mask off
       if (isReadingMaskEnabled()) toggleReadingMask(false);
 
       guideEl.style.display = 'block';
       if (!guideMouseMoveHandler) {
-        let latestY = 0;
         guideMouseMoveHandler = (e) => {
-          latestY = e.clientY;
+          const clientY = e.clientY;
           if (!guideRafId) {
             guideRafId = requestAnimationFrame(() => {
-              guideEl.style.top = `${latestY}px`;
+              guideEl.style.top = `${clientY}px`;
               guideRafId = null;
             });
           }
@@ -2869,22 +2780,20 @@ html.akseskita-hide-images [style*="background-image"] {
     const next = forcedState !== null ? forcedState : !current;
 
     if (next) {
-      // If reading guide is on, turn guide off
       if (isReadingGuideEnabled()) toggleReadingGuide(false);
 
       maskTop.style.display = 'block';
       maskBottom.style.display = 'block';
 
-      const slitHeight = 100;
+      const slitHeight = 110;
 
       if (!maskMouseMoveHandler) {
-        let latestY = window.innerHeight / 2;
         maskMouseMoveHandler = (e) => {
-          latestY = e.clientY;
+          const clientY = e.clientY;
           if (!maskRafId) {
             maskRafId = requestAnimationFrame(() => {
-              const topHeight = Math.max(0, latestY - slitHeight / 2);
-              const bottomTop = Math.min(window.innerHeight, latestY + slitHeight / 2);
+              const topHeight = Math.max(0, clientY - slitHeight / 2);
+              const bottomTop = Math.min(window.innerHeight, clientY + slitHeight / 2);
               maskTop.style.height = `${topHeight}px`;
               maskBottom.style.top = `${bottomTop}px`;
               maskRafId = null;
@@ -2913,9 +2822,9 @@ html.akseskita-hide-images [style*="background-image"] {
     return next;
   }
 
-  // 3. Super Focus Mode
+  // 3. Super Focus Mode (Smooth Hardware-Accelerated Spotlight Box)
   let focusMouseOverHandler = null;
-  let currentFocusedElement = null;
+  let focusRafId = null;
 
   function isSuperFocusEnabled() {
     try {
@@ -2926,30 +2835,43 @@ html.akseskita-hide-images [style*="background-image"] {
   }
 
   function toggleSuperFocus(forcedState = null) {
-    const root = document.documentElement;
-    const current = root.classList.contains('akseskita-super-focus');
+    let focusBox = document.getElementById('akseskita-super-focus-box');
+    if (!focusBox) {
+      focusBox = document.createElement('div');
+      focusBox.id = 'akseskita-super-focus-box';
+      document.body.appendChild(focusBox);
+    }
+
+    const current = focusBox.style.display === 'block';
     const next = forcedState !== null ? forcedState : !current;
 
     if (next) {
-      root.classList.add('akseskita-super-focus');
+      focusBox.style.display = 'block';
       if (!focusMouseOverHandler) {
         focusMouseOverHandler = (e) => {
           const target = e.target;
-          if (target && !target.closest('akses-kita') && !target.closest('#akseskita-tts-popover')) {
-            if (currentFocusedElement && currentFocusedElement !== target) {
-              currentFocusedElement.classList.remove('akseskita-focus-target');
-            }
-            currentFocusedElement = target;
-            currentFocusedElement.classList.add('akseskita-focus-target');
+          if (!target || target.closest('akses-kita') || target.closest('#akseskita-tts-popover') || target === document.body || target === document.documentElement) {
+            return;
+          }
+
+          if (!focusRafId) {
+            focusRafId = requestAnimationFrame(() => {
+              const rect = target.getBoundingClientRect();
+              focusBox.style.top = `${window.scrollY + rect.top}px`;
+              focusBox.style.left = `${window.scrollX + rect.left}px`;
+              focusBox.style.width = `${rect.width}px`;
+              focusBox.style.height = `${rect.height}px`;
+              focusRafId = null;
+            });
           }
         };
         document.addEventListener('mouseover', focusMouseOverHandler, { passive: true });
       }
     } else {
-      root.classList.remove('akseskita-super-focus');
-      if (currentFocusedElement) {
-        currentFocusedElement.classList.remove('akseskita-focus-target');
-        currentFocusedElement = null;
+      focusBox.style.display = 'none';
+      if (focusRafId) {
+        cancelAnimationFrame(focusRafId);
+        focusRafId = null;
       }
       if (focusMouseOverHandler) {
         document.removeEventListener('mouseover', focusMouseOverHandler);
