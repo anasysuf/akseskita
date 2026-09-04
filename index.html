@@ -1642,7 +1642,7 @@ Beri tahu jika sudah terpasang. Terima kasih!</div>
 
     // Wire Hero & Nav Action Buttons to AksesKita Web Component
     function getAksesKitaRoot() {
-      const el = document.querySelector('akses-kita');
+      const el = document.querySelector('akses-kita') || document.querySelector('akseskita-widget');
       return el ? el.shadowRoot : null;
     }
 

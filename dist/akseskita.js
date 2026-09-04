@@ -5453,15 +5453,20 @@ html.akseskita-hide-images [style*="background-image"] {
     }
   }
 
-  // Define Custom Element
-  if (typeof customElements !== 'undefined' && !customElements.get('akses-kita')) {
-    customElements.define('akses-kita', AksesKitaElement);
+  // Define Custom Elements for both <akses-kita> and <akseskita-widget>
+  if (typeof customElements !== 'undefined') {
+    if (!customElements.get('akses-kita')) {
+      customElements.define('akses-kita', AksesKitaElement);
+    }
+    if (!customElements.get('akseskita-widget')) {
+      customElements.define('akseskita-widget', class extends AksesKitaElement {});
+    }
   }
 
-  // Auto mount to DOM
+  // Auto mount to DOM if neither tag is already present in document
   if (typeof window !== 'undefined') {
     const mountAksesKita = () => {
-      if (!document.querySelector('akses-kita')) {
+      if (!document.querySelector('akses-kita') && !document.querySelector('akseskita-widget')) {
         const widget = document.createElement('akses-kita');
         document.body.appendChild(widget);
       }
