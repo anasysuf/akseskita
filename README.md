@@ -78,24 +78,116 @@ Misi kami adalah menghadirkan kesetaraan akses informasi web dan kemandirian kom
 
 ---
 
-### 🚀 Cara Pemasangan Cepat
+### 🚀 Pemasangan Cepat (Install in Seconds)
 
-#### 1. Menggunakan Script Tag (CDN jsDelivr)
-Letakkan satu baris tag script berikut sebelum tag penutup `</body>` atau di dalam `<head>` website Anda:
+Cukup salin dan tempelkan cuplikan kode berikut tepat sebelum tag penutup `</body>` pada website Anda:
 
 ```html
-<!-- CDN jsDelivr -->
-<script src="https://cdn.jsdelivr.net/npm/akseskita@latest/dist/akseskita.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/akseskita@1.2.1/dist/akseskita.min.js" defer></script>
+<akseskita-widget></akseskita-widget>
 ```
 
-#### 2. Menggunakan npm / Bundler Modern (Vite, Webpack, Next.js)
+---
+
+### ⚡ Mengapa AksesKita?
+
+* **Non-Blocking & Performa Tinggi:** Mendukung atribut `defer`/`async` bawaan, berjalan halus pada 60 FPS tanpa memperlambat skor PageSpeed (Zero TBT impact).
+* **Nol Dependensi (Zero Dependencies):** JavaScript murni (*vanilla*) berukuran sangat ringan (< 15KB gzipped). Tidak membutuhkan jQuery, React, atau framework berat lainnya.
+* **Privasi Terjaga (No Tracking):** Arsitektur ramah privasi. Tidak menggunakan cookie pelacak, tidak mengumpulkan data pengguna, dan seluruh data kustom disimpan secara lokal di `IndexedDB` browser.
+* **100% Gratis & Open Source:** Berlisensi MIT. Bebas digunakan untuk website personal, komersial, instansi pemerintah, yayasan sosial, maupun pendidikan.
+* **Kompatibilitas Universal:** Terisolasi menggunakan Shadow DOM sehingga tidak merusak gaya CSS atau bentrok dengan JavaScript website target.
+
+---
+
+### 🛠️ Panduan Integrasi per Platform
+
+#### 1. HTML Statis & Framework Backend (Laravel, CodeIgniter, Django, Flask, PHP Native)
+Letakkan cuplikan kode di file template/layout utama (seperti `app.blade.php`, `layout.php`, atau `base.html`) sebelum tag penutup `</body>`:
+```html
+<script src="https://cdn.jsdelivr.net/npm/akseskita@1.2.1/dist/akseskita.min.js" defer></script>
+<akseskita-widget></akseskita-widget>
+```
+
+#### 2. WordPress
+* **Metode 1 (Plugin Header/Footer):** Pasang plugin seperti **WPCode** atau *Insert Headers and Footers*, lalu tempelkan kode di atas pada bagian **Footer Snippet**.
+* **Metode 2 (functions.php Tema):**
+  ```php
+  add_action('wp_footer', function() {
+      echo '<script src="https://cdn.jsdelivr.net/npm/akseskita@1.2.1/dist/akseskita.min.js" defer></script><akseskita-widget></akseskita-widget>';
+  });
+  ```
+
+#### 3. CMS & Website Builder Lainnya
+* **Blogger / Blogspot:** Buka menu **Tema** -> **Edit HTML**, lalu letakkan kode tepat sebelum `</body>`.
+* **Shopify:** Buka **Online Store** -> **Themes** -> **Edit code**, buka file `theme.liquid`, dan tempelkan kode sebelum `</body>`.
+* **Webflow / Framer / Wix / Squarespace:** Buka pengaturan **Custom Code / Embed**, lalu tempelkan kode di kolom **Footer Code**.
+
+#### 4. React, Next.js, Vue, Nuxt, Svelte & Vite (via npm)
 ```bash
 npm install akseskita
 ```
 
-Di file entri JavaScript / TypeScript Anda:
-```javascript
-import 'akseskita';
+* **React / Vite / Single Page App:**
+  ```javascript
+  import 'akseskita';
+
+  function App() {
+    return (
+      <div>
+        <akseskita-widget></akseskita-widget>
+        {/* Konten website */}
+      </div>
+    );
+  }
+  ```
+* **Next.js (App Router):**
+  ```jsx
+  'use client';
+  import { useEffect } from 'react';
+
+  export default function RootLayout({ children }) {
+    useEffect(() => {
+      import('akseskita');
+    }, []);
+
+    return (
+      <html lang="id">
+        <body>
+          {children}
+          <akseskita-widget></akseskita-widget>
+        </body>
+      </html>
+    );
+  }
+  ```
+
+---
+
+### 📋 Template Delegasi ke Pengembang (Webmaster Handoff)
+
+Jika Anda ingin tim IT / web developer Anda yang memasangnya, silakan salin pesan berikut:
+
+```
+Subjek: Integrasi Toolbar Aksesibilitas Web AksesKita
+
+Halo [Nama Developer],
+
+Tolong pasangkan toolbar aksesibilitas gratis dan open-source AksesKita (https://github.com/anasysuf/akseskita) ke website kita untuk meningkatkan standar aksesibilitas ramah disabilitas (WCAG & ADA).
+
+Pemasangannya cukup dengan menyisipkan satu skrip di footer sebelum tag penutup </body>:
+
+<script src="https://cdn.jsdelivr.net/npm/akseskita@1.2.1/dist/akseskita.min.js" defer></script>
+<akseskita-widget></akseskita-widget>
+
+Spesifikasi teknis:
+- Performa: Ringan (< 15KB gzipped), non-blocking, zero TBT impact.
+- Zero Dependencies: Vanilla JS murni, CSS terisolasi dengan Shadow DOM (tidak akan merusak layout web).
+- Privasi: Tanpa tracking, tanpa cookies pihak ketiga.
+- Lisensi: MIT (Gratis selamanya).
+
+Dokumentasi & Demo: https://anasysuf.github.io/akseskita/
+
+Beri tahu jika sudah terpasang. Terima kasih!
 ```
 
 ---
@@ -175,20 +267,116 @@ import 'akseskita';
 
 ---
 
-### 🚀 Quick Installation
+### 🚀 Install in Seconds
 
-#### Via Script Tag (jsDelivr CDN):
+Copy and paste this single snippet before the closing `</body>` tag of your website:
+
 ```html
-<script src="https://cdn.jsdelivr.net/npm/akseskita@latest/dist/akseskita.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/akseskita@1.2.1/dist/akseskita.min.js" defer></script>
+<akseskita-widget></akseskita-widget>
 ```
 
-#### Via npm:
+---
+
+### ⚡ Why AksesKita?
+
+* **Non-Blocking & High Performance:** Native `defer`/`async` support, running at smooth 60 FPS without impacting PageSpeed or Total Blocking Time (Zero TBT).
+* **Zero Dependencies:** Pure vanilla Javascript (< 15KB gzipped). No jQuery, React, or heavy third-party runtimes required.
+* **Privacy-First (No Tracking):** No cookies, no trackers, and all custom data is stored locally in client-side `IndexedDB`.
+* **100% Free & Open Source:** MIT Licensed. Free forever for personal, commercial, government, and educational websites.
+* **Universal Compatibility:** Isolated with Shadow DOM to prevent any CSS/JS conflicts with your website template.
+
+---
+
+### 🛠️ Platform Integration Guides
+
+#### 1. Static HTML & Backend Frameworks (Laravel, Django, PHP, CodeIgniter, Flask)
+Add the snippet in your main layout file (`app.blade.php`, `layout.php`, `base.html`) before `</body>`:
+```html
+<script src="https://cdn.jsdelivr.net/npm/akseskita@1.2.1/dist/akseskita.min.js" defer></script>
+<akseskita-widget></akseskita-widget>
+```
+
+#### 2. WordPress
+* **Plugin Option:** Install **WPCode** or *Insert Headers and Footers*, then paste the snippet in the **Footer Snippet** box.
+* **functions.php Option:**
+  ```php
+  add_action('wp_footer', function() {
+      echo '<script src="https://cdn.jsdelivr.net/npm/akseskita@1.2.1/dist/akseskita.min.js" defer></script><akseskita-widget></akseskita-widget>';
+  });
+  ```
+
+#### 3. CMS & Website Builders
+* **Blogger:** Go to **Theme** -> **Edit HTML** and paste before `</body>`.
+* **Shopify:** Paste before `</body>` in `theme.liquid`.
+* **Webflow / Framer / Wix / Squarespace:** Paste into the **Custom Code / Footer Embed** settings.
+
+#### 4. React, Next.js, Vue, Nuxt, Svelte & Vite (via npm)
 ```bash
 npm install akseskita
 ```
 
-```javascript
-import 'akseskita';
+* **React / Vite / SPA:**
+  ```javascript
+  import 'akseskita';
+
+  function App() {
+    return (
+      <div>
+        <akseskita-widget></akseskita-widget>
+        {/* Your content */}
+      </div>
+    );
+  }
+  ```
+* **Next.js (App Router):**
+  ```jsx
+  'use client';
+  import { useEffect } from 'react';
+
+  export default function RootLayout({ children }) {
+    useEffect(() => {
+      import('akseskita');
+    }, []);
+
+    return (
+      <html>
+        <body>
+          {children}
+          <akseskita-widget></akseskita-widget>
+        </body>
+      </html>
+    );
+  }
+  ```
+
+---
+
+### 📋 Developer Handoff Message Template
+
+Copy and forward this message to your developer:
+
+```
+Subject: Technical Update: Adding AksesKita Accessibility Toolbar
+
+Hi [Developer Name],
+
+I'd like to integrate AksesKita (https://github.com/anasysuf/akseskita) on our website to enhance WCAG & ADA compliance and assist users with disabilities.
+
+Installation is a simple snippet before the closing </body> tag:
+
+<script src="https://cdn.jsdelivr.net/npm/akseskita@1.2.1/dist/akseskita.min.js" defer></script>
+<akseskita-widget></akseskita-widget>
+
+Technical specifications:
+- Performance: Ultra-lightweight (< 15KB gzipped), non-blocking, zero TBT impact.
+- Zero Dependencies: Pure vanilla Javascript, isolated with Shadow DOM (won't conflict with existing styles).
+- Privacy: No tracking, zero cookies, offline local storage.
+- License: MIT (100% Free forever).
+
+Live Demo & Docs: https://anasysuf.github.io/akseskita/
+
+Please let me know once it is live!
 ```
 
 ---

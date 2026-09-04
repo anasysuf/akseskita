@@ -537,51 +537,150 @@
       margin-top: 2px;
     }
 
-    .code-box-wrapper {
-      background: #0f172a;
+    .setup-hero-card {
+      background: #090d16;
+      border: 1px solid #1e293b;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.4);
+      margin-bottom: 36px;
+    }
+
+    .setup-hero-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      background: rgba(255, 255, 255, 0.03);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .setup-hero-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .setup-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #334155;
+    }
+
+    .btn-copy-snippet {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      background: #0284c7;
+      color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-copy-snippet:hover {
+      background: #0369a1;
+      transform: translateY(-1px);
+    }
+
+    .setup-hero-body {
+      padding: 24px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 14px;
+      line-height: 1.7;
+      color: #f8fafc;
+      overflow-x: auto;
+    }
+
+    .tech-specs-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+
+    .tech-spec-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .tech-spec-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: #e0f2fe;
+      color: #0284c7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .tech-spec-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .tech-spec-desc {
+      font-size: 12px;
+      color: #64748b;
+      line-height: 1.45;
+    }
+
+    .handoff-box {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+      margin-top: 24px;
+    }
+
+    .handoff-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .handoff-code-area {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
       border-radius: 12px;
       padding: 16px;
-      color: #f8fafc;
       font-family: monospace;
-      font-size: 13px;
-      overflow-x: auto;
-      border: 1px solid #1e293b;
-      margin: 8px 0;
-      line-height: 1.5;
-    }
-
-    .shortcut-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 8px;
-      background: #ffffff;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .shortcut-table th, .shortcut-table td {
-      padding: 12px 16px;
-      text-align: left;
-      border-bottom: 1px solid var(--border);
-      font-size: 13px;
-    }
-
-    .shortcut-table th {
-      background: #f8fafc;
-      font-weight: 800;
+      font-size: 12px;
       color: #334155;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      user-select: all;
     }
 
-    .key-badge {
-      background: #e2e8f0;
-      color: #0f172a;
-      padding: 3px 8px;
-      border-radius: 6px;
-      font-family: monospace;
-      font-weight: 700;
-      box-shadow: 0 2px 0 #cbd5e1;
-      display: inline-block;
+    @media (max-width: 900px) {
+      .tech-specs-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .tech-specs-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* Direct Contact Card */
@@ -969,132 +1068,216 @@
     <section id="fitur" style="background: #f1f5f9;">
       <div class="container">
         <div class="section-title-wrap">
-          <span class="section-badge">Panduan Lengkap</span>
-          <h2 class="section-title">Cara Penggunaan & Integrasi AksesKita</h2>
+          <span class="section-badge">Pemasangan Cepat</span>
+          <h2 class="section-title">Pasang AksesKita dalam Hitungan Detik</h2>
           <p class="section-desc">
-            Panduan integrasi website bagi developer dan tata cara penggunaan fitur bagi pengunjung situs.
+            Salin cuplikan kode di bawah ini dan tempelkan sebelum tag penutup <code>&lt;/body&gt;</code> di website Anda. Kompatibel dengan semua platform tanpa konfigurasi rumit.
           </p>
         </div>
 
+        <!-- Setup Hero Code Box (Sienna Style) -->
+        <div class="setup-hero-card">
+          <div class="setup-hero-top">
+            <div class="setup-hero-dots">
+              <div class="setup-dot"></div>
+              <div class="setup-dot"></div>
+              <div class="setup-dot"></div>
+            </div>
+            <button id="btn-copy-main-snippet" class="btn-copy-snippet" title="Salin Cuplikan Kode">
+              <span id="copy-icon-label">📋 Salin Cuplikan Kode</span>
+            </button>
+          </div>
+          <div class="setup-hero-body">
+            <span style="color: #f472b6;">&lt;script</span> <span style="color: #60a5fa;">src</span>=<span style="color: #34d399;">"https://cdn.jsdelivr.net/npm/akseskita@1.2.1/dist/akseskita.min.js"</span> <span style="color: #c084fc;">defer</span><span style="color: #f472b6;">&gt;&lt;/script&gt;</span><br>
+            <span style="color: #f472b6;">&lt;akseskita-widget&gt;&lt;/akseskita-widget&gt;</span>
+          </div>
+        </div>
+
+        <!-- 4 Key Technical Specs Grid -->
+        <div class="tech-specs-grid">
+          <div class="tech-spec-card">
+            <div class="tech-spec-icon">⚡</div>
+            <div class="tech-spec-title">Non-Blocking</div>
+            <div class="tech-spec-desc">Dukungan async/defer asli. Berjalan mulus 60 FPS tanpa memperlambat PageSpeed (Zero TBT).</div>
+          </div>
+          <div class="tech-spec-card">
+            <div class="tech-spec-icon">📦</div>
+            <div class="tech-spec-title">Zero Dependencies</div>
+            <div class="tech-spec-desc">JavaScript murni &lt; 15KB gzipped. Tidak membutuhkan jQuery atau runtime framework tambahan.</div>
+          </div>
+          <div class="tech-spec-card">
+            <div class="tech-spec-icon">🛡️</div>
+            <div class="tech-spec-title">Privasi Terjaga</div>
+            <div class="tech-spec-desc">Tanpa cookie pelacak, tanpa analitik pihak ketiga. Seluruh kustomisasi tersimpan lokal di browser.</div>
+          </div>
+          <div class="tech-spec-card">
+            <div class="tech-spec-icon">🎁</div>
+            <div class="tech-spec-title">100% Gratis & Open Source</div>
+            <div class="tech-spec-desc">Berlisensi MIT. Bebas digunakan selamanya untuk web personal, komersial, NGO, dan sekolah/kampus.</div>
+          </div>
+        </div>
+
         <div class="usage-grid">
-          <!-- Card 1: Integrasi CDN -->
+          <!-- Card 1: Integrasi CDN untuk Semua Web & Backend -->
           <div class="usage-card">
-            <span class="usage-card-badge">Opsi 1: CDN Langsung (1 Baris)</span>
-            <h3>Pemasangan Cepat via CDN jsDelivr</h3>
-            <p>Sisipkan satu baris tag script ini sebelum tag penutup <code>&lt;/body&gt;</code> atau di dalam tag <code>&lt;head&gt;</code> website Anda:</p>
+            <span class="usage-card-badge">HTML, PHP, Laravel, Django</span>
+            <h3>1. Web Statis & Backend Framework</h3>
+            <p>Sisipkan kode di master layout utama Anda (seperti <code>app.blade.php</code>, <code>layout.php</code>, atau <code>base.html</code>):</p>
             
-            <div class="code-box-wrapper">
-&lt;!-- AksesKita Single Drop-in Script --&gt;
-&lt;script 
-  src="https://cdn.jsdelivr.net/npm/akseskita@latest/dist/akseskita.min.js" 
-  defer&gt;
-&lt;/script&gt;
+            <div class="code-box-wrapper" style="font-size: 12px;">
+&lt;script src="https://cdn.jsdelivr.net/npm/akseskita@1.2.1/dist/akseskita.min.js" defer&gt;&lt;/script&gt;
+&lt;akseskita-widget&gt;&lt;/akseskita-widget&gt;
             </div>
 
             <ul class="usage-steps-list">
               <li class="usage-step-item">
                 <span class="step-number">✓</span>
-                <span><b>Zero Config:</b> Komponen <code>&lt;akses-kita&gt;</code> otomatis dimuat tanpa perlu konfigurasi JavaScript tambahan.</span>
-              </li>
-              <li class="usage-step-item">
-                <span class="step-number">✓</span>
-                <span><b>CSS Terisolasi:</b> Tidak akan merusak styling WordPress, Laravel, Bootstrap, atau Tailwind.</span>
+                <span><b>Shadow DOM:</b> CSS terisolasi penuh sehingga tidak bentrok dengan Bootstrap / Tailwind.</span>
               </li>
             </ul>
           </div>
 
-          <!-- Card 2: Integrasi npm / Modern Bundler -->
+          <!-- Card 2: Integrasi WordPress & CMS -->
           <div class="usage-card">
-            <span class="usage-card-badge">Opsi 2: Paket npm</span>
-            <h3>Integrasi React, Vue, Next.js & Vite</h3>
+            <span class="usage-card-badge">WordPress, Blogger, Shopify & CMS</span>
+            <h3>2. WordPress & Website Builder</h3>
+            <p>Mudah dipasang di berbagai CMS tanpa perlu memahami koding rumit:</p>
+            
+            <ul class="usage-steps-list">
+              <li class="usage-step-item">
+                <span class="step-number">WP</span>
+                <span><b>WordPress:</b> Pasang plugin <i>WPCode</i>, lalu tempel kode CDN di kolom <b>Footer Snippet</b> (atau via <code>functions.php</code>).</span>
+              </li>
+              <li class="usage-step-item">
+                <span class="step-number">BL</span>
+                <span><b>Blogger:</b> Masuk ke <b>Tema -> Edit HTML</b>, tempelkan sebelum tag <code>&lt;/body&gt;</code>.</span>
+              </li>
+              <li class="usage-step-item">
+                <span class="step-number">SH</span>
+                <span><b>Shopify / Webflow:</b> Tempelkan pada <code>theme.liquid</code> atau menu <b>Custom Code Embed</b>.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Card 3: Integrasi npm / Modern Bundler -->
+          <div class="usage-card">
+            <span class="usage-card-badge">React, Next.js, Vue, Vite (npm)</span>
+            <h3>3. Framework Modern (npm)</h3>
             <p>Pasang paket melalui npm di proyek JavaScript / TypeScript Anda:</p>
             
-            <div class="code-box-wrapper">
+            <div class="code-box-wrapper" style="font-size: 12px;">
 npm install akseskita
             </div>
 
-            <p style="font-size: 14px; color: #475569;">Cukup import sekali di entry point aplikasi (misal <code>main.js</code>, <code>index.js</code>, atau <code>_app.js</code>):</p>
+            <p style="font-size: 13px; color: #475569;">Import sekali di entry point aplikasi (misal <code>main.js</code>, <code>index.js</code>, atau <code>layout.jsx</code>):</p>
             
-            <div class="code-box-wrapper">
+            <div class="code-box-wrapper" style="font-size: 12px;">
 import 'akseskita';
+
+// Di JSX/HTML template:
+&lt;akseskita-widget&gt;&lt;/akseskita-widget&gt;
             </div>
-            
-            <p style="font-size: 13px; color: #64748b;">Widget akan langsung aktif di browser klien secara otomatis.</p>
           </div>
 
-          <!-- Card 3: Cara Penggunaan Pengunjung -->
+          <!-- Card 4: Cara Penggunaan Pengunjung -->
           <div class="usage-card">
             <span class="usage-card-badge">Panduan Pengunjung</span>
-            <h3>Cara Menggunakan Fitur Asistif</h3>
+            <h3>4. Navigasi & Fitur Asistif</h3>
             <ul class="usage-steps-list">
               <li class="usage-step-item">
                 <span class="step-number">1</span>
-                <span><b>Membuka Toolbar Aksesibilitas:</b> Klik tombol mengambang <b>♿ AksesKita</b> atau tekan <span class="key-badge">Alt + A</span>. Seluruh fitur dapat dijelajahi cukup dengan scroll ke bawah.</span>
+                <span><b>Membuka Toolbar:</b> Klik tombol <b>♿ AksesKita</b> atau tekan <span class="key-badge">Alt + A</span>.</span>
               </li>
               <li class="usage-step-item">
                 <span class="step-number">2</span>
-                <span><b>Mode Pembaca Layar Tunanetra:</b> Tekan <span class="key-badge">Alt + R</span> atau aktifkan di baris teratas panel untuk mendengar elemen saat hover atau menekan <span class="key-badge">Tab</span>.</span>
+                <span><b>Mode Pembaca Layar:</b> Tekan <span class="key-badge">Alt + R</span> untuk mendengar narasi elemen saat hover atau <span class="key-badge">Tab</span>.</span>
               </li>
               <li class="usage-step-item">
                 <span class="step-number">3</span>
-                <span><b>Baca Seluruh Halaman:</b> Tekan <span class="key-badge">Alt + P</span> untuk membaca seluruh artikel/halaman secara berurutan, dan <span class="key-badge">Alt + S</span> untuk berhenti seketika.</span>
+                <span><b>Baca Seluruh Halaman:</b> Tekan <span class="key-badge">Alt + P</span> untuk mendengar seluruh teks artikel, dan <span class="key-badge">Alt + S</span> untuk berhenti.</span>
               </li>
               <li class="usage-step-item">
                 <span class="step-number">4</span>
-                <span><b>Membaca Teks Seleksi:</b> Seleksi kalimat apa saja di halaman web, lalu klik tombol mengambang <b>"🔊 Dengarkan"</b>.</span>
-              </li>
-              <li class="usage-step-item">
-                <span class="step-number">5</span>
-                <span><b>Papan Bicara AAC:</b> Tekan <span class="key-badge">Alt + C</span> untuk membuka papan simbol komunikasi bersuara.</span>
+                <span><b>Papan Bicara AAC:</b> Tekan <span class="key-badge">Alt + C</span> untuk membuka papan simbol bicara visual.</span>
               </li>
             </ul>
           </div>
+        </div>
 
-          <!-- Card 4: Pintasan Keyboard -->
-          <div class="usage-card">
-            <span class="usage-card-badge">Akses Cepat</span>
-            <h3>Tabel Pintasan Keyboard (Shortcuts)</h3>
-            <p>Navigasi cepat ramah pembaca layar (*screen reader*) dan tunanetra:</p>
-            
-            <table class="shortcut-table">
-              <thead>
-                <tr>
-                  <th>Pintasan</th>
-                  <th>Aksi</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><span class="key-badge">Alt + R</span></td>
-                  <td><b>Aktif / Nonaktifkan Mode Pembaca Layar</b> (Screen Reader Navigation)</td>
-                </tr>
-                <tr>
-                  <td><span class="key-badge">Alt + P</span></td>
-                  <td><b>Mulai / Jeda Baca Seluruh Halaman</b> (Continuous Page Reader)</td>
-                </tr>
-                <tr>
-                  <td><span class="key-badge">Alt + S</span></td>
-                  <td><b>Hentikan Suara Seketika</b> (Instant Stop Speech)</td>
-                </tr>
-                <tr>
-                  <td><span class="key-badge">Alt + A</span></td>
-                  <td>Buka / Tutup Panel Aksesibilitas (Toolbar A11y)</td>
-                </tr>
-                <tr>
-                  <td><span class="key-badge">Alt + C</span></td>
-                  <td>Buka / Tutup Papan Komunikasi Visual (AAC Modal)</td>
-                </tr>
-                <tr>
-                  <td><span class="key-badge">Escape</span></td>
-                  <td>Menutup panel atau modal yang sedang terbuka</td>
-                </tr>
-                <tr>
-                  <td><span class="key-badge">Tab</span> / <span class="key-badge">Enter</span></td>
-                  <td>Navigasi dan pemilihan elemen / kartu tanpa mouse</td>
-                </tr>
-              </tbody>
-            </table>
+        <!-- Webmaster Handoff Kit -->
+        <div class="handoff-box">
+          <div class="handoff-header">
+            <div>
+              <h3 style="font-size: 18px; font-weight: 800; color: #0f172a; margin-bottom: 4px;">Delegasi ke Pengembang Website (Webmaster Handoff)</h3>
+              <p style="font-size: 13px; color: #64748b;">Ingin tim IT atau web developer Anda yang memasangnya? Salin instruksi teknis ini dan kirimkan ke mereka.</p>
+            </div>
+            <button id="btn-copy-handoff" class="btn-copy-snippet" style="background: #0f172a;" title="Salin Pesan Delegasi">
+              <span id="copy-handoff-label">📋 Salin Pesan Delegasi</span>
+            </button>
           </div>
+          <div id="handoff-text" class="handoff-code-area">Subjek: Integrasi Toolbar Aksesibilitas Web AksesKita
+
+Halo Tim Developer,
+
+Tolong pasangkan toolbar aksesibilitas gratis dan open-source AksesKita (https://github.com/anasysuf/akseskita) ke website kita untuk meningkatkan standar aksesibilitas ramah disabilitas (WCAG & ADA).
+
+Pemasangannya cukup dengan menyisipkan satu skrip di footer sebelum tag penutup &lt;/body&gt;:
+
+&lt;script src="https://cdn.jsdelivr.net/npm/akseskita@1.2.1/dist/akseskita.min.js" defer&gt;&lt;/script&gt;
+&lt;akseskita-widget&gt;&lt;/akseskita-widget&gt;
+
+Spesifikasi teknis:
+- Performa: Ringan (&lt; 15KB gzipped), non-blocking, zero TBT impact.
+- Zero Dependencies: Vanilla JS murni, CSS terisolasi dengan Shadow DOM (tidak merusak layout web).
+- Privasi: Tanpa tracking, tanpa cookies pihak ketiga.
+- Lisensi: MIT (Gratis selamanya).
+
+Dokumentasi & Demo: https://anasysuf.github.io/akseskita/
+
+Beri tahu jika sudah terpasang. Terima kasih!</div>
+        </div>
+
+        <!-- Shortcuts Table -->
+        <div style="margin-top: 36px;">
+          <h3 style="font-size: 19px; font-weight: 800; color: #0f172a; margin-bottom: 12px; text-align: center;">Tabel Pintasan Keyboard (Shortcuts)</h3>
+          <table class="shortcut-table">
+            <thead>
+              <tr>
+                <th>Pintasan</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="key-badge">Alt + R</span></td>
+                <td><b>Aktif / Nonaktifkan Mode Pembaca Layar</b> (Screen Reader Navigation)</td>
+              </tr>
+              <tr>
+                <td><span class="key-badge">Alt + P</span></td>
+                <td><b>Mulai / Jeda Baca Seluruh Halaman</b> (Continuous Page Reader)</td>
+              </tr>
+              <tr>
+                <td><span class="key-badge">Alt + S</span></td>
+                <td><b>Hentikan Suara Seketika</b> (Instant Stop Speech)</td>
+              </tr>
+              <tr>
+                <td><span class="key-badge">Alt + A</span></td>
+                <td>Buka / Tutup Panel Aksesibilitas (Toolbar A11y)</td>
+              </tr>
+              <tr>
+                <td><span class="key-badge">Alt + C</span></td>
+                <td>Buka / Tutup Papan Komunikasi Visual (AAC Modal)</td>
+              </tr>
+              <tr>
+                <td><span class="key-badge">Escape</span></td>
+                <td>Menutup panel atau modal yang sedang terbuka</td>
+              </tr>
+              <tr>
+                <td><span class="key-badge">Tab</span> / <span class="key-badge">Enter</span></td>
+                <td>Navigasi dan pemilihan elemen / kartu tanpa mouse</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </section>
@@ -1230,6 +1413,38 @@ import 'akseskita';
       const root = getAksesKitaRoot();
       if (root) {
         root.getElementById('open-aac-btn')?.click();
+      }
+    });
+
+    // Copy Main CDN Snippet Action
+    document.getElementById('btn-copy-main-snippet')?.addEventListener('click', async () => {
+      const snippet = '<script src="https://cdn.jsdelivr.net/npm/akseskita@1.2.1/dist/akseskita.min.js" defer><' + '/script>\n<akseskita-widget><' + '/akseskita-widget>';
+      try {
+        await navigator.clipboard.writeText(snippet);
+        const label = document.getElementById('copy-icon-label');
+        if (label) {
+          const prev = label.textContent;
+          label.textContent = '✓ Cuplikan Tersalin!';
+          setTimeout(() => { label.textContent = prev; }, 2000);
+        }
+      } catch (e) {
+        alert('Gagal menyalin otomatis. Silakan salin manual.');
+      }
+    });
+
+    // Copy Webmaster Handoff Template Action
+    document.getElementById('btn-copy-handoff')?.addEventListener('click', async () => {
+      const handoffText = document.getElementById('handoff-text')?.textContent || '';
+      try {
+        await navigator.clipboard.writeText(handoffText);
+        const label = document.getElementById('copy-handoff-label');
+        if (label) {
+          const prev = label.textContent;
+          label.textContent = '✓ Pesan Tersalin!';
+          setTimeout(() => { label.textContent = prev; }, 2000);
+        }
+      } catch (e) {
+        alert('Gagal menyalin otomatis. Silakan salin manual.');
       }
     });
   </script>
