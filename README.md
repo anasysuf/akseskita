@@ -83,7 +83,7 @@ Misi kami adalah menghadirkan kesetaraan akses informasi web dan kemandirian kom
 Cukup salin dan tempelkan cuplikan kode berikut tepat sebelum tag penutup `</body>` pada website Anda:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/akseskita@1.2.1/dist/akseskita.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/akseskita@latest/dist/akseskita.min.js" defer></script>
 <akseskita-widget></akseskita-widget>
 ```
 
@@ -104,7 +104,7 @@ Cukup salin dan tempelkan cuplikan kode berikut tepat sebelum tag penutup `</bod
 #### 1. HTML Statis & Framework Backend (Laravel, CodeIgniter, Django, Flask, PHP Native)
 Letakkan cuplikan kode di file template/layout utama (seperti `app.blade.php`, `layout.php`, atau `base.html`) sebelum tag penutup `</body>`:
 ```html
-<script src="https://cdn.jsdelivr.net/npm/akseskita@1.2.1/dist/akseskita.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/akseskita@latest/dist/akseskita.min.js" defer></script>
 <akseskita-widget></akseskita-widget>
 ```
 
@@ -113,7 +113,7 @@ Letakkan cuplikan kode di file template/layout utama (seperti `app.blade.php`, `
 * **Metode 2 (functions.php Tema):**
   ```php
   add_action('wp_footer', function() {
-      echo '<script src="https://cdn.jsdelivr.net/npm/akseskita@1.2.1/dist/akseskita.min.js" defer></script><akseskita-widget></akseskita-widget>';
+      echo '<script src="https://cdn.jsdelivr.net/npm/akseskita@latest/dist/akseskita.min.js" defer></script><akseskita-widget></akseskita-widget>';
   });
   ```
 
@@ -176,7 +176,7 @@ Tolong pasangkan toolbar aksesibilitas gratis dan open-source AksesKita (https:/
 
 Pemasangannya cukup dengan menyisipkan satu skrip di footer sebelum tag penutup </body>:
 
-<script src="https://cdn.jsdelivr.net/npm/akseskita@1.2.1/dist/akseskita.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/akseskita@latest/dist/akseskita.min.js" defer></script>
 <akseskita-widget></akseskita-widget>
 
 Spesifikasi teknis:
@@ -272,7 +272,7 @@ Beri tahu jika sudah terpasang. Terima kasih!
 Copy and paste this single snippet before the closing `</body>` tag of your website:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/akseskita@1.2.1/dist/akseskita.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/akseskita@latest/dist/akseskita.min.js" defer></script>
 <akseskita-widget></akseskita-widget>
 ```
 
@@ -293,7 +293,7 @@ Copy and paste this single snippet before the closing `</body>` tag of your webs
 #### 1. Static HTML & Backend Frameworks (Laravel, Django, PHP, CodeIgniter, Flask)
 Add the snippet in your main layout file (`app.blade.php`, `layout.php`, `base.html`) before `</body>`:
 ```html
-<script src="https://cdn.jsdelivr.net/npm/akseskita@1.2.1/dist/akseskita.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/akseskita@latest/dist/akseskita.min.js" defer></script>
 <akseskita-widget></akseskita-widget>
 ```
 
@@ -302,7 +302,7 @@ Add the snippet in your main layout file (`app.blade.php`, `layout.php`, `base.h
 * **functions.php Option:**
   ```php
   add_action('wp_footer', function() {
-      echo '<script src="https://cdn.jsdelivr.net/npm/akseskita@1.2.1/dist/akseskita.min.js" defer></script><akseskita-widget></akseskita-widget>';
+      echo '<script src="https://cdn.jsdelivr.net/npm/akseskita@latest/dist/akseskita.min.js" defer></script><akseskita-widget></akseskita-widget>';
   });
   ```
 
@@ -365,7 +365,7 @@ I'd like to integrate AksesKita (https://github.com/anasysuf/akseskita) on our w
 
 Installation is a simple snippet before the closing </body> tag:
 
-<script src="https://cdn.jsdelivr.net/npm/akseskita@1.2.1/dist/akseskita.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/akseskita@latest/dist/akseskita.min.js" defer></script>
 <akseskita-widget></akseskita-widget>
 
 Technical specifications:

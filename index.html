@@ -1088,7 +1088,7 @@
             </button>
           </div>
           <div class="setup-hero-body">
-            <span style="color: #f472b6;">&lt;script</span> <span style="color: #60a5fa;">src</span>=<span style="color: #34d399;">"https://cdn.jsdelivr.net/npm/akseskita@1.2.1/dist/akseskita.min.js"</span> <span style="color: #c084fc;">defer</span><span style="color: #f472b6;">&gt;&lt;/script&gt;</span><br>
+            <span style="color: #f472b6;">&lt;script</span> <span style="color: #60a5fa;">src</span>=<span style="color: #34d399;">"https://cdn.jsdelivr.net/npm/akseskita@latest/dist/akseskita.min.js"</span> <span style="color: #c084fc;">defer</span><span style="color: #f472b6;">&gt;&lt;/script&gt;</span><br>
             <span style="color: #f472b6;">&lt;akseskita-widget&gt;&lt;/akseskita-widget&gt;</span>
           </div>
         </div>
@@ -1125,7 +1125,7 @@
             <p>Sisipkan kode di master layout utama Anda (seperti <code>app.blade.php</code>, <code>layout.php</code>, atau <code>base.html</code>):</p>
             
             <div class="code-box-wrapper" style="font-size: 12px;">
-&lt;script src="https://cdn.jsdelivr.net/npm/akseskita@1.2.1/dist/akseskita.min.js" defer&gt;&lt;/script&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/akseskita@latest/dist/akseskita.min.js" defer&gt;&lt;/script&gt;
 &lt;akseskita-widget&gt;&lt;/akseskita-widget&gt;
             </div>
 
@@ -1223,7 +1223,7 @@ Tolong pasangkan toolbar aksesibilitas gratis dan open-source AksesKita (https:/
 
 Pemasangannya cukup dengan menyisipkan satu skrip di footer sebelum tag penutup &lt;/body&gt;:
 
-&lt;script src="https://cdn.jsdelivr.net/npm/akseskita@1.2.1/dist/akseskita.min.js" defer&gt;&lt;/script&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/akseskita@latest/dist/akseskita.min.js" defer&gt;&lt;/script&gt;
 &lt;akseskita-widget&gt;&lt;/akseskita-widget&gt;
 
 Spesifikasi teknis:
@@ -1418,7 +1418,7 @@ Beri tahu jika sudah terpasang. Terima kasih!</div>
 
     // Copy Main CDN Snippet Action
     document.getElementById('btn-copy-main-snippet')?.addEventListener('click', async () => {
-      const snippet = '<script src="https://cdn.jsdelivr.net/npm/akseskita@1.2.1/dist/akseskita.min.js" defer><' + '/script>\n<akseskita-widget><' + '/akseskita-widget>';
+      const snippet = '<script src="https://cdn.jsdelivr.net/npm/akseskita@latest/dist/akseskita.min.js" defer><' + '/script>\n<akseskita-widget><' + '/akseskita-widget>';
       try {
         await navigator.clipboard.writeText(snippet);
         const label = document.getElementById('copy-icon-label');
