@@ -459,23 +459,90 @@
       color: #0f172a;
     }
 
-    /* Fitur & Integrasi Section */
+    /* Usage & Integration Section */
+    .usage-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .usage-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .usage-card-badge {
+      display: inline-block;
+      align-self: flex-start;
+      padding: 3px 10px;
+      background: #e0f2fe;
+      color: #0369a1;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .usage-card h3 {
+      font-size: 19px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .usage-steps-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 0;
+    }
+
+    .usage-step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      color: #334155;
+    }
+
+    .step-number {
+      width: 24px;
+      height: 24px;
+      background: #0284c7;
+      color: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
     .code-box-wrapper {
       background: #0f172a;
-      border-radius: 14px;
-      padding: 20px;
+      border-radius: 12px;
+      padding: 16px;
       color: #f8fafc;
       font-family: monospace;
       font-size: 13px;
       overflow-x: auto;
-      margin: 16px 0;
       border: 1px solid #1e293b;
+      margin: 8px 0;
+      line-height: 1.5;
     }
 
     .shortcut-table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 16px;
+      margin-top: 8px;
       background: #ffffff;
       border-radius: 12px;
       overflow: hidden;
@@ -483,10 +550,10 @@
     }
 
     .shortcut-table th, .shortcut-table td {
-      padding: 14px 18px;
+      padding: 12px 16px;
       text-align: left;
       border-bottom: 1px solid var(--border);
-      font-size: 14px;
+      font-size: 13px;
     }
 
     .shortcut-table th {
@@ -498,7 +565,7 @@
     .key-badge {
       background: #e2e8f0;
       color: #0f172a;
-      padding: 4px 10px;
+      padding: 3px 8px;
       border-radius: 6px;
       font-family: monospace;
       font-weight: 700;
@@ -618,7 +685,7 @@
 
     /* Responsive */
     @media (max-width: 900px) {
-      .guide-grid {
+      .guide-grid, .usage-grid {
         grid-template-columns: 1fr;
       }
       .stats-grid {
@@ -667,7 +734,7 @@
           <li><a href="#beranda" class="nav-link active">Beranda</a></li>
           <li><a href="#panduan" class="nav-link">Panduan A11y</a></li>
           <li><a href="#aac" class="nav-link">Papan AAC</a></li>
-          <li><a href="#fitur" class="nav-link">Fitur & API</a></li>
+          <li><a href="#fitur" class="nav-link">Cara Penggunaan</a></li>
           <li><a href="#kontak" class="nav-link">Hubungi Kami</a></li>
         </ul>
       </nav>
@@ -720,7 +787,7 @@
             <div class="stat-label">Kartu AAC Bawaan Indonesia</div>
           </div>
           <div class="stat-card">
-            <div class="stat-number">&lt; 14 KB</div>
+            <div class="stat-number">&lt; 15 KB</div>
             <div class="stat-label">Ukuran Bundle (Gzipped)</div>
           </div>
         </div>
@@ -887,34 +954,93 @@
       </div>
     </section>
 
-    <!-- Section 4: Fitur & API -->
+    <!-- Section 4: Cara Penggunaan & Integrasi -->
     <section id="fitur" style="background: #f1f5f9;">
       <div class="container">
         <div class="section-title-wrap">
-          <span class="section-badge">Integrasi Mudah</span>
-          <h2 class="section-title">Pemasangan & Pintasan Keyboard</h2>
+          <span class="section-badge">Panduan Lengkap</span>
+          <h2 class="section-title">Cara Penggunaan & Integrasi AksesKita</h2>
           <p class="section-desc">
-            Hanya butuh 1 baris kode HTML untuk menghadirkan seluruh kemampuan aksesibilitas dan AAC di situs Anda.
+            Panduan integrasi website bagi developer dan tata cara penggunaan fitur bagi pengunjung situs.
           </p>
         </div>
 
-        <div class="guide-grid">
-          <div class="guide-card">
-            <h3>Pemasangan Cepat via CDN / Script Tag</h3>
-            <p>Salin dan tempel baris berikut sebelum tag penutup <code>&lt;/body&gt;</code>:</p>
+        <div class="usage-grid">
+          <!-- Card 1: Integrasi CDN -->
+          <div class="usage-card">
+            <span class="usage-card-badge">Opsi 1: CDN Langsung (1 Baris)</span>
+            <h3>Pemasangan Cepat via CDN jsDelivr</h3>
+            <p>Sisipkan satu baris tag script ini sebelum tag penutup <code>&lt;/body&gt;</code> atau di dalam tag <code>&lt;head&gt;</code> website Anda:</p>
+            
             <div class="code-box-wrapper">
-&lt;!-- AksesKita CDN Single Drop-in --&gt;
+&lt;!-- AksesKita Single Drop-in Script --&gt;
 &lt;script 
-  src="dist/akseskita.min.js" 
+  src="https://cdn.jsdelivr.net/npm/akseskita@latest/dist/akseskita.min.js" 
   defer&gt;
 &lt;/script&gt;
             </div>
-            <p style="font-size: 13px; color: #64748b;">Widget akan otomatis menginisialisasi Custom Element <code>&lt;akses-kita&gt;</code> dan menyematkan tombol pemicu di sudut layar.</p>
+
+            <ul class="usage-steps-list">
+              <li class="usage-step-item">
+                <span class="step-number">✓</span>
+                <span><b>Zero Config:</b> Komponen <code>&lt;akses-kita&gt;</code> otomatis dimuat tanpa perlu konfigurasi JavaScript tambahan.</span>
+              </li>
+              <li class="usage-step-item">
+                <span class="step-number">✓</span>
+                <span><b>CSS Terisolasi:</b> Tidak akan merusak styling WordPress, Laravel, Bootstrap, atau Tailwind.</span>
+              </li>
+            </ul>
           </div>
 
-          <div class="guide-card">
-            <h3>Tabel Pintasan Keyboard</h3>
-            <p>Memudahkan pengguna tunanetra dan penyandang disabilitas motorik bernavigasi tanpa mouse:</p>
+          <!-- Card 2: Integrasi npm / Modern Bundler -->
+          <div class="usage-card">
+            <span class="usage-card-badge">Opsi 2: Paket npm</span>
+            <h3>Integrasi React, Vue, Next.js & Vite</h3>
+            <p>Pasang paket melalui npm di proyek JavaScript / TypeScript Anda:</p>
+            
+            <div class="code-box-wrapper">
+npm install akseskita
+            </div>
+
+            <p style="font-size: 14px; color: #475569;">Cukup import sekali di entry point aplikasi (misal <code>main.js</code>, <code>index.js</code>, atau <code>_app.js</code>):</p>
+            
+            <div class="code-box-wrapper">
+import 'akseskita';
+            </div>
+            
+            <p style="font-size: 13px; color: #64748b;">Widget akan langsung aktif di browser klien secara otomatis.</p>
+          </div>
+
+          <!-- Card 3: Cara Penggunaan Pengunjung -->
+          <div class="usage-card">
+            <span class="usage-card-badge">Panduan Pengunjung</span>
+            <h3>Cara Menggunakan Fitur Asistif</h3>
+            <ul class="usage-steps-list">
+              <li class="usage-step-item">
+                <span class="step-number">1</span>
+                <span><b>Membuka Toolbar A11y:</b> Klik tombol mengambang <b>♿ AksesKita</b> di pojok kanan bawah atau tekan <span class="key-badge">Alt + A</span>.</span>
+              </li>
+              <li class="usage-step-item">
+                <span class="step-number">2</span>
+                <span><b>Membaca Teks (Quick TTS):</b> Seleksi teks apa saja di halaman web dengan mouse, lalu klik tombol mengambang <b>"🔊 Dengarkan"</b>.</span>
+              </li>
+              <li class="usage-step-item">
+                <span class="step-number">3</span>
+                <span><b>Papan Bicara AAC:</b> Buka dengan tombol hijau pada toolbar atau tekan <span class="key-badge">Alt + C</span>. Klik kartu untuk menyusun kalimat dan tekan <b>"🔊 Bicara"</b>.</span>
+              </li>
+              <li class="usage-step-item">
+                <span class="step-number">4</span>
+                <span><b>Membuat Kartu Custom:</b> Klik <b>"+ Tambah Kartu"</b> di dalam modal AAC untuk mengunggah foto dan merekam suara asli via mic lokal.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Card 4: Pintasan Keyboard -->
+          <div class="usage-card">
+            <span class="usage-card-badge">Akses Cepat</span>
+            <h3>Tabel Pintasan Keyboard (Shortcuts)</h3>
+            <p>Navigasi cepat ramah pembaca layar (*screen reader*) dan tunanetra:</p>
+            
             <table class="shortcut-table">
               <thead>
                 <tr>
@@ -933,7 +1059,11 @@
                 </tr>
                 <tr>
                   <td><span class="key-badge">Escape</span></td>
-                  <td>Menutup panel atau modal yang sedang aktif</td>
+                  <td>Menutup panel atau modal yang sedang terbuka</td>
+                </tr>
+                <tr>
+                  <td><span class="key-badge">Tab</span> / <span class="key-badge">Enter</span></td>
+                  <td>Navigasi dan pemilihan kartu AAC tanpa mouse</td>
                 </tr>
               </tbody>
             </table>
@@ -997,7 +1127,7 @@
             <li><a href="#beranda">Beranda</a></li>
             <li><a href="#panduan">Panduan Aksesibilitas</a></li>
             <li><a href="#aac">Papan Bicara AAC</a></li>
-            <li><a href="#fitur">Integrasi & Pintasan</a></li>
+            <li><a href="#fitur">Cara Penggunaan</a></li>
             <li><a href="#kontak">Hubungi Kami</a></li>
           </ul>
         </div>
