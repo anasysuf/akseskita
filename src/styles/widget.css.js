@@ -517,6 +517,34 @@ export const a11yStyles = `
   background: #fee2e2;
 }
 
+.footer-brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  color: #64748b;
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.footer-brand-link:hover {
+  color: #0284c7;
+  background: #e0f2fe;
+}
+
+.footer-brand-text {
+  font-weight: 500;
+  color: #94a3b8;
+}
+
+.footer-brand-name {
+  font-weight: 800;
+  color: #0284c7;
+}
+
 /* Audio & Screen Reader Tab Styles */
 .audio-card-box {
   background: #f8fafc;

@@ -157,6 +157,7 @@ class AksesKitaElement extends HTMLElement {
 
   render() {
     const lang = getLanguage();
+    const demoUrl = this.getAttribute('demo-url') || 'https://anasysuf.github.io/akseskita/';
 
     this.shadowRoot.innerHTML = `
       <style>
@@ -475,7 +476,10 @@ class AksesKitaElement extends HTMLElement {
         <!-- Panel Footer -->
         <div class="panel-footer">
           <button id="btn-reset-all" class="reset-link">${t('resetAll')}</button>
-          <span>${t('shortcutHint')}: <b>Alt + A</b></span>
+          <a href="${demoUrl}" target="_blank" rel="noopener noreferrer" class="footer-brand-link" title="AksesKita - Free Web Accessibility Suite">
+            <span class="footer-brand-text">Powered by</span>
+            <span class="footer-brand-name">♿ AksesKita</span>
+          </a>
         </div>
       </div>
 

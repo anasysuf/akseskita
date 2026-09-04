@@ -1032,6 +1032,34 @@ html.akseskita-hide-images [style*="background-image"] {
   background: #fee2e2;
 }
 
+.footer-brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  color: #64748b;
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.footer-brand-link:hover {
+  color: #0284c7;
+  background: #e0f2fe;
+}
+
+.footer-brand-text {
+  font-weight: 500;
+  color: #94a3b8;
+}
+
+.footer-brand-name {
+  font-weight: 800;
+  color: #0284c7;
+}
+
 /* Audio & Screen Reader Tab Styles */
 .audio-card-box {
   background: #f8fafc;
@@ -4212,6 +4240,7 @@ html.akseskita-hide-images [style*="background-image"] {
 
     render() {
       const lang = getLanguage();
+      const demoUrl = this.getAttribute('demo-url') || 'https://anasysuf.github.io/akseskita/';
 
       this.shadowRoot.innerHTML = `
       <style>
@@ -4530,7 +4559,10 @@ html.akseskita-hide-images [style*="background-image"] {
         <!-- Panel Footer -->
         <div class="panel-footer">
           <button id="btn-reset-all" class="reset-link">${t('resetAll')}</button>
-          <span>${t('shortcutHint')}: <b>Alt + A</b></span>
+          <a href="${demoUrl}" target="_blank" rel="noopener noreferrer" class="footer-brand-link" title="AksesKita - Free Web Accessibility Suite">
+            <span class="footer-brand-text">Powered by</span>
+            <span class="footer-brand-name">♿ AksesKita</span>
+          </a>
         </div>
       </div>
 
