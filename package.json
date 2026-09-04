@@ -5,6 +5,13 @@
   "main": "dist/akseskita.js",
   "module": "src/index.js",
   "type": "module",
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE",
+    "CONTRIBUTING.md"
+  ],
   "scripts": {
     "dev": "rollup -c -w",
     "build": "rollup -c",
