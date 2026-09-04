@@ -504,6 +504,7 @@ html.akseskita-hide-images [style*="background-image"] {
 
 const a11yStyles = `
 :host {
+  display: block !important;
   --ak-primary: #0284c7;
   --ak-primary-hover: #0369a1;
   --ak-primary-light: #e0f2fe;
@@ -534,7 +535,7 @@ const a11yStyles = `
   position: fixed;
   bottom: 24px;
   right: 24px;
-  z-index: 2147483646;
+  z-index: 2147483647 !important;
   display: flex;
   align-items: center;
   gap: 10px;
