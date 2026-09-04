@@ -603,6 +603,8 @@ html.akseskita-hide-images [style*="background-image"] {
   box-shadow: var(--ak-shadow-xl);
   z-index: 2147483646;
   overflow-y: auto;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
   display: flex;
   flex-direction: column;
   animation: panelSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
@@ -708,54 +710,25 @@ html.akseskita-hide-images [style*="background-image"] {
   color: var(--ak-text-main);
 }
 
-/* Panel Category Navigation Tabs */
-.panel-nav-tabs {
-  display: flex;
-  background: #ffffff;
-  border-bottom: 1px solid var(--ak-border);
-  padding: 6px 12px;
-  gap: 6px;
-  overflow-x: auto;
-  position: sticky;
-  top: 56px;
-  z-index: 9;
-  scrollbar-width: thin;
-  -webkit-overflow-scrolling: touch;
-}
-
-.panel-tab-btn {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  border-radius: 10px;
-  border: 1px solid transparent;
-  background: transparent;
-  color: #64748b;
-  font-size: 12px;
-  font-weight: 700;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.15s ease;
-}
-
-.panel-tab-btn:hover {
-  background: #f1f5f9;
-  color: #0f172a;
-}
-
-.panel-tab-btn.active {
-  background: #e0f2fe;
-  color: #0284c7;
-  border-color: #bae6fd;
-}
-
-/* Panel Body */
+/* Panel Body (Unified Smooth Scrollable Layout) */
 .panel-body {
-  padding: 16px;
+  padding: 18px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 20px;
+}
+
+/* Section Group Divider */
+.section-group {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 6px;
+  border-bottom: 1px dashed #e2e8f0;
+}
+
+.section-group:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
 }
 
 /* Section Header */
@@ -765,10 +738,22 @@ html.akseskita-hide-images [style*="background-image"] {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: #64748b;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.section-tag-focus {
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  background: #dbeafe;
+  color: #1d4ed8;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  letter-spacing: 0.05em;
+  border: 1px solid #bfdbfe;
 }
 
 /* AAC Launcher CTA */
@@ -4258,49 +4243,92 @@ html.akseskita-hide-images [style*="background-image"] {
           </div>
         </div>
 
-        <!-- Category Tabs -->
-        <div class="panel-nav-tabs">
-          <button class="panel-tab-btn ${this.activeTab === 'profiles' ? 'active' : ''}" data-tab="profiles">
-            <span>🌟</span>
-            <span>${t('tabProfiles')}</span>
-          </button>
-          <button class="panel-tab-btn ${this.activeTab === 'content' ? 'active' : ''}" data-tab="content">
-            <span>🔤</span>
-            <span>${t('tabContent')}</span>
-          </button>
-          <button class="panel-tab-btn ${this.activeTab === 'color' ? 'active' : ''}" data-tab="color">
-            <span>🎨</span>
-            <span>${t('tabColor')}</span>
-          </button>
-          <button class="panel-tab-btn ${this.activeTab === 'visual' ? 'active' : ''}" data-tab="visual">
-            <span>🔍</span>
-            <span>${t('tabVisual')}</span>
-          </button>
-          <button class="panel-tab-btn ${this.activeTab === 'audio' ? 'active' : ''}" data-tab="audio">
-            <span>🔊</span>
-            <span>${t('tabAudio')}</span>
-          </button>
-        </div>
-
         <div class="panel-body">
-          <!-- CTA AAC Communicator (Always Accessible) -->
-          <button id="open-aac-btn" class="btn-aac-launch" title="Shortcut: Alt + C">
-            <span style="font-size: 20px;">🗣️</span>
-            <span>${t('openAacBtn')}</span>
-          </button>
-
-          <!-- TAB 1: PRESET PROFILES -->
-          <div id="tab-section-profiles" class="tab-content-pane ${this.activeTab === 'profiles' ? '' : 'hidden'}" style="${this.activeTab === 'profiles' ? '' : 'display:none;'}">
+          <!-- SECTION 1: AUDIO & SCREEN READER (BLIND ACCESSIBILITY - FOCUS UTAMA) -->
+          <div class="section-group">
             <div class="section-label">
-              <span>${t('profilesSection')}</span>
+              <span>🔊 ${t('audioSection')}</span>
+              <span class="section-tag-focus">Fokus Utama</span>
+            </div>
+
+            <!-- Screen Reader Mode Switch Card -->
+            <div id="card-screen-reader-box" class="audio-card-box">
+              <div class="audio-card-top">
+                <div class="audio-card-title-wrap">
+                  <span style="font-size: 18px;">🦯</span>
+                  <span>${t('screenReaderMode')}</span>
+                </div>
+                <span class="shortcut-kbd">Alt + R</span>
+              </div>
+              <p class="audio-card-desc">${t('screenReaderDesc')}</p>
+              <button id="btn-screen-reader" class="btn-audio-action">
+                <span>🔈</span>
+                <span id="label-screen-reader-toggle">Aktifkan Pembaca Layar</span>
+              </button>
+            </div>
+
+            <!-- Continuous Page Reader -->
+            <div class="audio-card-box">
+              <div class="audio-card-top">
+                <div class="audio-card-title-wrap">
+                  <span style="font-size: 18px;">📖</span>
+                  <span>${t('pageReader')}</span>
+                </div>
+                <span class="shortcut-kbd">Alt + P</span>
+              </div>
+              <div style="display: flex; gap: 8px; margin-top: 4px;">
+                <button id="btn-page-reader" class="btn-audio-action" style="flex: 1;">
+                  <span>▶️</span>
+                  <span id="label-page-reader">${t('pageReader')}</span>
+                </button>
+                <button id="btn-stop-speech" class="btn-audio-action danger" title="${t('stopPageReader')} (Alt + S)">
+                  <span>⏹️</span>
+                  <span>${t('stopPageReader')}</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Speech Rate Adjuster -->
+            <div class="audio-card-box">
+              <div class="audio-card-top">
+                <div class="audio-card-title-wrap">
+                  <span style="font-size: 18px;">⚡</span>
+                  <span>${t('speechRate')}</span>
+                </div>
+              </div>
+              <div class="speech-rate-grid">
+                <button class="speech-rate-chip" data-rate="0.75">0.75x</button>
+                <button class="speech-rate-chip" data-rate="1.0">1.0x</button>
+                <button class="speech-rate-chip" data-rate="1.25">1.25x</button>
+                <button class="speech-rate-chip" data-rate="1.5">1.5x</button>
+                <button class="speech-rate-chip" data-rate="2.0">2.0x</button>
+              </div>
+            </div>
+
+            <!-- Selection Quick TTS Info Card -->
+            <div class="audio-card-box" style="background: #f0fdf4; border-color: #bbf7d0;">
+              <div class="audio-card-top">
+                <div class="audio-card-title-wrap" style="color: #166534;">
+                  <span>✨</span>
+                  <span>${t('selectionTtsTitle')}</span>
+                </div>
+              </div>
+              <p class="audio-card-desc" style="color: #15803d;">${t('selectionTtsDesc')}</p>
+            </div>
+          </div>
+
+          <!-- SECTION 2: 1-CLICK PROFILES -->
+          <div class="section-group">
+            <div class="section-label">
+              <span>🌟 ${t('profilesSection')}</span>
             </div>
             <div class="profiles-grid">
-              <div class="profile-card" data-profile="seizure">
+              <div class="profile-card" data-profile="blind">
                 <div class="profile-card-header">
-                  <span class="profile-card-icon">⚡</span>
-                  <span class="profile-card-title">${t('profileSeizureTitle')}</span>
+                  <span class="profile-card-icon">🦯</span>
+                  <span class="profile-card-title">${t('profileBlindTitle')}</span>
                 </div>
-                <p class="profile-card-desc">${t('profileSeizureDesc')}</p>
+                <p class="profile-card-desc">${t('profileBlindDesc')}</p>
               </div>
 
               <div class="profile-card" data-profile="vision">
@@ -4319,6 +4347,14 @@ html.akseskita-hide-images [style*="background-image"] {
                 <p class="profile-card-desc">${t('profileAdhdDesc')}</p>
               </div>
 
+              <div class="profile-card" data-profile="seizure">
+                <div class="profile-card-header">
+                  <span class="profile-card-icon">⚡</span>
+                  <span class="profile-card-title">${t('profileSeizureTitle')}</span>
+                </div>
+                <p class="profile-card-desc">${t('profileSeizureDesc')}</p>
+              </div>
+
               <div class="profile-card" data-profile="cognitive">
                 <div class="profile-card-header">
                   <span class="profile-card-icon">🧠</span>
@@ -4334,19 +4370,11 @@ html.akseskita-hide-images [style*="background-image"] {
                 </div>
                 <p class="profile-card-desc">${t('profileMotorDesc')}</p>
               </div>
-
-              <div class="profile-card" data-profile="blind">
-                <div class="profile-card-header">
-                  <span class="profile-card-icon">🦯</span>
-                  <span class="profile-card-title">${t('profileBlindTitle')}</span>
-                </div>
-                <p class="profile-card-desc">${t('profileBlindDesc')}</p>
-              </div>
             </div>
           </div>
 
-          <!-- TAB 2: CONTENT & TYPOGRAPHY -->
-          <div id="tab-section-content" class="tab-content-pane ${this.activeTab === 'content' ? '' : 'hidden'}" style="${this.activeTab === 'content' ? '' : 'display:none;'}">
+          <!-- SECTION 3: CONTENT & TYPOGRAPHY -->
+          <div class="section-group">
             <!-- Font Sizing (75% - 200%) -->
             <div style="margin-bottom: 14px;">
               <span class="section-label">🔤 ${t('fontSize')} (75% - 200%)</span>
@@ -4414,8 +4442,8 @@ html.akseskita-hide-images [style*="background-image"] {
             </div>
           </div>
 
-          <!-- TAB 3: COLOR & CONTRAST -->
-          <div id="tab-section-color" class="tab-content-pane ${this.activeTab === 'color' ? '' : 'hidden'}" style="${this.activeTab === 'color' ? '' : 'display:none;'}">
+          <!-- SECTION 4: COLOR & CONTRAST -->
+          <div class="section-group">
             <span class="section-label">🎨 ${t('colorSection')}</span>
             <div class="button-grid cols-3">
               <button id="btn-contrast-high" class="tool-btn" data-contrast="high">
@@ -4449,8 +4477,8 @@ html.akseskita-hide-images [style*="background-image"] {
             </div>
           </div>
 
-          <!-- TAB 4: VISUAL & USABILITY -->
-          <div id="tab-section-visual" class="tab-content-pane ${this.activeTab === 'visual' ? '' : 'hidden'}" style="${this.activeTab === 'visual' ? '' : 'display:none;'}">
+          <!-- SECTION 5: VISUAL & USABILITY -->
+          <div class="section-group">
             <div style="margin-bottom: 14px;">
               <span class="section-label">🔍 ${t('visualSection')}</span>
               <div class="button-grid cols-2">
@@ -4492,77 +4520,11 @@ html.akseskita-hide-images [style*="background-image"] {
             </div>
           </div>
 
-          <!-- TAB 5: AUDIO & SCREEN READER (BLIND ACCESSIBLE) -->
-          <div id="tab-section-audio" class="tab-content-pane ${this.activeTab === 'audio' ? '' : 'hidden'}" style="${this.activeTab === 'audio' ? '' : 'display:none;'}">
-            <div class="section-label">
-              <span>🔊 ${t('audioSection')}</span>
-            </div>
-
-            <!-- Screen Reader Mode Switch Card -->
-            <div id="card-screen-reader-box" class="audio-card-box">
-              <div class="audio-card-top">
-                <div class="audio-card-title-wrap">
-                  <span>🦯</span>
-                  <span>${t('screenReaderMode')}</span>
-                </div>
-                <span class="shortcut-kbd">Alt + R</span>
-              </div>
-              <p class="audio-card-desc">${t('screenReaderDesc')}</p>
-              <button id="btn-screen-reader" class="btn-audio-action">
-                <span>🔈</span>
-                <span id="label-screen-reader-toggle">Aktifkan Pembaca Layar</span>
-              </button>
-            </div>
-
-            <!-- Continuous Page Reader -->
-            <div class="audio-card-box">
-              <div class="audio-card-top">
-                <div class="audio-card-title-wrap">
-                  <span>📖</span>
-                  <span>${t('pageReader')}</span>
-                </div>
-                <span class="shortcut-kbd">Alt + P</span>
-              </div>
-              <div style="display: flex; gap: 8px; margin-top: 4px;">
-                <button id="btn-page-reader" class="btn-audio-action" style="flex: 1;">
-                  <span>▶️</span>
-                  <span id="label-page-reader">${t('pageReader')}</span>
-                </button>
-                <button id="btn-stop-speech" class="btn-audio-action danger" title="${t('stopPageReader')} (Alt + S)">
-                  <span>⏹️</span>
-                  <span>${t('stopPageReader')}</span>
-                </button>
-              </div>
-            </div>
-
-            <!-- Speech Rate Adjuster -->
-            <div class="audio-card-box">
-              <div class="audio-card-top">
-                <div class="audio-card-title-wrap">
-                  <span>⚡</span>
-                  <span>${t('speechRate')}</span>
-                </div>
-              </div>
-              <div class="speech-rate-grid">
-                <button class="speech-rate-chip" data-rate="0.75">0.75x</button>
-                <button class="speech-rate-chip" data-rate="1.0">1.0x</button>
-                <button class="speech-rate-chip" data-rate="1.25">1.25x</button>
-                <button class="speech-rate-chip" data-rate="1.5">1.5x</button>
-                <button class="speech-rate-chip" data-rate="2.0">2.0x</button>
-              </div>
-            </div>
-
-            <!-- Selection Quick TTS Info Card -->
-            <div class="audio-card-box" style="background: #f0fdf4; border-color: #bbf7d0;">
-              <div class="audio-card-top">
-                <div class="audio-card-title-wrap" style="color: #166534;">
-                  <span>✨</span>
-                  <span>${t('selectionTtsTitle')}</span>
-                </div>
-              </div>
-              <p class="audio-card-desc" style="color: #15803d;">${t('selectionTtsDesc')}</p>
-            </div>
-          </div>
+          <!-- CTA AAC COMMUNICATOR -->
+          <button id="open-aac-btn" class="btn-aac-launch" title="Shortcut: Alt + C">
+            <span style="font-size: 20px;">🗣️</span>
+            <span>${t('openAacBtn')}</span>
+          </button>
         </div>
 
         <!-- Panel Footer -->
@@ -4729,21 +4691,6 @@ html.akseskita-hide-images [style*="background-image"] {
         btn.addEventListener('click', () => {
           const lang = btn.getAttribute('data-lang');
           this.changeLanguage(lang);
-        });
-      });
-
-      // Navigation Tabs inside Panel
-      root.querySelectorAll('.panel-tab-btn').forEach(tabBtn => {
-        tabBtn.addEventListener('click', () => {
-          const tabId = tabBtn.getAttribute('data-tab');
-          this.activeTab = tabId;
-          
-          root.querySelectorAll('.panel-tab-btn').forEach(b => b.classList.toggle('active', b.getAttribute('data-tab') === tabId));
-          root.querySelectorAll('.tab-content-pane').forEach(p => {
-            const isMatch = p.id === `tab-section-${tabId}`;
-            p.classList.toggle('hidden', !isMatch);
-            p.style.display = isMatch ? 'block' : 'none';
-          });
         });
       });
 

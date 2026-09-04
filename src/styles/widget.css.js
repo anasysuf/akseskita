@@ -88,6 +88,8 @@ export const a11yStyles = `
   box-shadow: var(--ak-shadow-xl);
   z-index: 2147483646;
   overflow-y: auto;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
   display: flex;
   flex-direction: column;
   animation: panelSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
@@ -193,54 +195,25 @@ export const a11yStyles = `
   color: var(--ak-text-main);
 }
 
-/* Panel Category Navigation Tabs */
-.panel-nav-tabs {
-  display: flex;
-  background: #ffffff;
-  border-bottom: 1px solid var(--ak-border);
-  padding: 6px 12px;
-  gap: 6px;
-  overflow-x: auto;
-  position: sticky;
-  top: 56px;
-  z-index: 9;
-  scrollbar-width: thin;
-  -webkit-overflow-scrolling: touch;
-}
-
-.panel-tab-btn {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  border-radius: 10px;
-  border: 1px solid transparent;
-  background: transparent;
-  color: #64748b;
-  font-size: 12px;
-  font-weight: 700;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.15s ease;
-}
-
-.panel-tab-btn:hover {
-  background: #f1f5f9;
-  color: #0f172a;
-}
-
-.panel-tab-btn.active {
-  background: #e0f2fe;
-  color: #0284c7;
-  border-color: #bae6fd;
-}
-
-/* Panel Body */
+/* Panel Body (Unified Smooth Scrollable Layout) */
 .panel-body {
-  padding: 16px;
+  padding: 18px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 20px;
+}
+
+/* Section Group Divider */
+.section-group {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 6px;
+  border-bottom: 1px dashed #e2e8f0;
+}
+
+.section-group:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
 }
 
 /* Section Header */
@@ -250,10 +223,22 @@ export const a11yStyles = `
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: #64748b;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.section-tag-focus {
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  background: #dbeafe;
+  color: #1d4ed8;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  letter-spacing: 0.05em;
+  border: 1px solid #bfdbfe;
 }
 
 /* AAC Launcher CTA */
