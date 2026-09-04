@@ -529,6 +529,129 @@ export const a11yStyles = `
 .reset-link:hover {
   background: #fee2e2;
 }
+
+/* Audio & Screen Reader Tab Styles */
+.audio-card-box {
+  background: #f8fafc;
+  border: 1px solid var(--ak-border);
+  border-radius: 14px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+  transition: all 0.15s ease;
+}
+
+.audio-card-box.active {
+  background: #eff6ff;
+  border-color: #0284c7;
+  box-shadow: 0 0 0 1px #0284c7;
+}
+
+.audio-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.audio-card-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.shortcut-kbd {
+  font-size: 10px;
+  font-weight: 800;
+  background: #e2e8f0;
+  color: #334155;
+  padding: 2px 6px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  font-family: monospace;
+}
+
+.audio-card-desc {
+  font-size: 11px;
+  color: #64748b;
+  line-height: 1.35;
+}
+
+.speech-rate-grid {
+  display: flex;
+  gap: 6px;
+}
+
+.speech-rate-chip {
+  flex: 1;
+  padding: 8px 0;
+  font-size: 11px;
+  font-weight: 700;
+  border: 1px solid var(--ak-border);
+  background: #ffffff;
+  color: #475569;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.speech-rate-chip:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.speech-rate-chip.active {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #0284c7;
+  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25);
+}
+
+.btn-audio-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: #ffffff;
+  border: 1px solid var(--ak-border);
+  border-radius: 12px;
+  color: #0f172a;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.btn-audio-action:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.btn-audio-action.active {
+  background: #e0f2fe;
+  color: #0284c7;
+  border-color: #0284c7;
+  box-shadow: 0 0 0 1px #0284c7;
+}
+
+.btn-audio-action.danger {
+  color: #ef4444;
+  border-color: #fecaca;
+  background: #fff5f5;
+}
+
+.btn-audio-action.danger:hover {
+  background: #fee2e2;
+  border-color: #ef4444;
+}
 `;
 
 export const aacModalStyles = `

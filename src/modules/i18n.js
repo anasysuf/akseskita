@@ -15,6 +15,7 @@ export const translations = {
     tabContent: 'Tipografi',
     tabColor: 'Warna',
     tabVisual: 'Alat Visual',
+    tabAudio: 'Suara (TTS)',
     shortcutHint: 'Pintasan',
     resetAll: 'Atur Ulang Semua',
     close: 'Tutup',
@@ -82,6 +83,19 @@ export const translations = {
     hideImages: 'Sembunyikan Gambar',
     imageTooltips: 'Tooltip Gambar',
 
+    // Audio & Screen Reader for Blind Users
+    audioSection: '🔊 Pembaca Layar & Suara (TTS)',
+    screenReaderMode: 'Mode Pembaca Layar (Hover/Tab)',
+    screenReaderDesc: 'Baca elemen bersuara saat kursor hover atau tekan tombol Tab (Alt + R)',
+    pageReader: 'Baca Seluruh Halaman',
+    pageReaderPlaying: 'Membaca Halaman...',
+    stopPageReader: 'Hentikan Baca (Alt + S)',
+    speechRate: 'Kecepatan Suara',
+    rateSlow: '0.75x Lambat',
+    rateNormal: '1.0x Normal',
+    rateFast: '1.25x Cepat',
+    rateVeryFast: '1.5x Sangat Cepat',
+
     // AAC Modal
     aacTitle: 'AksesKita: Papan Bicara',
     aacSubtitle: 'Papan Komunikasi Visual Interaktif (AAC)',
@@ -129,6 +143,7 @@ export const translations = {
     tabContent: 'Content',
     tabColor: 'Color',
     tabVisual: 'Visual Aids',
+    tabAudio: 'Audio & TTS',
     shortcutHint: 'Shortcuts',
     resetAll: 'Reset All',
     close: 'Close',
@@ -195,6 +210,19 @@ export const translations = {
     stopAnimations: 'Stop Animations',
     hideImages: 'Hide Images',
     imageTooltips: 'Image Tooltips',
+
+    // Audio & Screen Reader for Blind Users
+    audioSection: '🔊 Screen Reader & Audio (TTS)',
+    screenReaderMode: 'Screen Reader Mode (Hover/Tab)',
+    screenReaderDesc: 'Read elements aloud when hovering or pressing Tab (Alt + R)',
+    pageReader: 'Read Entire Page',
+    pageReaderPlaying: 'Reading Page...',
+    stopPageReader: 'Stop Reading (Alt + S)',
+    speechRate: 'Speech Speed Rate',
+    rateSlow: '0.75x Slow',
+    rateNormal: '1.0x Normal',
+    rateFast: '1.25x Fast',
+    rateVeryFast: '1.5x Very Fast',
 
     // AAC Modal
     aacTitle: 'AksesKita: AAC Communicator',

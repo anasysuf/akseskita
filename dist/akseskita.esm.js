@@ -247,6 +247,15 @@ html.akseskita-invert canvas {
    3. Visual & Navigation Aids + Usability (High Performance)
    ========================================================================== */
 
+/* Screen Reader & Continuous Page Reader Element Highlight */
+.akseskita-reader-highlight {
+  outline: 3px solid #0284c7 !important;
+  outline-offset: 3px !important;
+  background-color: rgba(2, 132, 199, 0.15) !important;
+  border-radius: 6px !important;
+  transition: all 0.15s ease !important;
+}
+
 /* Reading Line Guide (GPU Accelerated) */
 #akseskita-reading-guide {
   position: fixed;
@@ -917,6 +926,129 @@ const a11yStyles = `
 
 .reset-link:hover {
   background: #fee2e2;
+}
+
+/* Audio & Screen Reader Tab Styles */
+.audio-card-box {
+  background: #f8fafc;
+  border: 1px solid var(--ak-border);
+  border-radius: 14px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+  transition: all 0.15s ease;
+}
+
+.audio-card-box.active {
+  background: #eff6ff;
+  border-color: #0284c7;
+  box-shadow: 0 0 0 1px #0284c7;
+}
+
+.audio-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.audio-card-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.shortcut-kbd {
+  font-size: 10px;
+  font-weight: 800;
+  background: #e2e8f0;
+  color: #334155;
+  padding: 2px 6px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  font-family: monospace;
+}
+
+.audio-card-desc {
+  font-size: 11px;
+  color: #64748b;
+  line-height: 1.35;
+}
+
+.speech-rate-grid {
+  display: flex;
+  gap: 6px;
+}
+
+.speech-rate-chip {
+  flex: 1;
+  padding: 8px 0;
+  font-size: 11px;
+  font-weight: 700;
+  border: 1px solid var(--ak-border);
+  background: #ffffff;
+  color: #475569;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.speech-rate-chip:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.speech-rate-chip.active {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #0284c7;
+  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25);
+}
+
+.btn-audio-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: #ffffff;
+  border: 1px solid var(--ak-border);
+  border-radius: 12px;
+  color: #0f172a;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.btn-audio-action:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.btn-audio-action.active {
+  background: #e0f2fe;
+  color: #0284c7;
+  border-color: #0284c7;
+  box-shadow: 0 0 0 1px #0284c7;
+}
+
+.btn-audio-action.danger {
+  color: #ef4444;
+  border-color: #fecaca;
+  background: #fff5f5;
+}
+
+.btn-audio-action.danger:hover {
+  background: #fee2e2;
+  border-color: #ef4444;
 }
 `;
 
@@ -2159,6 +2291,7 @@ const translations = {
     tabContent: 'Tipografi',
     tabColor: 'Warna',
     tabVisual: 'Alat Visual',
+    tabAudio: 'Suara (TTS)',
     shortcutHint: 'Pintasan',
     resetAll: 'Atur Ulang Semua',
     close: 'Tutup',
@@ -2226,6 +2359,19 @@ const translations = {
     hideImages: 'Sembunyikan Gambar',
     imageTooltips: 'Tooltip Gambar',
 
+    // Audio & Screen Reader for Blind Users
+    audioSection: '🔊 Pembaca Layar & Suara (TTS)',
+    screenReaderMode: 'Mode Pembaca Layar (Hover/Tab)',
+    screenReaderDesc: 'Baca elemen bersuara saat kursor hover atau tekan tombol Tab (Alt + R)',
+    pageReader: 'Baca Seluruh Halaman',
+    pageReaderPlaying: 'Membaca Halaman...',
+    stopPageReader: 'Hentikan Baca (Alt + S)',
+    speechRate: 'Kecepatan Suara',
+    rateSlow: '0.75x Lambat',
+    rateNormal: '1.0x Normal',
+    rateFast: '1.25x Cepat',
+    rateVeryFast: '1.5x Sangat Cepat',
+
     // AAC Modal
     aacTitle: 'AksesKita: Papan Bicara',
     aacSubtitle: 'Papan Komunikasi Visual Interaktif (AAC)',
@@ -2273,6 +2419,7 @@ const translations = {
     tabContent: 'Content',
     tabColor: 'Color',
     tabVisual: 'Visual Aids',
+    tabAudio: 'Audio & TTS',
     shortcutHint: 'Shortcuts',
     resetAll: 'Reset All',
     close: 'Close',
@@ -2339,6 +2486,19 @@ const translations = {
     stopAnimations: 'Stop Animations',
     hideImages: 'Hide Images',
     imageTooltips: 'Image Tooltips',
+
+    // Audio & Screen Reader for Blind Users
+    audioSection: '🔊 Screen Reader & Audio (TTS)',
+    screenReaderMode: 'Screen Reader Mode (Hover/Tab)',
+    screenReaderDesc: 'Read elements aloud when hovering or pressing Tab (Alt + R)',
+    pageReader: 'Read Entire Page',
+    pageReaderPlaying: 'Reading Page...',
+    stopPageReader: 'Stop Reading (Alt + S)',
+    speechRate: 'Speech Speed Rate',
+    rateSlow: '0.75x Slow',
+    rateNormal: '1.0x Normal',
+    rateFast: '1.25x Fast',
+    rateVeryFast: '1.5x Very Fast',
 
     // AAC Modal
     aacTitle: 'AksesKita: AAC Communicator',
@@ -3153,6 +3313,21 @@ function restoreVisualPreferences() {
   if (isImageTooltipsEnabled()) toggleImageTooltips(true);
 }
 
+/**
+ * AksesKita - Advanced Blind-Accessible Text-to-Speech & Screen Reader Engine
+ * Features:
+ * 1. Screen Reader Mode (Read-on-Focus & Read-on-Hover for keyboard/mouse navigation).
+ * 2. Continuous Full Page / Article Reader with visual sentence tracking.
+ * 3. Text Selection Quick TTS Floating Popover with ARIA Live announcements.
+ * 4. Configurable Speech Rate (0.75x to 2.0x).
+ * 5. Bilingual Voice Synthesis (Indonesian id-ID & English en-US/en-GB).
+ * 6. Global Blind Shortcuts (Alt+R: Screen Reader, Alt+P: Read Page, Alt+S: Stop Speech).
+ */
+
+
+const STORAGE_KEY_RATE = 'akseskita_speech_rate';
+const STORAGE_KEY_SCREEN_READER = 'akseskita_screen_reader_mode';
+
 let cachedVoices = [];
 
 function loadVoices() {
@@ -3176,7 +3351,6 @@ function getVoiceForLanguage(lang = null) {
   const voices = cachedVoices.length ? cachedVoices : loadVoices();
 
   if (targetLang === 'en') {
-    // English priority
     let voice = voices.find(v => v.lang === 'en-US' || v.lang === 'en_US');
     if (voice) return voice;
     voice = voices.find(v => v.lang === 'en-GB' || v.lang === 'en_GB');
@@ -3185,7 +3359,6 @@ function getVoiceForLanguage(lang = null) {
     if (voice) return voice;
     return null;
   } else {
-    // Indonesian priority
     let voice = voices.find(v => v.lang === 'id-ID' || v.lang === 'id_ID');
     if (voice) return voice;
     voice = voices.find(v => v.lang.toLowerCase().startsWith('id'));
@@ -3197,7 +3370,26 @@ function getVoiceForLanguage(lang = null) {
 }
 
 /**
- * Speak text out loud with resume keepalive and bilingual voice selection
+ * Speech Rate Management (0.75x to 2.0x)
+ */
+function getSpeechRate() {
+  try {
+    return parseFloat(localStorage.getItem(STORAGE_KEY_RATE) || '1.0');
+  } catch (e) {
+    return 1.0;
+  }
+}
+
+function setSpeechRate(rate) {
+  const clamped = Math.max(0.75, Math.min(2.0, rate));
+  try {
+    localStorage.setItem(STORAGE_KEY_RATE, clamped.toString());
+  } catch (e) {}
+  return clamped;
+}
+
+/**
+ * Core Speak Text Function with Chrome keepalive workaround
  */
 function speakText(text, options = {}) {
   return new Promise((resolve) => {
@@ -3220,7 +3412,7 @@ function speakText(text, options = {}) {
       utterance.lang = lang === 'en' ? 'en-US' : 'id-ID';
     }
 
-    utterance.rate = options.rate || 0.95;
+    utterance.rate = options.rate || getSpeechRate();
     utterance.pitch = options.pitch || 1.0;
     utterance.volume = options.volume || 1.0;
 
@@ -3267,9 +3459,218 @@ function stopSpeech() {
   }
 }
 
-/**
- * Initialize Quick TTS Floating popover on host text selection
- */
+/* ==========================================================================
+   Screen Reader Mode (Read-on-Hover / Read-on-Focus for Blind Users)
+   ========================================================================== */
+let isScreenReaderActive = false;
+let screenReaderHoverDebounce = null;
+let currentHighlightedElement = null;
+
+function isScreenReaderEnabled() {
+  try {
+    return localStorage.getItem(STORAGE_KEY_SCREEN_READER) === 'true';
+  } catch (e) {
+    return false;
+  }
+}
+
+function getAccessibleElementDescription(el) {
+  if (!el || el.closest('akses-kita') || el.closest('#akseskita-tts-popover')) return null;
+
+  const isEn = getLanguage() === 'en';
+  const tag = el.tagName.toLowerCase();
+
+  // 1. Images
+  if (tag === 'img') {
+    const desc = el.alt || el.title || (isEn ? 'Image without description' : 'Gambar tanpa deskripsi');
+    return isEn ? `Image: ${desc}` : `Gambar: ${desc}`;
+  }
+
+  // 2. Buttons
+  if (tag === 'button' || el.getAttribute('role') === 'button') {
+    const text = el.innerText || el.getAttribute('aria-label') || el.title || '';
+    if (!text.trim()) return null;
+    return isEn ? `Button: ${text.trim()}` : `Tombol: ${text.trim()}`;
+  }
+
+  // 3. Links
+  if (tag === 'a' || el.getAttribute('role') === 'link') {
+    const text = el.innerText || el.getAttribute('aria-label') || el.title || '';
+    if (!text.trim()) return null;
+    return isEn ? `Link: ${text.trim()}` : `Tautan: ${text.trim()}`;
+  }
+
+  // 4. Headings (H1 - H6)
+  if (/^h[1-6]$/.test(tag) || el.getAttribute('role') === 'heading') {
+    const text = el.innerText || '';
+    if (!text.trim()) return null;
+    const level = tag.replace('h', '');
+    return isEn ? `Heading level ${level}: ${text.trim()}` : `Judul tingkat ${level}: ${text.trim()}`;
+  }
+
+  // 5. Paragraphs & List Items
+  if (['p', 'li', 'blockquote', 'summary', 'span', 'figcaption'].includes(tag)) {
+    // Only read if it has direct text content or is the primary container
+    const text = el.innerText ? el.innerText.trim() : '';
+    if (text.length > 1 && text.length < 500) {
+      return text;
+    }
+  }
+
+  return null;
+}
+
+function highlightElement(el) {
+  if (currentHighlightedElement && currentHighlightedElement !== el) {
+    currentHighlightedElement.classList.remove('akseskita-reader-highlight');
+  }
+  if (el) {
+    currentHighlightedElement = el;
+    el.classList.add('akseskita-reader-highlight');
+  }
+}
+
+function removeHighlight() {
+  if (currentHighlightedElement) {
+    currentHighlightedElement.classList.remove('akseskita-reader-highlight');
+    currentHighlightedElement = null;
+  }
+}
+
+function handleScreenReaderTarget(target) {
+  if (!isScreenReaderActive || !target) return;
+  const description = getAccessibleElementDescription(target);
+
+  if (description) {
+    highlightElement(target);
+    speakText(description);
+  }
+}
+
+const onScreenReaderMouseOver = (e) => {
+  if (screenReaderHoverDebounce) clearTimeout(screenReaderHoverDebounce);
+  screenReaderHoverDebounce = setTimeout(() => {
+    handleScreenReaderTarget(e.target);
+  }, 120);
+};
+
+const onScreenReaderFocusIn = (e) => {
+  handleScreenReaderTarget(e.target);
+};
+
+function toggleScreenReaderMode(forcedState = null) {
+  const next = forcedState !== null ? forcedState : !isScreenReaderActive;
+  isScreenReaderActive = next;
+
+  if (isScreenReaderActive) {
+    document.addEventListener('mouseover', onScreenReaderMouseOver, { passive: true });
+    document.addEventListener('focusin', onScreenReaderFocusIn, { passive: true });
+    
+    const isEn = getLanguage() === 'en';
+    const announcement = isEn 
+      ? 'Screen reader navigation mode activated. Hover or press Tab to read elements aloud. Press Alt plus S to stop.'
+      : 'Mode pembaca layar aktif. Arahkan kursor atau tekan Tab untuk mendengar elemen. Tekan Alt tambah S untuk berhenti.';
+    speakText(announcement);
+  } else {
+    document.removeEventListener('mouseover', onScreenReaderMouseOver);
+    document.removeEventListener('focusin', onScreenReaderFocusIn);
+    removeHighlight();
+    stopSpeech();
+  }
+
+  try {
+    localStorage.setItem(STORAGE_KEY_SCREEN_READER, isScreenReaderActive.toString());
+  } catch (e) {}
+
+  return isScreenReaderActive;
+}
+
+/* ==========================================================================
+   Continuous Page / Article Full Reader
+   ========================================================================== */
+let isReadingPage = false;
+let pageElementsToRead = [];
+let currentPageIndex = 0;
+
+function isPageReaderPlaying() {
+  return isReadingPage;
+}
+
+async function startPageReader() {
+  if (typeof document === 'undefined') return;
+
+  // Gather meaningful readable text elements on page
+  const selectors = 'h1, h2, h3, h4, h5, h6, p, li, blockquote';
+  const nodes = Array.from(document.querySelectorAll(selectors))
+    .filter(el => {
+      if (el.closest('akses-kita') || el.closest('#akseskita-tts-popover') || el.offsetParent === null) {
+        return false;
+      }
+      const text = el.innerText ? el.innerText.trim() : '';
+      return text.length > 2;
+    });
+
+  if (nodes.length === 0) {
+    speakText(getLanguage() === 'en' ? 'No readable content found on this page.' : 'Tidak ditemukan konten teks untuk dibaca.');
+    return;
+  }
+
+  pageElementsToRead = nodes;
+  currentPageIndex = 0;
+  isReadingPage = true;
+
+  const isEn = getLanguage() === 'en';
+  await speakText(isEn ? 'Starting continuous page reading...' : 'Memulai pembacaan seluruh halaman...');
+
+  readNextPageBlock();
+}
+
+async function readNextPageBlock() {
+  if (!isReadingPage || currentPageIndex >= pageElementsToRead.length) {
+    stopPageReader();
+    const isEn = getLanguage() === 'en';
+    speakText(isEn ? 'Finished reading page.' : 'Selesai membaca seluruh halaman.');
+    return;
+  }
+
+  const el = pageElementsToRead[currentPageIndex];
+  if (el) {
+    highlightElement(el);
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    const text = el.innerText.trim();
+    await speakText(text);
+
+    if (isReadingPage) {
+      currentPageIndex++;
+      setTimeout(() => {
+        readNextPageBlock();
+      }, 250);
+    }
+  }
+}
+
+function stopPageReader() {
+  isReadingPage = false;
+  pageElementsToRead = [];
+  currentPageIndex = 0;
+  removeHighlight();
+  stopSpeech();
+}
+
+function togglePageReader() {
+  if (isReadingPage) {
+    stopPageReader();
+    return false;
+  } else {
+    startPageReader();
+    return true;
+  }
+}
+
+/* ==========================================================================
+   Quick TTS Floating Popover on Selection
+   ========================================================================== */
 function initQuickTTS() {
   if (typeof document === 'undefined') return;
 
@@ -3277,11 +3678,14 @@ function initQuickTTS() {
   if (!popover) {
     popover = document.createElement('div');
     popover.id = 'akseskita-tts-popover';
+    popover.setAttribute('role', 'button');
+    popover.setAttribute('tabindex', '0');
+    popover.setAttribute('aria-label', t('ttsListen'));
     popover.innerHTML = `
       <svg viewBox="0 0 24 24">
         <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
       </svg>
-      <span>Dengarkan</span>
+      <span id="akseskita-tts-popover-text">${t('ttsListen')}</span>
     `;
     document.body.appendChild(popover);
   }
@@ -3295,7 +3699,7 @@ function initQuickTTS() {
       const selection = window.getSelection();
       const text = selection ? selection.toString().trim() : '';
 
-      if (text.length > 2) {
+      if (text.length > 1) {
         selectedText = text;
         try {
           const range = selection.getRangeAt(0);
@@ -3318,14 +3722,30 @@ function initQuickTTS() {
   document.addEventListener('mouseup', handleSelection, { passive: true });
   document.addEventListener('keyup', handleSelection, { passive: true });
 
-  popover.addEventListener('mousedown', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+  const triggerTTS = () => {
     if (selectedText) {
       speakText(selectedText);
       popover.style.display = 'none';
     }
+  };
+
+  popover.addEventListener('mousedown', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    triggerTTS();
   });
+
+  popover.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      triggerTTS();
+    }
+  });
+
+  // Restore saved screen reader mode
+  if (isScreenReaderEnabled()) {
+    toggleScreenReaderMode(true);
+  }
 }
 
 /**
@@ -3349,6 +3769,7 @@ function resetAllSettings() {
   resetFont();
   resetContrast();
   resetVisualAids();
+  toggleScreenReaderMode(false);
   try {
     localStorage.removeItem(STORAGE_KEY_ACTIVE_PROFILE);
   } catch (e) {}
@@ -3404,13 +3825,9 @@ function applyProfile(profileId) {
       break;
 
     case 'blind':
-      // Blind Profile: Audio TTS introduction & highlight links
+      // Blind Profile: Audio Screen Reader + vocal orientation
       toggleHighlightLinks(true);
-      const isEn = getLanguage() === 'en';
-      const msg = isEn 
-        ? 'Blind profile activated. Select any text to listen, or use Alt plus C for assistive AAC communicator.' 
-        : 'Profil tunanetra aktif. Blok teks apa pun untuk mendengarkan, atau gunakan Alt tambah C untuk papan bicara.';
-      speakText(msg);
+      toggleScreenReaderMode(true);
       break;
   }
 
@@ -3724,6 +4141,10 @@ class AksesKitaElement extends HTMLElement {
             <span>🔍</span>
             <span>${t('tabVisual')}</span>
           </button>
+          <button class="panel-tab-btn ${this.activeTab === 'audio' ? 'active' : ''}" data-tab="audio">
+            <span>🔊</span>
+            <span>${t('tabAudio')}</span>
+          </button>
         </div>
 
         <div class="panel-body">
@@ -3932,6 +4353,67 @@ class AksesKitaElement extends HTMLElement {
                   <span class="btn-icon">💬</span>
                   <span>${t('imageTooltips')}</span>
                 </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 5: AUDIO & SCREEN READER (BLIND ACCESSIBLE) -->
+          <div id="tab-section-audio" class="tab-content-pane ${this.activeTab === 'audio' ? '' : 'hidden'}" style="${this.activeTab === 'audio' ? '' : 'display:none;'}">
+            <div class="section-label">
+              <span>🔊 ${t('audioSection')}</span>
+            </div>
+
+            <!-- Screen Reader Mode Switch Card -->
+            <div id="card-screen-reader-box" class="audio-card-box">
+              <div class="audio-card-top">
+                <div class="audio-card-title-wrap">
+                  <span>🦯</span>
+                  <span>${t('screenReaderMode')}</span>
+                </div>
+                <span class="shortcut-kbd">Alt + R</span>
+              </div>
+              <p class="audio-card-desc">${t('screenReaderDesc')}</p>
+              <button id="btn-screen-reader" class="btn-audio-action">
+                <span>🔈</span>
+                <span id="label-screen-reader-toggle">Aktifkan Pembaca Layar</span>
+              </button>
+            </div>
+
+            <!-- Continuous Page Reader -->
+            <div class="audio-card-box">
+              <div class="audio-card-top">
+                <div class="audio-card-title-wrap">
+                  <span>📖</span>
+                  <span>${t('pageReader')}</span>
+                </div>
+                <span class="shortcut-kbd">Alt + P</span>
+              </div>
+              <div style="display: flex; gap: 8px; margin-top: 4px;">
+                <button id="btn-page-reader" class="btn-audio-action" style="flex: 1;">
+                  <span>▶️</span>
+                  <span id="label-page-reader">${t('pageReader')}</span>
+                </button>
+                <button id="btn-stop-speech" class="btn-audio-action danger" title="${t('stopPageReader')} (Alt + S)">
+                  <span>⏹️</span>
+                  <span>${t('stopPageReader')}</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Speech Rate Adjuster -->
+            <div class="audio-card-box">
+              <div class="audio-card-top">
+                <div class="audio-card-title-wrap">
+                  <span>⚡</span>
+                  <span>${t('speechRate')}</span>
+                </div>
+              </div>
+              <div class="speech-rate-grid">
+                <button class="speech-rate-chip" data-rate="0.75">0.75x</button>
+                <button class="speech-rate-chip" data-rate="1.0">1.0x</button>
+                <button class="speech-rate-chip" data-rate="1.25">1.25x</button>
+                <button class="speech-rate-chip" data-rate="1.5">1.5x</button>
+                <button class="speech-rate-chip" data-rate="2.0">2.0x</button>
               </div>
             </div>
           </div>
@@ -4247,6 +4729,32 @@ class AksesKitaElement extends HTMLElement {
       this.syncA11yUIState();
     });
 
+    // Audio & Screen Reader Controls (Blind Accessible)
+    root.getElementById('btn-screen-reader')?.addEventListener('click', () => {
+      toggleScreenReaderMode();
+      this.syncA11yUIState();
+    });
+
+    root.getElementById('btn-page-reader')?.addEventListener('click', () => {
+      togglePageReader();
+      this.syncA11yUIState();
+    });
+
+    root.getElementById('btn-stop-speech')?.addEventListener('click', () => {
+      stopPageReader();
+      stopSpeech();
+      this.syncA11yUIState();
+    });
+
+    root.querySelectorAll('.speech-rate-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        const rate = parseFloat(chip.getAttribute('data-rate'));
+        setSpeechRate(rate);
+        this.syncA11yUIState();
+        speakText(getLanguage() === 'en' ? `Speed set to ${rate}x` : `Kecepatan suara diatur ke ${rate}x`);
+      });
+    });
+
     // Reset All Settings
     root.getElementById('btn-reset-all')?.addEventListener('click', () => {
       resetAllSettings();
@@ -4387,11 +4895,13 @@ class AksesKitaElement extends HTMLElement {
 
   initShortcuts() {
     window.addEventListener('keydown', (e) => {
+      // Alt + A: Open/Close A11y Panel
       if (e.altKey && e.key.toLowerCase() === 'a') {
         e.preventDefault();
         const panel = this.shadowRoot.getElementById('a11y-panel');
         panel.classList.toggle('hidden');
       }
+      // Alt + C: Open/Close AAC Communicator
       if (e.altKey && e.key.toLowerCase() === 'c') {
         e.preventDefault();
         const aacModal = this.shadowRoot.getElementById('aac-modal');
@@ -4402,6 +4912,26 @@ class AksesKitaElement extends HTMLElement {
           stopSentencePlayback();
         }
       }
+      // Alt + R: Toggle Screen Reader Mode
+      if (e.altKey && e.key.toLowerCase() === 'r') {
+        e.preventDefault();
+        toggleScreenReaderMode();
+        this.syncA11yUIState();
+      }
+      // Alt + P: Toggle Continuous Page Reader
+      if (e.altKey && e.key.toLowerCase() === 'p') {
+        e.preventDefault();
+        togglePageReader();
+        this.syncA11yUIState();
+      }
+      // Alt + S: Stop Speech immediately
+      if (e.altKey && e.key.toLowerCase() === 's') {
+        e.preventDefault();
+        stopPageReader();
+        stopSpeech();
+        this.syncA11yUIState();
+      }
+      // Escape: Close opened modal/panel
       if (e.key === 'Escape') {
         const panel = this.shadowRoot.getElementById('a11y-panel');
         const aacModal = this.shadowRoot.getElementById('aac-modal');
@@ -4420,6 +4950,7 @@ class AksesKitaElement extends HTMLElement {
 
   syncA11yUIState() {
     const root = this.shadowRoot;
+    const isEn = getLanguage() === 'en';
     const activeProfile = getActiveProfile();
     const scale = getFontScale();
     const bold = isFontBold();
@@ -4437,6 +4968,9 @@ class AksesKitaElement extends HTMLElement {
     const stopAnim = isStopAnimationsEnabled();
     const hideImgs = isHideImagesEnabled();
     const tooltips = isImageTooltipsEnabled();
+    const screenReader = isScreenReaderEnabled();
+    const pageReaderPlaying = isPageReaderPlaying();
+    const currentRate = getSpeechRate();
 
     // Profiles
     root.querySelectorAll('.profile-card').forEach(c => {
@@ -4479,6 +5013,36 @@ class AksesKitaElement extends HTMLElement {
     root.getElementById('btn-stop-anim')?.classList.toggle('active', stopAnim);
     root.getElementById('btn-hide-images')?.classList.toggle('active', hideImgs);
     root.getElementById('btn-image-tooltips')?.classList.toggle('active', tooltips);
+
+    // Audio & Screen Reader UI
+    const screenReaderCard = root.getElementById('card-screen-reader-box');
+    const screenReaderBtn = root.getElementById('btn-screen-reader');
+    const screenReaderLabel = root.getElementById('label-screen-reader-toggle');
+    if (screenReaderCard) {
+      screenReaderCard.classList.toggle('active', screenReader);
+    }
+    if (screenReaderBtn) {
+      screenReaderBtn.classList.toggle('active', screenReader);
+    }
+    if (screenReaderLabel) {
+      screenReaderLabel.textContent = screenReader 
+        ? (isEn ? 'Screen Reader Active (ON)' : 'Pembaca Layar Aktif (ON)')
+        : (isEn ? 'Enable Screen Reader (OFF)' : 'Aktifkan Pembaca Layar (OFF)');
+    }
+
+    const pageReaderBtn = root.getElementById('btn-page-reader');
+    const pageReaderLabel = root.getElementById('label-page-reader');
+    if (pageReaderBtn) {
+      pageReaderBtn.classList.toggle('active', pageReaderPlaying);
+    }
+    if (pageReaderLabel) {
+      pageReaderLabel.textContent = pageReaderPlaying ? t('pageReaderPlaying') : t('pageReader');
+    }
+
+    root.querySelectorAll('.speech-rate-chip').forEach(chip => {
+      const rate = parseFloat(chip.getAttribute('data-rate'));
+      chip.classList.toggle('active', Math.abs(rate - currentRate) < 0.05);
+    });
   }
 
   async loadAACData() {

@@ -79,11 +79,18 @@ import {
   restoreVisualPreferences 
 } from './modules/a11y-visual.js';
 
-// Speech & AAC
+// Speech & Screen Reader & AAC
 import { 
   speakText, 
   stopSpeech, 
-  initQuickTTS 
+  initQuickTTS,
+  toggleScreenReaderMode,
+  isScreenReaderEnabled,
+  togglePageReader,
+  stopPageReader,
+  isPageReaderPlaying,
+  getSpeechRate,
+  setSpeechRate
 } from './modules/a11y-speech.js';
 import { 
   getSentenceList, 
@@ -198,6 +205,10 @@ class AksesKitaElement extends HTMLElement {
           <button class="panel-tab-btn ${this.activeTab === 'visual' ? 'active' : ''}" data-tab="visual">
             <span>🔍</span>
             <span>${t('tabVisual')}</span>
+          </button>
+          <button class="panel-tab-btn ${this.activeTab === 'audio' ? 'active' : ''}" data-tab="audio">
+            <span>🔊</span>
+            <span>${t('tabAudio')}</span>
           </button>
         </div>
 
@@ -407,6 +418,67 @@ class AksesKitaElement extends HTMLElement {
                   <span class="btn-icon">💬</span>
                   <span>${t('imageTooltips')}</span>
                 </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 5: AUDIO & SCREEN READER (BLIND ACCESSIBLE) -->
+          <div id="tab-section-audio" class="tab-content-pane ${this.activeTab === 'audio' ? '' : 'hidden'}" style="${this.activeTab === 'audio' ? '' : 'display:none;'}">
+            <div class="section-label">
+              <span>🔊 ${t('audioSection')}</span>
+            </div>
+
+            <!-- Screen Reader Mode Switch Card -->
+            <div id="card-screen-reader-box" class="audio-card-box">
+              <div class="audio-card-top">
+                <div class="audio-card-title-wrap">
+                  <span>🦯</span>
+                  <span>${t('screenReaderMode')}</span>
+                </div>
+                <span class="shortcut-kbd">Alt + R</span>
+              </div>
+              <p class="audio-card-desc">${t('screenReaderDesc')}</p>
+              <button id="btn-screen-reader" class="btn-audio-action">
+                <span>🔈</span>
+                <span id="label-screen-reader-toggle">Aktifkan Pembaca Layar</span>
+              </button>
+            </div>
+
+            <!-- Continuous Page Reader -->
+            <div class="audio-card-box">
+              <div class="audio-card-top">
+                <div class="audio-card-title-wrap">
+                  <span>📖</span>
+                  <span>${t('pageReader')}</span>
+                </div>
+                <span class="shortcut-kbd">Alt + P</span>
+              </div>
+              <div style="display: flex; gap: 8px; margin-top: 4px;">
+                <button id="btn-page-reader" class="btn-audio-action" style="flex: 1;">
+                  <span>▶️</span>
+                  <span id="label-page-reader">${t('pageReader')}</span>
+                </button>
+                <button id="btn-stop-speech" class="btn-audio-action danger" title="${t('stopPageReader')} (Alt + S)">
+                  <span>⏹️</span>
+                  <span>${t('stopPageReader')}</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Speech Rate Adjuster -->
+            <div class="audio-card-box">
+              <div class="audio-card-top">
+                <div class="audio-card-title-wrap">
+                  <span>⚡</span>
+                  <span>${t('speechRate')}</span>
+                </div>
+              </div>
+              <div class="speech-rate-grid">
+                <button class="speech-rate-chip" data-rate="0.75">0.75x</button>
+                <button class="speech-rate-chip" data-rate="1.0">1.0x</button>
+                <button class="speech-rate-chip" data-rate="1.25">1.25x</button>
+                <button class="speech-rate-chip" data-rate="1.5">1.5x</button>
+                <button class="speech-rate-chip" data-rate="2.0">2.0x</button>
               </div>
             </div>
           </div>
@@ -722,6 +794,32 @@ class AksesKitaElement extends HTMLElement {
       this.syncA11yUIState();
     });
 
+    // Audio & Screen Reader Controls (Blind Accessible)
+    root.getElementById('btn-screen-reader')?.addEventListener('click', () => {
+      toggleScreenReaderMode();
+      this.syncA11yUIState();
+    });
+
+    root.getElementById('btn-page-reader')?.addEventListener('click', () => {
+      togglePageReader();
+      this.syncA11yUIState();
+    });
+
+    root.getElementById('btn-stop-speech')?.addEventListener('click', () => {
+      stopPageReader();
+      stopSpeech();
+      this.syncA11yUIState();
+    });
+
+    root.querySelectorAll('.speech-rate-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        const rate = parseFloat(chip.getAttribute('data-rate'));
+        setSpeechRate(rate);
+        this.syncA11yUIState();
+        speakText(getLanguage() === 'en' ? `Speed set to ${rate}x` : `Kecepatan suara diatur ke ${rate}x`);
+      });
+    });
+
     // Reset All Settings
     root.getElementById('btn-reset-all')?.addEventListener('click', () => {
       resetAllSettings();
@@ -862,11 +960,13 @@ class AksesKitaElement extends HTMLElement {
 
   initShortcuts() {
     window.addEventListener('keydown', (e) => {
+      // Alt + A: Open/Close A11y Panel
       if (e.altKey && e.key.toLowerCase() === 'a') {
         e.preventDefault();
         const panel = this.shadowRoot.getElementById('a11y-panel');
         panel.classList.toggle('hidden');
       }
+      // Alt + C: Open/Close AAC Communicator
       if (e.altKey && e.key.toLowerCase() === 'c') {
         e.preventDefault();
         const aacModal = this.shadowRoot.getElementById('aac-modal');
@@ -877,6 +977,26 @@ class AksesKitaElement extends HTMLElement {
           stopSentencePlayback();
         }
       }
+      // Alt + R: Toggle Screen Reader Mode
+      if (e.altKey && e.key.toLowerCase() === 'r') {
+        e.preventDefault();
+        toggleScreenReaderMode();
+        this.syncA11yUIState();
+      }
+      // Alt + P: Toggle Continuous Page Reader
+      if (e.altKey && e.key.toLowerCase() === 'p') {
+        e.preventDefault();
+        togglePageReader();
+        this.syncA11yUIState();
+      }
+      // Alt + S: Stop Speech immediately
+      if (e.altKey && e.key.toLowerCase() === 's') {
+        e.preventDefault();
+        stopPageReader();
+        stopSpeech();
+        this.syncA11yUIState();
+      }
+      // Escape: Close opened modal/panel
       if (e.key === 'Escape') {
         const panel = this.shadowRoot.getElementById('a11y-panel');
         const aacModal = this.shadowRoot.getElementById('aac-modal');
@@ -895,6 +1015,7 @@ class AksesKitaElement extends HTMLElement {
 
   syncA11yUIState() {
     const root = this.shadowRoot;
+    const isEn = getLanguage() === 'en';
     const activeProfile = getActiveProfile();
     const scale = getFontScale();
     const bold = isFontBold();
@@ -912,6 +1033,9 @@ class AksesKitaElement extends HTMLElement {
     const stopAnim = isStopAnimationsEnabled();
     const hideImgs = isHideImagesEnabled();
     const tooltips = isImageTooltipsEnabled();
+    const screenReader = isScreenReaderEnabled();
+    const pageReaderPlaying = isPageReaderPlaying();
+    const currentRate = getSpeechRate();
 
     // Profiles
     root.querySelectorAll('.profile-card').forEach(c => {
@@ -954,6 +1078,36 @@ class AksesKitaElement extends HTMLElement {
     root.getElementById('btn-stop-anim')?.classList.toggle('active', stopAnim);
     root.getElementById('btn-hide-images')?.classList.toggle('active', hideImgs);
     root.getElementById('btn-image-tooltips')?.classList.toggle('active', tooltips);
+
+    // Audio & Screen Reader UI
+    const screenReaderCard = root.getElementById('card-screen-reader-box');
+    const screenReaderBtn = root.getElementById('btn-screen-reader');
+    const screenReaderLabel = root.getElementById('label-screen-reader-toggle');
+    if (screenReaderCard) {
+      screenReaderCard.classList.toggle('active', screenReader);
+    }
+    if (screenReaderBtn) {
+      screenReaderBtn.classList.toggle('active', screenReader);
+    }
+    if (screenReaderLabel) {
+      screenReaderLabel.textContent = screenReader 
+        ? (isEn ? 'Screen Reader Active (ON)' : 'Pembaca Layar Aktif (ON)')
+        : (isEn ? 'Enable Screen Reader (OFF)' : 'Aktifkan Pembaca Layar (OFF)');
+    }
+
+    const pageReaderBtn = root.getElementById('btn-page-reader');
+    const pageReaderLabel = root.getElementById('label-page-reader');
+    if (pageReaderBtn) {
+      pageReaderBtn.classList.toggle('active', pageReaderPlaying);
+    }
+    if (pageReaderLabel) {
+      pageReaderLabel.textContent = pageReaderPlaying ? t('pageReaderPlaying') : t('pageReader');
+    }
+
+    root.querySelectorAll('.speech-rate-chip').forEach(chip => {
+      const rate = parseFloat(chip.getAttribute('data-rate'));
+      chip.classList.toggle('active', Math.abs(rate - currentRate) < 0.05);
+    });
   }
 
   async loadAACData() {

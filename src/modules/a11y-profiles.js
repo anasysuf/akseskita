@@ -29,7 +29,7 @@ import {
   resetVisualAids 
 } from './a11y-visual.js';
 
-import { speakText } from './a11y-speech.js';
+import { speakText, toggleScreenReaderMode } from './a11y-speech.js';
 import { getLanguage } from './i18n.js';
 
 const STORAGE_KEY_ACTIVE_PROFILE = 'akseskita_active_profile';
@@ -46,6 +46,7 @@ export function resetAllSettings() {
   resetFont();
   resetContrast();
   resetVisualAids();
+  toggleScreenReaderMode(false);
   try {
     localStorage.removeItem(STORAGE_KEY_ACTIVE_PROFILE);
   } catch (e) {}
@@ -101,13 +102,9 @@ export function applyProfile(profileId) {
       break;
 
     case 'blind':
-      // Blind Profile: Audio TTS introduction & highlight links
+      // Blind Profile: Audio Screen Reader + vocal orientation
       toggleHighlightLinks(true);
-      const isEn = getLanguage() === 'en';
-      const msg = isEn 
-        ? 'Blind profile activated. Select any text to listen, or use Alt plus C for assistive AAC communicator.' 
-        : 'Profil tunanetra aktif. Blok teks apa pun untuk mendengarkan, atau gunakan Alt tambah C untuk papan bicara.';
-      speakText(msg);
+      toggleScreenReaderMode(true);
       break;
   }
 

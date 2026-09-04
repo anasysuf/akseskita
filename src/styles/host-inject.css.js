@@ -247,6 +247,15 @@ html.akseskita-invert canvas {
    3. Visual & Navigation Aids + Usability (High Performance)
    ========================================================================== */
 
+/* Screen Reader & Continuous Page Reader Element Highlight */
+.akseskita-reader-highlight {
+  outline: 3px solid #0284c7 !important;
+  outline-offset: 3px !important;
+  background-color: rgba(2, 132, 199, 0.15) !important;
+  border-radius: 6px !important;
+  transition: all 0.15s ease !important;
+}
+
 /* Reading Line Guide (GPU Accelerated) */
 #akseskita-reading-guide {
   position: fixed;
