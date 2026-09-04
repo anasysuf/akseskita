@@ -1,6 +1,6 @@
 {
   "name": "akseskita",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Bilingual (ID/EN) Web Accessibility Toolbar & Visual AAC Communicator in a Lightweight Zero-Dependency Script",
   "main": "dist/akseskita.js",
   "module": "src/index.js",
