@@ -443,15 +443,67 @@ export const a11yStyles = `
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
-.tool-btn.active {
-  background: #e0f2fe;
-  border-color: #0284c7;
-  color: #0284c7;
-  box-shadow: 0 0 0 1px #0284c7;
+.btn-icon {
+  font-size: 16px;
 }
 
-.btn-icon {
-  font-size: 18px;
+.btn-text-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: #e2e8f0;
+  color: #334155;
+  font-weight: 800;
+  font-size: 11px;
+  font-family: ui-monospace, monospace;
+}
+
+.tool-btn.active .btn-text-badge {
+  background: #bae6fd;
+  color: #0284c7;
+}
+
+.contrast-swatch {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1.5px solid #cbd5e1;
+  display: inline-block;
+}
+
+.contrast-swatch.high {
+  background: #000000;
+  border-color: #ffff00;
+  box-shadow: inset 0 0 0 2px #ffff00;
+}
+
+.contrast-swatch.dark {
+  background: #0b0f19;
+  border-color: #38bdf8;
+}
+
+.contrast-swatch.light {
+  background: #ffffff;
+  border-color: #0f172a;
+}
+
+.contrast-swatch.mono {
+  background: linear-gradient(135deg, #334155 50%, #e2e8f0 50%);
+}
+
+.contrast-swatch.low-sat {
+  background: #94a3b8;
+}
+
+.contrast-swatch.high-sat {
+  background: linear-gradient(135deg, #ef4444, #3b82f6, #10b981);
+}
+
+.contrast-swatch.invert {
+  background: linear-gradient(135deg, #0f172a 50%, #f59e0b 50%);
 }
 
 /* Text Alignment Segmented Control */

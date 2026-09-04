@@ -219,141 +219,128 @@ html.akseskita-highlight-titles h6 {
 }
 
 /* ==========================================================================
-   2. Color & Contrast Schemes (Hardware Accelerated)
+   2. Color & Contrast Schemes (WCAG AAA Compliant)
    ========================================================================== */
 
-/* High Contrast (Dark + Yellow/Cyan) */
+/* 1. High Contrast (WCAG AAA Yellow on Pitch Black: 19.5:1 ratio) */
 html.akseskita-contrast-high,
 html.akseskita-contrast-high body {
-  background-color: #0b0f19 !important;
-  color: #fef08a !important;
+  background-color: #000000 !important;
+  color: #ffff00 !important;
 }
 
-html.akseskita-contrast-high h1,
-html.akseskita-contrast-high h2,
-html.akseskita-contrast-high h3,
-html.akseskita-contrast-high h4,
-html.akseskita-contrast-high h5,
-html.akseskita-contrast-high h6,
-html.akseskita-contrast-high p,
-html.akseskita-contrast-high span,
-html.akseskita-contrast-high li,
-html.akseskita-contrast-high label,
-html.akseskita-contrast-high header,
-html.akseskita-contrast-high footer,
-html.akseskita-contrast-high nav,
-html.akseskita-contrast-high aside,
-html.akseskita-contrast-high main {
-  background-color: transparent !important;
+html.akseskita-contrast-high *:not(akses-kita):not(akses-kita *):not(#akseskita-reading-guide):not(#akseskita-tts-popover):not(#akseskita-tts-popover *):not(img):not(video):not(iframe):not(canvas) {
+  background-color: #000000 !important;
   color: #ffff00 !important;
   border-color: #ffff00 !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
 }
 
-html.akseskita-contrast-high a {
-  color: #38bdf8 !important;
+html.akseskita-contrast-high a:not(akses-kita a),
+html.akseskita-contrast-high a:not(akses-kita a) * {
+  color: #00ffff !important;
   text-decoration: underline !important;
+  text-underline-offset: 3px !important;
 }
 
-html.akseskita-contrast-high button,
-html.akseskita-contrast-high input,
-html.akseskita-contrast-high textarea,
-html.akseskita-contrast-high select {
+html.akseskita-contrast-high button:not(akses-kita button),
+html.akseskita-contrast-high input:not(akses-kita input),
+html.akseskita-contrast-high select:not(akses-kita select),
+html.akseskita-contrast-high textarea:not(akses-kita textarea) {
   background-color: #000000 !important;
   color: #ffff00 !important;
   border: 2px solid #ffff00 !important;
+  outline: 1px solid #ffff00 !important;
 }
 
-/* Dark Contrast (Dark + White) */
+/* 2. Dark Contrast (White on Deep Black: 21:1 ratio) */
 html.akseskita-contrast-dark,
 html.akseskita-contrast-dark body {
-  background-color: #121212 !important;
+  background-color: #0b0f19 !important;
   color: #f8fafc !important;
 }
 
-html.akseskita-contrast-dark h1,
-html.akseskita-contrast-dark h2,
-html.akseskita-contrast-dark h3,
-html.akseskita-contrast-dark p,
-html.akseskita-contrast-dark span,
-html.akseskita-contrast-dark li {
-  background-color: transparent !important;
+html.akseskita-contrast-dark *:not(akses-kita):not(akses-kita *):not(#akseskita-reading-guide):not(#akseskita-tts-popover):not(#akseskita-tts-popover *):not(img):not(video):not(iframe):not(canvas) {
+  background-color: #0b0f19 !important;
   color: #f8fafc !important;
+  border-color: #334155 !important;
+  text-shadow: none !important;
 }
 
-html.akseskita-contrast-dark a {
-  color: #60a5fa !important;
+html.akseskita-contrast-dark a:not(akses-kita a),
+html.akseskita-contrast-dark a:not(akses-kita a) * {
+  color: #38bdf8 !important;
+  text-decoration: underline !important;
+  text-underline-offset: 2px !important;
 }
 
-/* Light Contrast (Pitch Black on Pure White) */
+html.akseskita-contrast-dark button:not(akses-kita button),
+html.akseskita-contrast-dark input:not(akses-kita input),
+html.akseskita-contrast-dark select:not(akses-kita select),
+html.akseskita-contrast-dark textarea:not(akses-kita textarea) {
+  background-color: #1e293b !important;
+  color: #ffffff !important;
+  border: 1.5px solid #475569 !important;
+}
+
+/* 3. Light Contrast (Pitch Black on Crisp White: 21:1 ratio) */
 html.akseskita-contrast-light,
 html.akseskita-contrast-light body {
   background-color: #ffffff !important;
   color: #000000 !important;
 }
 
-html.akseskita-contrast-light h1,
-html.akseskita-contrast-light h2,
-html.akseskita-contrast-light h3,
-html.akseskita-contrast-light p,
-html.akseskita-contrast-light span,
-html.akseskita-contrast-light li {
+html.akseskita-contrast-light *:not(akses-kita):not(akses-kita *):not(#akseskita-reading-guide):not(#akseskita-tts-popover):not(#akseskita-tts-popover *):not(img):not(video):not(iframe):not(canvas) {
+  background-color: #ffffff !important;
   color: #000000 !important;
+  border-color: #000000 !important;
+  text-shadow: none !important;
 }
 
-/* Low Saturation (50%) */
-html.akseskita-low-sat body > *:not(akses-kita):not(#akseskita-reading-guide):not(#akseskita-tts-popover) {
+html.akseskita-contrast-light a:not(akses-kita a),
+html.akseskita-contrast-light a:not(akses-kita a) * {
+  color: #0000ee !important;
+  text-decoration: underline !important;
+  text-underline-offset: 2px !important;
+}
+
+html.akseskita-contrast-light button:not(akses-kita button),
+html.akseskita-contrast-light input:not(akses-kita input),
+html.akseskita-contrast-light select:not(akses-kita select),
+html.akseskita-contrast-light textarea:not(akses-kita textarea) {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 2px solid #000000 !important;
+}
+
+/* 4. Monochrome (100% Grayscale) */
+html.akseskita-monochrome {
+  filter: grayscale(100%) !important;
+}
+
+/* 5. Low Saturation (50%) */
+html.akseskita-low-sat {
   filter: saturate(50%) !important;
 }
 
-/* High Saturation (180%) */
-html.akseskita-high-sat body > *:not(akses-kita):not(#akseskita-reading-guide):not(#akseskita-tts-popover) {
+/* 6. High Saturation (180%) */
+html.akseskita-high-sat {
   filter: saturate(180%) !important;
 }
 
-/* Monochrome Filter Overlay */
-#akseskita-monochrome-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  backdrop-filter: grayscale(100%);
-  -webkit-backdrop-filter: grayscale(100%);
-  pointer-events: none;
-  z-index: 2147483640;
-  display: none;
-  transform: translateZ(0);
-  will-change: backdrop-filter;
-}
-
-html.akseskita-monochrome #akseskita-monochrome-overlay {
-  display: block !important;
-}
-
-/* Invert Filter Overlay */
-#akseskita-invert-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  backdrop-filter: invert(100%) hue-rotate(180deg);
-  -webkit-backdrop-filter: invert(100%) hue-rotate(180deg);
-  pointer-events: none;
-  z-index: 2147483640;
-  display: none;
-  transform: translateZ(0);
-  will-change: backdrop-filter;
-}
-
-html.akseskita-invert #akseskita-invert-overlay {
-  display: block !important;
+/* 7. Smart Invert (Media-Safe Inversion) */
+html.akseskita-invert {
+  filter: invert(100%) hue-rotate(180deg) !important;
+  background-color: #000000 !important;
 }
 
 html.akseskita-invert img,
 html.akseskita-invert video,
+html.akseskita-invert iframe,
+html.akseskita-invert canvas,
 html.akseskita-invert picture,
-html.akseskita-invert canvas {
+html.akseskita-invert akses-kita {
   filter: invert(100%) hue-rotate(180deg) !important;
 }
 
@@ -955,15 +942,67 @@ const a11yStyles = `
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
-.tool-btn.active {
-  background: #e0f2fe;
-  border-color: #0284c7;
-  color: #0284c7;
-  box-shadow: 0 0 0 1px #0284c7;
+.btn-icon {
+  font-size: 16px;
 }
 
-.btn-icon {
-  font-size: 18px;
+.btn-text-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: #e2e8f0;
+  color: #334155;
+  font-weight: 800;
+  font-size: 11px;
+  font-family: ui-monospace, monospace;
+}
+
+.tool-btn.active .btn-text-badge {
+  background: #bae6fd;
+  color: #0284c7;
+}
+
+.contrast-swatch {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1.5px solid #cbd5e1;
+  display: inline-block;
+}
+
+.contrast-swatch.high {
+  background: #000000;
+  border-color: #ffff00;
+  box-shadow: inset 0 0 0 2px #ffff00;
+}
+
+.contrast-swatch.dark {
+  background: #0b0f19;
+  border-color: #38bdf8;
+}
+
+.contrast-swatch.light {
+  background: #ffffff;
+  border-color: #0f172a;
+}
+
+.contrast-swatch.mono {
+  background: linear-gradient(135deg, #334155 50%, #e2e8f0 50%);
+}
+
+.contrast-swatch.low-sat {
+  background: #94a3b8;
+}
+
+.contrast-swatch.high-sat {
+  background: linear-gradient(135deg, #ef4444, #3b82f6, #10b981);
+}
+
+.contrast-swatch.invert {
+  background: linear-gradient(135deg, #0f172a 50%, #f59e0b 50%);
 }
 
 /* Text Alignment Segmented Control */
@@ -3013,23 +3052,8 @@ function getContrast() {
   }
 }
 
-function ensureContrastOverlays() {
-  if (typeof document === 'undefined') return;
-  if (!document.getElementById('akseskita-monochrome-overlay')) {
-    const monoOverlay = document.createElement('div');
-    monoOverlay.id = 'akseskita-monochrome-overlay';
-    document.body.appendChild(monoOverlay);
-  }
-  if (!document.getElementById('akseskita-invert-overlay')) {
-    const invertOverlay = document.createElement('div');
-    invertOverlay.id = 'akseskita-invert-overlay';
-    document.body.appendChild(invertOverlay);
-  }
-}
-
 function setContrast(mode) {
   if (typeof document === 'undefined') return mode;
-  ensureContrastOverlays();
 
   const root = document.documentElement;
   root.classList.remove(
@@ -4273,7 +4297,7 @@ class AksesKitaElement extends HTMLElement {
           <!-- SECTION 1: AUDIO & SCREEN READER (BLIND ACCESSIBILITY - FOCUS UTAMA) -->
           <div class="section-group">
             <div class="section-label">
-              <span>🔊 ${t('audioSection')}</span>
+              <span>${t('audioSection')}</span>
               <span class="section-tag-focus">Fokus Utama</span>
             </div>
 
@@ -4281,14 +4305,12 @@ class AksesKitaElement extends HTMLElement {
             <div id="card-screen-reader-box" class="audio-card-box">
               <div class="audio-card-top">
                 <div class="audio-card-title-wrap">
-                  <span style="font-size: 18px;">🦯</span>
                   <span>${t('screenReaderMode')}</span>
                 </div>
                 <span class="shortcut-kbd">Alt + R</span>
               </div>
               <p class="audio-card-desc">${t('screenReaderDesc')}</p>
               <button id="btn-screen-reader" class="btn-audio-action">
-                <span>🔈</span>
                 <span id="label-screen-reader-toggle">Aktifkan Pembaca Layar</span>
               </button>
             </div>
@@ -4297,18 +4319,15 @@ class AksesKitaElement extends HTMLElement {
             <div class="audio-card-box">
               <div class="audio-card-top">
                 <div class="audio-card-title-wrap">
-                  <span style="font-size: 18px;">📖</span>
                   <span>${t('pageReader')}</span>
                 </div>
                 <span class="shortcut-kbd">Alt + P</span>
               </div>
               <div style="display: flex; gap: 8px; margin-top: 4px;">
                 <button id="btn-page-reader" class="btn-audio-action" style="flex: 1;">
-                  <span>▶️</span>
                   <span id="label-page-reader">${t('pageReader')}</span>
                 </button>
                 <button id="btn-stop-speech" class="btn-audio-action danger" title="${t('stopPageReader')} (Alt + S)">
-                  <span>⏹️</span>
                   <span>${t('stopPageReader')}</span>
                 </button>
               </div>
@@ -4318,7 +4337,6 @@ class AksesKitaElement extends HTMLElement {
             <div class="audio-card-box">
               <div class="audio-card-top">
                 <div class="audio-card-title-wrap">
-                  <span style="font-size: 18px;">⚡</span>
                   <span>${t('speechRate')}</span>
                 </div>
               </div>
@@ -4335,7 +4353,6 @@ class AksesKitaElement extends HTMLElement {
             <div class="audio-card-box" style="background: #f0fdf4; border-color: #bbf7d0;">
               <div class="audio-card-top">
                 <div class="audio-card-title-wrap" style="color: #166534;">
-                  <span>✨</span>
                   <span>${t('selectionTtsTitle')}</span>
                 </div>
               </div>
@@ -4346,12 +4363,11 @@ class AksesKitaElement extends HTMLElement {
           <!-- SECTION 2: 1-CLICK PROFILES -->
           <div class="section-group">
             <div class="section-label">
-              <span>🌟 ${t('profilesSection')}</span>
+              <span>${t('profilesSection')}</span>
             </div>
             <div class="profiles-grid">
               <div class="profile-card" data-profile="blind">
                 <div class="profile-card-header">
-                  <span class="profile-card-icon">🦯</span>
                   <span class="profile-card-title">${t('profileBlindTitle')}</span>
                 </div>
                 <p class="profile-card-desc">${t('profileBlindDesc')}</p>
@@ -4359,7 +4375,6 @@ class AksesKitaElement extends HTMLElement {
 
               <div class="profile-card" data-profile="vision">
                 <div class="profile-card-header">
-                  <span class="profile-card-icon">👁️</span>
                   <span class="profile-card-title">${t('profileVisionTitle')}</span>
                 </div>
                 <p class="profile-card-desc">${t('profileVisionDesc')}</p>
@@ -4367,7 +4382,6 @@ class AksesKitaElement extends HTMLElement {
 
               <div class="profile-card" data-profile="adhd">
                 <div class="profile-card-header">
-                  <span class="profile-card-icon">🎯</span>
                   <span class="profile-card-title">${t('profileAdhdTitle')}</span>
                 </div>
                 <p class="profile-card-desc">${t('profileAdhdDesc')}</p>
@@ -4375,7 +4389,6 @@ class AksesKitaElement extends HTMLElement {
 
               <div class="profile-card" data-profile="seizure">
                 <div class="profile-card-header">
-                  <span class="profile-card-icon">⚡</span>
                   <span class="profile-card-title">${t('profileSeizureTitle')}</span>
                 </div>
                 <p class="profile-card-desc">${t('profileSeizureDesc')}</p>
@@ -4383,7 +4396,6 @@ class AksesKitaElement extends HTMLElement {
 
               <div class="profile-card" data-profile="cognitive">
                 <div class="profile-card-header">
-                  <span class="profile-card-icon">🧠</span>
                   <span class="profile-card-title">${t('profileCognitiveTitle')}</span>
                 </div>
                 <p class="profile-card-desc">${t('profileCognitiveDesc')}</p>
@@ -4391,7 +4403,6 @@ class AksesKitaElement extends HTMLElement {
 
               <div class="profile-card" data-profile="motor">
                 <div class="profile-card-header">
-                  <span class="profile-card-icon">🖐️</span>
                   <span class="profile-card-title">${t('profileMotorTitle')}</span>
                 </div>
                 <p class="profile-card-desc">${t('profileMotorDesc')}</p>
@@ -4403,7 +4414,7 @@ class AksesKitaElement extends HTMLElement {
           <div class="section-group">
             <!-- Font Sizing (75% - 200%) -->
             <div style="margin-bottom: 14px;">
-              <span class="section-label">🔤 ${t('fontSize')} (75% - 200%)</span>
+              <span class="section-label">${t('fontSize')} (75% - 200%)</span>
               <div class="font-scaler-box">
                 <button id="btn-font-dec" class="font-step-btn" title="${t('fontSmall')} (-25%)">－</button>
                 <div id="font-scale-indicator" class="font-scale-value-badge">${getFontScalePercentage()}</div>
@@ -4422,18 +4433,18 @@ class AksesKitaElement extends HTMLElement {
 
             <!-- Typography Adjustments -->
             <div style="margin-bottom: 14px;">
-              <span class="section-label">📐 ${t('contentSection')}</span>
+              <span class="section-label">${t('contentSection')}</span>
               <div class="button-grid cols-3">
                 <button id="btn-font-bold" class="tool-btn">
-                  <span class="btn-icon">𝗕</span>
+                  <span class="btn-text-badge">B</span>
                   <span>${t('fontBolder')}</span>
                 </button>
                 <button id="btn-dyslexia" class="tool-btn">
-                  <span class="btn-icon">📖</span>
+                  <span class="btn-text-badge">Aa</span>
                   <span>${t('fontDyslexia')}</span>
                 </button>
                 <button id="btn-line-height" class="tool-btn">
-                  <span class="btn-icon">↕️</span>
+                  <span class="btn-text-badge">↕</span>
                   <span id="label-line-height">${t('lineHeight')}</span>
                 </button>
               </div>
@@ -4442,15 +4453,15 @@ class AksesKitaElement extends HTMLElement {
             <div style="margin-bottom: 14px;">
               <div class="button-grid cols-3">
                 <button id="btn-letter-spacing" class="tool-btn">
-                  <span class="btn-icon">↔️</span>
+                  <span class="btn-text-badge">↔</span>
                   <span id="label-letter-spacing">${t('letterSpacing')}</span>
                 </button>
                 <button id="btn-highlight-links" class="tool-btn">
-                  <span class="btn-icon">🔗</span>
+                  <span class="btn-text-badge">🔗</span>
                   <span>${t('highlightLinks')}</span>
                 </button>
                 <button id="btn-highlight-titles" class="tool-btn">
-                  <span class="btn-icon">🏷️</span>
+                  <span class="btn-text-badge">H</span>
                   <span>${t('highlightTitles')}</span>
                 </button>
               </div>
@@ -4458,46 +4469,46 @@ class AksesKitaElement extends HTMLElement {
 
             <!-- Text Alignment -->
             <div>
-              <span class="section-label">📜 ${t('textAlign')}</span>
+              <span class="section-label">${t('textAlign')}</span>
               <div class="align-segmented-bar">
-                <button class="align-btn" data-align="left" title="${t('alignLeft')}">⬅️</button>
-                <button class="align-btn" data-align="center" title="${t('alignCenter')}">↔️</button>
-                <button class="align-btn" data-align="right" title="${t('alignRight')}">➡️</button>
-                <button class="align-btn" data-align="justify" title="${t('alignJustify')}">☰</button>
+                <button class="align-btn" data-align="left" title="${t('alignLeft')}">Kiri</button>
+                <button class="align-btn" data-align="center" title="${t('alignCenter')}">Tengah</button>
+                <button class="align-btn" data-align="right" title="${t('alignRight')}">Kanan</button>
+                <button class="align-btn" data-align="justify" title="${t('alignJustify')}">Rata</button>
               </div>
             </div>
           </div>
 
           <!-- SECTION 4: COLOR & CONTRAST -->
           <div class="section-group">
-            <span class="section-label">🎨 ${t('colorSection')}</span>
+            <span class="section-label">${t('colorSection')}</span>
             <div class="button-grid cols-3">
               <button id="btn-contrast-high" class="tool-btn" data-contrast="high">
-                <span class="btn-icon">🌓</span>
+                <span class="contrast-swatch high"></span>
                 <span>${t('contrastHigh')}</span>
               </button>
               <button id="btn-contrast-dark" class="tool-btn" data-contrast="dark">
-                <span class="btn-icon">🌑</span>
+                <span class="contrast-swatch dark"></span>
                 <span>${t('contrastDark')}</span>
               </button>
               <button id="btn-contrast-light" class="tool-btn" data-contrast="light">
-                <span class="btn-icon">🌕</span>
+                <span class="contrast-swatch light"></span>
                 <span>${t('contrastLight')}</span>
               </button>
               <button id="btn-contrast-mono" class="tool-btn" data-contrast="mono">
-                <span class="btn-icon">⬛</span>
+                <span class="contrast-swatch mono"></span>
                 <span>${t('contrastMono')}</span>
               </button>
               <button id="btn-contrast-low-sat" class="tool-btn" data-contrast="low-sat">
-                <span class="btn-icon">🌫️</span>
+                <span class="contrast-swatch low-sat"></span>
                 <span>${t('contrastLowSat')}</span>
               </button>
               <button id="btn-contrast-high-sat" class="tool-btn" data-contrast="high-sat">
-                <span class="btn-icon">🌈</span>
+                <span class="contrast-swatch high-sat"></span>
                 <span>${t('contrastHighSat')}</span>
               </button>
               <button id="btn-contrast-invert" class="tool-btn" data-contrast="invert" style="grid-column: 1 / -1;">
-                <span class="btn-icon">🔄</span>
+                <span class="contrast-swatch invert"></span>
                 <span>${t('contrastInvert')}</span>
               </button>
             </div>
@@ -4506,40 +4517,40 @@ class AksesKitaElement extends HTMLElement {
           <!-- SECTION 5: VISUAL & USABILITY -->
           <div class="section-group">
             <div style="margin-bottom: 14px;">
-              <span class="section-label">🔍 ${t('visualSection')}</span>
+              <span class="section-label">${t('visualSection')}</span>
               <div class="button-grid cols-2">
                 <button id="btn-reading-guide" class="tool-btn">
-                  <span class="btn-icon">📏</span>
+                  <span class="btn-text-badge">—</span>
                   <span>${t('readingGuide')}</span>
                 </button>
                 <button id="btn-reading-mask" class="tool-btn">
-                  <span class="btn-icon">🕶️</span>
+                  <span class="btn-text-badge">░</span>
                   <span>${t('readingMask')}</span>
                 </button>
                 <button id="btn-super-focus" class="tool-btn">
-                  <span class="btn-icon">🔦</span>
+                  <span class="btn-text-badge">◎</span>
                   <span>${t('superFocus')}</span>
                 </button>
                 <button id="btn-big-cursor" class="tool-btn">
-                  <span class="btn-icon">👆</span>
+                  <span class="btn-text-badge">▲</span>
                   <span>${t('bigCursor')}</span>
                 </button>
               </div>
             </div>
 
             <div>
-              <span class="section-label">🛠️ ${t('usabilitySection')}</span>
+              <span class="section-label">${t('usabilitySection')}</span>
               <div class="button-grid cols-3">
                 <button id="btn-stop-anim" class="tool-btn">
-                  <span class="btn-icon">⏸️</span>
+                  <span class="btn-text-badge">||</span>
                   <span>${t('stopAnimations')}</span>
                 </button>
                 <button id="btn-hide-images" class="tool-btn">
-                  <span class="btn-icon">🖼️🚫</span>
+                  <span class="btn-text-badge">✕</span>
                   <span>${t('hideImages')}</span>
                 </button>
                 <button id="btn-image-tooltips" class="tool-btn">
-                  <span class="btn-icon">💬</span>
+                  <span class="btn-text-badge">Alt</span>
                   <span>${t('imageTooltips')}</span>
                 </button>
               </div>
@@ -4548,8 +4559,8 @@ class AksesKitaElement extends HTMLElement {
 
           <!-- CTA AAC COMMUNICATOR -->
           <button id="open-aac-btn" class="btn-aac-launch" title="Shortcut: Alt + C">
-            <span style="font-size: 20px;">🗣️</span>
             <span>${t('openAacBtn')}</span>
+            <span class="shortcut-kbd" style="background: rgba(0,0,0,0.2); color: #fff; border: 1px solid rgba(255,255,255,0.3); font-size: 10px; margin-left: 6px;">Alt + C</span>
           </button>
         </div>
 

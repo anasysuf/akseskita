@@ -193,7 +193,7 @@ class AksesKitaElement extends HTMLElement {
           <!-- SECTION 1: AUDIO & SCREEN READER (BLIND ACCESSIBILITY - FOCUS UTAMA) -->
           <div class="section-group">
             <div class="section-label">
-              <span>🔊 ${t('audioSection')}</span>
+              <span>${t('audioSection')}</span>
               <span class="section-tag-focus">Fokus Utama</span>
             </div>
 
@@ -201,14 +201,12 @@ class AksesKitaElement extends HTMLElement {
             <div id="card-screen-reader-box" class="audio-card-box">
               <div class="audio-card-top">
                 <div class="audio-card-title-wrap">
-                  <span style="font-size: 18px;">🦯</span>
                   <span>${t('screenReaderMode')}</span>
                 </div>
                 <span class="shortcut-kbd">Alt + R</span>
               </div>
               <p class="audio-card-desc">${t('screenReaderDesc')}</p>
               <button id="btn-screen-reader" class="btn-audio-action">
-                <span>🔈</span>
                 <span id="label-screen-reader-toggle">Aktifkan Pembaca Layar</span>
               </button>
             </div>
@@ -217,18 +215,15 @@ class AksesKitaElement extends HTMLElement {
             <div class="audio-card-box">
               <div class="audio-card-top">
                 <div class="audio-card-title-wrap">
-                  <span style="font-size: 18px;">📖</span>
                   <span>${t('pageReader')}</span>
                 </div>
                 <span class="shortcut-kbd">Alt + P</span>
               </div>
               <div style="display: flex; gap: 8px; margin-top: 4px;">
                 <button id="btn-page-reader" class="btn-audio-action" style="flex: 1;">
-                  <span>▶️</span>
                   <span id="label-page-reader">${t('pageReader')}</span>
                 </button>
                 <button id="btn-stop-speech" class="btn-audio-action danger" title="${t('stopPageReader')} (Alt + S)">
-                  <span>⏹️</span>
                   <span>${t('stopPageReader')}</span>
                 </button>
               </div>
@@ -238,7 +233,6 @@ class AksesKitaElement extends HTMLElement {
             <div class="audio-card-box">
               <div class="audio-card-top">
                 <div class="audio-card-title-wrap">
-                  <span style="font-size: 18px;">⚡</span>
                   <span>${t('speechRate')}</span>
                 </div>
               </div>
@@ -255,7 +249,6 @@ class AksesKitaElement extends HTMLElement {
             <div class="audio-card-box" style="background: #f0fdf4; border-color: #bbf7d0;">
               <div class="audio-card-top">
                 <div class="audio-card-title-wrap" style="color: #166534;">
-                  <span>✨</span>
                   <span>${t('selectionTtsTitle')}</span>
                 </div>
               </div>
@@ -266,12 +259,11 @@ class AksesKitaElement extends HTMLElement {
           <!-- SECTION 2: 1-CLICK PROFILES -->
           <div class="section-group">
             <div class="section-label">
-              <span>🌟 ${t('profilesSection')}</span>
+              <span>${t('profilesSection')}</span>
             </div>
             <div class="profiles-grid">
               <div class="profile-card" data-profile="blind">
                 <div class="profile-card-header">
-                  <span class="profile-card-icon">🦯</span>
                   <span class="profile-card-title">${t('profileBlindTitle')}</span>
                 </div>
                 <p class="profile-card-desc">${t('profileBlindDesc')}</p>
@@ -279,7 +271,6 @@ class AksesKitaElement extends HTMLElement {
 
               <div class="profile-card" data-profile="vision">
                 <div class="profile-card-header">
-                  <span class="profile-card-icon">👁️</span>
                   <span class="profile-card-title">${t('profileVisionTitle')}</span>
                 </div>
                 <p class="profile-card-desc">${t('profileVisionDesc')}</p>
@@ -287,7 +278,6 @@ class AksesKitaElement extends HTMLElement {
 
               <div class="profile-card" data-profile="adhd">
                 <div class="profile-card-header">
-                  <span class="profile-card-icon">🎯</span>
                   <span class="profile-card-title">${t('profileAdhdTitle')}</span>
                 </div>
                 <p class="profile-card-desc">${t('profileAdhdDesc')}</p>
@@ -295,7 +285,6 @@ class AksesKitaElement extends HTMLElement {
 
               <div class="profile-card" data-profile="seizure">
                 <div class="profile-card-header">
-                  <span class="profile-card-icon">⚡</span>
                   <span class="profile-card-title">${t('profileSeizureTitle')}</span>
                 </div>
                 <p class="profile-card-desc">${t('profileSeizureDesc')}</p>
@@ -303,7 +292,6 @@ class AksesKitaElement extends HTMLElement {
 
               <div class="profile-card" data-profile="cognitive">
                 <div class="profile-card-header">
-                  <span class="profile-card-icon">🧠</span>
                   <span class="profile-card-title">${t('profileCognitiveTitle')}</span>
                 </div>
                 <p class="profile-card-desc">${t('profileCognitiveDesc')}</p>
@@ -311,7 +299,6 @@ class AksesKitaElement extends HTMLElement {
 
               <div class="profile-card" data-profile="motor">
                 <div class="profile-card-header">
-                  <span class="profile-card-icon">🖐️</span>
                   <span class="profile-card-title">${t('profileMotorTitle')}</span>
                 </div>
                 <p class="profile-card-desc">${t('profileMotorDesc')}</p>
@@ -323,7 +310,7 @@ class AksesKitaElement extends HTMLElement {
           <div class="section-group">
             <!-- Font Sizing (75% - 200%) -->
             <div style="margin-bottom: 14px;">
-              <span class="section-label">🔤 ${t('fontSize')} (75% - 200%)</span>
+              <span class="section-label">${t('fontSize')} (75% - 200%)</span>
               <div class="font-scaler-box">
                 <button id="btn-font-dec" class="font-step-btn" title="${t('fontSmall')} (-25%)">－</button>
                 <div id="font-scale-indicator" class="font-scale-value-badge">${getFontScalePercentage()}</div>
@@ -342,18 +329,18 @@ class AksesKitaElement extends HTMLElement {
 
             <!-- Typography Adjustments -->
             <div style="margin-bottom: 14px;">
-              <span class="section-label">📐 ${t('contentSection')}</span>
+              <span class="section-label">${t('contentSection')}</span>
               <div class="button-grid cols-3">
                 <button id="btn-font-bold" class="tool-btn">
-                  <span class="btn-icon">𝗕</span>
+                  <span class="btn-text-badge">B</span>
                   <span>${t('fontBolder')}</span>
                 </button>
                 <button id="btn-dyslexia" class="tool-btn">
-                  <span class="btn-icon">📖</span>
+                  <span class="btn-text-badge">Aa</span>
                   <span>${t('fontDyslexia')}</span>
                 </button>
                 <button id="btn-line-height" class="tool-btn">
-                  <span class="btn-icon">↕️</span>
+                  <span class="btn-text-badge">↕</span>
                   <span id="label-line-height">${t('lineHeight')}</span>
                 </button>
               </div>
@@ -362,15 +349,15 @@ class AksesKitaElement extends HTMLElement {
             <div style="margin-bottom: 14px;">
               <div class="button-grid cols-3">
                 <button id="btn-letter-spacing" class="tool-btn">
-                  <span class="btn-icon">↔️</span>
+                  <span class="btn-text-badge">↔</span>
                   <span id="label-letter-spacing">${t('letterSpacing')}</span>
                 </button>
                 <button id="btn-highlight-links" class="tool-btn">
-                  <span class="btn-icon">🔗</span>
+                  <span class="btn-text-badge">🔗</span>
                   <span>${t('highlightLinks')}</span>
                 </button>
                 <button id="btn-highlight-titles" class="tool-btn">
-                  <span class="btn-icon">🏷️</span>
+                  <span class="btn-text-badge">H</span>
                   <span>${t('highlightTitles')}</span>
                 </button>
               </div>
@@ -378,46 +365,46 @@ class AksesKitaElement extends HTMLElement {
 
             <!-- Text Alignment -->
             <div>
-              <span class="section-label">📜 ${t('textAlign')}</span>
+              <span class="section-label">${t('textAlign')}</span>
               <div class="align-segmented-bar">
-                <button class="align-btn" data-align="left" title="${t('alignLeft')}">⬅️</button>
-                <button class="align-btn" data-align="center" title="${t('alignCenter')}">↔️</button>
-                <button class="align-btn" data-align="right" title="${t('alignRight')}">➡️</button>
-                <button class="align-btn" data-align="justify" title="${t('alignJustify')}">☰</button>
+                <button class="align-btn" data-align="left" title="${t('alignLeft')}">Kiri</button>
+                <button class="align-btn" data-align="center" title="${t('alignCenter')}">Tengah</button>
+                <button class="align-btn" data-align="right" title="${t('alignRight')}">Kanan</button>
+                <button class="align-btn" data-align="justify" title="${t('alignJustify')}">Rata</button>
               </div>
             </div>
           </div>
 
           <!-- SECTION 4: COLOR & CONTRAST -->
           <div class="section-group">
-            <span class="section-label">🎨 ${t('colorSection')}</span>
+            <span class="section-label">${t('colorSection')}</span>
             <div class="button-grid cols-3">
               <button id="btn-contrast-high" class="tool-btn" data-contrast="high">
-                <span class="btn-icon">🌓</span>
+                <span class="contrast-swatch high"></span>
                 <span>${t('contrastHigh')}</span>
               </button>
               <button id="btn-contrast-dark" class="tool-btn" data-contrast="dark">
-                <span class="btn-icon">🌑</span>
+                <span class="contrast-swatch dark"></span>
                 <span>${t('contrastDark')}</span>
               </button>
               <button id="btn-contrast-light" class="tool-btn" data-contrast="light">
-                <span class="btn-icon">🌕</span>
+                <span class="contrast-swatch light"></span>
                 <span>${t('contrastLight')}</span>
               </button>
               <button id="btn-contrast-mono" class="tool-btn" data-contrast="mono">
-                <span class="btn-icon">⬛</span>
+                <span class="contrast-swatch mono"></span>
                 <span>${t('contrastMono')}</span>
               </button>
               <button id="btn-contrast-low-sat" class="tool-btn" data-contrast="low-sat">
-                <span class="btn-icon">🌫️</span>
+                <span class="contrast-swatch low-sat"></span>
                 <span>${t('contrastLowSat')}</span>
               </button>
               <button id="btn-contrast-high-sat" class="tool-btn" data-contrast="high-sat">
-                <span class="btn-icon">🌈</span>
+                <span class="contrast-swatch high-sat"></span>
                 <span>${t('contrastHighSat')}</span>
               </button>
               <button id="btn-contrast-invert" class="tool-btn" data-contrast="invert" style="grid-column: 1 / -1;">
-                <span class="btn-icon">🔄</span>
+                <span class="contrast-swatch invert"></span>
                 <span>${t('contrastInvert')}</span>
               </button>
             </div>
@@ -426,40 +413,40 @@ class AksesKitaElement extends HTMLElement {
           <!-- SECTION 5: VISUAL & USABILITY -->
           <div class="section-group">
             <div style="margin-bottom: 14px;">
-              <span class="section-label">🔍 ${t('visualSection')}</span>
+              <span class="section-label">${t('visualSection')}</span>
               <div class="button-grid cols-2">
                 <button id="btn-reading-guide" class="tool-btn">
-                  <span class="btn-icon">📏</span>
+                  <span class="btn-text-badge">—</span>
                   <span>${t('readingGuide')}</span>
                 </button>
                 <button id="btn-reading-mask" class="tool-btn">
-                  <span class="btn-icon">🕶️</span>
+                  <span class="btn-text-badge">░</span>
                   <span>${t('readingMask')}</span>
                 </button>
                 <button id="btn-super-focus" class="tool-btn">
-                  <span class="btn-icon">🔦</span>
+                  <span class="btn-text-badge">◎</span>
                   <span>${t('superFocus')}</span>
                 </button>
                 <button id="btn-big-cursor" class="tool-btn">
-                  <span class="btn-icon">👆</span>
+                  <span class="btn-text-badge">▲</span>
                   <span>${t('bigCursor')}</span>
                 </button>
               </div>
             </div>
 
             <div>
-              <span class="section-label">🛠️ ${t('usabilitySection')}</span>
+              <span class="section-label">${t('usabilitySection')}</span>
               <div class="button-grid cols-3">
                 <button id="btn-stop-anim" class="tool-btn">
-                  <span class="btn-icon">⏸️</span>
+                  <span class="btn-text-badge">||</span>
                   <span>${t('stopAnimations')}</span>
                 </button>
                 <button id="btn-hide-images" class="tool-btn">
-                  <span class="btn-icon">🖼️🚫</span>
+                  <span class="btn-text-badge">✕</span>
                   <span>${t('hideImages')}</span>
                 </button>
                 <button id="btn-image-tooltips" class="tool-btn">
-                  <span class="btn-icon">💬</span>
+                  <span class="btn-text-badge">Alt</span>
                   <span>${t('imageTooltips')}</span>
                 </button>
               </div>
@@ -468,8 +455,8 @@ class AksesKitaElement extends HTMLElement {
 
           <!-- CTA AAC COMMUNICATOR -->
           <button id="open-aac-btn" class="btn-aac-launch" title="Shortcut: Alt + C">
-            <span style="font-size: 20px;">🗣️</span>
             <span>${t('openAacBtn')}</span>
+            <span class="shortcut-kbd" style="background: rgba(0,0,0,0.2); color: #fff; border: 1px solid rgba(255,255,255,0.3); font-size: 10px; margin-left: 6px;">Alt + C</span>
           </button>
         </div>
 

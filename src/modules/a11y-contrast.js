@@ -14,23 +14,8 @@ export function getContrast() {
   }
 }
 
-function ensureContrastOverlays() {
-  if (typeof document === 'undefined') return;
-  if (!document.getElementById('akseskita-monochrome-overlay')) {
-    const monoOverlay = document.createElement('div');
-    monoOverlay.id = 'akseskita-monochrome-overlay';
-    document.body.appendChild(monoOverlay);
-  }
-  if (!document.getElementById('akseskita-invert-overlay')) {
-    const invertOverlay = document.createElement('div');
-    invertOverlay.id = 'akseskita-invert-overlay';
-    document.body.appendChild(invertOverlay);
-  }
-}
-
 export function setContrast(mode) {
   if (typeof document === 'undefined') return mode;
-  ensureContrastOverlays();
 
   const root = document.documentElement;
   root.classList.remove(
