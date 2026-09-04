@@ -8,10 +8,10 @@ var AksesKita = (function () {
 
   const hostStyles = `
 /* ==========================================================================
-   1. Typography & Content Scaling (Root-Based & Element Direct)
+   1. Typography & Content Scaling (Responsive & Adaptive Navigation Safe)
    ========================================================================== */
-html.akseskita-scale-sub1 { --akseskita-font-scale: 0.8; }
-html.akseskita-scale-0    { --akseskita-font-scale: 1.0; }
+html.akseskita-scale-sub1 { --akseskita-font-scale: 0.85; }
+html.akseskita-scale-0    { --akseskita-font-scale: 1.00; }
 html.akseskita-scale-1    { --akseskita-font-scale: 1.25; }
 html.akseskita-scale-2    { --akseskita-font-scale: 1.50; }
 html.akseskita-scale-3    { --akseskita-font-scale: 1.75; }
@@ -21,18 +21,36 @@ html[class*="akseskita-scale-"] {
   font-size: calc(100% * var(--akseskita-font-scale, 1)) !important;
 }
 
-/* Fallback & Override for fixed-px elements in Bootstrap/Tailwind/Custom CSS */
+/* Ensure navbar & header containers automatically expand gracefully */
+html[class*="akseskita-scale-"] header,
+html[class*="akseskita-scale-"] nav,
+html[class*="akseskita-scale-"] .navbar,
+html[class*="akseskita-scale-"] .nav-container,
+html[class*="akseskita-scale-"] .nav-menu {
+  height: auto !important;
+  min-height: fit-content !important;
+  flex-wrap: wrap !important;
+}
+
+/* Scale text in navigation proportionally to prevent menu overflow */
+html.akseskita-scale-sub1 nav a, html.akseskita-scale-sub1 header a, html.akseskita-scale-sub1 .nav-link, html.akseskita-scale-sub1 .nav-action-btn { font-size: 12px !important; }
+html.akseskita-scale-1 nav a, html.akseskita-scale-1 header a, html.akseskita-scale-1 .nav-link, html.akseskita-scale-1 .nav-action-btn { font-size: 15px !important; }
+html.akseskita-scale-2 nav a, html.akseskita-scale-2 header a, html.akseskita-scale-2 .nav-link, html.akseskita-scale-2 .nav-action-btn { font-size: 17px !important; }
+html.akseskita-scale-3 nav a, html.akseskita-scale-3 header a, html.akseskita-scale-3 .nav-link, html.akseskita-scale-3 .nav-action-btn { font-size: 19px !important; }
+html.akseskita-scale-4 nav a, html.akseskita-scale-4 header a, html.akseskita-scale-4 .nav-link, html.akseskita-scale-4 .nav-action-btn { font-size: 21px !important; }
+
+/* Scale body & main content elements (75% - 200%) */
 html.akseskita-scale-sub1 body,
 html.akseskita-scale-sub1 p,
-html.akseskita-scale-sub1 span:not(akses-kita span):not(akses-kita *),
-html.akseskita-scale-sub1 a:not(akses-kita a):not(akses-kita *),
+html.akseskita-scale-sub1 span:not(akses-kita span):not(akses-kita *):not(nav span),
+html.akseskita-scale-sub1 a:not(akses-kita a):not(akses-kita *):not(nav a):not(header a),
 html.akseskita-scale-sub1 li,
 html.akseskita-scale-sub1 blockquote,
 html.akseskita-scale-sub1 td,
 html.akseskita-scale-sub1 th,
 html.akseskita-scale-sub1 label,
 html.akseskita-scale-sub1 input:not(akses-kita input),
-html.akseskita-scale-sub1 button:not(akses-kita button),
+html.akseskita-scale-sub1 button:not(akses-kita button):not(nav button),
 html.akseskita-scale-sub1 textarea {
   font-size: 13px !important;
 }
@@ -43,15 +61,15 @@ html.akseskita-scale-sub1 h4 { font-size: 1.10rem !important; }
 
 html.akseskita-scale-1 body,
 html.akseskita-scale-1 p,
-html.akseskita-scale-1 span:not(akses-kita span):not(akses-kita *),
-html.akseskita-scale-1 a:not(akses-kita a):not(akses-kita *),
+html.akseskita-scale-1 span:not(akses-kita span):not(akses-kita *):not(nav span),
+html.akseskita-scale-1 a:not(akses-kita a):not(akses-kita *):not(nav a):not(header a),
 html.akseskita-scale-1 li,
 html.akseskita-scale-1 blockquote,
 html.akseskita-scale-1 td,
 html.akseskita-scale-1 th,
 html.akseskita-scale-1 label,
 html.akseskita-scale-1 input:not(akses-kita input),
-html.akseskita-scale-1 button:not(akses-kita button),
+html.akseskita-scale-1 button:not(akses-kita button):not(nav button),
 html.akseskita-scale-1 textarea {
   font-size: 18px !important;
 }
@@ -62,15 +80,15 @@ html.akseskita-scale-1 h4 { font-size: 1.45rem !important; }
 
 html.akseskita-scale-2 body,
 html.akseskita-scale-2 p,
-html.akseskita-scale-2 span:not(akses-kita span):not(akses-kita *),
-html.akseskita-scale-2 a:not(akses-kita a):not(akses-kita *),
+html.akseskita-scale-2 span:not(akses-kita span):not(akses-kita *):not(nav span),
+html.akseskita-scale-2 a:not(akses-kita a):not(akses-kita *):not(nav a):not(header a),
 html.akseskita-scale-2 li,
 html.akseskita-scale-2 blockquote,
 html.akseskita-scale-2 td,
 html.akseskita-scale-2 th,
 html.akseskita-scale-2 label,
 html.akseskita-scale-2 input:not(akses-kita input),
-html.akseskita-scale-2 button:not(akses-kita button),
+html.akseskita-scale-2 button:not(akses-kita button):not(nav button),
 html.akseskita-scale-2 textarea {
   font-size: 22px !important;
 }
@@ -81,15 +99,15 @@ html.akseskita-scale-2 h4 { font-size: 1.75rem !important; }
 
 html.akseskita-scale-3 body,
 html.akseskita-scale-3 p,
-html.akseskita-scale-3 span:not(akses-kita span):not(akses-kita *),
-html.akseskita-scale-3 a:not(akses-kita a):not(akses-kita *),
+html.akseskita-scale-3 span:not(akses-kita span):not(akses-kita *):not(nav span),
+html.akseskita-scale-3 a:not(akses-kita a):not(akses-kita *):not(nav a):not(header a),
 html.akseskita-scale-3 li,
 html.akseskita-scale-3 blockquote,
 html.akseskita-scale-3 td,
 html.akseskita-scale-3 th,
 html.akseskita-scale-3 label,
 html.akseskita-scale-3 input:not(akses-kita input),
-html.akseskita-scale-3 button:not(akses-kita button),
+html.akseskita-scale-3 button:not(akses-kita button):not(nav button),
 html.akseskita-scale-3 textarea {
   font-size: 26px !important;
 }
@@ -100,15 +118,15 @@ html.akseskita-scale-3 h4 { font-size: 2.1rem !important; }
 
 html.akseskita-scale-4 body,
 html.akseskita-scale-4 p,
-html.akseskita-scale-4 span:not(akses-kita span):not(akses-kita *),
-html.akseskita-scale-4 a:not(akses-kita a):not(akses-kita *),
+html.akseskita-scale-4 span:not(akses-kita span):not(akses-kita *):not(nav span),
+html.akseskita-scale-4 a:not(akses-kita a):not(akses-kita *):not(nav a):not(header a),
 html.akseskita-scale-4 li,
 html.akseskita-scale-4 blockquote,
 html.akseskita-scale-4 td,
 html.akseskita-scale-4 th,
 html.akseskita-scale-4 label,
 html.akseskita-scale-4 input:not(akses-kita input),
-html.akseskita-scale-4 button:not(akses-kita button),
+html.akseskita-scale-4 button:not(akses-kita button):not(nav button),
 html.akseskita-scale-4 textarea {
   font-size: 30px !important;
 }
@@ -701,6 +719,8 @@ html.akseskita-hide-images [style*="background-image"] {
   position: sticky;
   top: 56px;
   z-index: 9;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
 }
 
 .panel-tab-btn {

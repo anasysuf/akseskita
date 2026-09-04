@@ -204,6 +204,8 @@ export const a11yStyles = `
   position: sticky;
   top: 56px;
   z-index: 9;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
 }
 
 .panel-tab-btn {
