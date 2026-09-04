@@ -1,8 +1,8 @@
 /**
- * AksesKita - All-in-One Assistive Web Suite Indonesia
- * Unified Web Accessibility Toolbar & Visual AAC Communicator
+ * AksesKita - All-in-One Assistive Web Suite
+ * Comprehensive Web Accessibility Widget (Profiles, Typography, Contrast, Visual Aids, Usability)
+ * & Interactive Visual AAC Communicator Board (Bilingual ID / EN)
  * Zero Dependency Web Component (<akses-kita>)
- * Bilingual: Bahasa Indonesia & English
  */
 
 import { hostStyles } from './styles/host-inject.css.js';
@@ -23,24 +23,62 @@ import {
   setLanguage, 
   t 
 } from './modules/i18n.js';
+
+// Profiles Controller
+import { 
+  applyProfile, 
+  getActiveProfile, 
+  resetAllSettings 
+} from './modules/a11y-profiles.js';
+
+// Typography Controller
 import { 
   setFontScale, 
   getFontScale, 
+  toggleFontBold, 
+  isFontBold,
+  setLineHeight, 
+  getLineHeight,
+  setLetterSpacing, 
+  getLetterSpacing,
   toggleDyslexia, 
   isDyslexiaEnabled, 
-  resetFont, 
+  toggleHighlightLinks, 
+  isHighlightLinksEnabled, 
+  toggleHighlightTitles,
+  isHighlightTitlesEnabled,
+  setTextAlign,
+  getTextAlign,
   restoreFontPreferences 
 } from './modules/a11y-font.js';
+
+// Contrast Controller
 import { 
   setContrast, 
   getContrast, 
-  toggleHighlightLinks, 
-  isHighlightLinksEnabled, 
-  toggleReadingGuide, 
-  isReadingGuideEnabled, 
-  resetContrast, 
   restoreContrastPreferences 
 } from './modules/a11y-contrast.js';
+
+// Visual & Usability Controller
+import { 
+  toggleReadingGuide, 
+  isReadingGuideEnabled,
+  toggleReadingMask, 
+  isReadingMaskEnabled,
+  toggleSuperFocus, 
+  isSuperFocusEnabled,
+  toggleBigCursor, 
+  isBigCursorEnabled,
+  toggleStopAnimations, 
+  isStopAnimationsEnabled,
+  toggleHideImages, 
+  isHideImagesEnabled,
+  toggleImageTooltips, 
+  isImageTooltipsEnabled,
+  restoreVisualPreferences 
+} from './modules/a11y-visual.js';
+
+// Speech & AAC
 import { 
   speakText, 
   stopSpeech, 
@@ -66,6 +104,7 @@ class AksesKitaElement extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
+    this.activeTab = 'profiles'; // 'profiles', 'content', 'color', 'visual'
     this.activeCategoryId = 'all';
     this.categories = [];
     this.cards = [];
@@ -80,13 +119,14 @@ class AksesKitaElement extends HTMLElement {
     this.bindEvents();
     this.initShortcuts();
     
-    // Restore user settings
+    // Restore user preferences
     restoreFontPreferences();
     restoreContrastPreferences();
+    restoreVisualPreferences();
     initQuickTTS();
     this.syncA11yUIState();
 
-    // Init DB & default cards
+    // Init IndexedDB & default AAC symbols
     try {
       await openAksesKitaDB();
       await initDefaultData(defaultCategories, defaultCards);
@@ -117,19 +157,18 @@ class AksesKitaElement extends HTMLElement {
       </style>
 
       <!-- FAB Trigger Button -->
-      <button id="fab-trigger" class="fab-trigger" aria-label="Buka Menu Aksesibilitas dan Papan Komunikasi AksesKita" title="Aksesibilitas (Alt + A)">
+      <button id="fab-trigger" class="fab-trigger" aria-label="Buka Menu Aksesibilitas AksesKita" title="Aksesibilitas (Alt + A)">
         <span class="fab-icon">♿</span>
         <span>AksesKita</span>
       </button>
 
       <!-- Toolbar A11y Panel -->
       <div id="a11y-panel" class="panel-container hidden" role="dialog" aria-modal="false" aria-label="Menu Aksesibilitas Web">
+        <!-- Panel Header -->
         <div class="panel-header">
           <div class="panel-title-wrapper">
             <span style="font-size: 20px;">♿</span>
-            <div>
-              <h3>AksesKita</h3>
-            </div>
+            <h3>AksesKita</h3>
             <span class="panel-title-badge">${t('a11yBadge')}</span>
           </div>
           <div style="display: flex; align-items: center; gap: 8px;">
@@ -141,74 +180,242 @@ class AksesKitaElement extends HTMLElement {
           </div>
         </div>
 
-        <div class="panel-body">
-          <!-- CTA AAC Communicator -->
-          <div class="panel-section">
-            <span class="section-label">🗣️ ${lang === 'en' ? 'Assistive Communication' : 'Komunikasi Asistif'}</span>
-            <button id="open-aac-btn" class="btn-aac-launch" title="Shortcut: Alt + C">
-              <span style="font-size: 22px;">🗣️</span>
-              <span>${t('openAacBtn')}</span>
-            </button>
-          </div>
+        <!-- Category Tabs -->
+        <div class="panel-nav-tabs">
+          <button class="panel-tab-btn ${this.activeTab === 'profiles' ? 'active' : ''}" data-tab="profiles">
+            <span>🌟</span>
+            <span>${t('tabProfiles')}</span>
+          </button>
+          <button class="panel-tab-btn ${this.activeTab === 'content' ? 'active' : ''}" data-tab="content">
+            <span>🔤</span>
+            <span>${t('tabContent')}</span>
+          </button>
+          <button class="panel-tab-btn ${this.activeTab === 'color' ? 'active' : ''}" data-tab="color">
+            <span>🎨</span>
+            <span>${t('tabColor')}</span>
+          </button>
+          <button class="panel-tab-btn ${this.activeTab === 'visual' ? 'active' : ''}" data-tab="visual">
+            <span>🔍</span>
+            <span>${t('tabVisual')}</span>
+          </button>
+        </div>
 
-          <!-- Text Resizing & Font -->
-          <div class="panel-section">
-            <span class="section-label">🔤 ${t('textSettings')}</span>
-            <div class="button-grid cols-4">
-              <button id="btn-font-dec" class="tool-btn" aria-label="${t('fontSmall')}">
-                <span class="btn-icon">A-</span>
-                <span>${t('fontSmall')}</span>
-              </button>
-              <button id="btn-font-reset" class="tool-btn" aria-label="${t('fontNormal')}">
-                <span class="btn-icon">A</span>
-                <span>${t('fontNormal')}</span>
-              </button>
-              <button id="btn-font-inc" class="tool-btn" aria-label="${t('fontLarge')}">
-                <span class="btn-icon">A+</span>
-                <span>${t('fontLarge')}</span>
-              </button>
-              <button id="btn-dyslexia" class="tool-btn" aria-label="${t('fontDyslexia')}">
-                <span class="btn-icon">📖</span>
-                <span>${t('fontDyslexia')}</span>
-              </button>
+        <div class="panel-body">
+          <!-- CTA AAC Communicator (Always Accessible) -->
+          <button id="open-aac-btn" class="btn-aac-launch" title="Shortcut: Alt + C">
+            <span style="font-size: 20px;">🗣️</span>
+            <span>${t('openAacBtn')}</span>
+          </button>
+
+          <!-- TAB 1: PRESET PROFILES -->
+          <div id="tab-section-profiles" class="tab-content-pane ${this.activeTab === 'profiles' ? '' : 'hidden'}" style="${this.activeTab === 'profiles' ? '' : 'display:none;'}">
+            <div class="section-label">
+              <span>${t('profilesSection')}</span>
+            </div>
+            <div class="profiles-grid">
+              <div class="profile-card" data-profile="seizure">
+                <div class="profile-card-header">
+                  <span class="profile-card-icon">⚡</span>
+                  <span class="profile-card-title">${t('profileSeizureTitle')}</span>
+                </div>
+                <p class="profile-card-desc">${t('profileSeizureDesc')}</p>
+              </div>
+
+              <div class="profile-card" data-profile="vision">
+                <div class="profile-card-header">
+                  <span class="profile-card-icon">👁️</span>
+                  <span class="profile-card-title">${t('profileVisionTitle')}</span>
+                </div>
+                <p class="profile-card-desc">${t('profileVisionDesc')}</p>
+              </div>
+
+              <div class="profile-card" data-profile="adhd">
+                <div class="profile-card-header">
+                  <span class="profile-card-icon">🎯</span>
+                  <span class="profile-card-title">${t('profileAdhdTitle')}</span>
+                </div>
+                <p class="profile-card-desc">${t('profileAdhdDesc')}</p>
+              </div>
+
+              <div class="profile-card" data-profile="cognitive">
+                <div class="profile-card-header">
+                  <span class="profile-card-icon">🧠</span>
+                  <span class="profile-card-title">${t('profileCognitiveTitle')}</span>
+                </div>
+                <p class="profile-card-desc">${t('profileCognitiveDesc')}</p>
+              </div>
+
+              <div class="profile-card" data-profile="motor">
+                <div class="profile-card-header">
+                  <span class="profile-card-icon">🖐️</span>
+                  <span class="profile-card-title">${t('profileMotorTitle')}</span>
+                </div>
+                <p class="profile-card-desc">${t('profileMotorDesc')}</p>
+              </div>
+
+              <div class="profile-card" data-profile="blind">
+                <div class="profile-card-header">
+                  <span class="profile-card-icon">🦯</span>
+                  <span class="profile-card-title">${t('profileBlindTitle')}</span>
+                </div>
+                <p class="profile-card-desc">${t('profileBlindDesc')}</p>
+              </div>
             </div>
           </div>
 
-          <!-- Color Schemes & Filters -->
-          <div class="panel-section">
-            <span class="section-label">🎨 ${t('contrastSettings')}</span>
+          <!-- TAB 2: CONTENT & TYPOGRAPHY -->
+          <div id="tab-section-content" class="tab-content-pane ${this.activeTab === 'content' ? '' : 'hidden'}" style="${this.activeTab === 'content' ? '' : 'display:none;'}">
+            <!-- Font Sizing -->
+            <div style="margin-bottom: 14px;">
+              <span class="section-label">🔤 ${t('fontSize')}</span>
+              <div class="button-grid cols-4">
+                <button id="btn-font-dec" class="tool-btn">
+                  <span class="btn-icon">A-</span>
+                  <span>${t('fontSmall')}</span>
+                </button>
+                <button id="btn-font-reset" class="tool-btn">
+                  <span class="btn-icon">A</span>
+                  <span>${t('fontNormal')}</span>
+                </button>
+                <button id="btn-font-inc" class="tool-btn">
+                  <span class="btn-icon">A+</span>
+                  <span>${t('fontLarge')}</span>
+                </button>
+                <button id="btn-font-max" class="tool-btn">
+                  <span class="btn-icon">A++</span>
+                  <span>${t('fontXLarge')}</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Typography Adjustments -->
+            <div style="margin-bottom: 14px;">
+              <span class="section-label">📐 ${t('contentSection')}</span>
+              <div class="button-grid cols-3">
+                <button id="btn-font-bold" class="tool-btn">
+                  <span class="btn-icon">𝗕</span>
+                  <span>${t('fontBolder')}</span>
+                </button>
+                <button id="btn-dyslexia" class="tool-btn">
+                  <span class="btn-icon">📖</span>
+                  <span>${t('fontDyslexia')}</span>
+                </button>
+                <button id="btn-line-height" class="tool-btn">
+                  <span class="btn-icon">↕️</span>
+                  <span id="label-line-height">${t('lineHeight')}</span>
+                </button>
+              </div>
+            </div>
+
+            <div style="margin-bottom: 14px;">
+              <div class="button-grid cols-3">
+                <button id="btn-letter-spacing" class="tool-btn">
+                  <span class="btn-icon">↔️</span>
+                  <span id="label-letter-spacing">${t('letterSpacing')}</span>
+                </button>
+                <button id="btn-highlight-links" class="tool-btn">
+                  <span class="btn-icon">🔗</span>
+                  <span>${t('highlightLinks')}</span>
+                </button>
+                <button id="btn-highlight-titles" class="tool-btn">
+                  <span class="btn-icon">🏷️</span>
+                  <span>${t('highlightTitles')}</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Text Alignment -->
+            <div>
+              <span class="section-label">📜 ${t('textAlign')}</span>
+              <div class="align-segmented-bar">
+                <button class="align-btn" data-align="left" title="${t('alignLeft')}">⬅️</button>
+                <button class="align-btn" data-align="center" title="${t('alignCenter')}">↔️</button>
+                <button class="align-btn" data-align="right" title="${t('alignRight')}">➡️</button>
+                <button class="align-btn" data-align="justify" title="${t('alignJustify')}">☰</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 3: COLOR & CONTRAST -->
+          <div id="tab-section-color" class="tab-content-pane ${this.activeTab === 'color' ? '' : 'hidden'}" style="${this.activeTab === 'color' ? '' : 'display:none;'}">
+            <span class="section-label">🎨 ${t('colorSection')}</span>
             <div class="button-grid cols-3">
               <button id="btn-contrast-high" class="tool-btn" data-contrast="high">
                 <span class="btn-icon">🌓</span>
                 <span>${t('contrastHigh')}</span>
               </button>
+              <button id="btn-contrast-dark" class="tool-btn" data-contrast="dark">
+                <span class="btn-icon">🌑</span>
+                <span>${t('contrastDark')}</span>
+              </button>
+              <button id="btn-contrast-light" class="tool-btn" data-contrast="light">
+                <span class="btn-icon">🌕</span>
+                <span>${t('contrastLight')}</span>
+              </button>
               <button id="btn-contrast-mono" class="tool-btn" data-contrast="mono">
                 <span class="btn-icon">⬛</span>
                 <span>${t('contrastMono')}</span>
               </button>
-              <button id="btn-contrast-invert" class="tool-btn" data-contrast="invert">
+              <button id="btn-contrast-low-sat" class="tool-btn" data-contrast="low-sat">
+                <span class="btn-icon">🌫️</span>
+                <span>${t('contrastLowSat')}</span>
+              </button>
+              <button id="btn-contrast-high-sat" class="tool-btn" data-contrast="high-sat">
+                <span class="btn-icon">🌈</span>
+                <span>${t('contrastHighSat')}</span>
+              </button>
+              <button id="btn-contrast-invert" class="tool-btn" data-contrast="invert" style="grid-column: 1 / -1;">
                 <span class="btn-icon">🔄</span>
                 <span>${t('contrastInvert')}</span>
               </button>
             </div>
           </div>
 
-          <!-- Visual Aids -->
-          <div class="panel-section">
-            <span class="section-label">🔍 ${t('visualAids')}</span>
-            <div class="button-grid">
-              <button id="btn-highlight-links" class="tool-btn">
-                <span class="btn-icon">🔗</span>
-                <span>${t('highlightLinks')}</span>
-              </button>
-              <button id="btn-reading-guide" class="tool-btn">
-                <span class="btn-icon">📏</span>
-                <span>${t('readingGuide')}</span>
-              </button>
+          <!-- TAB 4: VISUAL & USABILITY -->
+          <div id="tab-section-visual" class="tab-content-pane ${this.activeTab === 'visual' ? '' : 'hidden'}" style="${this.activeTab === 'visual' ? '' : 'display:none;'}">
+            <div style="margin-bottom: 14px;">
+              <span class="section-label">🔍 ${t('visualSection')}</span>
+              <div class="button-grid cols-2">
+                <button id="btn-reading-guide" class="tool-btn">
+                  <span class="btn-icon">📏</span>
+                  <span>${t('readingGuide')}</span>
+                </button>
+                <button id="btn-reading-mask" class="tool-btn">
+                  <span class="btn-icon">🕶️</span>
+                  <span>${t('readingMask')}</span>
+                </button>
+                <button id="btn-super-focus" class="tool-btn">
+                  <span class="btn-icon">🔦</span>
+                  <span>${t('superFocus')}</span>
+                </button>
+                <button id="btn-big-cursor" class="tool-btn">
+                  <span class="btn-icon">👆</span>
+                  <span>${t('bigCursor')}</span>
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <span class="section-label">🛠️ ${t('usabilitySection')}</span>
+              <div class="button-grid cols-3">
+                <button id="btn-stop-anim" class="tool-btn">
+                  <span class="btn-icon">⏸️</span>
+                  <span>${t('stopAnimations')}</span>
+                </button>
+                <button id="btn-hide-images" class="tool-btn">
+                  <span class="btn-icon">🖼️🚫</span>
+                  <span>${t('hideImages')}</span>
+                </button>
+                <button id="btn-image-tooltips" class="tool-btn">
+                  <span class="btn-icon">💬</span>
+                  <span>${t('imageTooltips')}</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
 
+        <!-- Panel Footer -->
         <div class="panel-footer">
           <button id="btn-reset-all" class="reset-link">${t('resetAll')}</button>
           <span>${t('shortcutHint')}: <b>Alt + A</b></span>
@@ -367,106 +574,193 @@ class AksesKitaElement extends HTMLElement {
       stopSentencePlayback();
     });
 
-    // Language Toggle Buttons (Panel and AAC header)
+    // Language Toggle Buttons
     root.querySelectorAll('.lang-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
+      btn.addEventListener('click', () => {
         const lang = btn.getAttribute('data-lang');
         this.changeLanguage(lang);
       });
     });
 
-    // Font actions
-    root.getElementById('btn-font-inc').addEventListener('click', () => {
-      const current = getFontScale();
-      setFontScale(current + 1);
-      this.syncA11yUIState();
+    // Navigation Tabs inside Panel
+    root.querySelectorAll('.panel-tab-btn').forEach(tabBtn => {
+      tabBtn.addEventListener('click', () => {
+        const tabId = tabBtn.getAttribute('data-tab');
+        this.activeTab = tabId;
+        
+        root.querySelectorAll('.panel-tab-btn').forEach(b => b.classList.toggle('active', b.getAttribute('data-tab') === tabId));
+        root.querySelectorAll('.tab-content-pane').forEach(p => {
+          const isMatch = p.id === `tab-section-${tabId}`;
+          p.classList.toggle('hidden', !isMatch);
+          p.style.display = isMatch ? 'block' : 'none';
+        });
+      });
     });
 
-    root.getElementById('btn-font-dec').addEventListener('click', () => {
+    // Preset Profiles
+    root.querySelectorAll('.profile-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const profileId = card.getAttribute('data-profile');
+        applyProfile(profileId);
+        this.syncA11yUIState();
+      });
+    });
+
+    // Font Sizing
+    root.getElementById('btn-font-dec')?.addEventListener('click', () => {
       const current = getFontScale();
       setFontScale(current - 1);
       this.syncA11yUIState();
     });
 
-    root.getElementById('btn-font-reset').addEventListener('click', () => {
+    root.getElementById('btn-font-reset')?.addEventListener('click', () => {
       setFontScale(0);
       this.syncA11yUIState();
     });
 
-    root.getElementById('btn-dyslexia').addEventListener('click', () => {
+    root.getElementById('btn-font-inc')?.addEventListener('click', () => {
+      const current = getFontScale();
+      setFontScale(current + 1);
+      this.syncA11yUIState();
+    });
+
+    root.getElementById('btn-font-max')?.addEventListener('click', () => {
+      setFontScale(4);
+      this.syncA11yUIState();
+    });
+
+    // Typography Controls
+    root.getElementById('btn-font-bold')?.addEventListener('click', () => {
+      toggleFontBold();
+      this.syncA11yUIState();
+    });
+
+    root.getElementById('btn-dyslexia')?.addEventListener('click', () => {
       toggleDyslexia();
       this.syncA11yUIState();
     });
 
-    // Contrast actions
-    root.getElementById('btn-contrast-high').addEventListener('click', () => {
-      const current = getContrast();
-      setContrast(current === 'high' ? 'normal' : 'high');
+    root.getElementById('btn-line-height')?.addEventListener('click', () => {
+      const current = getLineHeight();
+      const next = (current + 1) % 3;
+      setLineHeight(next);
       this.syncA11yUIState();
     });
 
-    root.getElementById('btn-contrast-mono').addEventListener('click', () => {
-      const current = getContrast();
-      setContrast(current === 'mono' ? 'normal' : 'mono');
+    root.getElementById('btn-letter-spacing')?.addEventListener('click', () => {
+      const current = getLetterSpacing();
+      const next = (current + 1) % 3;
+      setLetterSpacing(next);
       this.syncA11yUIState();
     });
 
-    root.getElementById('btn-contrast-invert').addEventListener('click', () => {
-      const current = getContrast();
-      setContrast(current === 'invert' ? 'normal' : 'invert');
-      this.syncA11yUIState();
-    });
-
-    // Visual aids
-    root.getElementById('btn-highlight-links').addEventListener('click', () => {
+    root.getElementById('btn-highlight-links')?.addEventListener('click', () => {
       toggleHighlightLinks();
       this.syncA11yUIState();
     });
 
-    root.getElementById('btn-reading-guide').addEventListener('click', () => {
+    root.getElementById('btn-highlight-titles')?.addEventListener('click', () => {
+      toggleHighlightTitles();
+      this.syncA11yUIState();
+    });
+
+    // Text Alignment
+    root.querySelectorAll('.align-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const align = btn.getAttribute('data-align');
+        const current = getTextAlign();
+        setTextAlign(current === align ? 'default' : align);
+        this.syncA11yUIState();
+      });
+    });
+
+    // Contrast Controls
+    const contrastModes = ['high', 'dark', 'light', 'mono', 'low-sat', 'high-sat', 'invert'];
+    contrastModes.forEach(mode => {
+      const btn = root.querySelector(`button[data-contrast="${mode}"]`);
+      btn?.addEventListener('click', () => {
+        const current = getContrast();
+        setContrast(current === mode ? 'normal' : mode);
+        this.syncA11yUIState();
+      });
+    });
+
+    // Visual & Navigation Aids
+    root.getElementById('btn-reading-guide')?.addEventListener('click', () => {
       toggleReadingGuide();
       this.syncA11yUIState();
     });
 
-    root.getElementById('btn-reset-all').addEventListener('click', () => {
-      resetFont();
-      resetContrast();
+    root.getElementById('btn-reading-mask')?.addEventListener('click', () => {
+      toggleReadingMask();
+      this.syncA11yUIState();
+    });
+
+    root.getElementById('btn-super-focus')?.addEventListener('click', () => {
+      toggleSuperFocus();
+      this.syncA11yUIState();
+    });
+
+    root.getElementById('btn-big-cursor')?.addEventListener('click', () => {
+      toggleBigCursor();
+      this.syncA11yUIState();
+    });
+
+    // Usability & Motion Utilities
+    root.getElementById('btn-stop-anim')?.addEventListener('click', () => {
+      toggleStopAnimations();
+      this.syncA11yUIState();
+    });
+
+    root.getElementById('btn-hide-images')?.addEventListener('click', () => {
+      toggleHideImages();
+      this.syncA11yUIState();
+    });
+
+    root.getElementById('btn-image-tooltips')?.addEventListener('click', () => {
+      toggleImageTooltips();
+      this.syncA11yUIState();
+    });
+
+    // Reset All Settings
+    root.getElementById('btn-reset-all')?.addEventListener('click', () => {
+      resetAllSettings();
       this.syncA11yUIState();
     });
 
     // Sentence Actions
-    root.getElementById('btn-aac-speak').addEventListener('click', () => {
+    root.getElementById('btn-aac-speak')?.addEventListener('click', () => {
       this.playCurrentSentence();
     });
 
-    root.getElementById('btn-aac-backspace').addEventListener('click', () => {
+    root.getElementById('btn-aac-backspace')?.addEventListener('click', () => {
       removeLastCard();
       this.renderSentenceStrip();
     });
 
-    root.getElementById('btn-aac-clear').addEventListener('click', () => {
+    root.getElementById('btn-aac-clear')?.addEventListener('click', () => {
       clearSentence();
       this.renderSentenceStrip();
     });
 
     // Card Creator
     const creatorModal = root.getElementById('card-creator-modal');
-    root.getElementById('btn-open-creator').addEventListener('click', () => {
+    root.getElementById('btn-open-creator')?.addEventListener('click', () => {
       this.openCardCreator();
     });
-    root.getElementById('close-creator-btn').addEventListener('click', () => {
+    root.getElementById('close-creator-btn')?.addEventListener('click', () => {
       creatorModal.classList.add('hidden');
     });
-    root.getElementById('btn-cancel-creator').addEventListener('click', () => {
+    root.getElementById('btn-cancel-creator')?.addEventListener('click', () => {
       creatorModal.classList.add('hidden');
     });
-    root.getElementById('btn-save-card').addEventListener('click', () => {
+    root.getElementById('btn-save-card')?.addEventListener('click', () => {
       this.saveCustomCard();
     });
 
-    // Optimized Image File Compression
+    // Image Compression
     const imageInput = root.getElementById('input-card-image');
-    imageInput.addEventListener('change', async (e) => {
+    imageInput?.addEventListener('change', async (e) => {
       const file = e.target.files[0];
       if (file) {
         try {
@@ -479,12 +773,12 @@ class AksesKitaElement extends HTMLElement {
       }
     });
 
-    // Audio recording button
+    // Audio Recording
     const recordBtn = root.getElementById('btn-record-voice');
     const recordText = root.getElementById('btn-record-text');
     const recordStatus = root.getElementById('recorder-status');
 
-    recordBtn.addEventListener('click', async () => {
+    recordBtn?.addEventListener('click', async () => {
       if (!this.isRecording) {
         try {
           await startAudioRecording();
@@ -510,7 +804,7 @@ class AksesKitaElement extends HTMLElement {
     });
 
     // Backup & Restore
-    root.getElementById('btn-export-aac').addEventListener('click', async () => {
+    root.getElementById('btn-export-aac')?.addEventListener('click', async () => {
       try {
         const backupJson = await exportBackup();
         const blob = new Blob([backupJson], { type: 'application/json' });
@@ -526,11 +820,11 @@ class AksesKitaElement extends HTMLElement {
     });
 
     const importInput = root.getElementById('import-file-input');
-    root.getElementById('btn-import-aac').addEventListener('click', () => {
+    root.getElementById('btn-import-aac')?.addEventListener('click', () => {
       importInput.click();
     });
 
-    importInput.addEventListener('change', async (e) => {
+    importInput?.addEventListener('change', async (e) => {
       const file = e.target.files[0];
       if (file) {
         const text = await file.text();
@@ -587,12 +881,12 @@ class AksesKitaElement extends HTMLElement {
         const panel = this.shadowRoot.getElementById('a11y-panel');
         const aacModal = this.shadowRoot.getElementById('aac-modal');
         const creatorModal = this.shadowRoot.getElementById('card-creator-modal');
-        if (!creatorModal.classList.contains('hidden')) {
+        if (creatorModal && !creatorModal.classList.contains('hidden')) {
           creatorModal.classList.add('hidden');
-        } else if (!aacModal.classList.contains('hidden')) {
+        } else if (aacModal && !aacModal.classList.contains('hidden')) {
           aacModal.classList.add('hidden');
           stopSentencePlayback();
-        } else if (!panel.classList.contains('hidden')) {
+        } else if (panel && !panel.classList.contains('hidden')) {
           panel.classList.add('hidden');
         }
       }
@@ -601,22 +895,61 @@ class AksesKitaElement extends HTMLElement {
 
   syncA11yUIState() {
     const root = this.shadowRoot;
-    const currentScale = getFontScale();
-    const isDyslexia = isDyslexiaEnabled();
-    const currentContrast = getContrast();
-    const isLinks = isHighlightLinksEnabled();
-    const isGuide = isReadingGuideEnabled();
+    const activeProfile = getActiveProfile();
+    const scale = getFontScale();
+    const bold = isFontBold();
+    const lh = getLineHeight();
+    const ls = getLetterSpacing();
+    const dyslexia = isDyslexiaEnabled();
+    const links = isHighlightLinksEnabled();
+    const titles = isHighlightTitlesEnabled();
+    const align = getTextAlign();
+    const contrast = getContrast();
+    const guide = isReadingGuideEnabled();
+    const mask = isReadingMaskEnabled();
+    const focus = isSuperFocusEnabled();
+    const bigCursor = isBigCursorEnabled();
+    const stopAnim = isStopAnimationsEnabled();
+    const hideImgs = isHideImagesEnabled();
+    const tooltips = isImageTooltipsEnabled();
 
-    root.getElementById('btn-dyslexia')?.classList.toggle('active', isDyslexia);
-    root.getElementById('btn-font-inc')?.classList.toggle('active', currentScale > 0);
-    root.getElementById('btn-font-reset')?.classList.toggle('active', currentScale === 0);
+    // Profiles
+    root.querySelectorAll('.profile-card').forEach(c => {
+      c.classList.toggle('active', c.getAttribute('data-profile') === activeProfile);
+    });
 
-    root.getElementById('btn-contrast-high')?.classList.toggle('active', currentContrast === 'high');
-    root.getElementById('btn-contrast-mono')?.classList.toggle('active', currentContrast === 'mono');
-    root.getElementById('btn-contrast-invert')?.classList.toggle('active', currentContrast === 'invert');
+    // Font Sizing
+    root.getElementById('btn-font-dec')?.classList.toggle('active', scale === 0);
+    root.getElementById('btn-font-reset')?.classList.toggle('active', scale === 0);
+    root.getElementById('btn-font-inc')?.classList.toggle('active', scale === 2);
+    root.getElementById('btn-font-max')?.classList.toggle('active', scale >= 3);
 
-    root.getElementById('btn-highlight-links')?.classList.toggle('active', isLinks);
-    root.getElementById('btn-reading-guide')?.classList.toggle('active', isGuide);
+    // Typography
+    root.getElementById('btn-font-bold')?.classList.toggle('active', bold);
+    root.getElementById('btn-dyslexia')?.classList.toggle('active', dyslexia);
+    root.getElementById('btn-line-height')?.classList.toggle('active', lh > 0);
+    root.getElementById('btn-letter-spacing')?.classList.toggle('active', ls > 0);
+    root.getElementById('btn-highlight-links')?.classList.toggle('active', links);
+    root.getElementById('btn-highlight-titles')?.classList.toggle('active', titles);
+
+    // Alignment
+    root.querySelectorAll('.align-btn').forEach(b => {
+      b.classList.toggle('active', b.getAttribute('data-align') === align);
+    });
+
+    // Contrast
+    root.querySelectorAll('button[data-contrast]').forEach(b => {
+      b.classList.toggle('active', b.getAttribute('data-contrast') === contrast);
+    });
+
+    // Visual & Usability
+    root.getElementById('btn-reading-guide')?.classList.toggle('active', guide);
+    root.getElementById('btn-reading-mask')?.classList.toggle('active', mask);
+    root.getElementById('btn-super-focus')?.classList.toggle('active', focus);
+    root.getElementById('btn-big-cursor')?.classList.toggle('active', bigCursor);
+    root.getElementById('btn-stop-anim')?.classList.toggle('active', stopAnim);
+    root.getElementById('btn-hide-images')?.classList.toggle('active', hideImgs);
+    root.getElementById('btn-image-tooltips')?.classList.toggle('active', tooltips);
   }
 
   async loadAACData() {
@@ -750,7 +1083,6 @@ class AksesKitaElement extends HTMLElement {
       }
     };
 
-    // Bind card clicks & keyboard Enter/Space
     gridContainer.querySelectorAll('.aac-card').forEach(cardEl => {
       cardEl.addEventListener('click', (e) => {
         if (e.target.closest('.aac-card-delete-btn')) return;
@@ -765,7 +1097,6 @@ class AksesKitaElement extends HTMLElement {
       });
     });
 
-    // Bind delete clicks
     gridContainer.querySelectorAll('.aac-card-delete-btn').forEach(btn => {
       btn.addEventListener('click', async (e) => {
         e.stopPropagation();
@@ -809,7 +1140,6 @@ class AksesKitaElement extends HTMLElement {
       `;
     }).join('');
 
-    // Remove single card button listener
     container.querySelectorAll('.sentence-card-remove').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -846,7 +1176,6 @@ class AksesKitaElement extends HTMLElement {
     const catSelect = root.getElementById('select-card-cat');
     const isEn = getLanguage() === 'en';
 
-    // Populate categories
     catSelect.innerHTML = this.categories.map(c => `
       <option value="${c.id}">${(isEn && c.nameEn) ? c.nameEn : c.name}</option>
     `).join('');

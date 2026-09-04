@@ -1,10 +1,10 @@
 /**
- * AksesKita - A11y Contrast & Visual Filters Controller
+ * AksesKita - Color & Contrast Adjustments Controller
+ * High Contrast, Dark Contrast, Light Contrast, Monochrome,
+ * Low Saturation, High Saturation, and Invert Colors.
  */
 
 const STORAGE_KEY_CONTRAST = 'akseskita_contrast_mode';
-const STORAGE_KEY_LINKS = 'akseskita_highlight_links';
-const STORAGE_KEY_GUIDE = 'akseskita_reading_guide';
 
 export function getContrast() {
   try {
@@ -33,12 +33,28 @@ export function setContrast(mode) {
   ensureContrastOverlays();
 
   const root = document.documentElement;
-  root.classList.remove('akseskita-contrast-high', 'akseskita-monochrome', 'akseskita-invert');
+  root.classList.remove(
+    'akseskita-contrast-high',
+    'akseskita-contrast-dark',
+    'akseskita-contrast-light',
+    'akseskita-monochrome',
+    'akseskita-low-sat',
+    'akseskita-high-sat',
+    'akseskita-invert'
+  );
 
   if (mode === 'high') {
     root.classList.add('akseskita-contrast-high');
+  } else if (mode === 'dark') {
+    root.classList.add('akseskita-contrast-dark');
+  } else if (mode === 'light') {
+    root.classList.add('akseskita-contrast-light');
   } else if (mode === 'mono') {
     root.classList.add('akseskita-monochrome');
+  } else if (mode === 'low-sat') {
+    root.classList.add('akseskita-low-sat');
+  } else if (mode === 'high-sat') {
+    root.classList.add('akseskita-high-sat');
   } else if (mode === 'invert') {
     root.classList.add('akseskita-invert');
   }
@@ -50,98 +66,13 @@ export function setContrast(mode) {
   return mode;
 }
 
-export function isHighlightLinksEnabled() {
-  try {
-    return localStorage.getItem(STORAGE_KEY_LINKS) === 'true';
-  } catch (e) {
-    return false;
-  }
-}
-
-export function toggleHighlightLinks(forcedState = null) {
-  const root = document.documentElement;
-  const current = root.classList.contains('akseskita-highlight-links');
-  const next = forcedState !== null ? forcedState : !current;
-
-  if (next) {
-    root.classList.add('akseskita-highlight-links');
-  } else {
-    root.classList.remove('akseskita-highlight-links');
-  }
-
-  try {
-    localStorage.setItem(STORAGE_KEY_LINKS, next.toString());
-  } catch (e) {}
-
-  return next;
-}
-
-export function isReadingGuideEnabled() {
-  try {
-    return localStorage.getItem(STORAGE_KEY_GUIDE) === 'true';
-  } catch (e) {
-    return false;
-  }
-}
-
-let guideMouseMoveHandler = null;
-let rafId = null;
-
-export function toggleReadingGuide(forcedState = null) {
-  let guideEl = document.getElementById('akseskita-reading-guide');
-  if (!guideEl) {
-    guideEl = document.createElement('div');
-    guideEl.id = 'akseskita-reading-guide';
-    document.body.appendChild(guideEl);
-  }
-
-  const current = guideEl.style.display === 'block';
-  const next = forcedState !== null ? forcedState : !current;
-
-  if (next) {
-    guideEl.style.display = 'block';
-    if (!guideMouseMoveHandler) {
-      let latestY = 0;
-      guideMouseMoveHandler = (e) => {
-        latestY = e.clientY;
-        if (!rafId) {
-          rafId = requestAnimationFrame(() => {
-            guideEl.style.top = `${latestY}px`;
-            rafId = null;
-          });
-        }
-      };
-      window.addEventListener('mousemove', guideMouseMoveHandler, { passive: true });
-    }
-  } else {
-    guideEl.style.display = 'none';
-    if (rafId) {
-      cancelAnimationFrame(rafId);
-      rafId = null;
-    }
-    if (guideMouseMoveHandler) {
-      window.removeEventListener('mousemove', guideMouseMoveHandler);
-      guideMouseMoveHandler = null;
-    }
-  }
-
-  try {
-    localStorage.setItem(STORAGE_KEY_GUIDE, next.toString());
-  } catch (e) {}
-
-  return next;
-}
-
 export function resetContrast() {
   setContrast('normal');
-  toggleHighlightLinks(false);
-  toggleReadingGuide(false);
 }
 
 export function restoreContrastPreferences() {
   const contrast = getContrast();
-  if (contrast && contrast !== 'normal') setContrast(contrast);
-
-  if (isHighlightLinksEnabled()) toggleHighlightLinks(true);
-  if (isReadingGuideEnabled()) toggleReadingGuide(true);
+  if (contrast && contrast !== 'normal') {
+    setContrast(contrast);
+  }
 }

@@ -2,16 +2,19 @@ var AksesKita = (function () {
   'use strict';
 
   /**
-   * AksesKita - Host Injected Stylesheet
-   * Injected into host page document.head to style the target web page non-destructively.
+   * AksesKita - Comprehensive Host Injected Stylesheet
+   * Injected into document.head to style the target web page non-destructively.
    */
 
   const hostStyles = `
-/* AksesKita Font Scaler */
+/* ==========================================================================
+   1. Typography & Content Scaling
+   ========================================================================== */
 html.akseskita-scale-0 { --akseskita-font-scale: 1; }
 html.akseskita-scale-1 { --akseskita-font-scale: 1.15; }
 html.akseskita-scale-2 { --akseskita-font-scale: 1.30; }
 html.akseskita-scale-3 { --akseskita-font-scale: 1.50; }
+html.akseskita-scale-4 { --akseskita-font-scale: 1.75; }
 
 html[class*="akseskita-scale-"] body {
   font-size: calc(1rem * var(--akseskita-font-scale, 1)) !important;
@@ -27,10 +30,95 @@ html[class*="akseskita-scale-"] input,
 html[class*="akseskita-scale-"] textarea,
 html[class*="akseskita-scale-"] select {
   font-size: calc(1em * var(--akseskita-font-scale, 1));
-  line-height: calc(1.5 * var(--akseskita-font-scale, 1));
 }
 
-/* Dyslexia Friendly Mode */
+/* Font Weight */
+html.akseskita-font-bold body,
+html.akseskita-font-bold p,
+html.akseskita-font-bold span,
+html.akseskita-font-bold a,
+html.akseskita-font-bold li,
+html.akseskita-font-bold h1,
+html.akseskita-font-bold h2,
+html.akseskita-font-bold h3,
+html.akseskita-font-bold h4,
+html.akseskita-font-bold h5,
+html.akseskita-font-bold h6 {
+  font-weight: 700 !important;
+}
+
+/* Line Height */
+html.akseskita-lh-1 body,
+html.akseskita-lh-1 p,
+html.akseskita-lh-1 span,
+html.akseskita-lh-1 li,
+html.akseskita-lh-1 a {
+  line-height: 1.8 !important;
+}
+
+html.akseskita-lh-2 body,
+html.akseskita-lh-2 p,
+html.akseskita-lh-2 span,
+html.akseskita-lh-2 li,
+html.akseskita-lh-2 a {
+  line-height: 2.2 !important;
+}
+
+/* Letter Spacing */
+html.akseskita-ls-1 body,
+html.akseskita-ls-1 p,
+html.akseskita-ls-1 span,
+html.akseskita-ls-1 li,
+html.akseskita-ls-1 h1,
+html.akseskita-ls-1 h2,
+html.akseskita-ls-1 h3 {
+  letter-spacing: 0.08em !important;
+}
+
+html.akseskita-ls-2 body,
+html.akseskita-ls-2 p,
+html.akseskita-ls-2 span,
+html.akseskita-ls-2 li,
+html.akseskita-ls-2 h1,
+html.akseskita-ls-2 h2,
+html.akseskita-ls-2 h3 {
+  letter-spacing: 0.16em !important;
+}
+
+/* Text Alignment */
+html.akseskita-align-left body,
+html.akseskita-align-left p,
+html.akseskita-align-left div,
+html.akseskita-align-left article,
+html.akseskita-align-left section {
+  text-align: left !important;
+}
+
+html.akseskita-align-center body,
+html.akseskita-align-center p,
+html.akseskita-align-center div,
+html.akseskita-align-center article,
+html.akseskita-align-center section {
+  text-align: center !important;
+}
+
+html.akseskita-align-right body,
+html.akseskita-align-right p,
+html.akseskita-align-right div,
+html.akseskita-align-right article,
+html.akseskita-align-right section {
+  text-align: right !important;
+}
+
+html.akseskita-align-justify body,
+html.akseskita-align-justify p,
+html.akseskita-align-justify div,
+html.akseskita-align-justify article,
+html.akseskita-align-justify section {
+  text-align: justify !important;
+}
+
+/* Dyslexia Mode */
 @font-face {
   font-family: 'OpenDyslexic3';
   src: local('OpenDyslexic'), local('Comic Sans MS'), local('Verdana');
@@ -54,10 +142,39 @@ html.akseskita-dyslexia textarea {
   font-family: 'OpenDyslexic3', 'Verdana', 'Arial', sans-serif !important;
   letter-spacing: 0.05em !important;
   word-spacing: 0.15em !important;
-  line-height: 1.8 !important;
+  line-height: 1.85 !important;
 }
 
-/* High Contrast Mode */
+/* Highlight Links */
+html.akseskita-highlight-links a,
+html.akseskita-highlight-links a:visited {
+  background-color: #fef08a !important;
+  color: #0f172a !important;
+  text-decoration: underline 3px solid #ca8a04 !important;
+  font-weight: bold !important;
+  padding: 1px 5px !important;
+  border-radius: 4px !important;
+  box-shadow: 0 0 0 2px #eab308 !important;
+}
+
+/* Highlight Titles / Headings */
+html.akseskita-highlight-titles h1,
+html.akseskita-highlight-titles h2,
+html.akseskita-highlight-titles h3,
+html.akseskita-highlight-titles h4,
+html.akseskita-highlight-titles h5,
+html.akseskita-highlight-titles h6 {
+  background: rgba(2, 132, 199, 0.12) !important;
+  border-left: 5px solid #0284c7 !important;
+  padding-left: 10px !important;
+  border-radius: 4px !important;
+}
+
+/* ==========================================================================
+   2. Color & Contrast Schemes
+   ========================================================================== */
+
+/* High Contrast (Dark + Yellow/Cyan) */
 html.akseskita-contrast-high,
 html.akseskita-contrast-high body {
   background-color: #0b0f19 !important;
@@ -101,7 +218,64 @@ html.akseskita-contrast-high select {
   border: 2px solid #ffff00 !important;
 }
 
-/* Monochrome Mode with Non-Breaking Overlay */
+/* Dark Contrast (Dark + Crisp White) */
+html.akseskita-contrast-dark,
+html.akseskita-contrast-dark body {
+  background-color: #121212 !important;
+  color: #f8fafc !important;
+}
+
+html.akseskita-contrast-dark h1,
+html.akseskita-contrast-dark h2,
+html.akseskita-contrast-dark h3,
+html.akseskita-contrast-dark h4,
+html.akseskita-contrast-dark h5,
+html.akseskita-contrast-dark h6,
+html.akseskita-contrast-dark p,
+html.akseskita-contrast-dark span,
+html.akseskita-contrast-dark li,
+html.akseskita-contrast-dark div,
+html.akseskita-contrast-dark section,
+html.akseskita-contrast-dark article {
+  background-color: transparent !important;
+  color: #f8fafc !important;
+}
+
+html.akseskita-contrast-dark a {
+  color: #60a5fa !important;
+}
+
+/* Light Contrast (Pitch Black on Pure White) */
+html.akseskita-contrast-light,
+html.akseskita-contrast-light body {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+html.akseskita-contrast-light h1,
+html.akseskita-contrast-light h2,
+html.akseskita-contrast-light h3,
+html.akseskita-contrast-light h4,
+html.akseskita-contrast-light h5,
+html.akseskita-contrast-light h6,
+html.akseskita-contrast-light p,
+html.akseskita-contrast-light span,
+html.akseskita-contrast-light li,
+html.akseskita-contrast-light div {
+  color: #000000 !important;
+}
+
+/* Low Saturation (50%) */
+html.akseskita-low-sat body > *:not(akses-kita):not(#akseskita-reading-guide):not(#akseskita-tts-popover) {
+  filter: saturate(50%) !important;
+}
+
+/* High Saturation (180%) */
+html.akseskita-high-sat body > *:not(akses-kita):not(#akseskita-reading-guide):not(#akseskita-tts-popover) {
+  filter: saturate(180%) !important;
+}
+
+/* Monochrome Filter Overlay */
 #akseskita-monochrome-overlay {
   position: fixed;
   top: 0;
@@ -119,14 +293,13 @@ html.akseskita-monochrome #akseskita-monochrome-overlay {
   display: block !important;
 }
 
-/* Fallback if backdrop-filter is not supported */
 @supports not (backdrop-filter: grayscale(100%)) {
   html.akseskita-monochrome body > *:not(akses-kita):not(#akseskita-reading-guide):not(#akseskita-tts-popover):not(#akseskita-monochrome-overlay):not(#akseskita-invert-overlay) {
     filter: grayscale(100%) !important;
   }
 }
 
-/* Invert Filter Mode with Non-Breaking Overlay */
+/* Invert Filter Overlay */
 #akseskita-invert-overlay {
   position: fixed;
   top: 0;
@@ -151,31 +324,17 @@ html.akseskita-invert canvas {
   filter: invert(100%) hue-rotate(180deg) !important;
 }
 
-@supports not (backdrop-filter: invert(100%)) {
-  html.akseskita-invert body > *:not(akses-kita):not(#akseskita-reading-guide):not(#akseskita-tts-popover):not(#akseskita-monochrome-overlay):not(#akseskita-invert-overlay) {
-    filter: invert(100%) hue-rotate(180deg) !important;
-  }
-}
-
-/* Highlight Links Mode */
-html.akseskita-highlight-links a,
-html.akseskita-highlight-links a:visited {
-  background-color: #fef08a !important;
-  color: #0f172a !important;
-  text-decoration: underline 3px solid #ca8a04 !important;
-  font-weight: bold !important;
-  padding: 1px 4px !important;
-  border-radius: 3px !important;
-  box-shadow: 0 0 0 2px #eab308 !important;
-}
+/* ==========================================================================
+   3. Visual & Navigation Aids + Usability
+   ========================================================================== */
 
 /* Reading Line Guide */
 #akseskita-reading-guide {
   position: fixed;
   left: 0;
   width: 100vw;
-  height: 28px;
-  background: rgba(250, 204, 21, 0.28);
+  height: 32px;
+  background: rgba(250, 204, 21, 0.32);
   border-top: 2px solid #eab308;
   border-bottom: 2px solid #eab308;
   pointer-events: none;
@@ -183,6 +342,93 @@ html.akseskita-highlight-links a:visited {
   display: none;
   transform: translateY(-50%);
   transition: top 0.05s linear;
+}
+
+/* Reading Mask Curtains */
+.akseskita-mask-curtain {
+  position: fixed;
+  left: 0;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.72);
+  pointer-events: none;
+  z-index: 2147483640;
+  display: none;
+  transition: top 0.05s linear, height 0.05s linear;
+}
+
+#akseskita-reading-mask-top {
+  top: 0;
+  height: 200px;
+}
+
+#akseskita-reading-mask-bottom {
+  top: 320px;
+  bottom: 0;
+  height: auto;
+}
+
+/* Super Focus Mode */
+html.akseskita-super-focus body {
+  background-color: #000000 !important;
+}
+
+html.akseskita-super-focus body > *:not(akses-kita):not(#akseskita-reading-guide):not(#akseskita-tts-popover) {
+  opacity: 0.35 !important;
+  filter: blur(1px) !important;
+  transition: opacity 0.2s ease, filter 0.2s ease !important;
+}
+
+html.akseskita-super-focus .akseskita-focus-target,
+html.akseskita-super-focus .akseskita-focus-target * {
+  opacity: 1 !important;
+  filter: none !important;
+  outline: 3px solid #0284c7 !important;
+  outline-offset: 3px !important;
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-radius: 4px !important;
+}
+
+/* Big Cursor */
+html.akseskita-big-cursor,
+html.akseskita-big-cursor * {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24' fill='%23000000' stroke='%23ffffff' stroke-width='1.5'%3E%3Cpath d='M3 3l7 18 3-7 7-3L3 3z'/%3E%3C/svg%3E"), auto !important;
+}
+
+/* Stop Animations */
+html.akseskita-stop-anim *,
+html.akseskita-stop-anim *::before,
+html.akseskita-stop-anim *::after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+
+/* Hide Images */
+html.akseskita-hide-images img,
+html.akseskita-hide-images svg:not(akses-kita svg),
+html.akseskita-hide-images picture,
+html.akseskita-hide-images video,
+html.akseskita-hide-images [style*="background-image"] {
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* Image Tooltips Badge */
+#akseskita-image-tooltip-badge {
+  position: absolute;
+  z-index: 2147483644;
+  display: none;
+  background: rgba(15, 23, 42, 0.94);
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* Quick TTS Floating Popover */
@@ -311,12 +557,12 @@ html.akseskita-highlight-links a:visited {
   position: fixed;
   bottom: 84px;
   right: 24px;
-  width: 360px;
+  width: 420px;
   max-width: calc(100vw - 32px);
   max-height: calc(100vh - 100px);
   background: #ffffff;
   border: 1px solid var(--ak-border);
-  border-radius: 18px;
+  border-radius: 20px;
   box-shadow: var(--ak-shadow-xl);
   z-index: 2147483646;
   overflow-y: auto;
@@ -345,23 +591,25 @@ html.akseskita-highlight-links a:visited {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 20px;
+  padding: 14px 18px;
   background: #f8fafc;
   border-bottom: 1px solid var(--ak-border);
-  border-top-left-radius: 18px;
-  border-top-right-radius: 18px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .panel-title-wrapper {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .panel-title-wrapper h3 {
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--ak-text-main);
+  letter-spacing: -0.02em;
 }
 
 .panel-title-badge {
@@ -370,7 +618,7 @@ html.akseskita-highlight-links a:visited {
   text-transform: uppercase;
   background: #e0f2fe;
   color: #0369a1;
-  padding: 2px 8px;
+  padding: 2px 7px;
   border-radius: 9999px;
   letter-spacing: 0.05em;
 }
@@ -392,30 +640,30 @@ html.akseskita-highlight-links a:visited {
   font-weight: 700;
   padding: 3px 8px;
   border-radius: 9999px;
-  color: var(--ak-text-muted);
+  color: #475569;
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
 .lang-btn.active {
-  background: #0284c7;
-  color: #ffffff;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  background: #ffffff;
+  color: #0284c7;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .btn-icon-close {
-  background: transparent;
+  background: none;
   border: none;
-  font-size: 20px;
+  font-size: 22px;
   color: var(--ak-text-muted);
   cursor: pointer;
-  width: 32px;
-  height: 32px;
+  padding: 4px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
-  transition: all 0.15s ease;
+  line-height: 1;
+  transition: background 0.15s ease;
 }
 
 .btn-icon-close:hover {
@@ -423,32 +671,148 @@ html.akseskita-highlight-links a:visited {
   color: var(--ak-text-main);
 }
 
-/* Panel Body & Sections */
+/* Panel Category Navigation Tabs */
+.panel-nav-tabs {
+  display: flex;
+  background: #ffffff;
+  border-bottom: 1px solid var(--ak-border);
+  padding: 6px 12px;
+  gap: 6px;
+  overflow-x: auto;
+  position: sticky;
+  top: 56px;
+  z-index: 9;
+}
+
+.panel-tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.panel-tab-btn:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.panel-tab-btn.active {
+  background: #e0f2fe;
+  color: #0284c7;
+  border-color: #bae6fd;
+}
+
+/* Panel Body */
 .panel-body {
-  padding: 18px 20px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 18px;
 }
 
-.panel-section {
+/* Section Header */
+.section-label {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+  margin-bottom: 8px;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* AAC Launcher CTA */
+.btn-aac-launch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+  transition: all 0.2s ease;
+}
+
+.btn-aac-launch:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(245, 158, 11, 0.4);
+  background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+}
+
+/* Preset Profile Cards Grid */
+.profiles-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 10px;
 }
 
-.section-label {
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--ak-text-muted);
+.profile-card {
   display: flex;
-  align-items: center;
-  gap: 6px;
+  flex-direction: column;
+  padding: 12px;
+  background: #f8fafc;
+  border: 1px solid var(--ak-border);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: left;
 }
 
-/* Button Group (Grid / Flex) */
+.profile-card:hover {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+.profile-card.active {
+  background: #f0fdf4;
+  border-color: #22c55e;
+  box-shadow: 0 0 0 1px #22c55e;
+}
+
+.profile-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.profile-card-icon {
+  font-size: 18px;
+}
+
+.profile-card-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.profile-card-desc {
+  font-size: 10px;
+  color: #64748b;
+  line-height: 1.35;
+}
+
+/* Generic Button Grid */
 .button-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -470,12 +834,12 @@ html.akseskita-highlight-links a:visited {
   justify-content: center;
   gap: 6px;
   padding: 10px 8px;
-  background: var(--ak-card-bg);
+  background: #f8fafc;
   border: 1px solid var(--ak-border);
-  border-radius: 10px;
+  border-radius: 12px;
   color: var(--ak-text-main);
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 11px;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.15s ease;
   user-select: none;
@@ -483,56 +847,65 @@ html.akseskita-highlight-links a:visited {
 }
 
 .tool-btn:hover {
-  background: #f1f5f9;
+  background: #ffffff;
   border-color: #cbd5e1;
-  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
 .tool-btn.active {
   background: #e0f2fe;
   border-color: #0284c7;
-  color: #0369a1;
-  font-weight: 700;
+  color: #0284c7;
+  box-shadow: 0 0 0 1px #0284c7;
 }
 
-.tool-btn .btn-icon {
+.btn-icon {
   font-size: 18px;
 }
 
-/* Big Action CTA (AAC & Reader) */
-.btn-aac-launch {
-  width: 100%;
+/* Text Alignment Segmented Control */
+.align-segmented-bar {
+  display: flex;
+  background: #f1f5f9;
+  border-radius: 10px;
+  padding: 3px;
+  gap: 3px;
+}
+
+.align-btn {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  padding: 14px;
-  background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
-  color: #ffffff;
+  padding: 6px 0;
   border: none;
-  border-radius: 12px;
-  font-size: 15px;
-  font-weight: 700;
+  background: transparent;
+  border-radius: 7px;
+  font-size: 14px;
+  color: #475569;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
 }
 
-.btn-aac-launch:hover {
-  background: linear-gradient(135deg, #15803d 0%, #166534 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(22, 163, 74, 0.4);
+.align-btn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
 }
 
+.align-btn.active {
+  background: #ffffff;
+  color: #0284c7;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Panel Footer */
 .panel-footer {
-  padding: 12px 20px;
-  background: #f8fafc;
-  border-top: 1px solid var(--ak-border);
-  border-bottom-left-radius: 18px;
-  border-bottom-right-radius: 18px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 12px 18px;
+  background: #f8fafc;
+  border-top: 1px solid var(--ak-border);
   font-size: 11px;
   color: var(--ak-text-muted);
 }
@@ -541,27 +914,27 @@ html.akseskita-highlight-links a:visited {
   background: none;
   border: none;
   color: #ef4444;
-  font-size: 11px;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 700;
   cursor: pointer;
-  text-decoration: underline;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background 0.15s ease;
 }
 
 .reset-link:hover {
-  color: #b91c1c;
+  background: #fee2e2;
 }
 `;
 
   const aacModalStyles = `
-/* Fullscreen AAC Modal */
+/* Fullscreen AAC Communicator Backdrop */
 .aac-backdrop {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  inset: 0;
   background: rgba(15, 23, 42, 0.75);
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   z-index: 2147483647;
   display: flex;
   align-items: center;
@@ -579,50 +952,51 @@ html.akseskita-highlight-links a:visited {
   to { opacity: 1; }
 }
 
+/* AAC Window Card */
 .aac-window {
-  width: 1000px;
+  width: 960px;
   max-width: 100%;
-  height: 92vh;
+  height: 88vh;
   max-height: 840px;
   background: #ffffff;
-  border-radius: 20px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  border-radius: 24px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* Modal Header */
+/* AAC Header */
 .aac-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 24px;
-  background: #f8fafc;
-  border-bottom: 1px solid var(--ak-border);
+  padding: 18px 24px;
+  background: #ffffff;
+  border-bottom: 2px solid #f1f5f9;
 }
 
 .aac-header-left {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
 }
 
 .aac-header-icon {
-  width: 40px;
-  height: 40px;
-  background: #e0f2fe;
-  color: #0284c7;
-  border-radius: 12px;
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: #ffffff;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
+  font-size: 24px;
 }
 
 .aac-header-title {
-  font-size: 18px;
+  font-size: 19px;
   font-weight: 800;
   color: #0f172a;
 }
@@ -639,30 +1013,27 @@ html.akseskita-highlight-links a:visited {
 }
 
 .btn-secondary-action {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 12px;
-  background: #ffffff;
-  border: 1px solid var(--ak-border);
-  border-radius: 8px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--ak-text-main);
+  padding: 8px 14px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  color: #334155;
+  font-size: 13px;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
 .btn-secondary-action:hover {
-  background: #f1f5f9;
-  border-color: #cbd5e1;
+  background: #e2e8f0;
+  color: #0f172a;
 }
 
-/* Sentence Strip Bar (Pita Kalimat) */
+/* Sentence Strip (Pita Kalimat) */
 .sentence-strip-wrapper {
-  background: #f1f5f9;
-  padding: 14px 20px;
-  border-bottom: 2px solid var(--ak-border);
+  background: #f8fafc;
+  border-bottom: 2px solid #e2e8f0;
+  padding: 14px 24px;
   display: flex;
   align-items: center;
   gap: 16px;
@@ -670,82 +1041,66 @@ html.akseskita-highlight-links a:visited {
 
 .sentence-items-container {
   flex: 1;
-  min-height: 72px;
-  background: #ffffff;
-  border: 2px dashed #cbd5e1;
-  border-radius: 14px;
   display: flex;
   align-items: center;
   gap: 10px;
+  min-height: 64px;
+  background: #ffffff;
+  border: 2px dashed #cbd5e1;
+  border-radius: 16px;
   padding: 8px 14px;
   overflow-x: auto;
   scroll-behavior: smooth;
 }
 
-.sentence-items-container.active-listening {
-  border-color: #16a34a;
-  background: #f0fdf4;
-}
-
 .sentence-empty-placeholder {
   color: #94a3b8;
-  font-size: 13px;
+  font-size: 14px;
   font-style: italic;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  user-select: none;
 }
 
-/* Individual Card in Sentence Strip */
 .sentence-card {
   display: flex;
   align-items: center;
   gap: 8px;
+  background: #f1f5f9;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
   padding: 6px 12px;
-  background: #ffffff;
-  border: 2px solid #0284c7;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
-  flex-shrink: 0;
-  cursor: pointer;
-  animation: popIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  transition: all 0.2s ease;
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f172a;
+  white-space: nowrap;
+  animation: cardPop 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.15s ease;
 }
 
 .sentence-card.highlight-reading {
-  border-color: #16a34a;
-  background: #dcfce7;
-  transform: scale(1.1);
-  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.4);
-}
-
-.sentence-card-icon {
-  font-size: 20px;
-}
-
-.sentence-card-label {
-  font-size: 13px;
-  font-weight: 700;
-  color: #0f172a;
+  background: #fef08a !important;
+  border-color: #ca8a04 !important;
+  transform: scale(1.08);
+  box-shadow: 0 4px 12px rgba(202, 138, 4, 0.3);
 }
 
 .sentence-card-remove {
-  font-size: 14px;
-  color: #94a3b8;
-  border: none;
   background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
-  padding: 0 2px;
+  margin-left: 4px;
+  border-radius: 50%;
+  padding: 0 4px;
 }
 
 .sentence-card-remove:hover {
   color: #ef4444;
 }
 
-/* Sentence Control Buttons */
 .sentence-actions {
   display: flex;
-  align-items: center;
   gap: 8px;
 }
 
@@ -757,218 +1112,211 @@ html.akseskita-highlight-links a:visited {
   background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
   color: #ffffff;
   border: none;
-  border-radius: 12px;
+  border-radius: 14px;
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 800;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.35);
-  transition: all 0.15s ease;
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
+  transition: all 0.2s ease;
 }
 
 .btn-speak-main:hover {
-  background: linear-gradient(135deg, #15803d 0%, #166534 100%);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(22, 163, 74, 0.4);
 }
 
 .btn-strip-action {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 8px 12px;
-  background: #ffffff;
-  border: 1px solid var(--ak-border);
-  border-radius: 10px;
-  color: var(--ak-text-main);
-  font-size: 11px;
-  font-weight: 600;
+  gap: 6px;
+  padding: 10px 14px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 700;
   cursor: pointer;
-  min-width: 54px;
   transition: all 0.15s ease;
 }
 
 .btn-strip-action:hover {
-  background: #fee2e2;
-  border-color: #fca5a5;
-  color: #b91c1c;
+  background: #e2e8f0;
+  color: #0f172a;
 }
 
-/* Category Tabs Bar */
+/* Category Filter Bar */
 .category-tabs-bar {
   display: flex;
-  align-items: center;
   gap: 8px;
-  padding: 12px 20px;
+  padding: 12px 24px;
   background: #ffffff;
-  border-bottom: 1px solid var(--ak-border);
+  border-bottom: 1px solid #e2e8f0;
   overflow-x: auto;
 }
 
 .cat-tab-btn {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   padding: 8px 16px;
   background: #f8fafc;
-  border: 1px solid var(--ak-border);
-  border-radius: 9999px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
   font-size: 13px;
-  font-weight: 600;
-  color: var(--ak-text-muted);
+  font-weight: 700;
+  color: #475569;
   cursor: pointer;
   white-space: nowrap;
   transition: all 0.15s ease;
 }
 
 .cat-tab-btn:hover {
-  background: #e2e8f0;
-  color: var(--ak-text-main);
+  background: #f1f5f9;
+  color: #0f172a;
 }
 
 .cat-tab-btn.active {
   background: #0284c7;
   color: #ffffff;
   border-color: #0284c7;
-  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.35);
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.3);
 }
 
-/* Card Grid Main View */
+/* Main Cards Grid View */
 .aac-body {
   flex: 1;
-  padding: 20px;
+  padding: 20px 24px;
   overflow-y: auto;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
   gap: 14px;
   align-content: start;
 }
 
-/* AAC Single Card in Grid */
 .aac-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 14px 10px;
   background: #ffffff;
-  border: 2px solid var(--ak-border);
-  border-radius: 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 18px;
   cursor: pointer;
-  user-select: none;
-  position: relative;
   transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+  text-align: center;
+  user-select: none;
 }
 
 .aac-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-4px) scale(1.02);
   border-color: #0284c7;
   box-shadow: 0 10px 20px -5px rgba(2, 132, 199, 0.2);
 }
 
-.aac-card:active {
-  transform: scale(0.96);
+.aac-card:focus-visible {
+  outline: 3px solid #0284c7;
+  outline-offset: 2px;
 }
 
 .aac-card-icon-wrap {
-  width: 54px;
-  height: 54px;
-  border-radius: 12px;
+  width: 58px;
+  height: 58px;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 32px;
+  font-size: 30px;
   margin-bottom: 8px;
-  background: #f8fafc;
-  overflow: hidden;
+  border: 1px solid #e2e8f0;
 }
 
 .aac-card-icon-wrap img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 13px;
 }
 
 .aac-card-label {
   font-size: 13px;
   font-weight: 700;
-  text-align: center;
   color: #0f172a;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
 .aac-card-badge-custom {
   position: absolute;
-  top: 6px;
-  right: 6px;
+  top: 8px;
+  left: 8px;
   font-size: 9px;
+  font-weight: 800;
   background: #fef08a;
   color: #854d0e;
-  padding: 2px 5px;
-  border-radius: 4px;
-  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 6px;
 }
 
 .aac-card-delete-btn {
   position: absolute;
   top: 6px;
-  left: 6px;
-  width: 20px;
-  height: 20px;
+  right: 6px;
+  width: 22px;
+  height: 22px;
   background: #fee2e2;
   color: #ef4444;
   border: none;
   border-radius: 50%;
-  font-size: 11px;
-  display: none;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
 }
 
-.aac-card:hover .aac-card-delete-btn {
-  display: flex;
+.aac-card-delete-btn:hover {
+  background: #ef4444;
+  color: #ffffff;
 }
 
-/* Floating Add Card Button */
+/* Floating Add Card Action */
 .btn-fab-add {
   position: absolute;
   bottom: 24px;
-  right: 24px;
+  right: 32px;
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 18px;
-  background: #0284c7;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
   color: #ffffff;
   border: none;
   border-radius: 9999px;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 800;
   cursor: pointer;
-  box-shadow: 0 10px 25px -5px rgba(2, 132, 199, 0.5);
+  box-shadow: 0 10px 25px rgba(2, 132, 199, 0.4);
   transition: all 0.2s ease;
 }
 
 .btn-fab-add:hover {
-  background: #0369a1;
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 14px 28px rgba(2, 132, 199, 0.5);
 }
 
-/* Custom Card Creator Modal */
+/* Custom Card Creator Dialog */
 .custom-card-modal {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(15, 23, 42, 0.85);
+  inset: 0;
+  background: rgba(15, 23, 42, 0.7);
   backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
-  z-index: 10;
+  z-index: 20;
 }
 
 .custom-card-modal.hidden {
@@ -976,15 +1324,15 @@ html.akseskita-highlight-links a:visited {
 }
 
 .custom-card-dialog {
-  width: 480px;
-  max-width: 100%;
+  width: 440px;
+  max-width: 90%;
   background: #ffffff;
-  border-radius: 18px;
+  border-radius: 20px;
   padding: 24px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  box-shadow: var(--ak-shadow-xl);
+  gap: 14px;
 }
 
 .form-group {
@@ -1000,67 +1348,58 @@ html.akseskita-highlight-links a:visited {
 }
 
 .form-input, .form-select {
-  padding: 10px 12px;
-  border: 1px solid var(--ak-border);
-  border-radius: 8px;
+  padding: 10px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
   font-size: 14px;
-  color: #0f172a;
+  outline: none;
+  transition: border-color 0.15s ease;
 }
 
 .form-input:focus, .form-select:focus {
-  outline: 2px solid #0284c7;
   border-color: #0284c7;
 }
 
-/* Audio Record Section in Creator */
 .recorder-box {
-  border: 1px dashed #cbd5e1;
-  border-radius: 10px;
-  padding: 12px;
-  background: #f8fafc;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 10px 14px;
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 10px;
 }
 
 .btn-record {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 14px;
-  background: #ef4444;
-  color: #ffffff;
-  border: none;
+  padding: 6px 12px;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
   border-radius: 8px;
   font-size: 13px;
   font-weight: 700;
   cursor: pointer;
+  transition: all 0.15s ease;
 }
 
 .btn-record.recording {
-  animation: pulseRecord 1s infinite alternate;
+  background: #ef4444;
+  color: #ffffff;
+  border-color: #dc2626;
+  animation: pulse 1s infinite;
 }
 
-@keyframes pulseRecord {
-  from { opacity: 1; transform: scale(1); }
-  to { opacity: 0.7; transform: scale(0.96); }
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 
-@media (max-width: 640px) {
-  .sentence-strip-wrapper {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .aac-body {
-    grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
-    gap: 10px;
-    padding: 12px;
-  }
-  .aac-card-icon-wrap {
-    width: 44px;
-    height: 44px;
-    font-size: 26px;
-  }
+@keyframes cardPop {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
 }
 `;
 
@@ -1819,25 +2158,80 @@ html.akseskita-highlight-links a:visited {
 
   const translations = {
     id: {
-      // Toolbar A11y
+      // Toolbar A11y Header & Tabs
       toolbarTitle: 'AksesKita',
-      a11yBadge: 'A11y',
+      a11yBadge: 'A11y Pro',
       openAacBtn: 'Buka Papan Bicara (AAC)',
-      textSettings: 'Ukuran & Bentuk Teks',
+      tabProfiles: 'Profil Cepat',
+      tabContent: 'Tipografi',
+      tabColor: 'Warna',
+      tabVisual: 'Alat Visual',
+      shortcutHint: 'Pintasan',
+      resetAll: 'Atur Ulang Semua',
+      close: 'Tutup',
+
+      // Preset Profiles
+      profilesSection: '🌟 Profil Aksesibilitas 1-Klik',
+      profileSeizureTitle: 'Aman Kejang',
+      profileSeizureDesc: 'Hentikan animasi & kurangi saturasi warna',
+      profileVisionTitle: 'Gangguan Penglihatan',
+      profileVisionDesc: 'Kontras tinggi, perbesar teks, & sorot tautan',
+      profileAdhdTitle: 'Ramah ADHD',
+      profileAdhdDesc: 'Fokus intensif, tirai baca, kurangi gangguan',
+      profileCognitiveTitle: 'Kognitif & Belajar',
+      profileCognitiveDesc: 'Font disleksia, spasi luas, & garis pandu',
+      profileMotorTitle: 'Gangguan Motorik',
+      profileMotorDesc: 'Kursor besar & navigasi fokus ramah keyboard',
+      profileBlindTitle: 'Tunanetra Total',
+      profileBlindDesc: 'Pengoptimalan screen reader & navigasi suara',
+
+      // Content & Typography Adjustments
+      contentSection: '🔤 Konten & Tipografi',
+      fontSize: 'Ukuran Teks',
       fontSmall: 'Kecil',
       fontNormal: 'Normal',
       fontLarge: 'Besar',
-      fontDyslexia: 'Disleksia',
-      contrastSettings: 'Kontras & Warna',
-      contrastHigh: 'Kontras Tinggi',
-      contrastMono: 'Monokrom',
-      contrastInvert: 'Balik Warna',
-      visualAids: 'Alat Bantu Visual',
+      fontXLarge: 'Sangat Besar',
+      fontBolder: 'Tebalkan Teks',
+      lineHeight: 'Spasi Baris',
+      lineHeightNormal: 'Normal',
+      lineHeightWide: 'Lebar',
+      lineHeightWider: 'Sangat Lebar',
+      letterSpacing: 'Spasi Huruf',
+      letterSpacingNormal: 'Normal',
+      letterSpacingWide: 'Lebar',
+      letterSpacingWider: 'Sangat Lebar',
+      fontDyslexia: 'Font Disleksia',
       highlightLinks: 'Sorot Tautan',
-      readingGuide: 'Garis Pandu',
-      resetAll: 'Atur Ulang Semua',
-      shortcutHint: 'Pintasan',
-      close: 'Tutup',
+      highlightTitles: 'Sorot Judul',
+      textAlign: 'Perataan Teks',
+      alignLeft: 'Kiri',
+      alignCenter: 'Tengah',
+      alignRight: 'Kanan',
+      alignJustify: 'Rata Kanan Kiri',
+
+      // Color & Contrast
+      colorSection: '🎨 Warna & Kontras',
+      contrastHigh: 'Kontras Tinggi',
+      contrastDark: 'Kontras Gelap',
+      contrastLight: 'Kontras Terang',
+      contrastMono: 'Monokrom',
+      contrastLowSat: 'Saturasi Rendah',
+      contrastHighSat: 'Saturasi Tinggi',
+      contrastInvert: 'Balik Warna',
+
+      // Visual & Navigation Aids
+      visualSection: '🔍 Alat Bantu Visual & Navigasi',
+      readingGuide: 'Garis Pandu Baca',
+      readingMask: 'Tirai Baca (Mask)',
+      superFocus: 'Super Fokus',
+      bigCursor: 'Kursor Besar',
+
+      // Usability & Motion Utilities
+      usabilitySection: '🛠️ Utilitas & Kontrol Gerak',
+      stopAnimations: 'Hentikan Animasi',
+      hideImages: 'Sembunyikan Gambar',
+      imageTooltips: 'Tooltip Gambar',
 
       // AAC Modal
       aacTitle: 'AksesKita: Papan Bicara',
@@ -1878,25 +2272,80 @@ html.akseskita-highlight-links a:visited {
       ttsListen: 'Dengarkan',
     },
     en: {
-      // Toolbar A11y
+      // Toolbar A11y Header & Tabs
       toolbarTitle: 'AksesKita',
-      a11yBadge: 'A11y',
+      a11yBadge: 'A11y Pro',
       openAacBtn: 'Open AAC Communicator',
-      textSettings: 'Text Appearance',
+      tabProfiles: 'Profiles',
+      tabContent: 'Content',
+      tabColor: 'Color',
+      tabVisual: 'Visual Aids',
+      shortcutHint: 'Shortcuts',
+      resetAll: 'Reset All',
+      close: 'Close',
+
+      // Preset Profiles
+      profilesSection: '🌟 1-Click Accessibility Profiles',
+      profileSeizureTitle: 'Seizure Safe Profile',
+      profileSeizureDesc: 'Stops animations and reduces color saturation',
+      profileVisionTitle: 'Vision Impaired Profile',
+      profileVisionDesc: 'High contrast, larger font, & highlighted links',
+      profileAdhdTitle: 'ADHD Friendly Profile',
+      profileAdhdDesc: 'Reading mask, super focus, & lower distractions',
+      profileCognitiveTitle: 'Cognitive & Learning',
+      profileCognitiveDesc: 'Dyslexia font, wide spacing, & reading guide',
+      profileMotorTitle: 'Motor Impaired Profile',
+      profileMotorDesc: 'Big cursor & keyboard-friendly super focus',
+      profileBlindTitle: 'Blind Profile',
+      profileBlindDesc: 'Screen reader optimization & voice guidance',
+
+      // Content & Typography Adjustments
+      contentSection: '🔤 Content & Typography',
+      fontSize: 'Font Size',
       fontSmall: 'Small',
       fontNormal: 'Normal',
       fontLarge: 'Large',
-      fontDyslexia: 'Dyslexia',
-      contrastSettings: 'Contrast & Filters',
-      contrastHigh: 'High Contrast',
-      contrastMono: 'Monochrome',
-      contrastInvert: 'Invert Colors',
-      visualAids: 'Visual Aids',
+      fontXLarge: 'Extra Large',
+      fontBolder: 'Bolder Text',
+      lineHeight: 'Line Height',
+      lineHeightNormal: 'Normal',
+      lineHeightWide: 'Wide',
+      lineHeightWider: 'Extra Wide',
+      letterSpacing: 'Letter Spacing',
+      letterSpacingNormal: 'Normal',
+      letterSpacingWide: 'Wide',
+      letterSpacingWider: 'Extra Wide',
+      fontDyslexia: 'Dyslexia Font',
       highlightLinks: 'Highlight Links',
+      highlightTitles: 'Highlight Titles',
+      textAlign: 'Text Alignment',
+      alignLeft: 'Left',
+      alignCenter: 'Center',
+      alignRight: 'Right',
+      alignJustify: 'Justify',
+
+      // Color & Contrast
+      colorSection: '🎨 Color & Contrast',
+      contrastHigh: 'High Contrast',
+      contrastDark: 'Dark Contrast',
+      contrastLight: 'Light Contrast',
+      contrastMono: 'Monochrome',
+      contrastLowSat: 'Low Saturation',
+      contrastHighSat: 'High Saturation',
+      contrastInvert: 'Invert Colors',
+
+      // Visual & Navigation Aids
+      visualSection: '🔍 Visual & Navigation Aids',
       readingGuide: 'Reading Guide',
-      resetAll: 'Reset All',
-      shortcutHint: 'Shortcuts',
-      close: 'Close',
+      readingMask: 'Reading Mask',
+      superFocus: 'Super Focus',
+      bigCursor: 'Big Cursor',
+
+      // Usability & Motion Utilities
+      usabilitySection: '🛠️ Usability & Motion Control',
+      stopAnimations: 'Stop Animations',
+      hideImages: 'Hide Images',
+      imageTooltips: 'Image Tooltips',
 
       // AAC Modal
       aacTitle: 'AksesKita: AAC Communicator',
@@ -1968,12 +2417,21 @@ html.akseskita-highlight-links a:visited {
   }
 
   /**
-   * AksesKita - A11y Font Resizing & Dyslexia Mode Controller
+   * AksesKita - Advanced Typography & Content Adjustments Controller
+   * Font Resizing, Font Weight, Line Height, Letter Spacing, Dyslexia Mode,
+   * Link Highlighting, Title Highlighting, and Text Alignment.
    */
 
   const STORAGE_KEY_SCALE = 'akseskita_font_scale';
+  const STORAGE_KEY_WEIGHT = 'akseskita_font_weight';
+  const STORAGE_KEY_LINE_HEIGHT = 'akseskita_line_height';
+  const STORAGE_KEY_LETTER_SPACING = 'akseskita_letter_spacing';
   const STORAGE_KEY_DYSLEXIA = 'akseskita_dyslexia_mode';
+  const STORAGE_KEY_LINKS = 'akseskita_highlight_links';
+  const STORAGE_KEY_TITLES = 'akseskita_highlight_titles';
+  const STORAGE_KEY_ALIGN = 'akseskita_text_align';
 
+  // 1. Font Scale (0: 100%, 1: 115%, 2: 130%, 3: 150%, 4: 175%)
   function getFontScale() {
     try {
       return parseInt(localStorage.getItem(STORAGE_KEY_SCALE) || '0', 10);
@@ -1983,15 +2441,15 @@ html.akseskita-highlight-links a:visited {
   }
 
   function setFontScale(level) {
-    const clamped = Math.max(0, Math.min(3, level));
+    const clamped = Math.max(0, Math.min(4, level));
     const root = document.documentElement;
     
-    // Remove existing scale classes
     root.classList.remove(
       'akseskita-scale-0',
       'akseskita-scale-1',
       'akseskita-scale-2',
-      'akseskita-scale-3'
+      'akseskita-scale-3',
+      'akseskita-scale-4'
     );
 
     if (clamped > 0) {
@@ -2005,6 +2463,84 @@ html.akseskita-highlight-links a:visited {
     return clamped;
   }
 
+  // 2. Font Weight (normal, bold)
+  function isFontBold() {
+    try {
+      return localStorage.getItem(STORAGE_KEY_WEIGHT) === 'bold';
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function toggleFontBold(forcedState = null) {
+    const root = document.documentElement;
+    const current = root.classList.contains('akseskita-font-bold');
+    const next = forcedState !== null ? forcedState : !current;
+
+    if (next) {
+      root.classList.add('akseskita-font-bold');
+    } else {
+      root.classList.remove('akseskita-font-bold');
+    }
+
+    try {
+      localStorage.setItem(STORAGE_KEY_WEIGHT, next ? 'bold' : 'normal');
+    } catch (e) {}
+
+    return next;
+  }
+
+  // 3. Line Height (0: normal, 1: 1.8x, 2: 2.2x)
+  function getLineHeight() {
+    try {
+      return parseInt(localStorage.getItem(STORAGE_KEY_LINE_HEIGHT) || '0', 10);
+    } catch (e) {
+      return 0;
+    }
+  }
+
+  function setLineHeight(level) {
+    const clamped = Math.max(0, Math.min(2, level));
+    const root = document.documentElement;
+
+    root.classList.remove('akseskita-lh-1', 'akseskita-lh-2');
+    if (clamped > 0) {
+      root.classList.add(`akseskita-lh-${clamped}`);
+    }
+
+    try {
+      localStorage.setItem(STORAGE_KEY_LINE_HEIGHT, clamped.toString());
+    } catch (e) {}
+
+    return clamped;
+  }
+
+  // 4. Letter Spacing (0: normal, 1: +1px, 2: +2px)
+  function getLetterSpacing() {
+    try {
+      return parseInt(localStorage.getItem(STORAGE_KEY_LETTER_SPACING) || '0', 10);
+    } catch (e) {
+      return 0;
+    }
+  }
+
+  function setLetterSpacing(level) {
+    const clamped = Math.max(0, Math.min(2, level));
+    const root = document.documentElement;
+
+    root.classList.remove('akseskita-ls-1', 'akseskita-ls-2');
+    if (clamped > 0) {
+      root.classList.add(`akseskita-ls-${clamped}`);
+    }
+
+    try {
+      localStorage.setItem(STORAGE_KEY_LETTER_SPACING, clamped.toString());
+    } catch (e) {}
+
+    return clamped;
+  }
+
+  // 5. Dyslexia Mode
   function isDyslexiaEnabled() {
     try {
       return localStorage.getItem(STORAGE_KEY_DYSLEXIA) === 'true';
@@ -2031,26 +2567,129 @@ html.akseskita-highlight-links a:visited {
     return next;
   }
 
-  function resetFont() {
-    setFontScale(0);
-    toggleDyslexia(false);
+  // 6. Highlight Links
+  function isHighlightLinksEnabled() {
+    try {
+      return localStorage.getItem(STORAGE_KEY_LINKS) === 'true';
+    } catch (e) {
+      return false;
+    }
   }
 
+  function toggleHighlightLinks(forcedState = null) {
+    const root = document.documentElement;
+    const current = root.classList.contains('akseskita-highlight-links');
+    const next = forcedState !== null ? forcedState : !current;
+
+    if (next) {
+      root.classList.add('akseskita-highlight-links');
+    } else {
+      root.classList.remove('akseskita-highlight-links');
+    }
+
+    try {
+      localStorage.setItem(STORAGE_KEY_LINKS, next.toString());
+    } catch (e) {}
+
+    return next;
+  }
+
+  // 7. Highlight Headings / Titles
+  function isHighlightTitlesEnabled() {
+    try {
+      return localStorage.getItem(STORAGE_KEY_TITLES) === 'true';
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function toggleHighlightTitles(forcedState = null) {
+    const root = document.documentElement;
+    const current = root.classList.contains('akseskita-highlight-titles');
+    const next = forcedState !== null ? forcedState : !current;
+
+    if (next) {
+      root.classList.add('akseskita-highlight-titles');
+    } else {
+      root.classList.remove('akseskita-highlight-titles');
+    }
+
+    try {
+      localStorage.setItem(STORAGE_KEY_TITLES, next.toString());
+    } catch (e) {}
+
+    return next;
+  }
+
+  // 8. Text Alignment ('left', 'center', 'right', 'justify', 'default')
+  function getTextAlign() {
+    try {
+      return localStorage.getItem(STORAGE_KEY_ALIGN) || 'default';
+    } catch (e) {
+      return 'default';
+    }
+  }
+
+  function setTextAlign(align) {
+    const root = document.documentElement;
+    root.classList.remove(
+      'akseskita-align-left',
+      'akseskita-align-center',
+      'akseskita-align-right',
+      'akseskita-align-justify'
+    );
+
+    if (align && align !== 'default') {
+      root.classList.add(`akseskita-align-${align}`);
+    }
+
+    try {
+      localStorage.setItem(STORAGE_KEY_ALIGN, align);
+    } catch (e) {}
+
+    return align;
+  }
+
+  // Reset all typography
+  function resetFont() {
+    setFontScale(0);
+    toggleFontBold(false);
+    setLineHeight(0);
+    setLetterSpacing(0);
+    toggleDyslexia(false);
+    toggleHighlightLinks(false);
+    toggleHighlightTitles(false);
+    setTextAlign('default');
+  }
+
+  // Restore saved preferences
   function restoreFontPreferences() {
     const scale = getFontScale();
     if (scale > 0) setFontScale(scale);
 
-    const dyslexia = isDyslexiaEnabled();
-    if (dyslexia) toggleDyslexia(true);
+    if (isFontBold()) toggleFontBold(true);
+
+    const lh = getLineHeight();
+    if (lh > 0) setLineHeight(lh);
+
+    const ls = getLetterSpacing();
+    if (ls > 0) setLetterSpacing(ls);
+
+    if (isDyslexiaEnabled()) toggleDyslexia(true);
+    if (isHighlightLinksEnabled()) toggleHighlightLinks(true);
+    if (isHighlightTitlesEnabled()) toggleHighlightTitles(true);
+
+    const align = getTextAlign();
+    if (align && align !== 'default') setTextAlign(align);
   }
 
   /**
-   * AksesKita - A11y Contrast & Visual Filters Controller
+   * AksesKita - Color & Contrast Adjustments Controller
+   * High Contrast, Dark Contrast, Light Contrast, Monochrome,
+   * Low Saturation, High Saturation, and Invert Colors.
    */
 
   const STORAGE_KEY_CONTRAST = 'akseskita_contrast_mode';
-  const STORAGE_KEY_LINKS = 'akseskita_highlight_links';
-  const STORAGE_KEY_GUIDE = 'akseskita_reading_guide';
 
   function getContrast() {
     try {
@@ -2079,12 +2718,28 @@ html.akseskita-highlight-links a:visited {
     ensureContrastOverlays();
 
     const root = document.documentElement;
-    root.classList.remove('akseskita-contrast-high', 'akseskita-monochrome', 'akseskita-invert');
+    root.classList.remove(
+      'akseskita-contrast-high',
+      'akseskita-contrast-dark',
+      'akseskita-contrast-light',
+      'akseskita-monochrome',
+      'akseskita-low-sat',
+      'akseskita-high-sat',
+      'akseskita-invert'
+    );
 
     if (mode === 'high') {
       root.classList.add('akseskita-contrast-high');
+    } else if (mode === 'dark') {
+      root.classList.add('akseskita-contrast-dark');
+    } else if (mode === 'light') {
+      root.classList.add('akseskita-contrast-light');
     } else if (mode === 'mono') {
       root.classList.add('akseskita-monochrome');
+    } else if (mode === 'low-sat') {
+      root.classList.add('akseskita-low-sat');
+    } else if (mode === 'high-sat') {
+      root.classList.add('akseskita-high-sat');
     } else if (mode === 'invert') {
       root.classList.add('akseskita-invert');
     }
@@ -2096,31 +2751,34 @@ html.akseskita-highlight-links a:visited {
     return mode;
   }
 
-  function isHighlightLinksEnabled() {
-    try {
-      return localStorage.getItem(STORAGE_KEY_LINKS) === 'true';
-    } catch (e) {
-      return false;
+  function resetContrast() {
+    setContrast('normal');
+  }
+
+  function restoreContrastPreferences() {
+    const contrast = getContrast();
+    if (contrast && contrast !== 'normal') {
+      setContrast(contrast);
     }
   }
 
-  function toggleHighlightLinks(forcedState = null) {
-    const root = document.documentElement;
-    const current = root.classList.contains('akseskita-highlight-links');
-    const next = forcedState !== null ? forcedState : !current;
+  /**
+   * AksesKita - Visual Navigation Aids & Usability Controller
+   * Reading Guide, Reading Mask, Super Focus, Big Cursor,
+   * Stop Animations, Hide Images, and Image Tooltips.
+   */
 
-    if (next) {
-      root.classList.add('akseskita-highlight-links');
-    } else {
-      root.classList.remove('akseskita-highlight-links');
-    }
+  const STORAGE_KEY_GUIDE = 'akseskita_reading_guide';
+  const STORAGE_KEY_MASK = 'akseskita_reading_mask';
+  const STORAGE_KEY_SUPER_FOCUS = 'akseskita_super_focus';
+  const STORAGE_KEY_BIG_CURSOR = 'akseskita_big_cursor';
+  const STORAGE_KEY_STOP_ANIM = 'akseskita_stop_anim';
+  const STORAGE_KEY_HIDE_IMAGES = 'akseskita_hide_images';
+  const STORAGE_KEY_IMAGE_TOOLTIPS = 'akseskita_image_tooltips';
 
-    try {
-      localStorage.setItem(STORAGE_KEY_LINKS, next.toString());
-    } catch (e) {}
-
-    return next;
-  }
+  // 1. Reading Guide (horizontal line)
+  let guideMouseMoveHandler = null;
+  let guideRafId = null;
 
   function isReadingGuideEnabled() {
     try {
@@ -2129,9 +2787,6 @@ html.akseskita-highlight-links a:visited {
       return false;
     }
   }
-
-  let guideMouseMoveHandler = null;
-  let rafId = null;
 
   function toggleReadingGuide(forcedState = null) {
     let guideEl = document.getElementById('akseskita-reading-guide');
@@ -2145,15 +2800,18 @@ html.akseskita-highlight-links a:visited {
     const next = forcedState !== null ? forcedState : !current;
 
     if (next) {
+      // If mask is on, turn mask off
+      if (isReadingMaskEnabled()) toggleReadingMask(false);
+
       guideEl.style.display = 'block';
       if (!guideMouseMoveHandler) {
         let latestY = 0;
         guideMouseMoveHandler = (e) => {
           latestY = e.clientY;
-          if (!rafId) {
-            rafId = requestAnimationFrame(() => {
+          if (!guideRafId) {
+            guideRafId = requestAnimationFrame(() => {
               guideEl.style.top = `${latestY}px`;
-              rafId = null;
+              guideRafId = null;
             });
           }
         };
@@ -2161,9 +2819,9 @@ html.akseskita-highlight-links a:visited {
       }
     } else {
       guideEl.style.display = 'none';
-      if (rafId) {
-        cancelAnimationFrame(rafId);
-        rafId = null;
+      if (guideRafId) {
+        cancelAnimationFrame(guideRafId);
+        guideRafId = null;
       }
       if (guideMouseMoveHandler) {
         window.removeEventListener('mousemove', guideMouseMoveHandler);
@@ -2178,18 +2836,303 @@ html.akseskita-highlight-links a:visited {
     return next;
   }
 
-  function resetContrast() {
-    setContrast('normal');
-    toggleHighlightLinks(false);
-    toggleReadingGuide(false);
+  // 2. Reading Mask (dimmed curtain with focus slit)
+  let maskMouseMoveHandler = null;
+  let maskRafId = null;
+
+  function isReadingMaskEnabled() {
+    try {
+      return localStorage.getItem(STORAGE_KEY_MASK) === 'true';
+    } catch (e) {
+      return false;
+    }
   }
 
-  function restoreContrastPreferences() {
-    const contrast = getContrast();
-    if (contrast && contrast !== 'normal') setContrast(contrast);
+  function toggleReadingMask(forcedState = null) {
+    let maskTop = document.getElementById('akseskita-reading-mask-top');
+    let maskBottom = document.getElementById('akseskita-reading-mask-bottom');
 
-    if (isHighlightLinksEnabled()) toggleHighlightLinks(true);
+    if (!maskTop || !maskBottom) {
+      maskTop = document.createElement('div');
+      maskTop.id = 'akseskita-reading-mask-top';
+      maskTop.className = 'akseskita-mask-curtain';
+
+      maskBottom = document.createElement('div');
+      maskBottom.id = 'akseskita-reading-mask-bottom';
+      maskBottom.className = 'akseskita-mask-curtain';
+
+      document.body.appendChild(maskTop);
+      document.body.appendChild(maskBottom);
+    }
+
+    const current = maskTop.style.display === 'block';
+    const next = forcedState !== null ? forcedState : !current;
+
+    if (next) {
+      // If reading guide is on, turn guide off
+      if (isReadingGuideEnabled()) toggleReadingGuide(false);
+
+      maskTop.style.display = 'block';
+      maskBottom.style.display = 'block';
+
+      const slitHeight = 100;
+
+      if (!maskMouseMoveHandler) {
+        let latestY = window.innerHeight / 2;
+        maskMouseMoveHandler = (e) => {
+          latestY = e.clientY;
+          if (!maskRafId) {
+            maskRafId = requestAnimationFrame(() => {
+              const topHeight = Math.max(0, latestY - slitHeight / 2);
+              const bottomTop = Math.min(window.innerHeight, latestY + slitHeight / 2);
+              maskTop.style.height = `${topHeight}px`;
+              maskBottom.style.top = `${bottomTop}px`;
+              maskRafId = null;
+            });
+          }
+        };
+        window.addEventListener('mousemove', maskMouseMoveHandler, { passive: true });
+      }
+    } else {
+      maskTop.style.display = 'none';
+      maskBottom.style.display = 'none';
+      if (maskRafId) {
+        cancelAnimationFrame(maskRafId);
+        maskRafId = null;
+      }
+      if (maskMouseMoveHandler) {
+        window.removeEventListener('mousemove', maskMouseMoveHandler);
+        maskMouseMoveHandler = null;
+      }
+    }
+
+    try {
+      localStorage.setItem(STORAGE_KEY_MASK, next.toString());
+    } catch (e) {}
+
+    return next;
+  }
+
+  // 3. Super Focus Mode
+  let focusMouseOverHandler = null;
+  let currentFocusedElement = null;
+
+  function isSuperFocusEnabled() {
+    try {
+      return localStorage.getItem(STORAGE_KEY_SUPER_FOCUS) === 'true';
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function toggleSuperFocus(forcedState = null) {
+    const root = document.documentElement;
+    const current = root.classList.contains('akseskita-super-focus');
+    const next = forcedState !== null ? forcedState : !current;
+
+    if (next) {
+      root.classList.add('akseskita-super-focus');
+      if (!focusMouseOverHandler) {
+        focusMouseOverHandler = (e) => {
+          const target = e.target;
+          if (target && !target.closest('akses-kita') && !target.closest('#akseskita-tts-popover')) {
+            if (currentFocusedElement && currentFocusedElement !== target) {
+              currentFocusedElement.classList.remove('akseskita-focus-target');
+            }
+            currentFocusedElement = target;
+            currentFocusedElement.classList.add('akseskita-focus-target');
+          }
+        };
+        document.addEventListener('mouseover', focusMouseOverHandler, { passive: true });
+      }
+    } else {
+      root.classList.remove('akseskita-super-focus');
+      if (currentFocusedElement) {
+        currentFocusedElement.classList.remove('akseskita-focus-target');
+        currentFocusedElement = null;
+      }
+      if (focusMouseOverHandler) {
+        document.removeEventListener('mouseover', focusMouseOverHandler);
+        focusMouseOverHandler = null;
+      }
+    }
+
+    try {
+      localStorage.setItem(STORAGE_KEY_SUPER_FOCUS, next.toString());
+    } catch (e) {}
+
+    return next;
+  }
+
+  // 4. Big Cursor
+  function isBigCursorEnabled() {
+    try {
+      return localStorage.getItem(STORAGE_KEY_BIG_CURSOR) === 'true';
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function toggleBigCursor(forcedState = null) {
+    const root = document.documentElement;
+    const current = root.classList.contains('akseskita-big-cursor');
+    const next = forcedState !== null ? forcedState : !current;
+
+    if (next) {
+      root.classList.add('akseskita-big-cursor');
+    } else {
+      root.classList.remove('akseskita-big-cursor');
+    }
+
+    try {
+      localStorage.setItem(STORAGE_KEY_BIG_CURSOR, next.toString());
+    } catch (e) {}
+
+    return next;
+  }
+
+  // 5. Stop Animations
+  function isStopAnimationsEnabled() {
+    try {
+      return localStorage.getItem(STORAGE_KEY_STOP_ANIM) === 'true';
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function toggleStopAnimations(forcedState = null) {
+    const root = document.documentElement;
+    const current = root.classList.contains('akseskita-stop-anim');
+    const next = forcedState !== null ? forcedState : !current;
+
+    if (next) {
+      root.classList.add('akseskita-stop-anim');
+      document.querySelectorAll('video').forEach(v => {
+        try { v.pause(); } catch (e) {}
+      });
+    } else {
+      root.classList.remove('akseskita-stop-anim');
+    }
+
+    try {
+      localStorage.setItem(STORAGE_KEY_STOP_ANIM, next.toString());
+    } catch (e) {}
+
+    return next;
+  }
+
+  // 6. Hide Images
+  function isHideImagesEnabled() {
+    try {
+      return localStorage.getItem(STORAGE_KEY_HIDE_IMAGES) === 'true';
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function toggleHideImages(forcedState = null) {
+    const root = document.documentElement;
+    const current = root.classList.contains('akseskita-hide-images');
+    const next = forcedState !== null ? forcedState : !current;
+
+    if (next) {
+      root.classList.add('akseskita-hide-images');
+    } else {
+      root.classList.remove('akseskita-hide-images');
+    }
+
+    try {
+      localStorage.setItem(STORAGE_KEY_HIDE_IMAGES, next.toString());
+    } catch (e) {}
+
+    return next;
+  }
+
+  // 7. Image Tooltips
+  let tooltipMouseOverHandler = null;
+  let tooltipMouseOutHandler = null;
+  let activeTooltipBadge = null;
+
+  function isImageTooltipsEnabled() {
+    try {
+      return localStorage.getItem(STORAGE_KEY_IMAGE_TOOLTIPS) === 'true';
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function toggleImageTooltips(forcedState = null) {
+    const current = isImageTooltipsEnabled();
+    const next = forcedState !== null ? forcedState : !current;
+
+    if (next) {
+      if (!activeTooltipBadge) {
+        activeTooltipBadge = document.createElement('div');
+        activeTooltipBadge.id = 'akseskita-image-tooltip-badge';
+        document.body.appendChild(activeTooltipBadge);
+      }
+
+      if (!tooltipMouseOverHandler) {
+        tooltipMouseOverHandler = (e) => {
+          const img = e.target.closest('img');
+          if (img && !img.closest('akses-kita')) {
+            const text = img.alt || img.title || 'Image (No description)';
+            activeTooltipBadge.textContent = `🖼️ ${text}`;
+            const rect = img.getBoundingClientRect();
+            activeTooltipBadge.style.top = `${window.scrollY + rect.top - 36}px`;
+            activeTooltipBadge.style.left = `${window.scrollX + rect.left + 8}px`;
+            activeTooltipBadge.style.display = 'block';
+          }
+        };
+
+        tooltipMouseOutHandler = (e) => {
+          if (e.target.closest('img') && activeTooltipBadge) {
+            activeTooltipBadge.style.display = 'none';
+          }
+        };
+
+        document.addEventListener('mouseover', tooltipMouseOverHandler, { passive: true });
+        document.addEventListener('mouseout', tooltipMouseOutHandler, { passive: true });
+      }
+    } else {
+      if (activeTooltipBadge) {
+        activeTooltipBadge.style.display = 'none';
+      }
+      if (tooltipMouseOverHandler) {
+        document.removeEventListener('mouseover', tooltipMouseOverHandler);
+        document.removeEventListener('mouseout', tooltipMouseOutHandler);
+        tooltipMouseOverHandler = null;
+        tooltipMouseOutHandler = null;
+      }
+    }
+
+    try {
+      localStorage.setItem(STORAGE_KEY_IMAGE_TOOLTIPS, next.toString());
+    } catch (e) {}
+
+    return next;
+  }
+
+  // Reset all visual aids
+  function resetVisualAids() {
+    toggleReadingGuide(false);
+    toggleReadingMask(false);
+    toggleSuperFocus(false);
+    toggleBigCursor(false);
+    toggleStopAnimations(false);
+    toggleHideImages(false);
+    toggleImageTooltips(false);
+  }
+
+  // Restore saved visual aids
+  function restoreVisualPreferences() {
     if (isReadingGuideEnabled()) toggleReadingGuide(true);
+    if (isReadingMaskEnabled()) toggleReadingMask(true);
+    if (isSuperFocusEnabled()) toggleSuperFocus(true);
+    if (isBigCursorEnabled()) toggleBigCursor(true);
+    if (isStopAnimationsEnabled()) toggleStopAnimations(true);
+    if (isHideImagesEnabled()) toggleHideImages(true);
+    if (isImageTooltipsEnabled()) toggleImageTooltips(true);
   }
 
   let cachedVoices = [];
@@ -2365,6 +3308,99 @@ html.akseskita-highlight-links a:visited {
         popover.style.display = 'none';
       }
     });
+  }
+
+  /**
+   * AksesKita - 1-Click Accessibility Preset Profiles Controller
+   * Matches modern accessibility standards (Seizure Safe, Vision Impaired,
+   * ADHD Friendly, Cognitive & Learning, Motor Impaired, Blind Profile).
+   */
+
+
+  const STORAGE_KEY_ACTIVE_PROFILE = 'akseskita_active_profile';
+
+  function getActiveProfile() {
+    try {
+      return localStorage.getItem(STORAGE_KEY_ACTIVE_PROFILE) || null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function resetAllSettings() {
+    resetFont();
+    resetContrast();
+    resetVisualAids();
+    try {
+      localStorage.removeItem(STORAGE_KEY_ACTIVE_PROFILE);
+    } catch (e) {}
+  }
+
+  function applyProfile(profileId) {
+    const current = getActiveProfile();
+
+    // If clicking same profile, toggle off
+    if (current === profileId) {
+      resetAllSettings();
+      return null;
+    }
+
+    // Reset before applying new profile
+    resetAllSettings();
+
+    switch (profileId) {
+      case 'seizure':
+        // Seizure Safe Profile: Stop animations, low saturation, mute flashes
+        toggleStopAnimations(true);
+        setContrast('low-sat');
+        break;
+
+      case 'vision':
+        // Vision Impaired Profile: High contrast, larger font, highlight links & titles
+        setContrast('high');
+        setFontScale(2);
+        toggleHighlightLinks(true);
+        toggleHighlightTitles(true);
+        break;
+
+      case 'adhd':
+        // ADHD Friendly Profile: Reading mask, stop animations, super focus
+        toggleStopAnimations(true);
+        toggleReadingMask(true);
+        toggleSuperFocus(true);
+        break;
+
+      case 'cognitive':
+        // Cognitive & Learning Profile: Dyslexia font, line height, letter spacing, reading guide
+        toggleDyslexia(true);
+        setLineHeight(1);
+        setLetterSpacing(1);
+        toggleReadingGuide(true);
+        break;
+
+      case 'motor':
+        // Motor Impaired Profile: Big cursor, super focus, highlight links
+        toggleBigCursor(true);
+        toggleSuperFocus(true);
+        toggleHighlightLinks(true);
+        break;
+
+      case 'blind':
+        // Blind Profile: Audio TTS introduction & highlight links
+        toggleHighlightLinks(true);
+        const isEn = getLanguage() === 'en';
+        const msg = isEn 
+          ? 'Blind profile activated. Select any text to listen, or use Alt plus C for assistive AAC communicator.' 
+          : 'Profil tunanetra aktif. Blok teks apa pun untuk mendengarkan, atau gunakan Alt tambah C untuk papan bicara.';
+        speakText(msg);
+        break;
+    }
+
+    try {
+      localStorage.setItem(STORAGE_KEY_ACTIVE_PROFILE, profileId);
+    } catch (e) {}
+
+    return profileId;
   }
 
   let sentenceList = [];
@@ -2565,10 +3601,10 @@ html.akseskita-highlight-links a:visited {
   }
 
   /**
-   * AksesKita - All-in-One Assistive Web Suite Indonesia
-   * Unified Web Accessibility Toolbar & Visual AAC Communicator
+   * AksesKita - All-in-One Assistive Web Suite
+   * Comprehensive Web Accessibility Widget (Profiles, Typography, Contrast, Visual Aids, Usability)
+   * & Interactive Visual AAC Communicator Board (Bilingual ID / EN)
    * Zero Dependency Web Component (<akses-kita>)
-   * Bilingual: Bahasa Indonesia & English
    */
 
 
@@ -2576,6 +3612,7 @@ html.akseskita-highlight-links a:visited {
     constructor() {
       super();
       this.attachShadow({ mode: 'open' });
+      this.activeTab = 'profiles'; // 'profiles', 'content', 'color', 'visual'
       this.activeCategoryId = 'all';
       this.categories = [];
       this.cards = [];
@@ -2590,13 +3627,14 @@ html.akseskita-highlight-links a:visited {
       this.bindEvents();
       this.initShortcuts();
       
-      // Restore user settings
+      // Restore user preferences
       restoreFontPreferences();
       restoreContrastPreferences();
+      restoreVisualPreferences();
       initQuickTTS();
       this.syncA11yUIState();
 
-      // Init DB & default cards
+      // Init IndexedDB & default AAC symbols
       try {
         await openAksesKitaDB();
         await initDefaultData(defaultCategories, defaultCards);
@@ -2627,19 +3665,18 @@ html.akseskita-highlight-links a:visited {
       </style>
 
       <!-- FAB Trigger Button -->
-      <button id="fab-trigger" class="fab-trigger" aria-label="Buka Menu Aksesibilitas dan Papan Komunikasi AksesKita" title="Aksesibilitas (Alt + A)">
+      <button id="fab-trigger" class="fab-trigger" aria-label="Buka Menu Aksesibilitas AksesKita" title="Aksesibilitas (Alt + A)">
         <span class="fab-icon">♿</span>
         <span>AksesKita</span>
       </button>
 
       <!-- Toolbar A11y Panel -->
       <div id="a11y-panel" class="panel-container hidden" role="dialog" aria-modal="false" aria-label="Menu Aksesibilitas Web">
+        <!-- Panel Header -->
         <div class="panel-header">
           <div class="panel-title-wrapper">
             <span style="font-size: 20px;">♿</span>
-            <div>
-              <h3>AksesKita</h3>
-            </div>
+            <h3>AksesKita</h3>
             <span class="panel-title-badge">${t('a11yBadge')}</span>
           </div>
           <div style="display: flex; align-items: center; gap: 8px;">
@@ -2651,74 +3688,242 @@ html.akseskita-highlight-links a:visited {
           </div>
         </div>
 
-        <div class="panel-body">
-          <!-- CTA AAC Communicator -->
-          <div class="panel-section">
-            <span class="section-label">🗣️ ${lang === 'en' ? 'Assistive Communication' : 'Komunikasi Asistif'}</span>
-            <button id="open-aac-btn" class="btn-aac-launch" title="Shortcut: Alt + C">
-              <span style="font-size: 22px;">🗣️</span>
-              <span>${t('openAacBtn')}</span>
-            </button>
-          </div>
+        <!-- Category Tabs -->
+        <div class="panel-nav-tabs">
+          <button class="panel-tab-btn ${this.activeTab === 'profiles' ? 'active' : ''}" data-tab="profiles">
+            <span>🌟</span>
+            <span>${t('tabProfiles')}</span>
+          </button>
+          <button class="panel-tab-btn ${this.activeTab === 'content' ? 'active' : ''}" data-tab="content">
+            <span>🔤</span>
+            <span>${t('tabContent')}</span>
+          </button>
+          <button class="panel-tab-btn ${this.activeTab === 'color' ? 'active' : ''}" data-tab="color">
+            <span>🎨</span>
+            <span>${t('tabColor')}</span>
+          </button>
+          <button class="panel-tab-btn ${this.activeTab === 'visual' ? 'active' : ''}" data-tab="visual">
+            <span>🔍</span>
+            <span>${t('tabVisual')}</span>
+          </button>
+        </div>
 
-          <!-- Text Resizing & Font -->
-          <div class="panel-section">
-            <span class="section-label">🔤 ${t('textSettings')}</span>
-            <div class="button-grid cols-4">
-              <button id="btn-font-dec" class="tool-btn" aria-label="${t('fontSmall')}">
-                <span class="btn-icon">A-</span>
-                <span>${t('fontSmall')}</span>
-              </button>
-              <button id="btn-font-reset" class="tool-btn" aria-label="${t('fontNormal')}">
-                <span class="btn-icon">A</span>
-                <span>${t('fontNormal')}</span>
-              </button>
-              <button id="btn-font-inc" class="tool-btn" aria-label="${t('fontLarge')}">
-                <span class="btn-icon">A+</span>
-                <span>${t('fontLarge')}</span>
-              </button>
-              <button id="btn-dyslexia" class="tool-btn" aria-label="${t('fontDyslexia')}">
-                <span class="btn-icon">📖</span>
-                <span>${t('fontDyslexia')}</span>
-              </button>
+        <div class="panel-body">
+          <!-- CTA AAC Communicator (Always Accessible) -->
+          <button id="open-aac-btn" class="btn-aac-launch" title="Shortcut: Alt + C">
+            <span style="font-size: 20px;">🗣️</span>
+            <span>${t('openAacBtn')}</span>
+          </button>
+
+          <!-- TAB 1: PRESET PROFILES -->
+          <div id="tab-section-profiles" class="tab-content-pane ${this.activeTab === 'profiles' ? '' : 'hidden'}" style="${this.activeTab === 'profiles' ? '' : 'display:none;'}">
+            <div class="section-label">
+              <span>${t('profilesSection')}</span>
+            </div>
+            <div class="profiles-grid">
+              <div class="profile-card" data-profile="seizure">
+                <div class="profile-card-header">
+                  <span class="profile-card-icon">⚡</span>
+                  <span class="profile-card-title">${t('profileSeizureTitle')}</span>
+                </div>
+                <p class="profile-card-desc">${t('profileSeizureDesc')}</p>
+              </div>
+
+              <div class="profile-card" data-profile="vision">
+                <div class="profile-card-header">
+                  <span class="profile-card-icon">👁️</span>
+                  <span class="profile-card-title">${t('profileVisionTitle')}</span>
+                </div>
+                <p class="profile-card-desc">${t('profileVisionDesc')}</p>
+              </div>
+
+              <div class="profile-card" data-profile="adhd">
+                <div class="profile-card-header">
+                  <span class="profile-card-icon">🎯</span>
+                  <span class="profile-card-title">${t('profileAdhdTitle')}</span>
+                </div>
+                <p class="profile-card-desc">${t('profileAdhdDesc')}</p>
+              </div>
+
+              <div class="profile-card" data-profile="cognitive">
+                <div class="profile-card-header">
+                  <span class="profile-card-icon">🧠</span>
+                  <span class="profile-card-title">${t('profileCognitiveTitle')}</span>
+                </div>
+                <p class="profile-card-desc">${t('profileCognitiveDesc')}</p>
+              </div>
+
+              <div class="profile-card" data-profile="motor">
+                <div class="profile-card-header">
+                  <span class="profile-card-icon">🖐️</span>
+                  <span class="profile-card-title">${t('profileMotorTitle')}</span>
+                </div>
+                <p class="profile-card-desc">${t('profileMotorDesc')}</p>
+              </div>
+
+              <div class="profile-card" data-profile="blind">
+                <div class="profile-card-header">
+                  <span class="profile-card-icon">🦯</span>
+                  <span class="profile-card-title">${t('profileBlindTitle')}</span>
+                </div>
+                <p class="profile-card-desc">${t('profileBlindDesc')}</p>
+              </div>
             </div>
           </div>
 
-          <!-- Color Schemes & Filters -->
-          <div class="panel-section">
-            <span class="section-label">🎨 ${t('contrastSettings')}</span>
+          <!-- TAB 2: CONTENT & TYPOGRAPHY -->
+          <div id="tab-section-content" class="tab-content-pane ${this.activeTab === 'content' ? '' : 'hidden'}" style="${this.activeTab === 'content' ? '' : 'display:none;'}">
+            <!-- Font Sizing -->
+            <div style="margin-bottom: 14px;">
+              <span class="section-label">🔤 ${t('fontSize')}</span>
+              <div class="button-grid cols-4">
+                <button id="btn-font-dec" class="tool-btn">
+                  <span class="btn-icon">A-</span>
+                  <span>${t('fontSmall')}</span>
+                </button>
+                <button id="btn-font-reset" class="tool-btn">
+                  <span class="btn-icon">A</span>
+                  <span>${t('fontNormal')}</span>
+                </button>
+                <button id="btn-font-inc" class="tool-btn">
+                  <span class="btn-icon">A+</span>
+                  <span>${t('fontLarge')}</span>
+                </button>
+                <button id="btn-font-max" class="tool-btn">
+                  <span class="btn-icon">A++</span>
+                  <span>${t('fontXLarge')}</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Typography Adjustments -->
+            <div style="margin-bottom: 14px;">
+              <span class="section-label">📐 ${t('contentSection')}</span>
+              <div class="button-grid cols-3">
+                <button id="btn-font-bold" class="tool-btn">
+                  <span class="btn-icon">𝗕</span>
+                  <span>${t('fontBolder')}</span>
+                </button>
+                <button id="btn-dyslexia" class="tool-btn">
+                  <span class="btn-icon">📖</span>
+                  <span>${t('fontDyslexia')}</span>
+                </button>
+                <button id="btn-line-height" class="tool-btn">
+                  <span class="btn-icon">↕️</span>
+                  <span id="label-line-height">${t('lineHeight')}</span>
+                </button>
+              </div>
+            </div>
+
+            <div style="margin-bottom: 14px;">
+              <div class="button-grid cols-3">
+                <button id="btn-letter-spacing" class="tool-btn">
+                  <span class="btn-icon">↔️</span>
+                  <span id="label-letter-spacing">${t('letterSpacing')}</span>
+                </button>
+                <button id="btn-highlight-links" class="tool-btn">
+                  <span class="btn-icon">🔗</span>
+                  <span>${t('highlightLinks')}</span>
+                </button>
+                <button id="btn-highlight-titles" class="tool-btn">
+                  <span class="btn-icon">🏷️</span>
+                  <span>${t('highlightTitles')}</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Text Alignment -->
+            <div>
+              <span class="section-label">📜 ${t('textAlign')}</span>
+              <div class="align-segmented-bar">
+                <button class="align-btn" data-align="left" title="${t('alignLeft')}">⬅️</button>
+                <button class="align-btn" data-align="center" title="${t('alignCenter')}">↔️</button>
+                <button class="align-btn" data-align="right" title="${t('alignRight')}">➡️</button>
+                <button class="align-btn" data-align="justify" title="${t('alignJustify')}">☰</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 3: COLOR & CONTRAST -->
+          <div id="tab-section-color" class="tab-content-pane ${this.activeTab === 'color' ? '' : 'hidden'}" style="${this.activeTab === 'color' ? '' : 'display:none;'}">
+            <span class="section-label">🎨 ${t('colorSection')}</span>
             <div class="button-grid cols-3">
               <button id="btn-contrast-high" class="tool-btn" data-contrast="high">
                 <span class="btn-icon">🌓</span>
                 <span>${t('contrastHigh')}</span>
               </button>
+              <button id="btn-contrast-dark" class="tool-btn" data-contrast="dark">
+                <span class="btn-icon">🌑</span>
+                <span>${t('contrastDark')}</span>
+              </button>
+              <button id="btn-contrast-light" class="tool-btn" data-contrast="light">
+                <span class="btn-icon">🌕</span>
+                <span>${t('contrastLight')}</span>
+              </button>
               <button id="btn-contrast-mono" class="tool-btn" data-contrast="mono">
                 <span class="btn-icon">⬛</span>
                 <span>${t('contrastMono')}</span>
               </button>
-              <button id="btn-contrast-invert" class="tool-btn" data-contrast="invert">
+              <button id="btn-contrast-low-sat" class="tool-btn" data-contrast="low-sat">
+                <span class="btn-icon">🌫️</span>
+                <span>${t('contrastLowSat')}</span>
+              </button>
+              <button id="btn-contrast-high-sat" class="tool-btn" data-contrast="high-sat">
+                <span class="btn-icon">🌈</span>
+                <span>${t('contrastHighSat')}</span>
+              </button>
+              <button id="btn-contrast-invert" class="tool-btn" data-contrast="invert" style="grid-column: 1 / -1;">
                 <span class="btn-icon">🔄</span>
                 <span>${t('contrastInvert')}</span>
               </button>
             </div>
           </div>
 
-          <!-- Visual Aids -->
-          <div class="panel-section">
-            <span class="section-label">🔍 ${t('visualAids')}</span>
-            <div class="button-grid">
-              <button id="btn-highlight-links" class="tool-btn">
-                <span class="btn-icon">🔗</span>
-                <span>${t('highlightLinks')}</span>
-              </button>
-              <button id="btn-reading-guide" class="tool-btn">
-                <span class="btn-icon">📏</span>
-                <span>${t('readingGuide')}</span>
-              </button>
+          <!-- TAB 4: VISUAL & USABILITY -->
+          <div id="tab-section-visual" class="tab-content-pane ${this.activeTab === 'visual' ? '' : 'hidden'}" style="${this.activeTab === 'visual' ? '' : 'display:none;'}">
+            <div style="margin-bottom: 14px;">
+              <span class="section-label">🔍 ${t('visualSection')}</span>
+              <div class="button-grid cols-2">
+                <button id="btn-reading-guide" class="tool-btn">
+                  <span class="btn-icon">📏</span>
+                  <span>${t('readingGuide')}</span>
+                </button>
+                <button id="btn-reading-mask" class="tool-btn">
+                  <span class="btn-icon">🕶️</span>
+                  <span>${t('readingMask')}</span>
+                </button>
+                <button id="btn-super-focus" class="tool-btn">
+                  <span class="btn-icon">🔦</span>
+                  <span>${t('superFocus')}</span>
+                </button>
+                <button id="btn-big-cursor" class="tool-btn">
+                  <span class="btn-icon">👆</span>
+                  <span>${t('bigCursor')}</span>
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <span class="section-label">🛠️ ${t('usabilitySection')}</span>
+              <div class="button-grid cols-3">
+                <button id="btn-stop-anim" class="tool-btn">
+                  <span class="btn-icon">⏸️</span>
+                  <span>${t('stopAnimations')}</span>
+                </button>
+                <button id="btn-hide-images" class="tool-btn">
+                  <span class="btn-icon">🖼️🚫</span>
+                  <span>${t('hideImages')}</span>
+                </button>
+                <button id="btn-image-tooltips" class="tool-btn">
+                  <span class="btn-icon">💬</span>
+                  <span>${t('imageTooltips')}</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
 
+        <!-- Panel Footer -->
         <div class="panel-footer">
           <button id="btn-reset-all" class="reset-link">${t('resetAll')}</button>
           <span>${t('shortcutHint')}: <b>Alt + A</b></span>
@@ -2877,106 +4082,193 @@ html.akseskita-highlight-links a:visited {
         stopSentencePlayback();
       });
 
-      // Language Toggle Buttons (Panel and AAC header)
+      // Language Toggle Buttons
       root.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
+        btn.addEventListener('click', () => {
           const lang = btn.getAttribute('data-lang');
           this.changeLanguage(lang);
         });
       });
 
-      // Font actions
-      root.getElementById('btn-font-inc').addEventListener('click', () => {
-        const current = getFontScale();
-        setFontScale(current + 1);
-        this.syncA11yUIState();
+      // Navigation Tabs inside Panel
+      root.querySelectorAll('.panel-tab-btn').forEach(tabBtn => {
+        tabBtn.addEventListener('click', () => {
+          const tabId = tabBtn.getAttribute('data-tab');
+          this.activeTab = tabId;
+          
+          root.querySelectorAll('.panel-tab-btn').forEach(b => b.classList.toggle('active', b.getAttribute('data-tab') === tabId));
+          root.querySelectorAll('.tab-content-pane').forEach(p => {
+            const isMatch = p.id === `tab-section-${tabId}`;
+            p.classList.toggle('hidden', !isMatch);
+            p.style.display = isMatch ? 'block' : 'none';
+          });
+        });
       });
 
-      root.getElementById('btn-font-dec').addEventListener('click', () => {
+      // Preset Profiles
+      root.querySelectorAll('.profile-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const profileId = card.getAttribute('data-profile');
+          applyProfile(profileId);
+          this.syncA11yUIState();
+        });
+      });
+
+      // Font Sizing
+      root.getElementById('btn-font-dec')?.addEventListener('click', () => {
         const current = getFontScale();
         setFontScale(current - 1);
         this.syncA11yUIState();
       });
 
-      root.getElementById('btn-font-reset').addEventListener('click', () => {
+      root.getElementById('btn-font-reset')?.addEventListener('click', () => {
         setFontScale(0);
         this.syncA11yUIState();
       });
 
-      root.getElementById('btn-dyslexia').addEventListener('click', () => {
+      root.getElementById('btn-font-inc')?.addEventListener('click', () => {
+        const current = getFontScale();
+        setFontScale(current + 1);
+        this.syncA11yUIState();
+      });
+
+      root.getElementById('btn-font-max')?.addEventListener('click', () => {
+        setFontScale(4);
+        this.syncA11yUIState();
+      });
+
+      // Typography Controls
+      root.getElementById('btn-font-bold')?.addEventListener('click', () => {
+        toggleFontBold();
+        this.syncA11yUIState();
+      });
+
+      root.getElementById('btn-dyslexia')?.addEventListener('click', () => {
         toggleDyslexia();
         this.syncA11yUIState();
       });
 
-      // Contrast actions
-      root.getElementById('btn-contrast-high').addEventListener('click', () => {
-        const current = getContrast();
-        setContrast(current === 'high' ? 'normal' : 'high');
+      root.getElementById('btn-line-height')?.addEventListener('click', () => {
+        const current = getLineHeight();
+        const next = (current + 1) % 3;
+        setLineHeight(next);
         this.syncA11yUIState();
       });
 
-      root.getElementById('btn-contrast-mono').addEventListener('click', () => {
-        const current = getContrast();
-        setContrast(current === 'mono' ? 'normal' : 'mono');
+      root.getElementById('btn-letter-spacing')?.addEventListener('click', () => {
+        const current = getLetterSpacing();
+        const next = (current + 1) % 3;
+        setLetterSpacing(next);
         this.syncA11yUIState();
       });
 
-      root.getElementById('btn-contrast-invert').addEventListener('click', () => {
-        const current = getContrast();
-        setContrast(current === 'invert' ? 'normal' : 'invert');
-        this.syncA11yUIState();
-      });
-
-      // Visual aids
-      root.getElementById('btn-highlight-links').addEventListener('click', () => {
+      root.getElementById('btn-highlight-links')?.addEventListener('click', () => {
         toggleHighlightLinks();
         this.syncA11yUIState();
       });
 
-      root.getElementById('btn-reading-guide').addEventListener('click', () => {
+      root.getElementById('btn-highlight-titles')?.addEventListener('click', () => {
+        toggleHighlightTitles();
+        this.syncA11yUIState();
+      });
+
+      // Text Alignment
+      root.querySelectorAll('.align-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const align = btn.getAttribute('data-align');
+          const current = getTextAlign();
+          setTextAlign(current === align ? 'default' : align);
+          this.syncA11yUIState();
+        });
+      });
+
+      // Contrast Controls
+      const contrastModes = ['high', 'dark', 'light', 'mono', 'low-sat', 'high-sat', 'invert'];
+      contrastModes.forEach(mode => {
+        const btn = root.querySelector(`button[data-contrast="${mode}"]`);
+        btn?.addEventListener('click', () => {
+          const current = getContrast();
+          setContrast(current === mode ? 'normal' : mode);
+          this.syncA11yUIState();
+        });
+      });
+
+      // Visual & Navigation Aids
+      root.getElementById('btn-reading-guide')?.addEventListener('click', () => {
         toggleReadingGuide();
         this.syncA11yUIState();
       });
 
-      root.getElementById('btn-reset-all').addEventListener('click', () => {
-        resetFont();
-        resetContrast();
+      root.getElementById('btn-reading-mask')?.addEventListener('click', () => {
+        toggleReadingMask();
+        this.syncA11yUIState();
+      });
+
+      root.getElementById('btn-super-focus')?.addEventListener('click', () => {
+        toggleSuperFocus();
+        this.syncA11yUIState();
+      });
+
+      root.getElementById('btn-big-cursor')?.addEventListener('click', () => {
+        toggleBigCursor();
+        this.syncA11yUIState();
+      });
+
+      // Usability & Motion Utilities
+      root.getElementById('btn-stop-anim')?.addEventListener('click', () => {
+        toggleStopAnimations();
+        this.syncA11yUIState();
+      });
+
+      root.getElementById('btn-hide-images')?.addEventListener('click', () => {
+        toggleHideImages();
+        this.syncA11yUIState();
+      });
+
+      root.getElementById('btn-image-tooltips')?.addEventListener('click', () => {
+        toggleImageTooltips();
+        this.syncA11yUIState();
+      });
+
+      // Reset All Settings
+      root.getElementById('btn-reset-all')?.addEventListener('click', () => {
+        resetAllSettings();
         this.syncA11yUIState();
       });
 
       // Sentence Actions
-      root.getElementById('btn-aac-speak').addEventListener('click', () => {
+      root.getElementById('btn-aac-speak')?.addEventListener('click', () => {
         this.playCurrentSentence();
       });
 
-      root.getElementById('btn-aac-backspace').addEventListener('click', () => {
+      root.getElementById('btn-aac-backspace')?.addEventListener('click', () => {
         removeLastCard();
         this.renderSentenceStrip();
       });
 
-      root.getElementById('btn-aac-clear').addEventListener('click', () => {
+      root.getElementById('btn-aac-clear')?.addEventListener('click', () => {
         clearSentence();
         this.renderSentenceStrip();
       });
 
       // Card Creator
       const creatorModal = root.getElementById('card-creator-modal');
-      root.getElementById('btn-open-creator').addEventListener('click', () => {
+      root.getElementById('btn-open-creator')?.addEventListener('click', () => {
         this.openCardCreator();
       });
-      root.getElementById('close-creator-btn').addEventListener('click', () => {
+      root.getElementById('close-creator-btn')?.addEventListener('click', () => {
         creatorModal.classList.add('hidden');
       });
-      root.getElementById('btn-cancel-creator').addEventListener('click', () => {
+      root.getElementById('btn-cancel-creator')?.addEventListener('click', () => {
         creatorModal.classList.add('hidden');
       });
-      root.getElementById('btn-save-card').addEventListener('click', () => {
+      root.getElementById('btn-save-card')?.addEventListener('click', () => {
         this.saveCustomCard();
       });
 
-      // Optimized Image File Compression
+      // Image Compression
       const imageInput = root.getElementById('input-card-image');
-      imageInput.addEventListener('change', async (e) => {
+      imageInput?.addEventListener('change', async (e) => {
         const file = e.target.files[0];
         if (file) {
           try {
@@ -2989,12 +4281,12 @@ html.akseskita-highlight-links a:visited {
         }
       });
 
-      // Audio recording button
+      // Audio Recording
       const recordBtn = root.getElementById('btn-record-voice');
       const recordText = root.getElementById('btn-record-text');
       const recordStatus = root.getElementById('recorder-status');
 
-      recordBtn.addEventListener('click', async () => {
+      recordBtn?.addEventListener('click', async () => {
         if (!this.isRecording) {
           try {
             await startAudioRecording();
@@ -3020,7 +4312,7 @@ html.akseskita-highlight-links a:visited {
       });
 
       // Backup & Restore
-      root.getElementById('btn-export-aac').addEventListener('click', async () => {
+      root.getElementById('btn-export-aac')?.addEventListener('click', async () => {
         try {
           const backupJson = await exportBackup();
           const blob = new Blob([backupJson], { type: 'application/json' });
@@ -3036,11 +4328,11 @@ html.akseskita-highlight-links a:visited {
       });
 
       const importInput = root.getElementById('import-file-input');
-      root.getElementById('btn-import-aac').addEventListener('click', () => {
+      root.getElementById('btn-import-aac')?.addEventListener('click', () => {
         importInput.click();
       });
 
-      importInput.addEventListener('change', async (e) => {
+      importInput?.addEventListener('change', async (e) => {
         const file = e.target.files[0];
         if (file) {
           const text = await file.text();
@@ -3097,12 +4389,12 @@ html.akseskita-highlight-links a:visited {
           const panel = this.shadowRoot.getElementById('a11y-panel');
           const aacModal = this.shadowRoot.getElementById('aac-modal');
           const creatorModal = this.shadowRoot.getElementById('card-creator-modal');
-          if (!creatorModal.classList.contains('hidden')) {
+          if (creatorModal && !creatorModal.classList.contains('hidden')) {
             creatorModal.classList.add('hidden');
-          } else if (!aacModal.classList.contains('hidden')) {
+          } else if (aacModal && !aacModal.classList.contains('hidden')) {
             aacModal.classList.add('hidden');
             stopSentencePlayback();
-          } else if (!panel.classList.contains('hidden')) {
+          } else if (panel && !panel.classList.contains('hidden')) {
             panel.classList.add('hidden');
           }
         }
@@ -3111,22 +4403,61 @@ html.akseskita-highlight-links a:visited {
 
     syncA11yUIState() {
       const root = this.shadowRoot;
-      const currentScale = getFontScale();
-      const isDyslexia = isDyslexiaEnabled();
-      const currentContrast = getContrast();
-      const isLinks = isHighlightLinksEnabled();
-      const isGuide = isReadingGuideEnabled();
+      const activeProfile = getActiveProfile();
+      const scale = getFontScale();
+      const bold = isFontBold();
+      const lh = getLineHeight();
+      const ls = getLetterSpacing();
+      const dyslexia = isDyslexiaEnabled();
+      const links = isHighlightLinksEnabled();
+      const titles = isHighlightTitlesEnabled();
+      const align = getTextAlign();
+      const contrast = getContrast();
+      const guide = isReadingGuideEnabled();
+      const mask = isReadingMaskEnabled();
+      const focus = isSuperFocusEnabled();
+      const bigCursor = isBigCursorEnabled();
+      const stopAnim = isStopAnimationsEnabled();
+      const hideImgs = isHideImagesEnabled();
+      const tooltips = isImageTooltipsEnabled();
 
-      root.getElementById('btn-dyslexia')?.classList.toggle('active', isDyslexia);
-      root.getElementById('btn-font-inc')?.classList.toggle('active', currentScale > 0);
-      root.getElementById('btn-font-reset')?.classList.toggle('active', currentScale === 0);
+      // Profiles
+      root.querySelectorAll('.profile-card').forEach(c => {
+        c.classList.toggle('active', c.getAttribute('data-profile') === activeProfile);
+      });
 
-      root.getElementById('btn-contrast-high')?.classList.toggle('active', currentContrast === 'high');
-      root.getElementById('btn-contrast-mono')?.classList.toggle('active', currentContrast === 'mono');
-      root.getElementById('btn-contrast-invert')?.classList.toggle('active', currentContrast === 'invert');
+      // Font Sizing
+      root.getElementById('btn-font-dec')?.classList.toggle('active', scale === 0);
+      root.getElementById('btn-font-reset')?.classList.toggle('active', scale === 0);
+      root.getElementById('btn-font-inc')?.classList.toggle('active', scale === 2);
+      root.getElementById('btn-font-max')?.classList.toggle('active', scale >= 3);
 
-      root.getElementById('btn-highlight-links')?.classList.toggle('active', isLinks);
-      root.getElementById('btn-reading-guide')?.classList.toggle('active', isGuide);
+      // Typography
+      root.getElementById('btn-font-bold')?.classList.toggle('active', bold);
+      root.getElementById('btn-dyslexia')?.classList.toggle('active', dyslexia);
+      root.getElementById('btn-line-height')?.classList.toggle('active', lh > 0);
+      root.getElementById('btn-letter-spacing')?.classList.toggle('active', ls > 0);
+      root.getElementById('btn-highlight-links')?.classList.toggle('active', links);
+      root.getElementById('btn-highlight-titles')?.classList.toggle('active', titles);
+
+      // Alignment
+      root.querySelectorAll('.align-btn').forEach(b => {
+        b.classList.toggle('active', b.getAttribute('data-align') === align);
+      });
+
+      // Contrast
+      root.querySelectorAll('button[data-contrast]').forEach(b => {
+        b.classList.toggle('active', b.getAttribute('data-contrast') === contrast);
+      });
+
+      // Visual & Usability
+      root.getElementById('btn-reading-guide')?.classList.toggle('active', guide);
+      root.getElementById('btn-reading-mask')?.classList.toggle('active', mask);
+      root.getElementById('btn-super-focus')?.classList.toggle('active', focus);
+      root.getElementById('btn-big-cursor')?.classList.toggle('active', bigCursor);
+      root.getElementById('btn-stop-anim')?.classList.toggle('active', stopAnim);
+      root.getElementById('btn-hide-images')?.classList.toggle('active', hideImgs);
+      root.getElementById('btn-image-tooltips')?.classList.toggle('active', tooltips);
     }
 
     async loadAACData() {
@@ -3260,7 +4591,6 @@ html.akseskita-highlight-links a:visited {
         }
       };
 
-      // Bind card clicks & keyboard Enter/Space
       gridContainer.querySelectorAll('.aac-card').forEach(cardEl => {
         cardEl.addEventListener('click', (e) => {
           if (e.target.closest('.aac-card-delete-btn')) return;
@@ -3275,7 +4605,6 @@ html.akseskita-highlight-links a:visited {
         });
       });
 
-      // Bind delete clicks
       gridContainer.querySelectorAll('.aac-card-delete-btn').forEach(btn => {
         btn.addEventListener('click', async (e) => {
           e.stopPropagation();
@@ -3319,7 +4648,6 @@ html.akseskita-highlight-links a:visited {
       `;
       }).join('');
 
-      // Remove single card button listener
       container.querySelectorAll('.sentence-card-remove').forEach(btn => {
         btn.addEventListener('click', (e) => {
           e.stopPropagation();
@@ -3356,7 +4684,6 @@ html.akseskita-highlight-links a:visited {
       const catSelect = root.getElementById('select-card-cat');
       const isEn = getLanguage() === 'en';
 
-      // Populate categories
       catSelect.innerHTML = this.categories.map(c => `
       <option value="${c.id}">${(isEn && c.nameEn) ? c.nameEn : c.name}</option>
     `).join('');
