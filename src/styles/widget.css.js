@@ -349,6 +349,88 @@ export const a11yStyles = `
   grid-template-columns: repeat(4, 1fr);
 }
 
+/* Font Size Stepper Box (75% - 200%) */
+.font-scaler-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8fafc;
+  border: 1px solid var(--ak-border);
+  border-radius: 14px;
+  padding: 8px 12px;
+  gap: 10px;
+}
+
+.font-scale-value-badge {
+  font-size: 14px;
+  font-weight: 800;
+  color: #0284c7;
+  background: #e0f2fe;
+  padding: 6px 14px;
+  border-radius: 10px;
+  min-width: 68px;
+  text-align: center;
+  user-select: none;
+  border: 1px solid #bae6fd;
+}
+
+.font-step-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 800;
+  color: #0f172a;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.font-step-btn:hover {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #0284c7;
+  transform: scale(1.05);
+}
+
+.font-presets-row {
+  display: flex;
+  gap: 5px;
+  margin-top: 8px;
+}
+
+.font-preset-chip {
+  flex: 1;
+  padding: 6px 0;
+  font-size: 11px;
+  font-weight: 700;
+  border: 1px solid var(--ak-border);
+  background: #f8fafc;
+  color: #475569;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.font-preset-chip:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.font-preset-chip.active {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #0284c7;
+  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25);
+}
+
 .tool-btn {
   display: flex;
   flex-direction: column;

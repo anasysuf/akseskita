@@ -1,7 +1,7 @@
 /**
  * AksesKita - Advanced Typography & Content Adjustments Controller
- * Font Resizing, Font Weight, Line Height, Letter Spacing, Dyslexia Mode,
- * Link Highlighting, Title Highlighting, and Text Alignment.
+ * Font Resizing (75% - 200%), Font Weight, Line Height, Letter Spacing,
+ * Dyslexia Mode, Link Highlighting, Title Highlighting, and Text Alignment.
  */
 
 const STORAGE_KEY_SCALE = 'akseskita_font_scale';
@@ -13,7 +13,7 @@ const STORAGE_KEY_LINKS = 'akseskita_highlight_links';
 const STORAGE_KEY_TITLES = 'akseskita_highlight_titles';
 const STORAGE_KEY_ALIGN = 'akseskita_text_align';
 
-// 1. Font Scale (0: 100%, 1: 115%, 2: 130%, 3: 150%, 4: 175%)
+// 1. Font Scale (-1: 75%, 0: 100%, 1: 125%, 2: 150%, 3: 175%, 4: 200%)
 export function getFontScale() {
   try {
     return parseInt(localStorage.getItem(STORAGE_KEY_SCALE) || '0', 10);
@@ -22,11 +22,25 @@ export function getFontScale() {
   }
 }
 
+export function getFontScalePercentage(level = null) {
+  const current = level !== null ? level : getFontScale();
+  switch (current) {
+    case -1: return '75%';
+    case 1: return '125%';
+    case 2: return '150%';
+    case 3: return '175%';
+    case 4: return '200%';
+    case 0:
+    default: return '100%';
+  }
+}
+
 export function setFontScale(level) {
-  const clamped = Math.max(0, Math.min(4, level));
+  const clamped = Math.max(-1, Math.min(4, level));
   const root = document.documentElement;
   
   root.classList.remove(
+    'akseskita-scale-sub1',
     'akseskita-scale-0',
     'akseskita-scale-1',
     'akseskita-scale-2',
@@ -34,7 +48,9 @@ export function setFontScale(level) {
     'akseskita-scale-4'
   );
 
-  if (clamped > 0) {
+  if (clamped === -1) {
+    root.classList.add('akseskita-scale-sub1');
+  } else if (clamped > 0) {
     root.classList.add(`akseskita-scale-${clamped}`);
   }
 
@@ -247,7 +263,7 @@ export function resetFont() {
 // Restore saved preferences
 export function restoreFontPreferences() {
   const scale = getFontScale();
-  if (scale > 0) setFontScale(scale);
+  if (scale !== 0) setFontScale(scale);
 
   if (isFontBold()) toggleFontBold(true);
 

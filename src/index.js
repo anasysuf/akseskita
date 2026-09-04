@@ -35,6 +35,7 @@ import {
 import { 
   setFontScale, 
   getFontScale, 
+  getFontScalePercentage,
   toggleFontBold, 
   isFontBold,
   setLineHeight, 
@@ -265,26 +266,22 @@ class AksesKitaElement extends HTMLElement {
 
           <!-- TAB 2: CONTENT & TYPOGRAPHY -->
           <div id="tab-section-content" class="tab-content-pane ${this.activeTab === 'content' ? '' : 'hidden'}" style="${this.activeTab === 'content' ? '' : 'display:none;'}">
-            <!-- Font Sizing -->
+            <!-- Font Sizing (75% - 200%) -->
             <div style="margin-bottom: 14px;">
-              <span class="section-label">🔤 ${t('fontSize')}</span>
-              <div class="button-grid cols-4">
-                <button id="btn-font-dec" class="tool-btn">
-                  <span class="btn-icon">A-</span>
-                  <span>${t('fontSmall')}</span>
-                </button>
-                <button id="btn-font-reset" class="tool-btn">
-                  <span class="btn-icon">A</span>
-                  <span>${t('fontNormal')}</span>
-                </button>
-                <button id="btn-font-inc" class="tool-btn">
-                  <span class="btn-icon">A+</span>
-                  <span>${t('fontLarge')}</span>
-                </button>
-                <button id="btn-font-max" class="tool-btn">
-                  <span class="btn-icon">A++</span>
-                  <span>${t('fontXLarge')}</span>
-                </button>
+              <span class="section-label">🔤 ${t('fontSize')} (75% - 200%)</span>
+              <div class="font-scaler-box">
+                <button id="btn-font-dec" class="font-step-btn" title="${t('fontSmall')} (-25%)">－</button>
+                <div id="font-scale-indicator" class="font-scale-value-badge">${getFontScalePercentage()}</div>
+                <button id="btn-font-inc" class="font-step-btn" title="${t('fontLarge')} (+25%)">＋</button>
+                <button id="btn-font-reset" class="btn-secondary-action" style="padding: 6px 12px; font-size: 11px;">Reset</button>
+              </div>
+              <div class="font-presets-row">
+                <button class="font-preset-chip" data-scale="-1">75%</button>
+                <button class="font-preset-chip" data-scale="0">100%</button>
+                <button class="font-preset-chip" data-scale="1">125%</button>
+                <button class="font-preset-chip" data-scale="2">150%</button>
+                <button class="font-preset-chip" data-scale="3">175%</button>
+                <button class="font-preset-chip" data-scale="4">200%</button>
               </div>
             </div>
 
@@ -606,7 +603,7 @@ class AksesKitaElement extends HTMLElement {
       });
     });
 
-    // Font Sizing
+    // Font Sizing (75% - 200%)
     root.getElementById('btn-font-dec')?.addEventListener('click', () => {
       const current = getFontScale();
       setFontScale(current - 1);
@@ -624,9 +621,12 @@ class AksesKitaElement extends HTMLElement {
       this.syncA11yUIState();
     });
 
-    root.getElementById('btn-font-max')?.addEventListener('click', () => {
-      setFontScale(4);
-      this.syncA11yUIState();
+    root.querySelectorAll('.font-preset-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        const scale = parseInt(chip.getAttribute('data-scale'), 10);
+        setFontScale(scale);
+        this.syncA11yUIState();
+      });
     });
 
     // Typography Controls
@@ -918,11 +918,15 @@ class AksesKitaElement extends HTMLElement {
       c.classList.toggle('active', c.getAttribute('data-profile') === activeProfile);
     });
 
-    // Font Sizing
-    root.getElementById('btn-font-dec')?.classList.toggle('active', scale === 0);
-    root.getElementById('btn-font-reset')?.classList.toggle('active', scale === 0);
-    root.getElementById('btn-font-inc')?.classList.toggle('active', scale === 2);
-    root.getElementById('btn-font-max')?.classList.toggle('active', scale >= 3);
+    // Font Sizing (75% - 200%)
+    const indicator = root.getElementById('font-scale-indicator');
+    if (indicator) {
+      indicator.textContent = getFontScalePercentage(scale);
+    }
+    root.querySelectorAll('.font-preset-chip').forEach(chip => {
+      const chipScale = parseInt(chip.getAttribute('data-scale'), 10);
+      chip.classList.toggle('active', chipScale === scale);
+    });
 
     // Typography
     root.getElementById('btn-font-bold')?.classList.toggle('active', bold);

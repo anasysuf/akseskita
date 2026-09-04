@@ -7,11 +7,12 @@ export const hostStyles = `
 /* ==========================================================================
    1. Typography & Content Scaling (Root-Based, Zero Compound Recursion)
    ========================================================================== */
-html.akseskita-scale-0 { --akseskita-font-scale: 1; }
-html.akseskita-scale-1 { --akseskita-font-scale: 1.15; }
-html.akseskita-scale-2 { --akseskita-font-scale: 1.30; }
-html.akseskita-scale-3 { --akseskita-font-scale: 1.50; }
-html.akseskita-scale-4 { --akseskita-font-scale: 1.75; }
+html.akseskita-scale-sub1 { --akseskita-font-scale: 0.75; }
+html.akseskita-scale-0    { --akseskita-font-scale: 1.00; }
+html.akseskita-scale-1    { --akseskita-font-scale: 1.25; }
+html.akseskita-scale-2    { --akseskita-font-scale: 1.50; }
+html.akseskita-scale-3    { --akseskita-font-scale: 1.75; }
+html.akseskita-scale-4    { --akseskita-font-scale: 2.00; }
 
 html[class*="akseskita-scale-"] {
   font-size: calc(100% * var(--akseskita-font-scale, 1)) !important;

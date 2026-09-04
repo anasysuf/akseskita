@@ -10,11 +10,12 @@ var AksesKita = (function () {
 /* ==========================================================================
    1. Typography & Content Scaling (Root-Based, Zero Compound Recursion)
    ========================================================================== */
-html.akseskita-scale-0 { --akseskita-font-scale: 1; }
-html.akseskita-scale-1 { --akseskita-font-scale: 1.15; }
-html.akseskita-scale-2 { --akseskita-font-scale: 1.30; }
-html.akseskita-scale-3 { --akseskita-font-scale: 1.50; }
-html.akseskita-scale-4 { --akseskita-font-scale: 1.75; }
+html.akseskita-scale-sub1 { --akseskita-font-scale: 0.75; }
+html.akseskita-scale-0    { --akseskita-font-scale: 1.00; }
+html.akseskita-scale-1    { --akseskita-font-scale: 1.25; }
+html.akseskita-scale-2    { --akseskita-font-scale: 1.50; }
+html.akseskita-scale-3    { --akseskita-font-scale: 1.75; }
+html.akseskita-scale-4    { --akseskita-font-scale: 2.00; }
 
 html[class*="akseskita-scale-"] {
   font-size: calc(100% * var(--akseskita-font-scale, 1)) !important;
@@ -738,6 +739,88 @@ html.akseskita-hide-images [style*="background-image"] {
 
 .button-grid.cols-4 {
   grid-template-columns: repeat(4, 1fr);
+}
+
+/* Font Size Stepper Box (75% - 200%) */
+.font-scaler-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8fafc;
+  border: 1px solid var(--ak-border);
+  border-radius: 14px;
+  padding: 8px 12px;
+  gap: 10px;
+}
+
+.font-scale-value-badge {
+  font-size: 14px;
+  font-weight: 800;
+  color: #0284c7;
+  background: #e0f2fe;
+  padding: 6px 14px;
+  border-radius: 10px;
+  min-width: 68px;
+  text-align: center;
+  user-select: none;
+  border: 1px solid #bae6fd;
+}
+
+.font-step-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 800;
+  color: #0f172a;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.font-step-btn:hover {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #0284c7;
+  transform: scale(1.05);
+}
+
+.font-presets-row {
+  display: flex;
+  gap: 5px;
+  margin-top: 8px;
+}
+
+.font-preset-chip {
+  flex: 1;
+  padding: 6px 0;
+  font-size: 11px;
+  font-weight: 700;
+  border: 1px solid var(--ak-border);
+  background: #f8fafc;
+  color: #475569;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.font-preset-chip:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.font-preset-chip.active {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #0284c7;
+  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25);
 }
 
 .tool-btn {
@@ -2331,8 +2414,8 @@ html.akseskita-hide-images [style*="background-image"] {
 
   /**
    * AksesKita - Advanced Typography & Content Adjustments Controller
-   * Font Resizing, Font Weight, Line Height, Letter Spacing, Dyslexia Mode,
-   * Link Highlighting, Title Highlighting, and Text Alignment.
+   * Font Resizing (75% - 200%), Font Weight, Line Height, Letter Spacing,
+   * Dyslexia Mode, Link Highlighting, Title Highlighting, and Text Alignment.
    */
 
   const STORAGE_KEY_SCALE = 'akseskita_font_scale';
@@ -2344,7 +2427,7 @@ html.akseskita-hide-images [style*="background-image"] {
   const STORAGE_KEY_TITLES = 'akseskita_highlight_titles';
   const STORAGE_KEY_ALIGN = 'akseskita_text_align';
 
-  // 1. Font Scale (0: 100%, 1: 115%, 2: 130%, 3: 150%, 4: 175%)
+  // 1. Font Scale (-1: 75%, 0: 100%, 1: 125%, 2: 150%, 3: 175%, 4: 200%)
   function getFontScale() {
     try {
       return parseInt(localStorage.getItem(STORAGE_KEY_SCALE) || '0', 10);
@@ -2353,11 +2436,25 @@ html.akseskita-hide-images [style*="background-image"] {
     }
   }
 
+  function getFontScalePercentage(level = null) {
+    const current = level !== null ? level : getFontScale();
+    switch (current) {
+      case -1: return '75%';
+      case 1: return '125%';
+      case 2: return '150%';
+      case 3: return '175%';
+      case 4: return '200%';
+      case 0:
+      default: return '100%';
+    }
+  }
+
   function setFontScale(level) {
-    const clamped = Math.max(0, Math.min(4, level));
+    const clamped = Math.max(-1, Math.min(4, level));
     const root = document.documentElement;
     
     root.classList.remove(
+      'akseskita-scale-sub1',
       'akseskita-scale-0',
       'akseskita-scale-1',
       'akseskita-scale-2',
@@ -2365,7 +2462,9 @@ html.akseskita-hide-images [style*="background-image"] {
       'akseskita-scale-4'
     );
 
-    if (clamped > 0) {
+    if (clamped === -1) {
+      root.classList.add('akseskita-scale-sub1');
+    } else if (clamped > 0) {
       root.classList.add(`akseskita-scale-${clamped}`);
     }
 
@@ -2578,7 +2677,7 @@ html.akseskita-hide-images [style*="background-image"] {
   // Restore saved preferences
   function restoreFontPreferences() {
     const scale = getFontScale();
-    if (scale > 0) setFontScale(scale);
+    if (scale !== 0) setFontScale(scale);
 
     if (isFontBold()) toggleFontBold(true);
 
@@ -3695,26 +3794,22 @@ html.akseskita-hide-images [style*="background-image"] {
 
           <!-- TAB 2: CONTENT & TYPOGRAPHY -->
           <div id="tab-section-content" class="tab-content-pane ${this.activeTab === 'content' ? '' : 'hidden'}" style="${this.activeTab === 'content' ? '' : 'display:none;'}">
-            <!-- Font Sizing -->
+            <!-- Font Sizing (75% - 200%) -->
             <div style="margin-bottom: 14px;">
-              <span class="section-label">🔤 ${t('fontSize')}</span>
-              <div class="button-grid cols-4">
-                <button id="btn-font-dec" class="tool-btn">
-                  <span class="btn-icon">A-</span>
-                  <span>${t('fontSmall')}</span>
-                </button>
-                <button id="btn-font-reset" class="tool-btn">
-                  <span class="btn-icon">A</span>
-                  <span>${t('fontNormal')}</span>
-                </button>
-                <button id="btn-font-inc" class="tool-btn">
-                  <span class="btn-icon">A+</span>
-                  <span>${t('fontLarge')}</span>
-                </button>
-                <button id="btn-font-max" class="tool-btn">
-                  <span class="btn-icon">A++</span>
-                  <span>${t('fontXLarge')}</span>
-                </button>
+              <span class="section-label">🔤 ${t('fontSize')} (75% - 200%)</span>
+              <div class="font-scaler-box">
+                <button id="btn-font-dec" class="font-step-btn" title="${t('fontSmall')} (-25%)">－</button>
+                <div id="font-scale-indicator" class="font-scale-value-badge">${getFontScalePercentage()}</div>
+                <button id="btn-font-inc" class="font-step-btn" title="${t('fontLarge')} (+25%)">＋</button>
+                <button id="btn-font-reset" class="btn-secondary-action" style="padding: 6px 12px; font-size: 11px;">Reset</button>
+              </div>
+              <div class="font-presets-row">
+                <button class="font-preset-chip" data-scale="-1">75%</button>
+                <button class="font-preset-chip" data-scale="0">100%</button>
+                <button class="font-preset-chip" data-scale="1">125%</button>
+                <button class="font-preset-chip" data-scale="2">150%</button>
+                <button class="font-preset-chip" data-scale="3">175%</button>
+                <button class="font-preset-chip" data-scale="4">200%</button>
               </div>
             </div>
 
@@ -4036,7 +4131,7 @@ html.akseskita-hide-images [style*="background-image"] {
         });
       });
 
-      // Font Sizing
+      // Font Sizing (75% - 200%)
       root.getElementById('btn-font-dec')?.addEventListener('click', () => {
         const current = getFontScale();
         setFontScale(current - 1);
@@ -4054,9 +4149,12 @@ html.akseskita-hide-images [style*="background-image"] {
         this.syncA11yUIState();
       });
 
-      root.getElementById('btn-font-max')?.addEventListener('click', () => {
-        setFontScale(4);
-        this.syncA11yUIState();
+      root.querySelectorAll('.font-preset-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+          const scale = parseInt(chip.getAttribute('data-scale'), 10);
+          setFontScale(scale);
+          this.syncA11yUIState();
+        });
       });
 
       // Typography Controls
@@ -4348,11 +4446,15 @@ html.akseskita-hide-images [style*="background-image"] {
         c.classList.toggle('active', c.getAttribute('data-profile') === activeProfile);
       });
 
-      // Font Sizing
-      root.getElementById('btn-font-dec')?.classList.toggle('active', scale === 0);
-      root.getElementById('btn-font-reset')?.classList.toggle('active', scale === 0);
-      root.getElementById('btn-font-inc')?.classList.toggle('active', scale === 2);
-      root.getElementById('btn-font-max')?.classList.toggle('active', scale >= 3);
+      // Font Sizing (75% - 200%)
+      const indicator = root.getElementById('font-scale-indicator');
+      if (indicator) {
+        indicator.textContent = getFontScalePercentage(scale);
+      }
+      root.querySelectorAll('.font-preset-chip').forEach(chip => {
+        const chipScale = parseInt(chip.getAttribute('data-scale'), 10);
+        chip.classList.toggle('active', chipScale === scale);
+      });
 
       // Typography
       root.getElementById('btn-font-bold')?.classList.toggle('active', bold);
