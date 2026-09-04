@@ -48,6 +48,18 @@ export function setFontScale(level) {
     'akseskita-scale-4'
   );
 
+  const scaleMap = {
+    '-1': 0.8,
+    '0': 1.0,
+    '1': 1.25,
+    '2': 1.5,
+    '3': 1.75,
+    '4': 2.0
+  };
+
+  const scaleVal = scaleMap[clamped] || 1.0;
+  root.style.setProperty('--akseskita-font-scale', scaleVal.toString());
+
   if (clamped === -1) {
     root.classList.add('akseskita-scale-sub1');
   } else if (clamped > 0) {

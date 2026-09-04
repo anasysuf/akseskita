@@ -133,6 +133,8 @@ export const translations = {
 
     // Quick TTS
     ttsListen: 'Dengarkan',
+    selectionTtsTitle: 'Seleksi Teks Cepat (Quick TTS)',
+    selectionTtsDesc: 'Blok / sorot kalimat apa saja pada halaman web, lalu klik tombol melayang "Dengarkan" yang muncul di atas teks pilihan.',
   },
   en: {
     // Toolbar A11y Header & Tabs
@@ -261,6 +263,8 @@ export const translations = {
 
     // Quick TTS
     ttsListen: 'Listen',
+    selectionTtsTitle: 'Selection Quick TTS',
+    selectionTtsDesc: 'Highlight or select any text on the webpage, then click the floating "Listen" button that appears directly above your selection.',
   }
 };
 

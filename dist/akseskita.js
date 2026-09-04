@@ -8,10 +8,10 @@ var AksesKita = (function () {
 
   const hostStyles = `
 /* ==========================================================================
-   1. Typography & Content Scaling (Root-Based, Zero Compound Recursion)
+   1. Typography & Content Scaling (Root-Based & Element Direct)
    ========================================================================== */
-html.akseskita-scale-sub1 { --akseskita-font-scale: 0.75; }
-html.akseskita-scale-0    { --akseskita-font-scale: 1.00; }
+html.akseskita-scale-sub1 { --akseskita-font-scale: 0.8; }
+html.akseskita-scale-0    { --akseskita-font-scale: 1.0; }
 html.akseskita-scale-1    { --akseskita-font-scale: 1.25; }
 html.akseskita-scale-2    { --akseskita-font-scale: 1.50; }
 html.akseskita-scale-3    { --akseskita-font-scale: 1.75; }
@@ -20,6 +20,102 @@ html.akseskita-scale-4    { --akseskita-font-scale: 2.00; }
 html[class*="akseskita-scale-"] {
   font-size: calc(100% * var(--akseskita-font-scale, 1)) !important;
 }
+
+/* Fallback & Override for fixed-px elements in Bootstrap/Tailwind/Custom CSS */
+html.akseskita-scale-sub1 body,
+html.akseskita-scale-sub1 p,
+html.akseskita-scale-sub1 span:not(akses-kita span):not(akses-kita *),
+html.akseskita-scale-sub1 a:not(akses-kita a):not(akses-kita *),
+html.akseskita-scale-sub1 li,
+html.akseskita-scale-sub1 blockquote,
+html.akseskita-scale-sub1 td,
+html.akseskita-scale-sub1 th,
+html.akseskita-scale-sub1 label,
+html.akseskita-scale-sub1 input:not(akses-kita input),
+html.akseskita-scale-sub1 button:not(akses-kita button),
+html.akseskita-scale-sub1 textarea {
+  font-size: 13px !important;
+}
+html.akseskita-scale-sub1 h1 { font-size: 1.75rem !important; }
+html.akseskita-scale-sub1 h2 { font-size: 1.45rem !important; }
+html.akseskita-scale-sub1 h3 { font-size: 1.25rem !important; }
+html.akseskita-scale-sub1 h4 { font-size: 1.10rem !important; }
+
+html.akseskita-scale-1 body,
+html.akseskita-scale-1 p,
+html.akseskita-scale-1 span:not(akses-kita span):not(akses-kita *),
+html.akseskita-scale-1 a:not(akses-kita a):not(akses-kita *),
+html.akseskita-scale-1 li,
+html.akseskita-scale-1 blockquote,
+html.akseskita-scale-1 td,
+html.akseskita-scale-1 th,
+html.akseskita-scale-1 label,
+html.akseskita-scale-1 input:not(akses-kita input),
+html.akseskita-scale-1 button:not(akses-kita button),
+html.akseskita-scale-1 textarea {
+  font-size: 18px !important;
+}
+html.akseskita-scale-1 h1 { font-size: 2.5rem !important; }
+html.akseskita-scale-1 h2 { font-size: 2.1rem !important; }
+html.akseskita-scale-1 h3 { font-size: 1.75rem !important; }
+html.akseskita-scale-1 h4 { font-size: 1.45rem !important; }
+
+html.akseskita-scale-2 body,
+html.akseskita-scale-2 p,
+html.akseskita-scale-2 span:not(akses-kita span):not(akses-kita *),
+html.akseskita-scale-2 a:not(akses-kita a):not(akses-kita *),
+html.akseskita-scale-2 li,
+html.akseskita-scale-2 blockquote,
+html.akseskita-scale-2 td,
+html.akseskita-scale-2 th,
+html.akseskita-scale-2 label,
+html.akseskita-scale-2 input:not(akses-kita input),
+html.akseskita-scale-2 button:not(akses-kita button),
+html.akseskita-scale-2 textarea {
+  font-size: 22px !important;
+}
+html.akseskita-scale-2 h1 { font-size: 3.1rem !important; }
+html.akseskita-scale-2 h2 { font-size: 2.6rem !important; }
+html.akseskita-scale-2 h3 { font-size: 2.15rem !important; }
+html.akseskita-scale-2 h4 { font-size: 1.75rem !important; }
+
+html.akseskita-scale-3 body,
+html.akseskita-scale-3 p,
+html.akseskita-scale-3 span:not(akses-kita span):not(akses-kita *),
+html.akseskita-scale-3 a:not(akses-kita a):not(akses-kita *),
+html.akseskita-scale-3 li,
+html.akseskita-scale-3 blockquote,
+html.akseskita-scale-3 td,
+html.akseskita-scale-3 th,
+html.akseskita-scale-3 label,
+html.akseskita-scale-3 input:not(akses-kita input),
+html.akseskita-scale-3 button:not(akses-kita button),
+html.akseskita-scale-3 textarea {
+  font-size: 26px !important;
+}
+html.akseskita-scale-3 h1 { font-size: 3.6rem !important; }
+html.akseskita-scale-3 h2 { font-size: 3.0rem !important; }
+html.akseskita-scale-3 h3 { font-size: 2.5rem !important; }
+html.akseskita-scale-3 h4 { font-size: 2.1rem !important; }
+
+html.akseskita-scale-4 body,
+html.akseskita-scale-4 p,
+html.akseskita-scale-4 span:not(akses-kita span):not(akses-kita *),
+html.akseskita-scale-4 a:not(akses-kita a):not(akses-kita *),
+html.akseskita-scale-4 li,
+html.akseskita-scale-4 blockquote,
+html.akseskita-scale-4 td,
+html.akseskita-scale-4 th,
+html.akseskita-scale-4 label,
+html.akseskita-scale-4 input:not(akses-kita input),
+html.akseskita-scale-4 button:not(akses-kita button),
+html.akseskita-scale-4 textarea {
+  font-size: 30px !important;
+}
+html.akseskita-scale-4 h1 { font-size: 4.2rem !important; }
+html.akseskita-scale-4 h2 { font-size: 3.5rem !important; }
+html.akseskita-scale-4 h3 { font-size: 2.9rem !important; }
+html.akseskita-scale-4 h4 { font-size: 2.4rem !important; }
 
 /* Font Weight */
 html.akseskita-font-bold,
@@ -2412,6 +2508,8 @@ html.akseskita-hide-images [style*="background-image"] {
 
       // Quick TTS
       ttsListen: 'Dengarkan',
+      selectionTtsTitle: 'Seleksi Teks Cepat (Quick TTS)',
+      selectionTtsDesc: 'Blok / sorot kalimat apa saja pada halaman web, lalu klik tombol melayang "Dengarkan" yang muncul di atas teks pilihan.',
     },
     en: {
       // Toolbar A11y Header & Tabs
@@ -2540,6 +2638,8 @@ html.akseskita-hide-images [style*="background-image"] {
 
       // Quick TTS
       ttsListen: 'Listen',
+      selectionTtsTitle: 'Selection Quick TTS',
+      selectionTtsDesc: 'Highlight or select any text on the webpage, then click the floating "Listen" button that appears directly above your selection.',
     }
   };
 
@@ -2621,6 +2721,18 @@ html.akseskita-hide-images [style*="background-image"] {
       'akseskita-scale-3',
       'akseskita-scale-4'
     );
+
+    const scaleMap = {
+      '-1': 0.8,
+      '0': 1.0,
+      '1': 1.25,
+      '2': 1.5,
+      '3': 1.75,
+      '4': 2.0
+    };
+
+    const scaleVal = scaleMap[clamped] || 1.0;
+    root.style.setProperty('--akseskita-font-scale', scaleVal.toString());
 
     if (clamped === -1) {
       root.classList.add('akseskita-scale-sub1');
@@ -4418,6 +4530,17 @@ html.akseskita-hide-images [style*="background-image"] {
                 <button class="speech-rate-chip" data-rate="1.5">1.5x</button>
                 <button class="speech-rate-chip" data-rate="2.0">2.0x</button>
               </div>
+            </div>
+
+            <!-- Selection Quick TTS Info Card -->
+            <div class="audio-card-box" style="background: #f0fdf4; border-color: #bbf7d0;">
+              <div class="audio-card-top">
+                <div class="audio-card-title-wrap" style="color: #166534;">
+                  <span>✨</span>
+                  <span>${t('selectionTtsTitle')}</span>
+                </div>
+              </div>
+              <p class="audio-card-desc" style="color: #15803d;">${t('selectionTtsDesc')}</p>
             </div>
           </div>
         </div>

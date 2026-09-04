@@ -481,6 +481,17 @@ class AksesKitaElement extends HTMLElement {
                 <button class="speech-rate-chip" data-rate="2.0">2.0x</button>
               </div>
             </div>
+
+            <!-- Selection Quick TTS Info Card -->
+            <div class="audio-card-box" style="background: #f0fdf4; border-color: #bbf7d0;">
+              <div class="audio-card-top">
+                <div class="audio-card-title-wrap" style="color: #166534;">
+                  <span>✨</span>
+                  <span>${t('selectionTtsTitle')}</span>
+                </div>
+              </div>
+              <p class="audio-card-desc" style="color: #15803d;">${t('selectionTtsDesc')}</p>
+            </div>
           </div>
         </div>
 
