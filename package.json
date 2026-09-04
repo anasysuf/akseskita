@@ -1,6 +1,6 @@
 {
   "name": "akseskita",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Toolbar Aksesibilitas Web & Papan Komunikasi Visual (AAC) dalam Satu Skrip Ringan Indonesia",
   "main": "dist/akseskita.js",
   "module": "src/index.js",
