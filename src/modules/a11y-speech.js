@@ -432,4 +432,12 @@ export function initQuickTTS() {
   if (isScreenReaderEnabled()) {
     toggleScreenReaderMode(true);
   }
+
+  // Listen for language change to update popover labels
+  window.addEventListener('akseskita-language-changed', () => {
+    const popoverText = document.getElementById('akseskita-tts-popover-text');
+    const popoverEl = document.getElementById('akseskita-tts-popover');
+    if (popoverText) popoverText.textContent = t('ttsListen');
+    if (popoverEl) popoverEl.setAttribute('aria-label', t('ttsListen'));
+  });
 }

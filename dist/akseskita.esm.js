@@ -2580,6 +2580,21 @@ const translations = {
     ttsListen: 'Dengarkan',
     selectionTtsTitle: 'Seleksi Teks Cepat (Quick TTS)',
     selectionTtsDesc: 'Blok / sorot kalimat apa saja pada halaman web, lalu klik tombol melayang "Dengarkan" yang muncul di atas teks pilihan.',
+
+    // Additional UI elements
+    fabAriaLabel: 'Buka Menu Aksesibilitas AksesKita',
+    fabTitle: 'Aksesibilitas (Alt + A)',
+    panelAriaLabel: 'Menu Aksesibilitas Web',
+    tagPrimaryFocus: 'Fokus Utama',
+    screenReaderActiveOn: 'Pembaca Layar Aktif (ON)',
+    screenReaderEnableOff: 'Aktifkan Pembaca Layar (OFF)',
+    alignLeftLabel: 'Kiri',
+    alignCenterLabel: 'Tengah',
+    alignRightLabel: 'Kanan',
+    alignJustifyLabel: 'Rata',
+    poweredBy: 'Didukung oleh',
+    recordStop: 'Berhenti',
+    deleteLabel: 'Hapus'
   },
   en: {
     // Toolbar A11y Header & Tabs
@@ -2710,6 +2725,21 @@ const translations = {
     ttsListen: 'Listen',
     selectionTtsTitle: 'Selection Quick TTS',
     selectionTtsDesc: 'Highlight or select any text on the webpage, then click the floating "Listen" button that appears directly above your selection.',
+
+    // Additional UI elements
+    fabAriaLabel: 'Open AksesKita Accessibility Menu',
+    fabTitle: 'Accessibility (Alt + A)',
+    panelAriaLabel: 'Web Accessibility Menu',
+    tagPrimaryFocus: 'Primary Focus',
+    screenReaderActiveOn: 'Screen Reader Active (ON)',
+    screenReaderEnableOff: 'Enable Screen Reader (OFF)',
+    alignLeftLabel: 'Left',
+    alignCenterLabel: 'Center',
+    alignRightLabel: 'Right',
+    alignJustifyLabel: 'Justify',
+    poweredBy: 'Powered by',
+    recordStop: 'Stop',
+    deleteLabel: 'Delete'
   }
 };
 
@@ -2728,11 +2758,15 @@ function getLanguage() {
 }
 
 function setLanguage(lang) {
+  const previous = currentLang;
   currentLang = (lang === 'en') ? 'en' : 'id';
   if (typeof localStorage !== 'undefined') {
     try {
       localStorage.setItem(STORAGE_KEY_LANG, currentLang);
     } catch (e) {}
+  }
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent('akseskita-language-changed', { detail: { lang: currentLang, previous } }));
   }
   return currentLang;
 }
@@ -3916,6 +3950,14 @@ function initQuickTTS() {
   if (isScreenReaderEnabled()) {
     toggleScreenReaderMode(true);
   }
+
+  // Listen for language change to update popover labels
+  window.addEventListener('akseskita-language-changed', () => {
+    const popoverText = document.getElementById('akseskita-tts-popover-text');
+    const popoverEl = document.getElementById('akseskita-tts-popover');
+    if (popoverText) popoverText.textContent = t('ttsListen');
+    if (popoverEl) popoverEl.setAttribute('aria-label', t('ttsListen'));
+  });
 }
 
 /**
@@ -4247,6 +4289,13 @@ class AksesKitaElement extends HTMLElement {
     } catch (err) {
       console.warn('[AksesKita] DB Init warning:', err);
     }
+
+    // Listen for language change events from demo or external callers
+    window.addEventListener('akseskita-language-changed', (e) => {
+      if (e.detail && e.detail.lang) {
+        this.changeLanguage(e.detail.lang);
+      }
+    });
   }
 
   injectHostStyles() {
@@ -4271,13 +4320,13 @@ class AksesKitaElement extends HTMLElement {
       </style>
 
       <!-- FAB Trigger Button -->
-      <button id="fab-trigger" class="fab-trigger" aria-label="Buka Menu Aksesibilitas AksesKita" title="Aksesibilitas (Alt + A)">
+      <button id="fab-trigger" class="fab-trigger" aria-label="${t('fabAriaLabel')}" title="${t('fabTitle')}">
         <span class="fab-icon">♿</span>
         <span>AksesKita</span>
       </button>
 
       <!-- Toolbar A11y Panel -->
-      <div id="a11y-panel" class="panel-container hidden" role="dialog" aria-modal="false" aria-label="Menu Aksesibilitas Web">
+      <div id="a11y-panel" class="panel-container hidden" role="dialog" aria-modal="false" aria-label="${t('panelAriaLabel')}">
         <!-- Panel Header -->
         <div class="panel-header">
           <div class="panel-title-wrapper">
@@ -4299,7 +4348,7 @@ class AksesKitaElement extends HTMLElement {
           <div class="section-group">
             <div class="section-label">
               <span>${t('audioSection')}</span>
-              <span class="section-tag-focus">Fokus Utama</span>
+              <span class="section-tag-focus">${t('tagPrimaryFocus')}</span>
             </div>
 
             <!-- Screen Reader Mode Switch Card -->
@@ -4312,7 +4361,7 @@ class AksesKitaElement extends HTMLElement {
               </div>
               <p class="audio-card-desc">${t('screenReaderDesc')}</p>
               <button id="btn-screen-reader" class="btn-audio-action">
-                <span id="label-screen-reader-toggle">Aktifkan Pembaca Layar</span>
+                <span id="label-screen-reader-toggle">${t('screenReaderEnableOff')}</span>
               </button>
             </div>
 
@@ -4472,10 +4521,10 @@ class AksesKitaElement extends HTMLElement {
             <div>
               <span class="section-label">${t('textAlign')}</span>
               <div class="align-segmented-bar">
-                <button class="align-btn" data-align="left" title="${t('alignLeft')}">Kiri</button>
-                <button class="align-btn" data-align="center" title="${t('alignCenter')}">Tengah</button>
-                <button class="align-btn" data-align="right" title="${t('alignRight')}">Kanan</button>
-                <button class="align-btn" data-align="justify" title="${t('alignJustify')}">Rata</button>
+                <button class="align-btn" data-align="left" title="${t('alignLeft')}">${t('alignLeftLabel')}</button>
+                <button class="align-btn" data-align="center" title="${t('alignCenter')}">${t('alignCenterLabel')}</button>
+                <button class="align-btn" data-align="right" title="${t('alignRight')}">${t('alignRightLabel')}</button>
+                <button class="align-btn" data-align="justify" title="${t('alignJustify')}">${t('alignJustifyLabel')}</button>
               </div>
             </div>
           </div>
@@ -4559,7 +4608,7 @@ class AksesKitaElement extends HTMLElement {
           </div>
 
           <!-- CTA AAC COMMUNICATOR -->
-          <button id="open-aac-btn" class="btn-aac-launch" title="Shortcut: Alt + C">
+          <button id="open-aac-btn" class="btn-aac-launch" title="${t('shortcutHint')}: Alt + C">
             <span>${t('openAacBtn')}</span>
             <span class="shortcut-kbd" style="background: rgba(0,0,0,0.2); color: #fff; border: 1px solid rgba(255,255,255,0.3); font-size: 10px; margin-left: 6px;">Alt + C</span>
           </button>
@@ -4569,7 +4618,7 @@ class AksesKitaElement extends HTMLElement {
         <div class="panel-footer">
           <button id="btn-reset-all" class="reset-link">${t('resetAll')}</button>
           <a href="${demoUrl}" target="_blank" rel="noopener noreferrer" class="footer-brand-link" title="AksesKita - Free Web Accessibility Suite">
-            <span class="footer-brand-text">Powered by</span>
+            <span class="footer-brand-text">${t('poweredBy')}</span>
             <span class="footer-brand-name">♿ AksesKita</span>
           </a>
         </div>
@@ -4951,7 +5000,7 @@ class AksesKitaElement extends HTMLElement {
           await startAudioRecording();
           this.isRecording = true;
           recordBtn.classList.add('recording');
-          recordText.textContent = getLanguage() === 'en' ? 'Stop' : 'Berhenti';
+          recordText.textContent = t('recordStop');
           recordStatus.textContent = t('voiceRecording');
         } catch (err) {
           alert((t('micError')) + (err.message || 'Error'));
@@ -5084,7 +5133,7 @@ class AksesKitaElement extends HTMLElement {
 
   syncA11yUIState() {
     const root = this.shadowRoot;
-    const isEn = getLanguage() === 'en';
+    getLanguage() === 'en';
     const activeProfile = getActiveProfile();
     const scale = getFontScale();
     const bold = isFontBold();
@@ -5160,8 +5209,8 @@ class AksesKitaElement extends HTMLElement {
     }
     if (screenReaderLabel) {
       screenReaderLabel.textContent = screenReader 
-        ? (isEn ? 'Screen Reader Active (ON)' : 'Pembaca Layar Aktif (ON)')
-        : (isEn ? 'Enable Screen Reader (OFF)' : 'Aktifkan Pembaca Layar (OFF)');
+        ? t('screenReaderActiveOn')
+        : t('screenReaderEnableOff');
     }
 
     const pageReaderBtn = root.getElementById('btn-page-reader');

@@ -137,6 +137,62 @@
       background: rgba(2, 132, 199, 0.25);
     }
 
+    /* Top Right Action & Language Switcher */
+    .nav-right-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .demo-lang-switcher {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 9999px;
+      padding: 3px;
+      gap: 2px;
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .demo-lang-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 12px;
+      border: none;
+      background: transparent;
+      color: #94a3b8;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      user-select: none;
+      outline: none;
+    }
+
+    .demo-lang-btn:focus-visible {
+      box-shadow: 0 0 0 2px #38bdf8;
+    }
+
+    .demo-lang-btn:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .demo-lang-btn.active {
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(2, 132, 199, 0.45);
+    }
+
+    .demo-lang-flag {
+      font-size: 14px;
+      line-height: 1;
+    }
+
     .nav-action-btn {
       display: inline-flex;
       align-items: center;
@@ -248,56 +304,54 @@
     }
 
     .hero-desc {
-      font-size: 18px;
-      color: #e0f2fe;
-      margin-bottom: 32px;
+      font-size: 16px;
       line-height: 1.6;
+      opacity: 0.95;
+      margin-bottom: 30px;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 14px;
-      margin-bottom: 40px;
     }
 
     .btn-hero-primary {
-      padding: 14px 26px;
-      background: #ffffff;
-      color: #0369a1;
-      border-radius: 12px;
-      font-size: 15px;
-      font-weight: 800;
-      text-decoration: none;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
-      transition: all 0.2s ease;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      cursor: pointer;
+      padding: 12px 24px;
+      background: #ffffff;
+      color: #0284c7;
+      font-size: 15px;
+      font-weight: 700;
+      border-radius: 12px;
       border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transition: all 0.2s ease;
     }
 
     .btn-hero-primary:hover {
-      background: #f8fafc;
+      background: #f0fdf4;
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.16);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     }
 
     .btn-hero-secondary {
-      padding: 14px 24px;
-      background: rgba(255, 255, 255, 0.15);
-      color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      border-radius: 12px;
-      font-size: 15px;
-      font-weight: 700;
-      text-decoration: none;
-      transition: all 0.2s ease;
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      border: 1.5px solid rgba(255, 255, 255, 0.4);
+      font-size: 15px;
+      font-weight: 700;
+      border-radius: 12px;
       cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: all 0.2s ease;
     }
 
     .btn-hero-secondary:hover {
@@ -305,12 +359,12 @@
       transform: translateY(-2px);
     }
 
-    /* Quick Stats Grid */
+    /* Stats Grid */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      margin-top: 32px;
+      gap: 20px;
+      margin-top: 40px;
     }
 
     .stat-card {
@@ -320,15 +374,16 @@
       padding: 24px 20px;
       text-align: center;
       box-shadow: var(--shadow-sm);
-      transition: transform 0.2s;
+      transition: transform 0.2s ease;
     }
 
     .stat-card:hover {
       transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
     }
 
     .stat-number {
-      font-size: 32px;
+      font-size: 26px;
       font-weight: 800;
       color: var(--primary);
       margin-bottom: 4px;
@@ -336,11 +391,11 @@
 
     .stat-label {
       font-size: 13px;
-      font-weight: 700;
       color: var(--text-muted);
+      font-weight: 600;
     }
 
-    /* Panduan A11y Section */
+    /* Guide Grid */
     .guide-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -361,42 +416,44 @@
     .guide-card-header {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
     }
 
     .guide-card-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 22px;
+      font-size: 24px;
+      flex-shrink: 0;
     }
 
     .guide-card h3 {
       font-size: 18px;
       font-weight: 800;
-      color: var(--text);
+      color: #0f172a;
     }
 
     .guide-card p {
-      font-size: 15px;
+      font-size: 14px;
       color: #475569;
+      line-height: 1.6;
     }
 
     .demo-sandbox-box {
-      background: #f1f5f9;
-      border: 1px dashed #cbd5e1;
+      background: #f8fafc;
+      border: 1.5px dashed #cbd5e1;
       border-radius: 12px;
-      padding: 18px;
+      padding: 16px;
       font-size: 14px;
       color: #334155;
     }
 
     .demo-selection-box {
       background: #f0fdf4;
-      border: 1px solid #bbf7d0;
+      border: 1.5px dashed #86efac;
       border-radius: 12px;
       padding: 18px;
       font-size: 14px;
@@ -980,6 +1037,17 @@
       .nav-menu {
         display: none;
       }
+      .nav-right-actions {
+        gap: 6px;
+      }
+      .demo-lang-btn {
+        padding: 4px 8px;
+        font-size: 12px;
+      }
+      .nav-action-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+      }
       .hero-box {
         padding: 30px 20px;
       }
@@ -988,9 +1056,6 @@
       }
     }
   </style>
-
-  <!-- Load AksesKita Single Drop-in Script from root dist -->
-  <script src="dist/akseskita.js" defer></script>
 </head>
 <body>
 
@@ -1001,23 +1066,36 @@
         <div class="brand-icon">AK</div>
         <div class="brand-text">
           <h1>AksesKita</h1>
-          <span>All-in-One Assistive Web Suite</span>
+          <span data-i18n="brandSubtitle">All-in-One Assistive Web Suite</span>
         </div>
       </a>
 
       <nav>
         <ul class="nav-menu">
-          <li><a href="#beranda" class="nav-link active">Beranda</a></li>
-          <li><a href="#panduan" class="nav-link">Panduan A11y</a></li>
-          <li><a href="#aac" class="nav-link">Papan AAC</a></li>
-          <li><a href="#fitur" class="nav-link">Cara Penggunaan</a></li>
-          <li><a href="#kontak" class="nav-link">Hubungi Kami</a></li>
+          <li><a href="#beranda" class="nav-link active" data-i18n="navHome">Beranda</a></li>
+          <li><a href="#panduan" class="nav-link" data-i18n="navGuide">Panduan A11y</a></li>
+          <li><a href="#aac" class="nav-link" data-i18n="navAac">Papan AAC</a></li>
+          <li><a href="#fitur" class="nav-link" data-i18n="navUsage">Cara Penggunaan</a></li>
+          <li><a href="#kontak" class="nav-link" data-i18n="navContact">Hubungi Kami</a></li>
         </ul>
       </nav>
 
-      <div>
-        <button id="nav-btn-aac" class="nav-action-btn" title="Buka Papan Bicara AAC (Alt + C)">
-          <span>Papan Bicara</span>
+      <!-- Right Action Area with Language Switcher -->
+      <div class="nav-right-actions">
+        <!-- Language Switcher (Pojok Kanan) -->
+        <div class="demo-lang-switcher" role="group" aria-label="Pilih Bahasa / Language Selector">
+          <button type="button" class="demo-lang-btn active" id="demo-lang-id" data-lang="id" aria-pressed="true" title="Bahasa Indonesia">
+            <span class="demo-lang-flag">🇮🇩</span>
+            <span>ID</span>
+          </button>
+          <button type="button" class="demo-lang-btn" id="demo-lang-en" data-lang="en" aria-pressed="false" title="English">
+            <span class="demo-lang-flag">🇬🇧</span>
+            <span>EN</span>
+          </button>
+        </div>
+
+        <button id="nav-btn-aac" class="nav-action-btn" data-i18n-title="navBtnAacTitle" title="Buka Papan Bicara AAC (Alt + C)">
+          <span data-i18n="navBtnAac">Papan Bicara</span>
         </button>
       </div>
     </div>
@@ -1030,19 +1108,19 @@
         <div class="hero-box">
           <div class="hero-content">
             <div class="hero-tagline">
-              <span>Solusi Aksesibilitas Web & Komunikasi Inklusif Indonesia</span>
+              <span data-i18n="heroTagline">Solusi Aksesibilitas Web & Komunikasi Inklusif Indonesia</span>
             </div>
-            <h2 class="hero-title">Satu Skrip Ringan untuk Website Ramah Disabilitas & Komunikasi AAC</h2>
-            <p class="hero-desc">
+            <h2 class="hero-title" data-i18n="heroTitle">Satu Skrip Ringan untuk Website Ramah Disabilitas & Komunikasi AAC</h2>
+            <p class="hero-desc" data-i18n="heroDesc">
               AksesKita menggabungkan toolbar aksesibilitas situs web (A11y) dan papan bicara visual (AAC) interaktif berbasis suara Bahasa Indonesia ke dalam satu Web Component tanpa dependensi eksternal.
             </p>
             <div class="hero-actions">
               <button id="hero-open-panel" class="btn-hero-primary">
-                <span>Buka Toolbar Aksesibilitas</span>
+                <span data-i18n="heroOpenPanel">Buka Toolbar Aksesibilitas</span>
                 <span style="font-size: 11px; opacity: 0.8;">(Alt + A)</span>
               </button>
               <button id="hero-open-aac" class="btn-hero-secondary">
-                <span>Buka Papan Bicara (AAC)</span>
+                <span data-i18n="heroOpenAac">Buka Papan Bicara (AAC)</span>
                 <span style="font-size: 11px; opacity: 0.8;">(Alt + C)</span>
               </button>
             </div>
@@ -1051,20 +1129,20 @@
 
         <div class="stats-grid">
           <div class="stat-card">
-            <div class="stat-number">🔊 Tunanetra</div>
-            <div class="stat-label">Mode Pembaca Layar & TTS Cerdas</div>
+            <div class="stat-number" data-i18n="stat1Num">🔊 Tunanetra</div>
+            <div class="stat-label" data-i18n="stat1Label">Mode Pembaca Layar & TTS Cerdas</div>
           </div>
           <div class="stat-card">
-            <div class="stat-number">6 Skala</div>
-            <div class="stat-label">Ukuran Teks (75% - 200%)</div>
+            <div class="stat-number" data-i18n="stat2Num">6 Skala</div>
+            <div class="stat-label" data-i18n="stat2Label">Ukuran Teks (75% - 200%)</div>
           </div>
           <div class="stat-card">
-            <div class="stat-number">7 Tema</div>
-            <div class="stat-label">Kontras Visual & Filter</div>
+            <div class="stat-number" data-i18n="stat3Num">7 Tema</div>
+            <div class="stat-label" data-i18n="stat3Label">Kontras Visual & Filter</div>
           </div>
           <div class="stat-card">
-            <div class="stat-number">40+ Simbol</div>
-            <div class="stat-label">Papan Komunikasi AAC Indonesia</div>
+            <div class="stat-number" data-i18n="stat4Num">40+ Simbol</div>
+            <div class="stat-label" data-i18n="stat4Label">Papan Komunikasi AAC Indonesia</div>
           </div>
         </div>
       </div>
@@ -1074,9 +1152,9 @@
     <section id="panduan" style="background: #f1f5f9;">
       <div class="container">
         <div class="section-title-wrap">
-          <span class="section-badge">Panduan & Simulasi</span>
-          <h2 class="section-title">Fitur Aksesibilitas Web & Pembaca Layar</h2>
-          <p class="section-desc">
+          <span class="section-badge" data-i18n="guideBadge">Panduan & Simulasi</span>
+          <h2 class="section-title" data-i18n="guideTitle">Fitur Aksesibilitas Web & Pembaca Layar</h2>
+          <p class="section-desc" data-i18n="guideDesc">
             Uji coba langsung bagaimana fitur pembaca layar tunanetra, penyesuaian font dinamis, dan alat visual bekerja pada konten situs web ini.
           </p>
         </div>
@@ -1087,15 +1165,15 @@
             <div class="guide-card-header">
               <div class="guide-card-icon" style="background: #e0f2fe; color: #0284c7;">🔊</div>
               <div>
-                <h3>1. Pembaca Layar Tunanetra & TTS Cerdas</h3>
-                <span style="font-size: 12px; color: #0284c7; font-weight: 700;">Fokus Utama: Alt + R (Screen Reader), Alt + P (Baca Halaman), Alt + S (Stop)</span>
+                <h3 data-i18n="guide1Title">1. Pembaca Layar Tunanetra & TTS Cerdas</h3>
+                <span style="font-size: 12px; color: #0284c7; font-weight: 700;" data-i18n="guide1Focus">Fokus Utama: Alt + R (Screen Reader), Alt + P (Baca Halaman), Alt + S (Stop)</span>
               </div>
             </div>
-            <p>
+            <p data-i18n-html="guide1Desc">
               Membaca elemen bersuara otomatis saat kursor diarahkan atau saat bernavigasi menggunakan tombol <kbd>Tab</kbd>, pembacaan halaman kontinu, serta tombol instan saat menyeleksi teks kalimat.
             </p>
             <div class="demo-selection-box" title="Seleksi teks di dalam kotak ini!">
-              <p><b>👉 Coba Seleksi Teks Ini:</b> "AksesKita dibangun dengan misi memberikan kemudahan komunikasi dan aksesibilitas tanpa hambatan bagi seluruh masyarakat Indonesia."</p>
+              <p><b data-i18n="guide1DemoTitle">👉 Coba Seleksi Teks Ini:</b> <span data-i18n="guide1DemoText">"AksesKita dibangun dengan misi memberikan kemudahan komunikasi dan aksesibilitas tanpa hambatan bagi seluruh masyarakat Indonesia."</span></p>
             </div>
           </div>
 
@@ -1104,15 +1182,15 @@
             <div class="guide-card-header">
               <div class="guide-card-icon" style="background: #fef3c7; color: #d97706;">🔤</div>
               <div>
-                <h3>2. Ukuran Teks Dinamis Responsif</h3>
-                <span style="font-size: 12px; color: #64748b;">6 Tingkat Skala (75%, 100%, 125%, 150%, 175%, 200%)</span>
+                <h3 data-i18n="guide2Title">2. Ukuran Teks Dinamis Responsif</h3>
+                <span style="font-size: 12px; color: #64748b;" data-i18n="guide2Scale">6 Tingkat Skala (75%, 100%, 125%, 150%, 175%, 200%)</span>
               </div>
             </div>
-            <p>
-              Teks diatur secara responsif tanpa merusak struktur menu atau layout halaman, memastikan keterbacaan optimal bagi lansia dan pengguna dengan gangguan penglihatan (*low vision*).
+            <p data-i18n-html="guide2Desc">
+              Teks diatur secara responsif tanpa merusak struktur menu atau layout halaman, memastikan keterbacaan optimal bagi lansia dan pengguna dengan gangguan penglihatan (<i>low vision</i>).
             </p>
             <div class="demo-sandbox-box">
-              <p><b>Contoh Paragraf:</b> Aksesibilitas digital adalah hak asasi setiap warga negara untuk mengakses layanan informasi publik secara setara.</p>
+              <p><b data-i18n="guide2DemoPrefix">Contoh Paragraf:</b> <span data-i18n="guide2DemoText">Aksesibilitas digital adalah hak asasi setiap warga negara untuk mengakses layanan informasi publik secara setara.</span></p>
             </div>
           </div>
 
@@ -1121,15 +1199,15 @@
             <div class="guide-card-header">
               <div class="guide-card-icon" style="background: #f3e8ff; color: #9333ea;">📖</div>
               <div>
-                <h3>3. Mode Font Disleksia & Spasi Tipografi</h3>
-                <span style="font-size: 12px; color: #64748b;">Font khusus, spasi baris, spasi huruf, sorot judul & link</span>
+                <h3 data-i18n="guide3Title">3. Mode Font Disleksia & Spasi Tipografi</h3>
+                <span style="font-size: 12px; color: #64748b;" data-i18n="guide3Subtitle">Font khusus, spasi baris, spasi huruf, sorot judul & link</span>
               </div>
             </div>
-            <p>
-              Mengoptimalkan bentuk huruf, jarak kata, dan *line-height* untuk mencegah kebingungan huruf yang berputar (*letter inversion*) pada pembaca disleksia.
+            <p data-i18n-html="guide3Desc">
+              Mengoptimalkan bentuk huruf, jarak kata, dan <i>line-height</i> untuk mencegah kebingungan huruf yang berputar (<i>letter inversion</i>) pada pembaca disleksia.
             </p>
             <div class="demo-sandbox-box">
-              <p>Klik tombol <b>"📖 Disleksia"</b> pada panel untuk melihat perubahan bentuk tipografi pada seluruh halaman.</p>
+              <p data-i18n-html="guide3DemoText">Klik tombol <b>"📖 Disleksia"</b> pada panel untuk melihat perubahan bentuk tipografi pada seluruh halaman.</p>
             </div>
           </div>
 
@@ -1138,15 +1216,15 @@
             <div class="guide-card-header">
               <div class="guide-card-icon" style="background: #dcfce7; color: #16a34a;">🎨</div>
               <div>
-                <h3>4. Filter Kontras & Alat Bantu Visual</h3>
-                <span style="font-size: 12px; color: #64748b;">Kontras Tinggi, Gelap, Terang, Monokrom, Balik Warna & Garis Pandu</span>
+                <h3 data-i18n="guide4Title">4. Filter Kontras & Alat Bantu Visual</h3>
+                <span style="font-size: 12px; color: #64748b;" data-i18n="guide4Subtitle">Kontras Tinggi, Gelap, Terang, Monokrom, Balik Warna & Garis Pandu</span>
               </div>
             </div>
-            <p>
-              Membantu pengguna dengan sensitivitas cahaya (*photophobia*), buta warna (*color blindness*), dengan garis pandu baca (*reading guide*), tirai baca (*reading mask*), dan kursor besar.
+            <p data-i18n-html="guide4Desc">
+              Membantu pengguna dengan sensitivitas cahaya (<i>photophobia</i>), buta warna (<i>color blindness</i>), dengan garis pandu baca (<i>reading guide</i>), tirai baca (<i>reading mask</i>), dan kursor besar.
             </p>
             <div class="demo-sandbox-box">
-              <p>Dilengkapi <b>Garis Pandu Baca (Reading Guide)</b> horizontal dan <b>Super Fokus</b> yang mengikuti kursor mouse.</p>
+              <p data-i18n-html="guide4DemoText">Dilengkapi <b>Garis Pandu Baca (Reading Guide)</b> horizontal dan <b>Super Fokus</b> yang mengikuti kursor mouse.</p>
             </div>
           </div>
         </div>
@@ -1157,9 +1235,9 @@
     <section id="aac">
       <div class="container">
         <div class="section-title-wrap">
-          <span class="section-badge">Komunikasi Alternatif</span>
-          <h2 class="section-title">Papan Komunikasi Visual (AAC)</h2>
-          <p class="section-desc">
+          <span class="section-badge" data-i18n="aacBadge">Komunikasi Alternatif</span>
+          <h2 class="section-title" data-i18n="aacTitle">Papan Komunikasi Visual (AAC)</h2>
+          <p class="section-desc" data-i18n="aacDesc">
             Dirancang khusus untuk sahabat non-verbal, autistik, disabilitas wicara, penderita afasia pasca-stroke, dan lansia.
           </p>
         </div>
@@ -1167,63 +1245,63 @@
         <div class="aac-showcase-box">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
             <div>
-              <h3 style="font-size: 20px; font-weight: 800; color: #0f172a;">Koleksi Kategori Simbol Bawaan</h3>
-              <p style="font-size: 14px; color: #64748b;">Klik kartu di bawah untuk mencoba menyusun dan mendengarkan suaranya:</p>
+              <h3 style="font-size: 20px; font-weight: 800; color: #0f172a;" data-i18n="aacShowcaseTitle">Koleksi Kategori Simbol Bawaan</h3>
+              <p style="font-size: 14px; color: #64748b;" data-i18n="aacShowcaseDesc">Klik kartu di bawah untuk mencoba menyusun dan mendengarkan suaranya:</p>
             </div>
             <button id="btn-trigger-aac-modal" class="nav-action-btn" style="padding: 10px 20px; font-size: 14px;">
-              <span>Buka Papan Komunikasi Lengkap</span>
+              <span data-i18n="aacBtnFull">Buka Papan Komunikasi Lengkap</span>
             </button>
           </div>
 
           <div class="category-pills-row">
-            <span class="cat-pill" style="border-color: #ea580c; background: #fff7ed; color: #c2410c;">🍽️ Kebutuhan</span>
-            <span class="cat-pill" style="border-color: #16a34a; background: #f0fdf4; color: #15803d;">💬 Respon</span>
-            <span class="cat-pill" style="border-color: #2563eb; background: #eff6ff; color: #1d4ed8;">😊 Perasaan</span>
-            <span class="cat-pill" style="border-color: #9333ea; background: #faf5ff; color: #7e22ce;">👥 Aktivitas & Orang</span>
+            <span class="cat-pill" style="border-color: #ea580c; background: #fff7ed; color: #c2410c;" data-i18n="aacCatNeeds">🍽️ Kebutuhan</span>
+            <span class="cat-pill" style="border-color: #16a34a; background: #f0fdf4; color: #15803d;" data-i18n="aacCatResponses">💬 Respon</span>
+            <span class="cat-pill" style="border-color: #2563eb; background: #eff6ff; color: #1d4ed8;" data-i18n="aacCatFeelings">😊 Perasaan</span>
+            <span class="cat-pill" style="border-color: #9333ea; background: #faf5ff; color: #7e22ce;" data-i18n="aacCatActivities">👥 Aktivitas & Orang</span>
           </div>
 
           <div class="aac-card-sample-grid">
-            <div class="sample-card" onclick="document.querySelector('akses-kita').shadowRoot.getElementById('open-aac-btn').click()">
+            <div class="sample-card" onclick="const r = document.querySelector('akses-kita, akseskita-widget')?.shadowRoot; r?.getElementById('open-aac-btn')?.click();">
               <span class="sample-card-icon">🍚</span>
-              <span class="sample-card-label">Mau Makan</span>
+              <span class="sample-card-label" data-i18n="cardEat">Mau Makan</span>
             </div>
-            <div class="sample-card" onclick="document.querySelector('akses-kita').shadowRoot.getElementById('open-aac-btn').click()">
+            <div class="sample-card" onclick="const r = document.querySelector('akses-kita, akseskita-widget')?.shadowRoot; r?.getElementById('open-aac-btn')?.click();">
               <span class="sample-card-icon">🥛</span>
-              <span class="sample-card-label">Mau Minum</span>
+              <span class="sample-card-label" data-i18n="cardDrink">Mau Minum</span>
             </div>
-            <div class="sample-card" onclick="document.querySelector('akses-kita').shadowRoot.getElementById('open-aac-btn').click()">
+            <div class="sample-card" onclick="const r = document.querySelector('akses-kita, akseskita-widget')?.shadowRoot; r?.getElementById('open-aac-btn')?.click();">
               <span class="sample-card-icon">🚻</span>
-              <span class="sample-card-label">Ke Toilet</span>
+              <span class="sample-card-label" data-i18n="cardToilet">Ke Toilet</span>
             </div>
-            <div class="sample-card" onclick="document.querySelector('akses-kita').shadowRoot.getElementById('open-aac-btn').click()">
+            <div class="sample-card" onclick="const r = document.querySelector('akses-kita, akseskita-widget')?.shadowRoot; r?.getElementById('open-aac-btn')?.click();">
               <span class="sample-card-icon">🆘</span>
-              <span class="sample-card-label">Tolong</span>
+              <span class="sample-card-label" data-i18n="cardHelp">Tolong</span>
             </div>
-            <div class="sample-card" onclick="document.querySelector('akses-kita').shadowRoot.getElementById('open-aac-btn').click()">
+            <div class="sample-card" onclick="const r = document.querySelector('akses-kita, akseskita-widget')?.shadowRoot; r?.getElementById('open-aac-btn')?.click();">
               <span class="sample-card-icon">👍</span>
-              <span class="sample-card-label">Ya</span>
+              <span class="sample-card-label" data-i18n="cardYes">Ya</span>
             </div>
-            <div class="sample-card" onclick="document.querySelector('akses-kita').shadowRoot.getElementById('open-aac-btn').click()">
+            <div class="sample-card" onclick="const r = document.querySelector('akses-kita, akseskita-widget')?.shadowRoot; r?.getElementById('open-aac-btn')?.click();">
               <span class="sample-card-icon">👎</span>
-              <span class="sample-card-label">Tidak</span>
+              <span class="sample-card-label" data-i18n="cardNo">Tidak</span>
             </div>
-            <div class="sample-card" onclick="document.querySelector('akses-kita').shadowRoot.getElementById('open-aac-btn').click()">
+            <div class="sample-card" onclick="const r = document.querySelector('akses-kita, akseskita-widget')?.shadowRoot; r?.getElementById('open-aac-btn')?.click();">
               <span class="sample-card-icon">🙏</span>
-              <span class="sample-card-label">Terima Kasih</span>
+              <span class="sample-card-label" data-i18n="cardThanks">Terima Kasih</span>
             </div>
-            <div class="sample-card" onclick="document.querySelector('akses-kita').shadowRoot.getElementById('open-aac-btn').click()">
+            <div class="sample-card" onclick="const r = document.querySelector('akses-kita, akseskita-widget')?.shadowRoot; r?.getElementById('open-aac-btn')?.click();">
               <span class="sample-card-icon">😄</span>
-              <span class="sample-card-label">Senang</span>
+              <span class="sample-card-label" data-i18n="cardHappy">Senang</span>
             </div>
           </div>
 
           <div style="background: #f8fafc; border-radius: 12px; padding: 20px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
             <div>
-              <h4 style="font-size: 15px; font-weight: 700;">Kustomisasi Kartu & Rekam Suara Sendiri</h4>
-              <p style="font-size: 13px; color: #64748b;">Pengguna atau terapis dapat mengunggah foto asli dan merekam suara asli via mic lokal yang tersimpan aman di IndexedDB offline.</p>
+              <h4 style="font-size: 15px; font-weight: 700;" data-i18n="aacCustomTitle">Kustomisasi Kartu & Rekam Suara Sendiri</h4>
+              <p style="font-size: 13px; color: #64748b;" data-i18n="aacCustomDesc">Pengguna atau terapis dapat mengunggah foto asli dan merekam suara asli via mic lokal yang tersimpan aman di IndexedDB offline.</p>
             </div>
-            <button onclick="document.querySelector('akses-kita').shadowRoot.getElementById('open-aac-btn').click()" class="btn-hero-primary" style="background: #0284c7; color: #ffffff; padding: 10px 18px; font-size: 13px;">
-              <span>+ Buat Kartu Baru</span>
+            <button onclick="const r = document.querySelector('akses-kita, akseskita-widget')?.shadowRoot; r?.getElementById('open-aac-btn')?.click();" class="btn-hero-primary" style="background: #0284c7; color: #ffffff; padding: 10px 18px; font-size: 13px;">
+              <span data-i18n="aacBtnCreate">+ Buat Kartu Baru</span>
             </button>
           </div>
         </div>
@@ -1234,14 +1312,14 @@
     <section id="fitur" style="background: #f1f5f9;">
       <div class="container">
         <div class="section-title-wrap">
-          <span class="section-badge">Pemasangan Cepat</span>
-          <h2 class="section-title">Pasang AksesKita dalam Hitungan Detik</h2>
-          <p class="section-desc">
+          <span class="section-badge" data-i18n="usageBadge">Pemasangan Cepat</span>
+          <h2 class="section-title" data-i18n="usageTitle">Pasang AksesKita dalam Hitungan Detik</h2>
+          <p class="section-desc" data-i18n-html="usageDesc">
             Salin cuplikan kode di bawah ini dan tempelkan sebelum tag penutup <code>&lt;/body&gt;</code> di website Anda. Kompatibel dengan semua platform tanpa konfigurasi rumit.
           </p>
         </div>
 
-        <!-- Setup Hero Code Box (Sienna Style) -->
+        <!-- Setup Hero Code Box -->
         <div class="setup-hero-card">
           <div class="setup-hero-top">
             <div class="setup-hero-dots">
@@ -1250,7 +1328,7 @@
               <div class="setup-dot"></div>
             </div>
             <button id="btn-copy-main-snippet" class="btn-copy-snippet" title="Salin Cuplikan Kode">
-              <span id="copy-icon-label">📋 Salin Cuplikan Kode</span>
+              <span id="copy-icon-label" data-i18n="btnCopySnippet">📋 Salin Cuplikan Kode</span>
             </button>
           </div>
           <div class="setup-hero-body">
@@ -1263,34 +1341,34 @@
         <div class="tech-specs-grid">
           <div class="tech-spec-card">
             <div class="tech-spec-icon">⚡</div>
-            <div class="tech-spec-title">Non-Blocking</div>
-            <div class="tech-spec-desc">Dukungan async/defer asli. Berjalan mulus 60 FPS tanpa memperlambat PageSpeed (Zero TBT).</div>
+            <div class="tech-spec-title" data-i18n="spec1Title">Non-Blocking</div>
+            <div class="tech-spec-desc" data-i18n="spec1Desc">Dukungan async/defer asli. Berjalan mulus 60 FPS tanpa memperlambat PageSpeed (Zero TBT).</div>
           </div>
           <div class="tech-spec-card">
             <div class="tech-spec-icon">📦</div>
-            <div class="tech-spec-title">Zero Dependencies</div>
-            <div class="tech-spec-desc">JavaScript murni &lt; 15KB gzipped. Tidak membutuhkan jQuery atau runtime framework tambahan.</div>
+            <div class="tech-spec-title" data-i18n="spec2Title">Zero Dependencies</div>
+            <div class="tech-spec-desc" data-i18n="spec2Desc">JavaScript murni &lt; 15KB gzipped. Tidak membutuhkan jQuery atau runtime framework tambahan.</div>
           </div>
           <div class="tech-spec-card">
             <div class="tech-spec-icon">🛡️</div>
-            <div class="tech-spec-title">Privasi Terjaga</div>
-            <div class="tech-spec-desc">Tanpa cookie pelacak, tanpa analitik pihak ketiga. Seluruh kustomisasi tersimpan lokal di browser.</div>
+            <div class="tech-spec-title" data-i18n="spec3Title">Privasi Terjaga</div>
+            <div class="tech-spec-desc" data-i18n="spec3Desc">Tanpa cookie pelacak, tanpa analitik pihak ketiga. Seluruh kustomisasi tersimpan lokal di browser.</div>
           </div>
           <div class="tech-spec-card">
             <div class="tech-spec-icon">🎁</div>
-            <div class="tech-spec-title">100% Gratis & Open Source</div>
-            <div class="tech-spec-desc">Berlisensi MIT. Bebas digunakan selamanya untuk web personal, komersial, NGO, dan sekolah/kampus.</div>
+            <div class="tech-spec-title" data-i18n="spec4Title">100% Gratis & Open Source</div>
+            <div class="tech-spec-desc" data-i18n="spec4Desc">Berlisensi MIT. Bebas digunakan selamanya untuk web personal, komersial, NGO, dan sekolah/kampus.</div>
           </div>
         </div>
 
         <div class="usage-grid">
           <!-- Card 1: Integrasi CDN untuk Semua Web & Backend -->
           <div class="usage-card">
-            <span class="usage-card-badge">HTML, PHP, Laravel, Django</span>
-            <h3>1. Web Statis & Backend Framework</h3>
-            <p>Sisipkan kode di master layout utama Anda (seperti <code>app.blade.php</code>, <code>layout.php</code>, atau <code>base.html</code>):</p>
+            <span class="usage-card-badge" data-i18n="usage1Badge">HTML, PHP, Laravel, Django</span>
+            <h3 data-i18n="usage1Title">1. Web Statis & Backend Framework</h3>
+            <p data-i18n-html="usage1Desc">Sisipkan kode di master layout utama Anda (seperti <code>app.blade.php</code>, <code>layout.php</code>, atau <code>base.html</code>):</p>
             
-            <div class="code-box-wrapper" style="font-size: 12px;">
+            <div class="code-box-wrapper" style="font-size: 12px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px; font-family: monospace;">
 &lt;script src="https://cdn.jsdelivr.net/npm/akseskita@latest/dist/akseskita.min.js" defer&gt;&lt;/script&gt;
 &lt;akseskita-widget&gt;&lt;/akseskita-widget&gt;
             </div>
@@ -1298,46 +1376,46 @@
             <ul class="usage-steps-list">
               <li class="usage-step-item">
                 <span class="step-number">✓</span>
-                <span><b>Shadow DOM:</b> CSS terisolasi penuh sehingga tidak bentrok dengan Bootstrap / Tailwind.</span>
+                <span data-i18n-html="usage1ShadowDom"><b>Shadow DOM:</b> CSS terisolasi penuh sehingga tidak bentrok dengan Bootstrap / Tailwind.</span>
               </li>
             </ul>
           </div>
 
           <!-- Card 2: Integrasi WordPress & CMS -->
           <div class="usage-card">
-            <span class="usage-card-badge">WordPress, Blogger, Shopify & CMS</span>
-            <h3>2. WordPress & Website Builder</h3>
-            <p>Mudah dipasang di berbagai CMS tanpa perlu memahami koding rumit:</p>
+            <span class="usage-card-badge" data-i18n="usage2Badge">WordPress, Blogger, Shopify & CMS</span>
+            <h3 data-i18n="usage2Title">2. WordPress & Website Builder</h3>
+            <p data-i18n="usage2Desc">Mudah dipasang di berbagai CMS tanpa perlu memahami koding rumit:</p>
             
             <ul class="usage-steps-list">
               <li class="usage-step-item">
                 <span class="step-number">WP</span>
-                <span><b>WordPress:</b> Pasang plugin <i>WPCode</i>, lalu tempel kode CDN di kolom <b>Footer Snippet</b> (atau via <code>functions.php</code>).</span>
+                <span data-i18n-html="usage2Wp"><b>WordPress:</b> Pasang plugin <i>WPCode</i>, lalu tempel kode CDN di kolom <b>Footer Snippet</b> (atau via <code>functions.php</code>).</span>
               </li>
               <li class="usage-step-item">
                 <span class="step-number">BL</span>
-                <span><b>Blogger:</b> Masuk ke <b>Tema -> Edit HTML</b>, tempelkan sebelum tag <code>&lt;/body&gt;</code>.</span>
+                <span data-i18n-html="usage2Blogger"><b>Blogger:</b> Masuk ke <b>Tema -> Edit HTML</b>, tempelkan sebelum tag <code>&lt;/body&gt;</code>.</span>
               </li>
               <li class="usage-step-item">
                 <span class="step-number">SH</span>
-                <span><b>Shopify / Webflow:</b> Tempelkan pada <code>theme.liquid</code> atau menu <b>Custom Code Embed</b>.</span>
+                <span data-i18n-html="usage2Shopify"><b>Shopify / Webflow:</b> Tempelkan pada <code>theme.liquid</code> atau menu <b>Custom Code Embed</b>.</span>
               </li>
             </ul>
           </div>
 
           <!-- Card 3: Integrasi npm / Modern Bundler -->
           <div class="usage-card">
-            <span class="usage-card-badge">React, Next.js, Vue, Vite (npm)</span>
-            <h3>3. Framework Modern (npm)</h3>
-            <p>Pasang paket melalui npm di proyek JavaScript / TypeScript Anda:</p>
+            <span class="usage-card-badge" data-i18n="usage3Badge">React, Next.js, Vue, Vite (npm)</span>
+            <h3 data-i18n="usage3Title">3. Framework Modern (npm)</h3>
+            <p data-i18n="usage3Desc">Pasang paket melalui npm di proyek JavaScript / TypeScript Anda:</p>
             
-            <div class="code-box-wrapper" style="font-size: 12px;">
+            <div class="code-box-wrapper" style="font-size: 12px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px; font-family: monospace;">
 npm install akseskita
             </div>
 
-            <p style="font-size: 13px; color: #475569;">Import sekali di entry point aplikasi (misal <code>main.js</code>, <code>index.js</code>, atau <code>layout.jsx</code>):</p>
+            <p style="font-size: 13px; color: #475569;" data-i18n-html="usage3ImportDesc">Import sekali di entry point aplikasi (misal <code>main.js</code>, <code>index.js</code>, atau <code>layout.jsx</code>):</p>
             
-            <div class="code-box-wrapper" style="font-size: 12px;">
+            <div class="code-box-wrapper" style="font-size: 12px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px; font-family: monospace;">
 import 'akseskita';
 
 // Di JSX/HTML template:
@@ -1347,24 +1425,24 @@ import 'akseskita';
 
           <!-- Card 4: Cara Penggunaan Pengunjung -->
           <div class="usage-card">
-            <span class="usage-card-badge">Panduan Pengunjung</span>
-            <h3>4. Navigasi & Fitur Asistif</h3>
+            <span class="usage-card-badge" data-i18n="usage4Badge">Panduan Pengunjung</span>
+            <h3 data-i18n="usage4Title">4. Navigasi & Fitur Asistif</h3>
             <ul class="usage-steps-list">
               <li class="usage-step-item">
                 <span class="step-number">1</span>
-                <span><b>Membuka Toolbar:</b> Klik tombol <b>♿ AksesKita</b> atau tekan <span class="key-badge">Alt + A</span>.</span>
+                <span data-i18n-html="usage4Step1"><b>Membuka Toolbar:</b> Klik tombol <b>♿ AksesKita</b> atau tekan <span class="key-badge">Alt + A</span>.</span>
               </li>
               <li class="usage-step-item">
                 <span class="step-number">2</span>
-                <span><b>Mode Pembaca Layar:</b> Tekan <span class="key-badge">Alt + R</span> untuk mendengar narasi elemen saat hover atau <span class="key-badge">Tab</span>.</span>
+                <span data-i18n-html="usage4Step2"><b>Mode Pembaca Layar:</b> Tekan <span class="key-badge">Alt + R</span> untuk mendengar narasi elemen saat hover atau <span class="key-badge">Tab</span>.</span>
               </li>
               <li class="usage-step-item">
                 <span class="step-number">3</span>
-                <span><b>Baca Seluruh Halaman:</b> Tekan <span class="key-badge">Alt + P</span> untuk mendengar seluruh teks artikel, dan <span class="key-badge">Alt + S</span> untuk berhenti.</span>
+                <span data-i18n-html="usage4Step3"><b>Baca Seluruh Halaman:</b> Tekan <span class="key-badge">Alt + P</span> untuk mendengar seluruh teks artikel, dan <span class="key-badge">Alt + S</span> untuk berhenti.</span>
               </li>
               <li class="usage-step-item">
                 <span class="step-number">4</span>
-                <span><b>Papan Bicara AAC:</b> Tekan <span class="key-badge">Alt + C</span> untuk membuka papan simbol bicara visual.</span>
+                <span data-i18n-html="usage4Step4"><b>Papan Bicara AAC:</b> Tekan <span class="key-badge">Alt + C</span> untuk membuka papan simbol bicara visual.</span>
               </li>
             </ul>
           </div>
@@ -1374,14 +1452,14 @@ import 'akseskita';
         <div class="handoff-box">
           <div class="handoff-header">
             <div>
-              <h3 style="font-size: 18px; font-weight: 800; color: #0f172a; margin-bottom: 4px;">Delegasi ke Pengembang Website (Webmaster Handoff)</h3>
-              <p style="font-size: 13px; color: #64748b;">Ingin tim IT atau web developer Anda yang memasangnya? Salin instruksi teknis ini dan kirimkan ke mereka.</p>
+              <h3 style="font-size: 18px; font-weight: 800; color: #0f172a; margin-bottom: 4px;" data-i18n="handoffTitle">Delegasi ke Pengembang Website (Webmaster Handoff)</h3>
+              <p style="font-size: 13px; color: #64748b;" data-i18n="handoffDesc">Ingin tim IT atau web developer Anda yang memasangnya? Salin instruksi teknis ini dan kirimkan ke mereka.</p>
             </div>
             <button id="btn-copy-handoff" class="btn-copy-snippet" style="background: #0f172a;" title="Salin Pesan Delegasi">
-              <span id="copy-handoff-label">📋 Salin Pesan Delegasi</span>
+              <span id="copy-handoff-label" data-i18n="btnCopyHandoff">📋 Salin Pesan Delegasi</span>
             </button>
           </div>
-          <div id="handoff-text" class="handoff-code-area">Subjek: Integrasi Toolbar Aksesibilitas Web AksesKita
+          <div id="handoff-text" class="handoff-code-area" data-i18n="handoffSubject">Subjek: Integrasi Toolbar Aksesibilitas Web AksesKita
 
 Halo Tim Developer,
 
@@ -1407,19 +1485,19 @@ Beri tahu jika sudah terpasang. Terima kasih!</div>
         <div class="shortcuts-card-container">
           <div class="shortcuts-header">
             <div>
-              <h3 class="shortcuts-title">Tabel Pintasan Keyboard (Shortcuts)</h3>
-              <p class="shortcuts-subtitle">Navigasi cepat dan ramah keyboard untuk pengguna tunanetra, pembaca layar, dan aksesibilitas motorik.</p>
+              <h3 class="shortcuts-title" data-i18n="shortcutsTitle">Tabel Pintasan Keyboard (Shortcuts)</h3>
+              <p class="shortcuts-subtitle" data-i18n="shortcutsSubtitle">Navigasi cepat dan ramah keyboard untuk pengguna tunanetra, pembaca layar, dan aksesibilitas motorik.</p>
             </div>
-            <span class="shortcuts-tag">A11y Shortcuts</span>
+            <span class="shortcuts-tag" data-i18n="shortcutsTag">A11y Shortcuts</span>
           </div>
 
           <div class="shortcuts-table-wrapper">
             <table class="shortcuts-table">
               <thead>
                 <tr>
-                  <th style="width: 220px;">Kombinasi Tombol</th>
-                  <th>Aksi & Fungsi</th>
-                  <th style="width: 140px; text-align: right;">Kategori</th>
+                  <th style="width: 220px;" data-i18n="thCombo">Kombinasi Tombol</th>
+                  <th data-i18n="thAction">Aksi & Fungsi</th>
+                  <th style="width: 140px; text-align: right;" data-i18n="thCategory">Kategori</th>
                 </tr>
               </thead>
               <tbody>
@@ -1432,11 +1510,11 @@ Beri tahu jika sudah terpasang. Terima kasih!</div>
                     </div>
                   </td>
                   <td>
-                    <div class="shortcut-desc-title">Mode Pembaca Layar</div>
-                    <div class="shortcut-desc-sub">Membaca bersuara otomatis saat elemen di-hover atau kursor bergerak dengan Tab</div>
+                    <div class="shortcut-desc-title" data-i18n="sc1Title">Mode Pembaca Layar</div>
+                    <div class="shortcut-desc-sub" data-i18n="sc1Sub">Membaca bersuara otomatis saat elemen di-hover atau kursor bergerak dengan Tab</div>
                   </td>
                   <td style="text-align: right;">
-                    <span class="badge-cat focus">Tunanetra</span>
+                    <span class="badge-cat focus" data-i18n="sc1Cat">Tunanetra</span>
                   </td>
                 </tr>
                 <tr>
@@ -1448,11 +1526,11 @@ Beri tahu jika sudah terpasang. Terima kasih!</div>
                     </div>
                   </td>
                   <td>
-                    <div class="shortcut-desc-title">Mulai / Jeda Baca Seluruh Halaman</div>
-                    <div class="shortcut-desc-sub">Membaca berurutan dari atas ke bawah secara otomatis (Continuous Page Reader)</div>
+                    <div class="shortcut-desc-title" data-i18n="sc2Title">Mulai / Jeda Baca Seluruh Halaman</div>
+                    <div class="shortcut-desc-sub" data-i18n="sc2Sub">Membaca berurutan dari atas ke bawah secara otomatis (Continuous Page Reader)</div>
                   </td>
                   <td style="text-align: right;">
-                    <span class="badge-cat focus">Tunanetra</span>
+                    <span class="badge-cat focus" data-i18n="sc2Cat">Tunanetra</span>
                   </td>
                 </tr>
                 <tr>
@@ -1464,11 +1542,11 @@ Beri tahu jika sudah terpasang. Terima kasih!</div>
                     </div>
                   </td>
                   <td>
-                    <div class="shortcut-desc-title">Hentikan Suara Seketika</div>
-                    <div class="shortcut-desc-sub">Mematikan suara sintesis TTS yang sedang aktif kapan saja</div>
+                    <div class="shortcut-desc-title" data-i18n="sc3Title">Hentikan Suara Seketika</div>
+                    <div class="shortcut-desc-sub" data-i18n="sc3Sub">Mematikan suara sintesis TTS yang sedang aktif kapan saja</div>
                   </td>
                   <td style="text-align: right;">
-                    <span class="badge-cat danger">Kontrol Audio</span>
+                    <span class="badge-cat danger" data-i18n="sc3Cat">Kontrol Audio</span>
                   </td>
                 </tr>
                 <tr>
@@ -1480,11 +1558,11 @@ Beri tahu jika sudah terpasang. Terima kasih!</div>
                     </div>
                   </td>
                   <td>
-                    <div class="shortcut-desc-title">Buka / Tutup Panel Aksesibilitas</div>
-                    <div class="shortcut-desc-sub">Membuka menu kontrol aksesibilitas lengkap (A11y Toolbar Panel)</div>
+                    <div class="shortcut-desc-title" data-i18n="sc4Title">Buka / Tutup Panel Aksesibilitas</div>
+                    <div class="shortcut-desc-sub" data-i18n="sc4Sub">Membuka menu kontrol aksesibilitas lengkap (A11y Toolbar Panel)</div>
                   </td>
                   <td style="text-align: right;">
-                    <span class="badge-cat primary">Toolbar</span>
+                    <span class="badge-cat primary" data-i18n="sc4Cat">Toolbar</span>
                   </td>
                 </tr>
                 <tr>
@@ -1496,11 +1574,11 @@ Beri tahu jika sudah terpasang. Terima kasih!</div>
                     </div>
                   </td>
                   <td>
-                    <div class="shortcut-desc-title">Buka / Tutup Papan Bicara AAC</div>
-                    <div class="shortcut-desc-sub">Membuka papan simbol bicara visual AAC Communicator</div>
+                    <div class="shortcut-desc-title" data-i18n="sc5Title">Buka / Tutup Papan Bicara AAC</div>
+                    <div class="shortcut-desc-sub" data-i18n="sc5Sub">Membuka papan simbol bicara visual AAC Communicator</div>
                   </td>
                   <td style="text-align: right;">
-                    <span class="badge-cat warning">Komunikasi</span>
+                    <span class="badge-cat warning" data-i18n="sc5Cat">Komunikasi</span>
                   </td>
                 </tr>
                 <tr>
@@ -1510,11 +1588,11 @@ Beri tahu jika sudah terpasang. Terima kasih!</div>
                     </div>
                   </td>
                   <td>
-                    <div class="shortcut-desc-title">Tutup Panel / Modal Aktif</div>
-                    <div class="shortcut-desc-sub">Menutup toolbar atau modal AAC yang sedang terbuka di layar</div>
+                    <div class="shortcut-desc-title" data-i18n="sc6Title">Tutup Panel / Modal Aktif</div>
+                    <div class="shortcut-desc-sub" data-i18n="sc6Sub">Menutup toolbar atau modal AAC yang sedang terbuka di layar</div>
                   </td>
                   <td style="text-align: right;">
-                    <span class="badge-cat neutral">Global</span>
+                    <span class="badge-cat neutral" data-i18n="sc6Cat">Global</span>
                   </td>
                 </tr>
                 <tr>
@@ -1526,11 +1604,11 @@ Beri tahu jika sudah terpasang. Terima kasih!</div>
                     </div>
                   </td>
                   <td>
-                    <div class="shortcut-desc-title">Navigasi Tanpa Mouse</div>
-                    <div class="shortcut-desc-sub">Berpindah fokus dan memilih tombol/kartu sepenuhnya lewat keyboard</div>
+                    <div class="shortcut-desc-title" data-i18n="sc7Title">Navigasi Tanpa Mouse</div>
+                    <div class="shortcut-desc-sub" data-i18n="sc7Sub">Berpindah fokus dan memilih tombol/kartu sepenuhnya lewat keyboard</div>
                   </td>
                   <td style="text-align: right;">
-                    <span class="badge-cat neutral">Navigasi</span>
+                    <span class="badge-cat neutral" data-i18n="sc7Cat">Navigasi</span>
                   </td>
                 </tr>
               </tbody>
@@ -1544,24 +1622,24 @@ Beri tahu jika sudah terpasang. Terima kasih!</div>
     <section id="kontak">
       <div class="container">
         <div class="section-title-wrap">
-          <span class="section-badge">Hubungi Kami</span>
-          <h2 class="section-title">Kontak & Aspirasi Inklusi</h2>
-          <p class="section-desc">
+          <span class="section-badge" data-i18n="contactBadge">Hubungi Kami</span>
+          <h2 class="section-title" data-i18n="contactTitle">Kontak & Aspirasi Inklusi</h2>
+          <p class="section-desc" data-i18n="contactDesc">
             Punya ide pengembangan, pertanyaan seputar implementasi aksesibilitas, atau ingin berkolaborasi? Hubungi kami langsung melalui email pengembang.
           </p>
         </div>
 
         <div class="contact-card-box">
           <div class="contact-card-icon">✉️</div>
-          <h3 style="font-size: 22px; font-weight: 800; color: #0f172a;">Kirimkan Aspirasi & Masukan Anda</h3>
-          <p style="font-size: 15px; color: #64748b; max-width: 480px; line-height: 1.6;">
+          <h3 style="font-size: 22px; font-weight: 800; color: #0f172a;" data-i18n="contactBoxTitle">Kirimkan Aspirasi & Masukan Anda</h3>
+          <p style="font-size: 15px; color: #64748b; max-width: 480px; line-height: 1.6;" data-i18n="contactBoxDesc">
             Kami selalu terbuka untuk masukan seputar fitur aksesibilitas web dan kebutuhan papan komunikasi AAC untuk sahabat disabilitas.
           </p>
           <div class="contact-email-badge">
             mail@anasy.is-a.dev
           </div>
           <a href="mailto:mail@anasy.is-a.dev?subject=Aspirasi%20Inklusi%20AksesKita" class="btn-mail-action" title="Kirim Email ke mail@anasy.is-a.dev">
-            <span>Kirim Email Langsung</span>
+            <span data-i18n="contactBtn">Kirim Email Langsung</span>
             <span>&rarr;</span>
           </a>
         </div>
@@ -1578,46 +1656,541 @@ Beri tahu jika sudah terpasang. Terima kasih!</div>
             <div class="brand-icon">AK</div>
             <div class="brand-text">
               <h3 style="color: #fff; font-size: 18px;">AksesKita</h3>
-              <span>Inklusivitas Web untuk Indonesia</span>
+              <span data-i18n="brandSubtitle">Inklusivitas Web untuk Indonesia</span>
             </div>
           </div>
-          <p style="font-size: 14px; line-height: 1.6; color: #94a3b8; margin-bottom: 12px;">
-            AksesKita adalah proyek sumber terbuka (*open-source*) berlisensi MIT yang berdedikasi menciptakan kesetaraan akses informasi web dan kemandirian komunikasi berbantuan bagi masyarakat Indonesia.
+          <p style="font-size: 14px; line-height: 1.6; color: #94a3b8; margin-bottom: 12px;" data-i18n-html="footerBrandDesc">
+            AksesKita adalah proyek sumber terbuka (<i>open-source</i>) berlisensi MIT yang berdedikasi menciptakan kesetaraan akses informasi web dan kemandirian komunikasi berbantuan bagi masyarakat Indonesia.
           </p>
           <p style="font-size: 13px; color: #38bdf8;">
-            Kontak: <a href="mailto:mail@anasy.is-a.dev" style="color: #38bdf8; text-decoration: underline;">mail@anasy.is-a.dev</a>
+            <span data-i18n="footerContactLabel">Kontak:</span> <a href="mailto:mail@anasy.is-a.dev" style="color: #38bdf8; text-decoration: underline;">mail@anasy.is-a.dev</a>
           </p>
         </div>
 
         <div class="footer-col">
-          <h4>Navigasi Halaman</h4>
+          <h4 data-i18n="footerColNav">Navigasi Halaman</h4>
           <ul>
-            <li><a href="#beranda">Beranda</a></li>
-            <li><a href="#panduan">Panduan Aksesibilitas</a></li>
-            <li><a href="#aac">Papan Bicara AAC</a></li>
-            <li><a href="#fitur">Cara Penggunaan</a></li>
-            <li><a href="#kontak">Hubungi Kami</a></li>
+            <li><a href="#beranda" data-i18n="navHome">Beranda</a></li>
+            <li><a href="#panduan" data-i18n="navGuide">Panduan Aksesibilitas</a></li>
+            <li><a href="#aac" data-i18n="navAac">Papan Bicara AAC</a></li>
+            <li><a href="#fitur" data-i18n="navUsage">Cara Penggunaan</a></li>
+            <li><a href="#kontak" data-i18n="navContact">Hubungi Kami</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4>Pintasan Asistif</h4>
+          <h4 data-i18n="footerColA11y">Pintasan Asistif</h4>
           <ul>
-            <li><a href="javascript:void(0)" onclick="document.querySelector('akses-kita').shadowRoot.getElementById('fab-trigger').click()">Buka Toolbar A11y (Alt+A)</a></li>
-            <li><a href="javascript:void(0)" onclick="document.querySelector('akses-kita').shadowRoot.getElementById('open-aac-btn').click()">Buka Papan AAC (Alt+C)</a></li>
-            <li><a href="#beranda">Kembali ke Atas</a></li>
+            <li><a href="javascript:void(0)" onclick="const r = document.querySelector('akses-kita, akseskita-widget')?.shadowRoot; r?.getElementById('fab-trigger')?.click();" data-i18n="footerLinkA11y">Buka Toolbar A11y (Alt+A)</a></li>
+            <li><a href="javascript:void(0)" onclick="const r = document.querySelector('akses-kita, akseskita-widget')?.shadowRoot; r?.getElementById('open-aac-btn')?.click();" data-i18n="footerLinkAac">Buka Papan AAC (Alt+C)</a></li>
+            <li><a href="#beranda" data-i18n="footerLinkTop">Kembali ke Atas</a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2026 AksesKita Indonesia. Berlisensi MIT. Dibuat dengan cinta untuk kesetaraan akses digital.</p>
+        <p data-i18n="footerCopy">&copy; 2026 AksesKita Indonesia. Berlisensi MIT. Dibuat dengan cinta untuk kesetaraan akses digital.</p>
       </div>
     </div>
   </footer>
 
-  <!-- Interactivity for Menu Highlights & Actions -->
+  <!-- Interactivity for Menu Highlights & Bilingual Translations -->
   <script>
+    // Demo Page Bilingual Dictionary (ID & EN)
+    const demoTranslations = {
+      id: {
+        docTitle: "AksesKita - Suite Aksesibilitas Web & Papan Bicara AAC Indonesia",
+        docDesc: "AksesKita: Toolbar Aksesibilitas Web dan Papan Komunikasi Visual (AAC) interaktif Bahasa Indonesia & English dalam satu skrip JavaScript ringan tanpa dependensi.",
+        
+        // Navbar
+        brandSubtitle: "All-in-One Assistive Web Suite",
+        navHome: "Beranda",
+        navGuide: "Panduan A11y",
+        navAac: "Papan AAC",
+        navUsage: "Cara Penggunaan",
+        navContact: "Hubungi Kami",
+        navBtnAac: "Papan Bicara",
+        navBtnAacTitle: "Buka Papan Bicara AAC (Alt + C)",
+        
+        // Hero
+        heroTagline: "Solusi Aksesibilitas Web & Komunikasi Inklusif Indonesia",
+        heroTitle: "Satu Skrip Ringan untuk Website Ramah Disabilitas & Komunikasi AAC",
+        heroDesc: "AksesKita menggabungkan toolbar aksesibilitas situs web (A11y) dan papan bicara visual (AAC) interaktif berbasis suara Bahasa Indonesia ke dalam satu Web Component tanpa dependensi eksternal.",
+        heroOpenPanel: "Buka Toolbar Aksesibilitas",
+        heroOpenAac: "Buka Papan Bicara (AAC)",
+        
+        // Stats
+        stat1Num: "🔊 Tunanetra",
+        stat1Label: "Mode Pembaca Layar & TTS Cerdas",
+        stat2Num: "6 Skala",
+        stat2Label: "Ukuran Teks (75% - 200%)",
+        stat3Num: "7 Tema",
+        stat3Label: "Kontras Visual & Filter",
+        stat4Num: "40+ Simbol",
+        stat4Label: "Papan Komunikasi AAC Indonesia",
+        
+        // Guide Section
+        guideBadge: "Panduan & Simulasi",
+        guideTitle: "Fitur Aksesibilitas Web & Pembaca Layar",
+        guideDesc: "Uji coba langsung bagaimana fitur pembaca layar tunanetra, penyesuaian font dinamis, dan alat visual bekerja pada konten situs web ini.",
+        
+        guide1Title: "1. Pembaca Layar Tunanetra & TTS Cerdas",
+        guide1Focus: "Fokus Utama: Alt + R (Screen Reader), Alt + P (Baca Halaman), Alt + S (Stop)",
+        guide1Desc: "Membaca elemen bersuara otomatis saat kursor diarahkan atau saat bernavigasi menggunakan tombol <kbd>Tab</kbd>, pembacaan halaman kontinu, serta tombol instan saat menyeleksi teks kalimat.",
+        guide1DemoTitle: "👉 Coba Seleksi Teks Ini:",
+        guide1DemoText: "\"AksesKita dibangun dengan misi memberikan kemudahan komunikasi dan aksesibilitas tanpa hambatan bagi seluruh masyarakat Indonesia.\"",
+        
+        guide2Title: "2. Ukuran Teks Dinamis Responsif",
+        guide2Scale: "6 Tingkat Skala (75%, 100%, 125%, 150%, 175%, 200%)",
+        guide2Desc: "Teks diatur secara responsif tanpa merusak struktur menu atau layout halaman, memastikan keterbacaan optimal bagi lansia dan pengguna dengan gangguan penglihatan (<i>low vision</i>).",
+        guide2DemoPrefix: "Contoh Paragraf:",
+        guide2DemoText: "Aksesibilitas digital adalah hak asasi setiap warga negara untuk mengakses layanan informasi publik secara setara.",
+        
+        guide3Title: "3. Mode Font Disleksia & Spasi Tipografi",
+        guide3Subtitle: "Font khusus, spasi baris, spasi huruf, sorot judul & link",
+        guide3Desc: "Mengoptimalkan bentuk huruf, jarak kata, dan <i>line-height</i> untuk mencegah kebingungan huruf yang berputar (<i>letter inversion</i>) pada pembaca disleksia.",
+        guide3DemoText: "Klik tombol <b>\"📖 Disleksia\"</b> pada panel untuk melihat perubahan bentuk tipografi pada seluruh halaman.",
+        
+        guide4Title: "4. Filter Kontras & Alat Bantu Visual",
+        guide4Subtitle: "Kontras Tinggi, Gelap, Terang, Monokrom, Balik Warna & Garis Pandu",
+        guide4Desc: "Membantu pengguna dengan sensitivitas cahaya (<i>photophobia</i>), buta warna (<i>color blindness</i>), dengan garis pandu baca (<i>reading guide</i>), tirai baca (<i>reading mask</i>), dan kursor besar.",
+        guide4DemoText: "Dilengkapi <b>Garis Pandu Baca (Reading Guide)</b> horizontal dan <b>Super Fokus</b> yang mengikuti kursor mouse.",
+        
+        // AAC Section
+        aacBadge: "Komunikasi Alternatif",
+        aacTitle: "Papan Komunikasi Visual (AAC)",
+        aacDesc: "Dirancang khusus untuk sahabat non-verbal, autistik, disabilitas wicara, penderita afasia pasca-stroke, dan lansia.",
+        aacShowcaseTitle: "Koleksi Kategori Simbol Bawaan",
+        aacShowcaseDesc: "Klik kartu di bawah untuk mencoba menyusun dan mendengarkan suaranya:",
+        aacBtnFull: "Buka Papan Komunikasi Lengkap",
+        
+        aacCatNeeds: "🍽️ Kebutuhan",
+        aacCatResponses: "💬 Respon",
+        aacCatFeelings: "😊 Perasaan",
+        aacCatActivities: "👥 Aktivitas & Orang",
+        
+        cardEat: "Mau Makan",
+        cardDrink: "Mau Minum",
+        cardToilet: "Ke Toilet",
+        cardHelp: "Tolong",
+        cardYes: "Ya",
+        cardNo: "Tidak",
+        cardThanks: "Terima Kasih",
+        cardHappy: "Senang",
+        
+        aacCustomTitle: "Kustomisasi Kartu & Rekam Suara Sendiri",
+        aacCustomDesc: "Pengguna atau terapis dapat mengunggah foto asli dan merekam suara asli via mic lokal yang tersimpan aman di IndexedDB offline.",
+        aacBtnCreate: "+ Buat Kartu Baru",
+        
+        // Usage Section
+        usageBadge: "Pemasangan Cepat",
+        usageTitle: "Pasang AksesKita dalam Hitungan Detik",
+        usageDesc: "Salin cuplikan kode di bawah ini dan tempelkan sebelum tag penutup <code>&lt;/body&gt;</code> di website Anda. Kompatibel dengan semua platform tanpa konfigurasi rumit.",
+        btnCopySnippet: "📋 Salin Cuplikan Kode",
+        btnCopySnippetDone: "✓ Cuplikan Tersalin!",
+        
+        spec1Title: "Non-Blocking",
+        spec1Desc: "Dukungan async/defer asli. Berjalan mulus 60 FPS tanpa memperlambat PageSpeed (Zero TBT).",
+        spec2Title: "Zero Dependencies",
+        spec2Desc: "JavaScript murni < 15KB gzipped. Tidak membutuhkan jQuery atau runtime framework tambahan.",
+        spec3Title: "Privasi Terjaga",
+        spec3Desc: "Tanpa cookie pelacak, tanpa analitik pihak ketiga. Seluruh kustomisasi tersimpan lokal di browser.",
+        spec4Title: "100% Gratis & Open Source",
+        spec4Desc: "Berlisensi MIT. Bebas digunakan selamanya untuk web personal, komersial, NGO, dan sekolah/kampus.",
+        
+        usage1Badge: "HTML, PHP, Laravel, Django",
+        usage1Title: "1. Web Statis & Backend Framework",
+        usage1Desc: "Sisipkan kode di master layout utama Anda (seperti <code>app.blade.php</code>, <code>layout.php</code>, atau <code>base.html</code>):",
+        usage1ShadowDom: "<b>Shadow DOM:</b> CSS terisolasi penuh sehingga tidak bentrok dengan Bootstrap / Tailwind.",
+        
+        usage2Badge: "WordPress, Blogger, Shopify & CMS",
+        usage2Title: "2. WordPress & Website Builder",
+        usage2Desc: "Mudah dipasang di berbagai CMS tanpa perlu memahami koding rumit:",
+        usage2Wp: "<b>WordPress:</b> Pasang plugin <i>WPCode</i>, lalu tempel kode CDN di kolom <b>Footer Snippet</b> (atau via <code>functions.php</code>).",
+        usage2Blogger: "<b>Blogger:</b> Masuk ke <b>Tema -> Edit HTML</b>, tempelkan sebelum tag <code>&lt;/body&gt;</code>.",
+        usage2Shopify: "<b>Shopify / Webflow:</b> Tempelkan pada <code>theme.liquid</code> atau menu <b>Custom Code Embed</b>.",
+        
+        usage3Badge: "React, Next.js, Vue, Vite (npm)",
+        usage3Title: "3. Framework Modern (npm)",
+        usage3Desc: "Pasang paket melalui npm di proyek JavaScript / TypeScript Anda:",
+        usage3ImportDesc: "Import sekali di entry point aplikasi (misal <code>main.js</code>, <code>index.js</code>, atau <code>layout.jsx</code>):",
+        
+        usage4Badge: "Panduan Pengunjung",
+        usage4Title: "4. Navigasi & Fitur Asistif",
+        usage4Step1: "<b>Membuka Toolbar:</b> Klik tombol <b>♿ AksesKita</b> atau tekan <span class=\"key-badge\">Alt + A</span>.",
+        usage4Step2: "<b>Mode Pembaca Layar:</b> Tekan <span class=\"key-badge\">Alt + R</span> untuk mendengar narasi elemen saat hover atau <span class=\"key-badge\">Tab</span>.",
+        usage4Step3: "<b>Baca Seluruh Halaman:</b> Tekan <span class=\"key-badge\">Alt + P</span> untuk mendengar seluruh teks artikel, dan <span class=\"key-badge\">Alt + S</span> untuk berhenti.",
+        usage4Step4: "<b>Papan Bicara AAC:</b> Tekan <span class=\"key-badge\">Alt + C</span> untuk membuka papan simbol bicara visual.",
+        
+        handoffTitle: "Delegasi ke Pengembang Website (Webmaster Handoff)",
+        handoffDesc: "Ingin tim IT atau web developer Anda yang memasangnya? Salin instruksi teknis ini dan kirimkan ke mereka.",
+        btnCopyHandoff: "📋 Salin Pesan Delegasi",
+        btnCopyHandoffDone: "✓ Pesan Tersalin!",
+        handoffSubject: `Subjek: Integrasi Toolbar Aksesibilitas Web AksesKita
+
+Halo Tim Developer,
+
+Tolong pasangkan toolbar aksesibilitas gratis dan open-source AksesKita (https://github.com/anasysuf/akseskita) ke website kita untuk meningkatkan standar aksesibilitas ramah disabilitas (WCAG & ADA).
+
+Pemasangannya cukup dengan menyisipkan satu skrip di footer sebelum tag penutup </body>:
+
+<script src="https://cdn.jsdelivr.net/npm/akseskita@latest/dist/akseskita.min.js" defer></script>
+<akseskita-widget></akseskita-widget>
+
+Spesifikasi teknis:
+- Performa: Ringan (< 15KB gzipped), non-blocking, zero TBT impact.
+- Zero Dependencies: Vanilla JS murni, CSS terisolasi dengan Shadow DOM (tidak merusak layout web).
+- Privasi: Tanpa tracking, tanpa cookies pihak ketiga.
+- Lisensi: MIT (Gratis selamanya).
+
+Dokumentasi & Demo: https://anasysuf.github.io/akseskita/
+
+Beri tahu jika sudah terpasang. Terima kasih!`,
+        
+        shortcutsTitle: "Tabel Pintasan Keyboard (Shortcuts)",
+        shortcutsSubtitle: "Navigasi cepat dan ramah keyboard untuk pengguna tunanetra, pembaca layar, dan aksesibilitas motorik.",
+        shortcutsTag: "A11y Shortcuts",
+        thCombo: "Kombinasi Tombol",
+        thAction: "Aksi & Fungsi",
+        thCategory: "Kategori",
+        
+        sc1Title: "Mode Pembaca Layar",
+        sc1Sub: "Membaca bersuara otomatis saat elemen di-hover atau kursor bergerak dengan Tab",
+        sc1Cat: "Tunanetra",
+        
+        sc2Title: "Mulai / Jeda Baca Seluruh Halaman",
+        sc2Sub: "Membaca berurutan dari atas ke bawah secara otomatis (Continuous Page Reader)",
+        sc2Cat: "Tunanetra",
+        
+        sc3Title: "Hentikan Suara Seketika",
+        sc3Sub: "Mematikan suara sintesis TTS yang sedang aktif kapan saja",
+        sc3Cat: "Kontrol Audio",
+        
+        sc4Title: "Buka / Tutup Panel Aksesibilitas",
+        sc4Sub: "Membuka menu kontrol aksesibilitas lengkap (A11y Toolbar Panel)",
+        sc4Cat: "Toolbar",
+        
+        sc5Title: "Buka / Tutup Papan Bicara AAC",
+        sc5Sub: "Membuka papan simbol bicara visual AAC Communicator",
+        sc5Cat: "Komunikasi",
+        
+        sc6Title: "Tutup Panel / Modal Aktif",
+        sc6Sub: "Menutup toolbar atau modal AAC yang sedang terbuka di layar",
+        sc6Cat: "Global",
+        
+        sc7Title: "Navigasi Tanpa Mouse",
+        sc7Sub: "Berpindah fokus dan memilih tombol/kartu sepenuhnya lewat keyboard",
+        sc7Cat: "Navigasi",
+        
+        // Contact
+        contactBadge: "Hubungi Kami",
+        contactTitle: "Kontak & Aspirasi Inklusi",
+        contactDesc: "Punya ide pengembangan, pertanyaan seputar implementasi aksesibilitas, atau ingin berkolaborasi? Hubungi kami langsung melalui email pengembang.",
+        contactBoxTitle: "Kirimkan Aspirasi & Masukan Anda",
+        contactBoxDesc: "Kami selalu terbuka untuk masukan seputar fitur aksesibilitas web dan kebutuhan papan komunikasi AAC untuk sahabat disabilitas.",
+        contactBtn: "Kirim Email Langsung",
+        
+        // Footer
+        footerBrandDesc: "AksesKita adalah proyek sumber terbuka (<i>open-source</i>) berlisensi MIT yang berdedikasi menciptakan kesetaraan akses informasi web dan kemandirian komunikasi berbantuan bagi masyarakat Indonesia.",
+        footerContactLabel: "Kontak:",
+        footerColNav: "Navigasi Halaman",
+        footerColA11y: "Pintasan Asistif",
+        footerLinkA11y: "Buka Toolbar A11y (Alt+A)",
+        footerLinkAac: "Buka Papan AAC (Alt+C)",
+        footerLinkTop: "Kembali ke Atas",
+        footerCopy: "© 2026 AksesKita Indonesia. Berlisensi MIT. Dibuat dengan cinta untuk kesetaraan akses digital."
+      },
+      en: {
+        docTitle: "AksesKita - Web Accessibility Suite & Interactive AAC Board",
+        docDesc: "AksesKita: All-in-one Web Accessibility Toolbar and interactive visual AAC communication board in a lightweight, zero-dependency JavaScript component.",
+        
+        // Navbar
+        brandSubtitle: "All-in-One Assistive Web Suite",
+        navHome: "Home",
+        navGuide: "A11y Guide",
+        navAac: "AAC Board",
+        navUsage: "Integration & Guide",
+        navContact: "Contact Us",
+        navBtnAac: "AAC Communicator",
+        navBtnAacTitle: "Open AAC Communicator (Alt + C)",
+        
+        // Hero
+        heroTagline: "Web Accessibility & Inclusive Communication Solution",
+        heroTitle: "One Lightweight Script for Disability-Friendly Websites & AAC Communication",
+        heroDesc: "AksesKita combines a website accessibility toolbar (A11y) and an interactive visual speech board (AAC) into a single zero-dependency Web Component for modern websites.",
+        heroOpenPanel: "Open Accessibility Toolbar",
+        heroOpenAac: "Open AAC Board",
+        
+        // Stats
+        stat1Num: "🔊 Blind / Low Vision",
+        stat1Label: "Screen Reader & Smart TTS Mode",
+        stat2Num: "6 Scales",
+        stat2Label: "Dynamic Text Sizing (75% - 200%)",
+        stat3Num: "7 Themes",
+        stat3Label: "Visual Contrast & Color Filters",
+        stat4Num: "40+ Symbols",
+        stat4Label: "Interactive AAC Communication Board",
+        
+        // Guide Section
+        guideBadge: "Guide & Simulation",
+        guideTitle: "Web Accessibility Features & Screen Reader",
+        guideDesc: "Experience firsthand how blind screen reading, dynamic typography adjustments, and visual aids perform on this website.",
+        
+        guide1Title: "1. Screen Reader for Blind Users & Smart TTS",
+        guide1Focus: "Primary Focus: Alt + R (Screen Reader), Alt + P (Page Reader), Alt + S (Stop)",
+        guide1Desc: "Reads aloud elements automatically when hovering or navigating with the <kbd>Tab</kbd> key, supports continuous whole-page reading, and provides an instant listen button upon text selection.",
+        guide1DemoTitle: "👉 Try Selecting This Text:",
+        guide1DemoText: "\"AksesKita was built with a mission to deliver barrier-free communication and accessible digital experiences for everyone.\"",
+        
+        guide2Title: "2. Responsive Dynamic Font Scaling",
+        guide2Scale: "6 Scaling Levels (75%, 100%, 125%, 150%, 175%, 200%)",
+        guide2Desc: "Adjusts typography responsively without breaking layouts or navigation structures, ensuring optimal legibility for seniors and users with low vision.",
+        guide2DemoPrefix: "Sample Paragraph:",
+        guide2DemoText: "Digital accessibility is a fundamental right for every citizen to access public information services with equal opportunity.",
+        
+        guide3Title: "3. Dyslexia Font Mode & Typography Spacing",
+        guide3Subtitle: "Dyslexia typeface, line height, letter spacing, highlight titles & links",
+        guide3Desc: "Optimizes letter shapes, word spacing, and line height to prevent letter inversion and cognitive reading fatigue for dyslexic readers.",
+        guide3DemoText: "Click the <b>\"📖 Dyslexia\"</b> button on the toolbar to experience instant typographic transformation across the entire page.",
+        
+        guide4Title: "4. Contrast Filters & Visual Aids",
+        guide4Subtitle: "High Contrast, Dark, Light, Monochrome, Invert Colors & Reading Guides",
+        guide4Desc: "Assists users with light sensitivity (<i>photophobia</i>) or color blindness using reading guides, reading masks, high contrast themes, and large cursors.",
+        guide4DemoText: "Equipped with a horizontal <b>Reading Guide</b> and <b>Super Focus</b> spotlight following your mouse cursor.",
+        
+        // AAC Section
+        aacBadge: "Augmentative Communication",
+        aacTitle: "Visual Communication Board (AAC)",
+        aacDesc: "Specifically designed for non-verbal individuals, autistic users, speech-impaired individuals, post-stroke aphasia patients, and seniors.",
+        aacShowcaseTitle: "Built-in Symbol Categories",
+        aacShowcaseDesc: "Click the cards below to compose phrases and listen to the voice output:",
+        aacBtnFull: "Open Full AAC Communicator",
+        
+        aacCatNeeds: "🍽️ Needs",
+        aacCatResponses: "💬 Responses",
+        aacCatFeelings: "😊 Feelings",
+        aacCatActivities: "👥 Activities & People",
+        
+        cardEat: "Want Food",
+        cardDrink: "Want Drink",
+        cardToilet: "Go to Toilet",
+        cardHelp: "Help",
+        cardYes: "Yes",
+        cardNo: "No",
+        cardThanks: "Thank You",
+        cardHappy: "Happy",
+        
+        aacCustomTitle: "Customize Cards & Record Custom Voice",
+        aacCustomDesc: "Users and therapists can upload photos and record authentic voice clips via local microphone, securely stored offline in IndexedDB.",
+        aacBtnCreate: "+ Create New Card",
+        
+        // Usage Section
+        usageBadge: "Quick Setup",
+        usageTitle: "Install AksesKita in Seconds",
+        usageDesc: "Copy the code snippet below and paste it before the closing <code>&lt;/body&gt;</code> tag on your website. Fully compatible with any platform with zero configuration.",
+        btnCopySnippet: "📋 Copy Code Snippet",
+        btnCopySnippetDone: "✓ Snippet Copied!",
+        
+        spec1Title: "Non-Blocking",
+        spec1Desc: "Native async/defer support. Runs smoothly at 60 FPS without impacting PageSpeed (Zero TBT).",
+        spec2Title: "Zero Dependencies",
+        spec2Desc: "Pure JavaScript < 15KB gzipped. No jQuery or heavy external runtime frameworks required.",
+        spec3Title: "Privacy First",
+        spec3Desc: "No tracking cookies, no third-party analytics. All user preferences remain stored locally in browser.",
+        spec4Title: "100% Free & Open Source",
+        spec4Desc: "Licensed under MIT. Free to use forever for personal, commercial, NGO, and educational websites.",
+        
+        usage1Badge: "HTML, PHP, Laravel, Django",
+        usage1Title: "1. Static Web & Backend Frameworks",
+        usage1Desc: "Insert the code in your main layout template (such as <code>app.blade.php</code>, <code>layout.php</code>, or <code>base.html</code>):",
+        usage1ShadowDom: "<b>Shadow DOM:</b> Fully isolated CSS preventing any style conflicts with Bootstrap or Tailwind.",
+        
+        usage2Badge: "WordPress, Blogger, Shopify & CMS",
+        usage2Title: "2. WordPress & Website Builders",
+        usage2Desc: "Easily installed on popular CMS platforms without complex code modifications:",
+        usage2Wp: "<b>WordPress:</b> Install the <i>WPCode</i> plugin and paste the CDN snippet into the <b>Footer Snippet</b> (or via <code>functions.php</code>).",
+        usage2Blogger: "<b>Blogger:</b> Go to <b>Theme -> Edit HTML</b> and paste before the closing <code>&lt;/body&gt;</code> tag.",
+        usage2Shopify: "<b>Shopify / Webflow:</b> Paste into <code>theme.liquid</code> or your site's <b>Custom Code Embed</b> section.",
+        
+        usage3Badge: "React, Next.js, Vue, Vite (npm)",
+        usage3Title: "3. Modern Frameworks (npm)",
+        usage3Desc: "Install the package via npm into your JavaScript / TypeScript application:",
+        usage3ImportDesc: "Import once at your application's root entry point (e.g. <code>main.js</code>, <code>index.js</code>, or <code>layout.jsx</code>):",
+        
+        usage4Badge: "Visitor Guide",
+        usage4Title: "4. Navigation & Assistive Features",
+        usage4Step1: "<b>Opening Toolbar:</b> Click the <b>♿ AksesKita</b> button or press <span class=\"key-badge\">Alt + A</span>.",
+        usage4Step2: "<b>Screen Reader Mode:</b> Press <span class=\"key-badge\">Alt + R</span> to hear elements narrated on hover or via <span class=\"key-badge\">Tab</span>.",
+        usage4Step3: "<b>Continuous Page Reader:</b> Press <span class=\"key-badge\">Alt + P</span> to read entire text, and <span class=\"key-badge\">Alt + S</span> to stop.",
+        usage4Step4: "<b>AAC Communicator Board:</b> Press <span class=\"key-badge\">Alt + C</span> to open visual speech symbol board.",
+        
+        handoffTitle: "Webmaster Handoff Delegation Kit",
+        handoffDesc: "Want your IT team or web developer to install it? Copy these technical instructions and send them over.",
+        btnCopyHandoff: "📋 Copy Delegation Message",
+        btnCopyHandoffDone: "✓ Message Copied!",
+        handoffSubject: `Subject: Integration of AksesKita Web Accessibility Toolbar
+
+Hi Developer Team,
+
+Please install the free and open-source accessibility toolbar AksesKita (https://github.com/anasysuf/akseskita) on our website to elevate disability-friendly accessibility compliance (WCAG & ADA standards).
+
+Installation is straightforward by inserting a single script tag before the closing </body> tag:
+
+<script src="https://cdn.jsdelivr.net/npm/akseskita@latest/dist/akseskita.min.js" defer></script>
+<akseskita-widget></akseskita-widget>
+
+Technical specifications:
+- Performance: Lightweight (< 15KB gzipped), non-blocking, zero TBT impact.
+- Zero Dependencies: Pure Vanilla JS with isolated Shadow DOM (won't conflict with website styles).
+- Privacy: No tracking cookies or third-party telemetry.
+- License: MIT (Free forever).
+
+Documentation & Live Demo: https://anasysuf.github.io/akseskita/
+
+Please let us know once deployed. Thank you!`,
+        
+        shortcutsTitle: "Keyboard Shortcuts Table",
+        shortcutsSubtitle: "Fast, keyboard-friendly navigation for blind users, screen reader operators, and motor accessibility.",
+        shortcutsTag: "A11y Shortcuts",
+        thCombo: "Key Combination",
+        thAction: "Action & Feature",
+        thCategory: "Category",
+        
+        sc1Title: "Screen Reader Mode",
+        sc1Sub: "Reads elements aloud automatically when hovered or navigated with Tab",
+        sc1Cat: "Blind A11y",
+        
+        sc2Title: "Start / Pause Page Reader",
+        sc2Sub: "Reads entire webpage continuously from top to bottom (Continuous Page Reader)",
+        sc2Cat: "Blind A11y",
+        
+        sc3Title: "Stop Speech Instantly",
+        sc3Sub: "Immediately silences active synthesized speech output at any time",
+        sc3Cat: "Audio Control",
+        
+        sc4Title: "Open / Close Accessibility Toolbar",
+        sc4Sub: "Opens the full accessibility options menu (A11y Toolbar Panel)",
+        sc4Cat: "Toolbar",
+        
+        sc5Title: "Open / Close AAC Communicator",
+        sc5Sub: "Opens interactive visual AAC communication board",
+        sc5Cat: "Communication",
+        
+        sc6Title: "Close Active Panel / Modal",
+        sc6Sub: "Closes open accessibility panel or AAC modal dialog",
+        sc6Cat: "Global",
+        
+        sc7Title: "Keyboard-Only Navigation",
+        sc7Sub: "Navigate and trigger all controls without mouse using Tab and Enter",
+        sc7Cat: "Navigation",
+        
+        // Contact
+        contactBadge: "Contact Us",
+        contactTitle: "Contact & Inclusive Feedback",
+        contactDesc: "Have development ideas, accessibility implementation questions, or want to collaborate? Contact us directly via developer email.",
+        contactBoxTitle: "Share Your Ideas & Feedback",
+        contactBoxDesc: "We always welcome feedback regarding web accessibility features and AAC communication needs for people with disabilities.",
+        contactBtn: "Send Email Directly",
+        
+        // Footer
+        footerBrandDesc: "AksesKita is an open-source project licensed under MIT dedicated to creating equal digital access and assisted communication independence for all.",
+        footerContactLabel: "Contact:",
+        footerColNav: "Page Navigation",
+        footerColA11y: "Assistive Shortcuts",
+        footerLinkA11y: "Open A11y Toolbar (Alt+A)",
+        footerLinkAac: "Open AAC Board (Alt+C)",
+        footerLinkTop: "Back to Top",
+        footerCopy: "© 2026 AksesKita. Licensed under MIT. Built with care for universal digital equality."
+      }
+    };
+
+    let currentDemoLang = 'id';
+
+    function applyDemoLanguage(lang, syncWidget = true) {
+      currentDemoLang = (lang === 'en') ? 'en' : 'id';
+      const dict = demoTranslations[currentDemoLang] || demoTranslations.id;
+      
+      document.documentElement.lang = currentDemoLang;
+      
+      // Update Title & Meta
+      document.title = dict.docTitle;
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) metaDesc.setAttribute('content', dict.docDesc);
+
+      // Update Text Content
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key] !== undefined) {
+          el.textContent = dict[key];
+        }
+      });
+
+      // Update HTML Content
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.getAttribute('data-i18n-html');
+        if (dict[key] !== undefined) {
+          el.innerHTML = dict[key];
+        }
+      });
+
+      // Update Tooltips / Titles
+      document.querySelectorAll('[data-i18n-title]').forEach(el => {
+        const key = el.getAttribute('data-i18n-title');
+        if (dict[key] !== undefined) {
+          el.setAttribute('title', dict[key]);
+        }
+      });
+
+      // Update Language Switcher Buttons in Top Right Navbar
+      document.querySelectorAll('.demo-lang-btn').forEach(btn => {
+        const btnLang = btn.getAttribute('data-lang');
+        const isActive = btnLang === currentDemoLang;
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
+
+      // Persist to LocalStorage
+      try {
+        localStorage.setItem('akseskita_lang', currentDemoLang);
+      } catch (e) {}
+
+      // Synchronize with AksesKita Web Component widget
+      if (syncWidget) {
+        const widget = document.querySelector('akses-kita') || document.querySelector('akseskita-widget');
+        if (widget && typeof widget.changeLanguage === 'function') {
+          widget.changeLanguage(currentDemoLang);
+        }
+      }
+    }
+
+    // Initialize Language from LocalStorage or default to 'id'
+    try {
+      const stored = localStorage.getItem('akseskita_lang');
+      if (stored === 'en' || stored === 'id') {
+        currentDemoLang = stored;
+      }
+    } catch (e) {}
+
+    // Apply initially
+    applyDemoLanguage(currentDemoLang, false);
+
+    // Wire Demo Navbar Language Buttons (Pojok Kanan)
+    document.querySelectorAll('.demo-lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const selectedLang = btn.getAttribute('data-lang');
+        if (selectedLang && selectedLang !== currentDemoLang) {
+          applyDemoLanguage(selectedLang, true);
+        }
+      });
+    });
+
+    // Listen for widget language change events to keep demo in sync
+    window.addEventListener('akseskita-language-changed', (e) => {
+      if (e.detail && e.detail.lang && e.detail.lang !== currentDemoLang) {
+        applyDemoLanguage(e.detail.lang, false);
+      }
+    });
+
     // Smooth scrolling & active nav state tracking
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('section');
@@ -1681,12 +2254,13 @@ Beri tahu jika sudah terpasang. Terima kasih!</div>
         await navigator.clipboard.writeText(snippet);
         const label = document.getElementById('copy-icon-label');
         if (label) {
+          const dict = demoTranslations[currentDemoLang] || demoTranslations.id;
           const prev = label.textContent;
-          label.textContent = '✓ Cuplikan Tersalin!';
+          label.textContent = dict.btnCopySnippetDone;
           setTimeout(() => { label.textContent = prev; }, 2000);
         }
       } catch (e) {
-        alert('Gagal menyalin otomatis. Silakan salin manual.');
+        alert(currentDemoLang === 'en' ? 'Failed to copy automatically. Please copy manually.' : 'Gagal menyalin otomatis. Silakan salin manual.');
       }
     });
 
@@ -1697,12 +2271,13 @@ Beri tahu jika sudah terpasang. Terima kasih!</div>
         await navigator.clipboard.writeText(handoffText);
         const label = document.getElementById('copy-handoff-label');
         if (label) {
+          const dict = demoTranslations[currentDemoLang] || demoTranslations.id;
           const prev = label.textContent;
-          label.textContent = '✓ Pesan Tersalin!';
+          label.textContent = dict.btnCopyHandoffDone;
           setTimeout(() => { label.textContent = prev; }, 2000);
         }
       } catch (e) {
-        alert('Gagal menyalin otomatis. Silakan salin manual.');
+        alert(currentDemoLang === 'en' ? 'Failed to copy automatically. Please copy manually.' : 'Gagal menyalin otomatis. Silakan salin manual.');
       }
     });
   </script>

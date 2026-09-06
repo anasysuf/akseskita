@@ -135,6 +135,21 @@ export const translations = {
     ttsListen: 'Dengarkan',
     selectionTtsTitle: 'Seleksi Teks Cepat (Quick TTS)',
     selectionTtsDesc: 'Blok / sorot kalimat apa saja pada halaman web, lalu klik tombol melayang "Dengarkan" yang muncul di atas teks pilihan.',
+
+    // Additional UI elements
+    fabAriaLabel: 'Buka Menu Aksesibilitas AksesKita',
+    fabTitle: 'Aksesibilitas (Alt + A)',
+    panelAriaLabel: 'Menu Aksesibilitas Web',
+    tagPrimaryFocus: 'Fokus Utama',
+    screenReaderActiveOn: 'Pembaca Layar Aktif (ON)',
+    screenReaderEnableOff: 'Aktifkan Pembaca Layar (OFF)',
+    alignLeftLabel: 'Kiri',
+    alignCenterLabel: 'Tengah',
+    alignRightLabel: 'Kanan',
+    alignJustifyLabel: 'Rata',
+    poweredBy: 'Didukung oleh',
+    recordStop: 'Berhenti',
+    deleteLabel: 'Hapus'
   },
   en: {
     // Toolbar A11y Header & Tabs
@@ -265,6 +280,21 @@ export const translations = {
     ttsListen: 'Listen',
     selectionTtsTitle: 'Selection Quick TTS',
     selectionTtsDesc: 'Highlight or select any text on the webpage, then click the floating "Listen" button that appears directly above your selection.',
+
+    // Additional UI elements
+    fabAriaLabel: 'Open AksesKita Accessibility Menu',
+    fabTitle: 'Accessibility (Alt + A)',
+    panelAriaLabel: 'Web Accessibility Menu',
+    tagPrimaryFocus: 'Primary Focus',
+    screenReaderActiveOn: 'Screen Reader Active (ON)',
+    screenReaderEnableOff: 'Enable Screen Reader (OFF)',
+    alignLeftLabel: 'Left',
+    alignCenterLabel: 'Center',
+    alignRightLabel: 'Right',
+    alignJustifyLabel: 'Justify',
+    poweredBy: 'Powered by',
+    recordStop: 'Stop',
+    deleteLabel: 'Delete'
   }
 };
 
@@ -283,11 +313,15 @@ export function getLanguage() {
 }
 
 export function setLanguage(lang) {
+  const previous = currentLang;
   currentLang = (lang === 'en') ? 'en' : 'id';
   if (typeof localStorage !== 'undefined') {
     try {
       localStorage.setItem(STORAGE_KEY_LANG, currentLang);
     } catch (e) {}
+  }
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent('akseskita-language-changed', { detail: { lang: currentLang, previous } }));
   }
   return currentLang;
 }
