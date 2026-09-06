@@ -1084,11 +1084,11 @@
       <div class="nav-right-actions">
         <!-- Language Switcher (Pojok Kanan) -->
         <div class="demo-lang-switcher" role="group" aria-label="Pilih Bahasa / Language Selector">
-          <button type="button" class="demo-lang-btn active" id="demo-lang-id" data-lang="id" aria-pressed="true" title="Bahasa Indonesia">
+          <button type="button" class="demo-lang-btn active" id="demo-lang-id" onclick="window.setDemoLanguage('id')" data-lang="id" aria-pressed="true" title="Bahasa Indonesia">
             <span class="demo-lang-flag">🇮🇩</span>
             <span>ID</span>
           </button>
-          <button type="button" class="demo-lang-btn" id="demo-lang-en" data-lang="en" aria-pressed="false" title="English">
+          <button type="button" class="demo-lang-btn" id="demo-lang-en" onclick="window.setDemoLanguage('en')" data-lang="en" aria-pressed="false" title="English">
             <span class="demo-lang-flag">🇬🇧</span>
             <span>EN</span>
           </button>
@@ -2163,6 +2163,12 @@ Please let us know once deployed. Thank you!`,
       }
     }
 
+    // Global Language Switcher function
+    window.setDemoLanguage = function(lang) {
+      const selected = (lang === 'en') ? 'en' : 'id';
+      applyDemoLanguage(selected, true);
+    };
+
     // Initialize Language from LocalStorage or default to 'id'
     try {
       const stored = localStorage.getItem('akseskita_lang');
@@ -2176,10 +2182,10 @@ Please let us know once deployed. Thank you!`,
 
     // Wire Demo Navbar Language Buttons (Pojok Kanan)
     document.querySelectorAll('.demo-lang-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
+      btn.addEventListener('click', (e) => {
         const selectedLang = btn.getAttribute('data-lang');
-        if (selectedLang && selectedLang !== currentDemoLang) {
-          applyDemoLanguage(selectedLang, true);
+        if (selectedLang) {
+          window.setDemoLanguage(selectedLang);
         }
       });
     });

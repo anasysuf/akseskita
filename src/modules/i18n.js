@@ -314,7 +314,11 @@ export function getLanguage() {
 
 export function setLanguage(lang) {
   const previous = currentLang;
-  currentLang = (lang === 'en') ? 'en' : 'id';
+  const target = (lang === 'en') ? 'en' : 'id';
+  if (currentLang === target) {
+    return currentLang;
+  }
+  currentLang = target;
   if (typeof localStorage !== 'undefined') {
     try {
       localStorage.setItem(STORAGE_KEY_LANG, currentLang);

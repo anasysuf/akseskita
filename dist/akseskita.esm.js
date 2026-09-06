@@ -2759,7 +2759,11 @@ function getLanguage() {
 
 function setLanguage(lang) {
   const previous = currentLang;
-  currentLang = (lang === 'en') ? 'en' : 'id';
+  const target = (lang === 'en') ? 'en' : 'id';
+  if (currentLang === target) {
+    return currentLang;
+  }
+  currentLang = target;
   if (typeof localStorage !== 'undefined') {
     try {
       localStorage.setItem(STORAGE_KEY_LANG, currentLang);
@@ -5056,10 +5060,16 @@ class AksesKitaElement extends HTMLElement {
   }
 
   changeLanguage(newLang) {
-    setLanguage(newLang);
+    const target = (newLang === 'en') ? 'en' : 'id';
+    if (getLanguage() !== target) {
+      setLanguage(target);
+    }
     const root = this.shadowRoot;
-    const isPanelOpen = !root.getElementById('a11y-panel').classList.contains('hidden');
-    const isAacOpen = !root.getElementById('aac-modal').classList.contains('hidden');
+    if (!root) return;
+    const panelEl = root.getElementById('a11y-panel');
+    const aacEl = root.getElementById('aac-modal');
+    const isPanelOpen = panelEl && !panelEl.classList.contains('hidden');
+    const isAacOpen = aacEl && !aacEl.classList.contains('hidden');
 
     this.render();
     this.bindEvents();
@@ -5069,10 +5079,10 @@ class AksesKitaElement extends HTMLElement {
     this.renderSentenceStrip();
 
     if (isPanelOpen) {
-      this.shadowRoot.getElementById('a11y-panel').classList.remove('hidden');
+      this.shadowRoot.getElementById('a11y-panel')?.classList.remove('hidden');
     }
     if (isAacOpen) {
-      this.shadowRoot.getElementById('aac-modal').classList.remove('hidden');
+      this.shadowRoot.getElementById('aac-modal')?.classList.remove('hidden');
     }
   }
 
